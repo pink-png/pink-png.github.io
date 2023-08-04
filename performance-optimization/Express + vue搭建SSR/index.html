@@ -1,0 +1,417 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#FFF"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png"><link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" type="application/rss+xml" title="死肥宅" href="https://pink-png.github.io/rss.xml"><link rel="alternate" type="application/atom+xml" title="死肥宅" href="https://pink-png.github.io/atom.xml"><link rel="alternate" type="application/json" title="死肥宅" href="https://pink-png.github.io/feed.json"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="/css/app.css?v=0.2.5"><meta name="keywords" content="前端性能优化"><link rel="canonical" href="https://pink-png.github.io/performance-optimization/Express%20+%20vue%E6%90%AD%E5%BB%BASSR/"><title>Express + vue搭建SSR - 前端性能优化 - 前端开发 | Yume Shoka = 死肥宅 = 肥宅快乐水</title><meta name="generator" content="Hexo 6.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">Express + vue搭建SSR</h1><div class="meta"><span class="item" title="创建时间：2019-10-30 16:43:00"><span class="icon"><i class="ic i-calendar"></i> </span><span class="text">发表于</span> <time itemprop="dateCreated datePublished" datetime="2019-10-30T16:43:00+08:00">2019-10-30</time></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span> <span class="line"></span> <span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">Yume Shoka</a></li></ul><ul class="right"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div id="imgs" class="pjax"><ul><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gipeu7txpzj20zk0m81kx.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclxp31goj20zk0m8qv5.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclj61ylzj20zk0m8b29.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gipev1x5e4j20zk0m8b29.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclh3brzpj20zk0m8ann.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclip4jbpj20zk0m87cv.jpg"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"/><use xlink:href="#gentle-wave" x="48" y="3"/><use xlink:href="#gentle-wave" x="48" y="5"/><use xlink:href="#gentle-wave" x="48" y="7"/></g></svg></div><main><div class="inner"><div id="main" class="pjax"><div class="article wrap"><div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i> <span><a href="/">首页</a></span><i class="ic i-angle-right"></i> <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="item" rel="index" title="分类于 前端开发"><span itemprop="name">前端开发</span></a><meta itemprop="position" content="1"></span><i class="ic i-angle-right"></i> <span class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" itemprop="item" rel="index" title="分类于 前端性能优化"><span itemprop="name">前端性能优化</span></a><meta itemprop="position" content="2"></span></div><article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://pink-png.github.io/performance-optimization/Express%20+%20vue%E6%90%AD%E5%BB%BASSR/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/avatar.jpg"><meta itemprop="name" content="sanxin98"><meta itemprop="description" content="肥宅快乐水, 编程 & 生活"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="死肥宅"></span><div class="body md" itemprop="articleBody"><h2 id="express-vue搭建ssr"><a class="anchor" href="#express-vue搭建ssr">#</a> <strong>Express + vue 搭建 SSR</strong></h2><p>最近简单的研究了一下 <code>SSR</code> ，对 <code>SSR</code> 已经有了一个简单的认知，主要应用于单页面应用， <code>Nuxt</code> 是 <code>SSR</code> 很不错的框架。也有过调研，简单的用了一下，感觉还是很不错。但是还是想知道若不依赖于框架又应该如果处理 <code>SSR</code> , 研究一下做个笔记。</p><h3 id="什么是ssr"><a class="anchor" href="#什么是ssr">#</a> <strong>什么是 SSR</strong></h3><p>把 <code>Vue</code> 组件渲染为服务器端的 <code>HTML</code> 字符串，将他们直接发送到浏览器，最后将静态标记 <code>混合</code> 为客户端上完全交互的应用程序。</p><h3 id="为什么要使用ssr"><a class="anchor" href="#为什么要使用ssr">#</a> <strong>为什么要使用 SSR</strong></h3><p>更好的 SEO，搜索引擎爬虫爬取工具可以直接查看完全渲染的页面 更宽的内容达到时间（time-to-content），当权请求页面的时候，服务端渲染完数据之后，把渲染好的页面直接发送给浏览器，并进行渲染。浏览器只需要解析 <code>html</code> 不需要去解析 <code>js</code> 。</p><h3 id="ssr弊端"><a class="anchor" href="#ssr弊端">#</a> <strong>SSR 弊端</strong></h3><p>开发条件受限， <code>Vue</code> 组件的某些生命周期钩子函数不能使用 开发环境基于 <code>Node.js</code> 会造成服务端更多的负载。在 <code>Node.js</code> 中渲染完整的应用程序，显然会比仅仅提供静态文件 <code>server</code> 更加占用 <code>CPU</code> 资源，因此如果你在预料在高流量下使用，请准备响应的服务负载，并明智的采用缓存策略。</p><h3 id="准备工作"><a class="anchor" href="#准备工作">#</a> <strong>准备工作</strong></h3><p>在正式开始之前，在 <code>vue</code> 官网找到了一张这个图片，图中详细的讲述了 <code>vue</code> 中对 <code>ssr</code> 的实现思路。如下图简单的说一下。</p><p>下图中很重要的一点就是 <code>webpack</code> ，在项目过程中会用到 <code>webpack</code> 的配置，从最左边开始就是我们所写入的源码文件，所有的文件都有一个公共的入口文件 <code>app.js</code> ，然后就进入了 <code>server-entry</code> (服务端入口) 和 <code>client-entry</code> (客户端入口)，两个入口文件都要经过 <code>webpack</code> ，当访问 <code>node</code> 端的时候，使用的是服务端渲染，在服务端渲染的时候，会生成一个 <code>server-Bender</code> ，最后通过 <code>server-Bundle</code> 可以渲染出 <code>HTML</code> 页面，若在客户端访问的时候则是使用客户端渲染，通过 <code>client-Bundle</code> 在以后渲染出 <code>HTML</code> 页面。so~ 通过这个图可以很清晰的看出来，接下来会用到两个文件，一个 <code>server</code> 入口，一个 <code>client</code> 入口，最后由 <code>webpack</code> 生成 <code>server-Bundle</code> 和 <code>client-Bundle</code> ，最终当去请求页面的时候， <code>node</code> 中的 <code>server-Bundle</code> 会生成 <code>HTML</code> 界面通过 <code>client-Bundle</code> 混合到 <code>html</code> 页面中即可。</p><p>&lt;html&gt;</p><pre><code>&lt;img src=&quot;https://pic.xiaohuochai.site/blogssr1.png&quot;/&gt;
+</code></pre><p>&lt;/html&gt;</p><p>对于 <code>vue</code> 中使用 <code>ssr</code> 做了一些简单的了解之后，那么就开始我们要做的第一步吧，首先要创建一个项目，创建一个文件夹，名字不重要，但是最好不要使用中文。</p><pre><code>mkdir dome
+cd dome
+npm init
+</code></pre><p><code>npm init</code> 命令用来初始化 <code>package.json</code> 文件：</p><pre><code>&#123;
+  &quot;name&quot;: &quot;dome&quot;,   //  项目名称
+  &quot;version&quot;: &quot;1.0.0&quot;,   //  版本号
+  &quot;description&quot;: &quot;&quot;,    //  描述
+  &quot;main&quot;: &quot;index.js&quot;,   //  入口文件
+  &quot;scripts&quot;: &#123;          //  命令行执行命令 如：npm run test
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  &#125;,
+  &quot;author&quot;: &quot;Aaron&quot;,     //  作者
+  &quot;license&quot;: &quot;ISC&quot;      //  许可证
+&#125;
+</code></pre><p>初始化完成之后接下来需要安装，项目所需要依赖的包，所有依赖项如下：</p><pre><code>npm install express --save-dev
+npm install vue --save-dev
+npm install vue-server-renderer --save-dev
+npm install vue-router --save-dev
+</code></pre><p>如上所有依赖项一一安装即可，安装完成之后就可以进行下一步了。前面说过 <code>SSR</code> 是服务端预渲染，所以当然要创建一个 <code>Node</code> 服务来支撑。在 <code>dome</code> 文件夹下面创建一个 <code>index.js</code> 文件，并使用 <code>express</code> 创建一个服务。</p><p>代码如下：</p><pre><code>const express = require(&quot;express&quot;);
+const app = express();
+
+app.get('*',(request,respones) =&gt; &#123;
+    respones.end(&quot;ok&quot;);
+&#125;)
+
+app.listen(3000,() =&gt; &#123;
+    console.log(&quot;服务已启动&quot;)
+&#125;);
+</code></pre><p>完成上述代码之后，为了方便我们需要在 <code>package.json</code> 添加一个命令，方便后续开发启动项目。</p><pre><code>&#123;
+  &quot;scripts&quot;: &#123;
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+    &quot;start&quot;: &quot;node index.js&quot;
+  &#125;
+&#125;
+</code></pre><p>创建好之后，在命令行直接输入 <code>npm start</code> 即可，当控制台显示 <code>服务已启动</code> 则表示该服务已经启动成功了。接下来需要打开浏览器看一下渲染的结果。在浏览器地址栏输入 <code>locahost:3000</code> 则可以看到 <code>ok</code> 两个字。</p><h3 id="ssr渲染手动搭建"><a class="anchor" href="#ssr渲染手动搭建">#</a> <strong>SSR 渲染手动搭建</strong></h3><p>前面的准备工作已经做好了，千万不要完了我们的主要目的不是为了渲染文字，主要的目标是为了渲染 <code>*.vue</code> 文件或 <code>html</code> 所以。接下来就是做我们想要做的事情了。接下来就是要修改 <code>index.js</code> 文件，将之前安装的 <code>vue</code> 和 <code>vue-server-renderer</code> 引入进来。</p><p>由于返回的不再是文字，而是 <code>html</code> 模板，所以我们要对响应头进行更改，告诉浏览器我们渲染的是什么，否则浏览器是不知道该如何渲染服务器返回的数据。</p><p>在 <code>index.js</code> 中引入了 <code>vue-server-renderer</code> 之后，在使用的时候，我们需要执行一下 <code>vue-server-renderer</code> 其中的 <code>createRenderer</code> 方法，这个方法的作用就是会将 <code>vue</code> 的实例转换成 <code>html</code> 的形式。</p><p>既然有了 <code>vue-server-renderer</code> 的方法，接下来就需要引入主角了 <code>vue</code> , 引入之后然后接着在下面创建一个 <code>vue</code> 实例，在 <code>web</code> 端使用 <code>vue</code> 的时候需要传一些参数给 <code>Vue</code> 然而在服务端也是如此也可以传递一些参数给 <code>Vue</code> 实例，这个实例也就是后续添加的那些 <code>*.vue</code> 文件。为了防止用户访问的时候页面数据不会互相干扰，暂时需要把实例放到 <code>get</code> 请求中，每次有访问的时候就会创建一个新的实例，渲染新的模板。</p><p><code>creteRender</code> 方法能够把 <code>vue</code> 的实例转成 <code>html</code> 字符串传递到浏览器。那么接下来由应该怎么做？在 <code>vueServerRender</code> 方法下面有一个 <code>renderToString</code> 方法，这个方法就可以帮助我们完成这步操作。这个方法接受的第一个参数是 <code>vue</code> 的实例，第二个参数是一个回调函数，如果不想使用回调函数的话，这个方法也返回了一个 <code>Promise</code> 对象，当方法执行成功之后，会在 <code>then</code> 函数里面返回 <code>html</code> 结构。</p><p>index.js 改动如下：</p><pre><code>const express = require(&quot;express&quot;);
+const Vue = require(&quot;vue&quot;);
+const vueServerRender = require(&quot;vue-server-renderer&quot;).createRenderer();
+
+const app = express();
+
+app.get('*',(request,respones) =&gt; &#123;
+    const vueApp = new Vue(&#123;
+        data:&#123;
+            message:&quot;Hello,Vue SSR!&quot;
+        &#125;,
+        template:`&lt;h1&gt;&#123;&#123;message&#125;&#125;&lt;/h1&gt;` 
+    &#125;);
+    respones.status(200);
+    respones.setHeader(&quot;Content-Type&quot;,&quot;text/html;charset-utf-8;&quot;);
+    vueServerRender.renderToString(vueApp).then((html) =&gt; &#123;
+        respones.end(html);
+    &#125;).catch(error =&gt; console.log(error));
+&#125;)
+
+app.listen(3000,() =&gt; &#123;
+    console.log(&quot;服务已启动&quot;)
+&#125;);
+</code></pre><p>上述操作完成之后，一定要记得保存，然后重启服务器，继续访问一下 <code>locahost:3000</code> ，就会看到在服务端写入的 <code>HTML</code> 结构了。这样做好像给我们添加了大量的工作，到底与在 <code>web</code> 端直接使用有什么区别么？</p><p>接下来见证奇迹的时刻到了。在网页中右键 <code>查看源代码</code> 就会发现与之前的在 <code>web</code> 端使用的时候完全不同，可以看到渲染的模板了。如果细心的就会发现一件很有意思的事情，在 <code>h1</code> 标签上会有一个 <code>data-server-rendered=true</code> 这样的属性，这个可以告诉我们这个页面是通过服务端渲染来做的。大家可以去其他各大网站看看哦。没准会有其他的收获。</p><p>上面的案例中，虽然已经实现了服务端预渲染，但是会有一个很大的缺陷，就是我们所渲染的这个网页并不完整，没有文档声明， <code>head</code> 等等等，当然可能会有一个其他的想法，就是使用 <code>es6</code> 的模板字符串做拼接就好了啊。确实，这样也是行的通的，但是这个仍是饮鸩止渴不能彻底的解决问题，如果做过传统 <code>MVC</code> 开发的话，就应该知道， <code>MVC</code> 开发模式全是基于模板的，现在这种与 <code>MVC</code> 有些相似的地方，同理也是可以使用模板的。在 <code>dome</code> 文件夹下创建 <code>index.html</code> ，并创建好 <code>HTML</code> 模板。</p><p>模板现在有了该如何使用？在 <code>createRenderer</code> 函数可以接收一个对象作为配置参数。配置参数中有一项为 <code>template</code> , 这项配置的就是我们即将使用的 <code>Html</code> 模板。这个接收的不是一个单纯的路径，我们需要使用 <code>fs</code> 模块将 <code>html</code> 模板读取出来。</p><p>其配置如下：</p><pre><code>let path = require(&quot;path&quot;);
+const vueServerRender = require(&quot;vue-server-renderer&quot;).createRenderer(&#123;
+    template:require(&quot;fs&quot;).readFileSync(path.join(__dirname,&quot;./index.html&quot;),&quot;utf-8&quot;)
+&#125;);
+</code></pre><p>现在模板已经有了，在 <code>web</code> 端进行开发的时候，需要挂在一个 <code>el</code> 的挂载点，这样 <code>Vue</code> 才知道把这些 <code>template</code> 渲染在哪，服务端渲染也是如此，同样也需要告诉 <code>Vue</code> 将 <code>template</code> 渲染到什么地方。接下来要做的事情就是在 <code>index.html</code> 中做手脚。来通知 <code>createRenderer</code> 把 <code>template</code> 添加到什么地方。</p><p>更改 <code>index.html</code> 文件：</p><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html &gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+&lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!--vue-ssr-outlet--&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>可以发现，在 <code>html</code> 的 <code>body</code> 里面添加了一段注释，当将 <code>vueServerRender</code> 编译好的 <code>html</code> 传到模板当中之后这个地方将被替换成服务端预编译的模板内容，这样也算是完成一个简单的服务端预渲染了。虽然写入的只是简单的 <code>html</code> 渲染，没有数据交互也没有页面交互，也算是一个不小的进展了。</p><p>使用 <code>SSR</code> 搭建项目我们继续延续上个项目继续向下开发，大家平时在使用 <code>vue-cli</code> 搭建项目的时候，都是在 <code>src</code> 文件夹下面进行开发的，为了和 <code>vue</code> 项目结构保持一致，同样需要创建一个 <code>src</code> 文件夹，并在 <code>src</code> 文件夹创建 <code>conponents,router,utils,view</code> , 暂定项目结构就这样，随着代码的编写会逐渐向项目里面添加内容。</p><pre><code>└─src
+|   ├─components
+|   ├─router
+|   ├─utils
+|   ├─view
+|   └─app.js
+└─index.js
+</code></pre><p>初始的目录结构已经搭建好了之后，接下来需要继续向下进行，首先要做的就是要在 <code>router</code> 目录中添加一个 <code>index.js</code> 文件，用来创建路由信息（在使用路由的时候一定要确保路由已经安装）。路由在项目中所起到的作用应该是重要的，路由会通过路径把页面和组件之间建立联系，并且一一的对应起来，完成路由的渲染。</p><p>接下来在 <code>router</code> 下面的 <code>index.js</code> 文件中写入如下配置：</p><pre><code>const vueRouter = require(&quot;vue-router&quot;);
+const Vue = require(&quot;vue&quot;);
+
+Vue.use(vueRouter);
+
+module.exports = () =&gt; &#123;
+    return new vueRouter(&#123;
+        mode:&quot;history&quot;,
+        routes:[
+            &#123;
+                path:&quot;/&quot;,
+                component:&#123;
+                    template:`&lt;h1&gt;这里是首页&lt;/h1&gt;`
+                &#125;,
+                name:&quot;home&quot;
+            &#125;,
+            &#123;
+                path:&quot;/about&quot;,
+                component:&#123;
+                    template:`&lt;h1&gt;这里是关于我&lt;/h1&gt;`
+                &#125;,
+                name:&quot;about&quot;
+            &#125;
+        ]
+    &#125;)
+&#125;
+</code></pre><p>上面的代码中，仔细观察的话，和平时在 <code>vue-cli</code> 中所导出的方式是不一样的，这里采用了工厂方法，这里为什么要这样？记得在雏形里面说过，为了保证用户每次访问都要生成一个新的路由，防止用户与用户之间相互影响，也就是说 Vue 实例是新的，我们的 <code>vue-router</code> 的实例也应该保证它是一个全新的。</p><p>现在 <code>Vue</code> 实例和服务端混在一起，这样对于项目的维护是很不好的，所以也需要把 <code>Vue</code> 从服务端单独抽离出来，放到 <code>app.js</code> 中去。这里采用和 <code>router</code> 同样的方式使用工厂方式，以保证每次被访问都是一个全新的 <code>vue</code> 实例。在 <code>app.js</code> 导入刚刚写好的路由，在每次触发工厂的时候，创建一个新的路由实例，并绑定到 <code>vue</code> 实例里面，这样用户在访问路径的时候无论是 <code>vue</code> 实例还是 <code>router</code> 都是全新的了。</p><p>app.js：</p><pre><code>const Vue = require(&quot;vue&quot;);
+const createRouter = require(&quot;../router&quot;)
+
+module.exports = (context) =&gt; &#123;
+    const router = createRouter();
+    return new Vue(&#123;
+        router,
+        data:&#123;
+            message:&quot;Hello,Vue SSR!&quot;
+        &#125;,
+        template:`
+            &lt;div&gt;
+                &lt;div&gt;
+                    &lt;h1&gt;&#123;&#123;message&#125;&#125;&lt;/h1&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;
+                            &lt;router-link to=&quot;/&quot;&gt;首页&lt;/router-link&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;router-link to=&quot;/about&quot;&gt;关于我&lt;/router-link&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;router-view&gt;&lt;/router-view&gt;
+            &lt;/div&gt;
+        ` 
+    &#125;);
+&#125;
+</code></pre><p>做完这些东西貌似好像就能用了一样，但是还是不行，仔细想想好像忘了一些什么操作，刚刚把 <code>vue</code> 实例从 <code>index.js</code> 中抽离出来了，但是却没有在任何地方使用它，哈哈，好像是一件很尴尬的事情。</p><p>修改 <code>index.js</code> 文件：</p><pre><code>const express = require(&quot;express&quot;);
+const vueApp = require(&quot;./src/app.js&quot;);
+let path = require(&quot;path&quot;);
+const vueServerRender = require(&quot;vue-server-renderer&quot;).createRenderer(&#123;
+  template:require(&quot;fs&quot;).readFileSync(path.join(__dirname,&quot;./index.html&quot;),&quot;utf-8&quot;)
+&#125;);
+
+const app = express();
+
+app.get('*',(request,respones) =&gt; &#123;
+    
+    //  这里可以传递给vue实例一些参数
+    let vm = vueApp(&#123;&#125;)
+    
+    respones.status(200);
+    respones.setHeader(&quot;Content-Type&quot;,&quot;text/html;charset-utf-8;&quot;);
+    vueServerRender.renderToString(vm).then((html) =&gt; &#123;
+        respones.end(html);
+    &#125;).catch(error =&gt; console.log(error));
+&#125;)
+
+app.listen(3000,() =&gt; &#123;
+    console.log(&quot;服务已启动&quot;)
+&#125;);
+</code></pre><p>准备工作都已经做好啦，完事具备只欠东风啦。现在运行一下 <code>npm start</code> 可以去页面上看一下效果啦。看到页面中已经渲染出来了，但是好像是少了什么？虽然导航内容已经都显示出来了，但是路由对应的组件好像没得渲染噻。具体是什么原因导致的呢， <code>vue-router</code> 是由前端控制渲染的，当访问路由的时候其实，在做首屏渲染的时候并没有授权给服务端让其去做渲染路由的工作。(⊙﹏⊙)，是的我就是这么懒...</p><p>这个问题解决方案也提供了相对应的操作，不然就知道该怎么写下去了。既然在做渲染的时候分为服务端渲染和客户端渲染两种，那么我们就需要两个入口文件，分别对应的服务端渲染的入口文件，另个是客户端渲染的入口文件。</p><p>在 <code>src</code> 文件夹下面添加两个 <code>.js</code> 文件 (当然也可以放到其他地方，这里只是为了方便), <code>entry-client.js</code> 这个文件用户客户端的入口文件， <code>entry-server.js</code> 那么这个文件则就作为服务端的入口文件。既然入口文件已经确定了，接下来就是要解决刚才的问题了，首先解决的是服务端渲染，在服务端这里需要把用户所访问的路径传递给 <code>vue-router</code> ，如果不传递给 <code>vue-router</code> 的话， <code>vue-router</code> 会一脸懵逼的看着你，你什么都不给我，我怎么知道渲染什么？</p><p>在 <code>entry-server</code> 中需要做的事情就是需要把 <code>app.js</code> 导入进来，这里可以向上翻一下 <code>app.js</code> 中保存的是创建 vue 实例的方法。首先在里面写入一个函数，至于为什么就不多说了（同样也是为了保证每次访问都有一个新的实例），这个函数接收一个参数（ <code>[object]</code> ），由于这里考虑到可能会有异步操作 (如懒加载)，在这个函数中使用了 <code>Promise</code> ，在 <code>Promise</code> 中首先要拿到连个东西，不用猜也是能想到的，很重要的 <code>vue</code> 实例和 <code>router</code> 实例，so~ 但是在 <code>app</code> 中好像只导出了 <code>vue</code> 实例，还要根据当前所需要的去更改 <code>app.js</code> 。</p><p>app.js:</p><pre><code>const Vue = require(&quot;vue&quot;);
+const createRouter = require(&quot;../router&quot;)
+
+module.exports = (context) =&gt; &#123;
+    const router = createRouter();
+    const app = new Vue(&#123;
+        router,
+        data:&#123;
+            message:&quot;Hello,Vue SSR!&quot;
+        &#125;,
+        template:`
+            &lt;div&gt;
+                &lt;div&gt;
+                    &lt;h1&gt;&#123;&#123;message&#125;&#125;&lt;/h1&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;
+                            &lt;router-link to=&quot;/&quot;&gt;首页&lt;/router-link&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;router-link to=&quot;/about&quot;&gt;关于我&lt;/router-link&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;router-view&gt;&lt;/router-view&gt;
+            &lt;/div&gt;
+        ` 
+    &#125;);
+    return &#123;
+        app,
+        router
+    &#125;
+&#125;
+</code></pre><p>通过上面的改造之后，就可以在 <code>entry-server.js</code> 中轻松的拿到 <code>vue</code> 和 <code>router</code> 的实例了，现在查看一下当前 <code>entry-server.js</code> 中有那些可用参数， <code>vue</code> , <code>router</code> , 提及到的 <code>URL</code> 从哪里来？既然这个函数是给服务端使用的，那么当服务端去执行这个函数的时候，就可以通过参数形式传递进来，获取到我们想要的参数，我们假设这个参数叫做 <code>url</code> ，我们需要让路由去做的就是跳转到对应的路由中（这一步很重要），然后再把对 <code>router</code> 的实例挂载到 <code>vue</code> 实例中，然后再把 <code>vue</code> 实例返回出去，供 <code>vueServerRender</code> 消费。那么就需要导出这个函数，以供服务端使用。</p><p>由于我们不能预测到用户所访问的路由就是在 <code>vue-router</code> 中所配置的，所以需要在 <code>onReady</code> 的时候进行处理，我们可以通过 <code>router</code> 的 <code>getMatchedComponents</code> 这个方法，获取到我们所导入的组件，这些有个我们就可通过判断组件对匹配结果进行渲染。</p><p>entry-server.js</p><pre><code>const createApp = require(&quot;./app.js&quot;);
+
+module.exports = (context) =&gt; &#123;
+    return new Promise((reslove,reject) =&gt; &#123;
+        let &#123;url&#125; = context;
+        let &#123;app,router&#125; = createApp(context);
+        router.push(url);
+        //  router回调函数
+        //  当所有异步请求完成之后就会触发
+        router.onReady(() =&gt; &#123;
+            let matchedComponents = router.getMatchedComponents();
+            if(!matchedComponents.length)&#123;
+                return reject(&#123;
+                    code:404,
+                &#125;);
+            &#125;
+            reslove(app);
+        &#125;,reject)
+    &#125;)
+&#125;
+</code></pre><p>既然实例又发生了变化，需要对应发生变化的 <code>index.js</code> 同样也需要做出对应的改动。把刚才的引入 <code>vue</code> 实例的路径改为 <code>entey-server.js</code> ，由于这里返回的是一个 <code>Promise</code> 对象，这里使用 <code>async/await</code> 处理接收一下，并拿到 <code>vue</code> 实例。不要忘了把 <code>router</code> 所需要的 <code>url</code> 参数传递进去。</p><p>index.js:</p><pre><code>const express = require(&quot;express&quot;);
+const App = require(&quot;./src/entry-server.js&quot;);
+let path = require(&quot;path&quot;);
+const vueServerRender = require(&quot;vue-server-renderer&quot;).createRenderer(&#123;
+  template:require(&quot;fs&quot;).readFileSync(path.join(__dirname,&quot;./index.html&quot;),&quot;utf-8&quot;)
+&#125;);
+
+const app = express();
+
+app.get('*',async (request,respones) =&gt; &#123;
+    respones.status(200);
+    respones.setHeader(&quot;Content-Type&quot;,&quot;text/html;charset-utf-8;&quot;);
+
+    let &#123;url&#125; = request;
+    //  这里可以传递给vue实例一些参数
+    let vm = await App(&#123;url&#125;);
+    vueServerRender.renderToString(vm).then((html) =&gt; &#123;
+        respones.end(html);
+    &#125;).catch(error =&gt; console.log(error));
+&#125;)
+
+app.listen(3000,() =&gt; &#123;
+    console.log(&quot;服务已启动&quot;)
+&#125;);
+</code></pre><p>这下子就完成了，启动项目吧，当访问根路径的时候，就会看到刚才缺少的组件也已经渲染出来了，当然我们也可以切换路由，也是没有问题的。大功告成。。。好像并没有 emmmmmmmmm，为什么，细心的话应该会发现，当我们切换路由的时候，地址栏旁边的刷新按钮一直在闪动，这也就是说，我们所做出来的并不是一个单页应用（手动笑哭），出现这样的问题也是难怪的，毕竟我们没有配置前端路由，我们把所有路由的控制权都交给了服务端，每次访问一个路由的时候，都会向服务端发送一个请求，返回路由对应的页面。想要解决这个问题，当处于前端的时候我们需要让服务端把路由的控制权交还给前端路由，让前端去控制路由的跳转。</p><p>之前在 <code>src</code> 文件夹下面添加了两个文件，只用到了服务端的文件，为了在客户端能够交还路由控制权，要对 <code>web</code> 端路由进行配置。由于在客户端在使用 <code>vue</code> 的时候需要挂载一个 <code>document</code> ，因为 <code>vue</code> 的实例已经创建完成了，所以，这里需要使用 <code>$mount</code> 这个钩子函数，来完成客户端的挂载。同样为了解决懒加载这种类似的问题 so~ 同样需要使用 <code>onReady</code> 里进行路由的处理，只有当 <code>vue-router</code> 加载完成以后再去挂载。</p><p>在客户端是使用的时候很简单，只需要把路由挂载到 <code>app</code> 里面就可以了。</p><p>entry-client.js</p><pre><code>const createApp = require(&quot;./app.js&quot;);
+let &#123;app,router&#125; = createApp(&#123;&#125;);
+
+router.onReady(() =&gt; &#123;
+    app.$mount(&quot;#app&quot;)
+&#125;);
+</code></pre><p>整个项目的雏形也就这样了，由于服务端把路由控制权交还给客户端，需要复杂的 <code>webpack</code> 配置，so~ 不再赘述了，下面直接使用 <code>vue-cli</code> 继续（做的是使用需要用到上面的代码）。</p><h3 id="vue-cli项目搭建"><a class="anchor" href="#vue-cli项目搭建">#</a> <strong>vue-cli 项目搭建</strong></h3><p>在做准备工作的时候简单讲述了 <code>vue</code> 中使用 <code>ssr</code> 的运行思路，里面提及了一个很重要的 <code>webpack</code> ，因此这里需要借助 <code>vue-cli</code> 脚手架，直接更改原有的 <code>webpack</code> 就可以了，这样会方便很多。</p><p>这里建议大家返回顶部再次看一下 <code>vue</code> 服务端渲染的流程，在介绍中的 <code>client-bundle</code> 和 <code>server-bundle</code> ，，所以需要构建两个配置，分别是服务端配置和客户端的配置。</p><p>如想要实现服务端渲染需要对 <code>vue-cli</code> 中个 <code>js</code> 文件中的配置进行修改。以下只展示更改部分的代码，不展示全部。</p><p>文件分别是：</p><p>webpack.server.conf.js - 服务端 webpack 配置 dev-server.js - 获取服务端 bundle server.js - 创建后端服务 webpack.dev.conf.js - 客户端的 bundle webpack.base.conf - 修改入口文件</p><p><strong>客户端配置</strong></p><p>客户端生成一份客户端构建清单，记录客户端的资源，最终会将客户端构建清单中记录的文件，注入到执行的执行的模板中，这个清单与服务端类似，同样也会生成一份 <code>json</code> 文件，这个文件的名字是 <code>vue-ssr-client-manifest.json</code> （项目启动以后可以通过地址 / 文件名访问到），当然必不可少的是，同样也需要引入一个叫做 <code>vue-server-renderer/client-plugin</code> 模块，作为 <code>webpack</code> 的插件供其使用。</p><p>首先要安装一下 <code>vue-server-renderer</code> 这个模块，这个是整个服务端渲染的核心，没有整个 <code>ssr</code> 是没有任何灵魂的。</p><pre><code>npm install vue-server-renderer -S
+</code></pre><p>安装完成之后，首先要找到 <code>webpack.dev.conf.js</code> ，首先要对其进行相关配置。</p><p>webpack.dev.conf.js</p><pre><code>//  添加引入  vue-server-render/client-plugin  模块
+const vueSSRClientPlugin = require(&quot;vue-server-renderer/client-plugin&quot;);
+
+const devWebpackConfig = merge(baseWebpackConfig,&#123;
+    plugins:[
+        new vueSSRClientPlugin()
+    ] 
+&#125;);
+</code></pre><p>添加了这个配置以后，重新启动项目通过地址就可以访问到 <code>vue-ssr-client-manifest.json</code> （<span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo4MDgwL3Z1ZS1zc3ItY2xpZW50LW1hbmlmZXN0Lmpzb24lRUYlQkMlODklRUYlQkMlOEMlRTklQTElQjUlRTklOUQlQTIlRTQlQjglQUQlRTUlODclQkElRTclOEUlQjAlRTclOUElODQlRTUlODYlODUlRTUlQUUlQjklRTUlQjAlQjElRTYlOTglQUYlRTYlODklODAlRTklOUMlODAlRTglQTYlODElRTclOUElODQ=">http://localhost:8080/vue-ssr-client-manifest.json），页面中出现的内容就是所需要的</span> <code>client-bundle</code> 。</p><p><strong>服务端配置</strong></p><p>服务端会默认生成一个 <code>vue-ssr-server-bundle.json</code> 文件，在文件中会记录整个服务端整个输出，怎么才能生成这个文件呢？要在这个 <code>json</code> 文件，必须要引入 <code>vue-server-renderer/server-plugin</code> , 并将其作为 <code>webpack</code> 的插件。</p><p>在开始服务端配置之前，需要在 <code>src</code> 文件夹下面创建三个文件， <code>app.js</code> ， <code>entry-client.js</code> ， <code>entry-server.js</code> ，创建完成之后需要对其写入相关代码。</p><p>src/router/index.js</p><pre><code>import vueRouter from &quot;vue-router&quot;;
+import Vue from &quot;vue&quot;;
+import HelloWorld from &quot;@/components/HelloWorld&quot;;
+
+Vue.use(vueRouter);
+export default () =&gt; &#123;
+    return new vueRouter(&#123;
+        mode:&quot;history&quot;,
+        routes:[
+            &#123;
+                path:&quot;/&quot;,
+                component:HelloWorld,
+                name:&quot;HelloWorld&quot;
+            &#125;
+        ]
+    &#125;)
+&#125;
+</code></pre><p>app.js</p><pre><code>import Vue from &quot;vue&quot;;
+import createRouter from &quot;./router&quot;;
+import App from &quot;./App.vue&quot;;
+
+export default (context) =&gt; &#123;
+    const router = createRouter();
+    const app = new Vue(&#123;
+        router,
+        components: &#123; App &#125;,
+        template: '&lt;App/&gt;'
+    &#125;);
+    return &#123;
+        app,
+        router
+    &#125;
+&#125;
+</code></pre><p>entry-server.js</p><pre><code>import createApp from &quot;./app.js&quot;;
+
+export default (context) =&gt; &#123;
+    return new Promise((reslove,reject) =&gt; &#123;
+        let &#123;url&#125; = context;
+        let &#123;app,router&#125; = createApp(context);
+        router.push(url);
+        router.onReady(() =&gt; &#123;
+            let matchedComponents = router.getMatchedComponents();
+            if(!matchedComponents.length)&#123;
+                return reject(&#123;
+                    code:404,
+                &#125;);
+            &#125;
+            reslove(app);
+        &#125;,reject)
+    &#125;)
+&#125;
+</code></pre><p>entry-client.js</p><pre><code>import createApp from &quot;./app.js&quot;;
+let &#123;app,router&#125; = createApp();
+
+router.onReady(() =&gt; &#123;
+    app.$mount(&quot;#app&quot;);
+&#125;);
+</code></pre><p>webpack.base.conf.js</p><pre><code>module.exports = &#123;
+    entry:&#123;
+        app:&quot;./src/entry-client.js&quot;
+    &#125;,
+    output:&#123;
+        publicPath:&quot;http://localhost:8080/&quot;
+    &#125;
+&#125;;
+</code></pre><p>webpack.server.conf.js (手动创建)</p><pre><code>const webpack = require(&quot;webpack&quot;);
+const merge = require(&quot;webpack-merge&quot;);
+const base = require(&quot;./webpack.base.conf&quot;);
+//  手动安装
+//  在服务端渲染中，所需要的文件都是使用require引入，不需要把node_modules文件打包
+const webapckNodeExternals = require(&quot;webpack-node-externals&quot;);
+
+
+const vueSSRServerPlugin = require(&quot;vue-server-renderer/server-plugin&quot;);
+
+module.exports = merge(base,&#123;
+    //  告知webpack，需要在node端运行
+    target:&quot;node&quot;,
+    entry:&quot;./src/entry-server.js&quot;,
+    devtool:&quot;source-map&quot;,
+    output:&#123;
+        filename:'server-buldle.js',
+        libraryTarget: &quot;commonjs2&quot;
+    &#125;,
+    externals:[
+        webapckNodeExternals()
+    ],
+    plugins:[
+        new webpack.DefinePlugin(&#123;
+            'process.env.NODE_ENV':'&quot;devlopment&quot;',
+            'process.ent.VUE_ENV': '&quot;server&quot;'
+        &#125;),
+        new vueSSRServerPlugin()
+    ]
+&#125;);
+</code></pre><p>dev-server.js (手动创建)</p><pre><code>const serverConf = require(&quot;./webpack.server.conf&quot;);
+const webpack = require(&quot;webpack&quot;);
+const fs = require(&quot;fs&quot;);
+const path = require(&quot;path&quot;);
+//  读取内存中的.json文件
+//  这个模块需要手动安装
+const Mfs = require(&quot;memory-fs&quot;);
+const axios = require(&quot;axios&quot;);
+
+module.exports = (cb) =&gt; &#123;
+    const webpackComplier = webpack(serverConf);
+    var mfs = new Mfs();
+    
+    webpackComplier.outputFileSystem = mfs;
+    
+    webpackComplier.watch(&#123;&#125;,async (error,stats) =&gt; &#123;
+        if(error) return console.log(error);
+        stats = stats.toJson();
+        stats.errors.forEach(error =&gt; console.log(error));
+        stats.warnings.forEach(warning =&gt; console.log(warning));
+        //  获取server bundle的json文件
+        let serverBundlePath = path.join(serverConf.output.path,'vue-ssr-server-bundle.json');
+        let serverBundle = JSON.parse(mfs.readFileSync(serverBundlePath,&quot;utf-8&quot;));
+        //  获取client bundle的json文件
+        let clientBundle = await axios.get(&quot;http://localhost:8080/vue-ssr-client-manifest.json&quot;);
+        //  获取模板
+        let template = fs.readFileSync(path.join(__dirname,&quot;..&quot;,&quot;index.html&quot;),&quot;utf-8&quot;);
+        cb &amp;&amp; cb(serverBundle,clientBundle,template);
+    &#125;)
+&#125;;
+</code></pre><p>根目录 /server.js (手动创建)</p><pre><code>const devServer = require(&quot;./build/dev-server.js&quot;);
+const express = require(&quot;express&quot;);
+const app = express();
+const vueRender = require(&quot;vue-server-renderer&quot;);
+
+app.get('*',(request,respones) =&gt; &#123;
+    respones.status(200);
+    respones.setHeader(&quot;Content-Type&quot;,&quot;text/html;charset-utf-8;&quot;);
+    devServer((serverBundle,clientBundle,template) =&gt; &#123;
+        let render = vueRender.createBundleRenderer(serverBundle,&#123;
+            template,
+            clientManifest:clientBundle.data,
+            //  每次创建一个独立的上下文
+            renInNewContext:false
+        &#125;); 
+        render.renderToString(&#123;
+            url:request.url
+        &#125;).then((html) =&gt; &#123;
+            respones.end(html);
+        &#125;).catch(error =&gt; console.log(error));
+    &#125;);
+&#125;)
+
+app.listen(5000,() =&gt; &#123;
+    console.log(&quot;服务已启动&quot;)
+&#125;);
+</code></pre><p>index.html</p><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html &gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+&lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div &gt;
+        &lt;!--vue-ssr-outlet--&gt;
+    &lt;/div&gt;
+    &lt;!-- built files will be auto injected --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>以上就是所有要更改和添加的配置项，配置完所有地方就可以完成服务端渲染。此时需要在 <code>package.json</code> 中的 <code>sctipt</code> 中添加启动项： <code>http:node server.js</code> ，就可以正常运行项目了。注意一定要去访问服务端设置的端口，同时要保证你的客户端也是在线的。</p><h3 id="nuxt是一个基于-vuejs-的通用应用框架它提供了一种简单而强大的方式来创建服务器渲染的-vuejs-应用"><a class="anchor" href="#nuxt是一个基于-vuejs-的通用应用框架它提供了一种简单而强大的方式来创建服务器渲染的-vuejs-应用">#</a> nuxt 是一个基于 Vue.js 的通用应用框架，它提供了一种简单而强大的方式来创建服务器渲染的 Vue.js 应用</h3><ol><li><p>服务器端渲染（SSR）：Nuxt.js 提供了内置的服务器端渲染支持，可以在服务器端生成完整的 HTML 页面，并将其发送给客户端展示。这样可以提供更快的首次加载速度和更好的搜索引擎优化。同时，Nuxt.js 还为前端开发人员隐藏了大部分 SSR 的复杂性，使得开发 SSR 应用变得更加简单。</p></li><li><p>自动路由配置：Nuxt.js 根据项目目录结构自动生成路由配置，无需手动配置每个页面的路由信息。只需按照约定的目录结构组织代码即可实现自动路由匹配。这样可以极大地提高开发效率。</p></li><li><p>强大的异步数据处理：Nuxt.js 提供了一个特殊的 asyncData 方法，可以在页面组件中获取和处理异步数据。这样，在渲染页面之前，可以先获取页面所需的数据，并将数据注入到组件中。这种方式简化了前后端数据交互的过程，同时也提供了更好的性能和用户体验。</p></li><li><p>插件机制：Nuxt.js 提供了插件机制，可以方便地扩展和集成第三方库。通过插件，可以在项目中引入和使用其他 Vue.js 生态系统中的工具和功能。</p></li><li><p>静态文件服务：Nuxt.js 能够自动处理静态文件，例如图片、样式表和字体等。它提供了一个特殊的目录（static），其中的文件将被直接复制到构建目录中，使得这些文件可以通过 HTTP 服务器直接访问。</p></li><li><p>开发和调试工具：Nuxt.js 集成了很多开发和调试工具，例如热重载、代码分割和错误定位等。这些工具可以提高开发效率，并帮助开发人员更快地找到和解决问题。</p></li><li><p>生态系统支持：Nuxt.js 基于 Vue.js 生态系统，可以充分利用 Vue.js 的丰富生态系统，包括 Vue 组件、Vue 插件和 Vue CLI 等。这样开发者可以通过 Nuxt.js 构建出更加强大和灵活的应用程序。</p></li></ol><div class="tags"><a href="/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag"><i class="ic i-tag"></i> 前端性能优化</a></div></div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i> </span><span class="text">更新于</span> <time title="修改时间：2023-07-29 16:08:19" itemprop="dateModified" datetime="2023-07-29T16:08:19+08:00">2023-07-29</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i> 赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img data-src="/images/wechatpay.png" alt="sanxin98 微信支付"><p>微信支付</p></div><div><img data-src="/images/alipay.png" alt="sanxin98 支付宝"><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者： </strong>sanxin98 <i class="ic i-at"><em>@</em></i>死肥宅</li><li class="link"><strong>本文链接：</strong> <a href="https://pink-png.github.io/performance-optimization/Express%20+%20vue%E6%90%AD%E5%BB%BASSR/" title="Express + vue搭建SSR">https://pink-png.github.io/performance-optimization/Express + vue搭建SSR/</a></li><li class="license"><strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/performance-optimization/Vue%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclffsa1cj20zk0m811l.jpg" title="vue首屏优化"><span class="type">上一篇</span> <span class="category"><i class="ic i-flag"></i> 前端性能优化</span><h3>vue首屏优化</h3></a></div><div class="item right"><a href="/front-end/vue2.x%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclh3brzpj20zk0m8ann.jpg" title="vue2.x常用基础"><span class="type">下一篇</span> <span class="category"><i class="ic i-flag"></i> Vue</span><h3>vue2.x常用基础</h3></a></div></div><div class="wrap" id="comments"></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#express-vue%E6%90%AD%E5%BB%BAssr"><span class="toc-number">1.</span> <span class="toc-text">Express + vue 搭建 SSR</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFssr"><span class="toc-number">1.1.</span> <span class="toc-text">什么是 SSR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8ssr"><span class="toc-number">1.2.</span> <span class="toc-text">为什么要使用 SSR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssr%E5%BC%8A%E7%AB%AF"><span class="toc-number">1.3.</span> <span class="toc-text">SSR 弊端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.4.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssr%E6%B8%B2%E6%9F%93%E6%89%8B%E5%8A%A8%E6%90%AD%E5%BB%BA"><span class="toc-number">1.5.</span> <span class="toc-text">SSR 渲染手动搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue-cli%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA"><span class="toc-number">1.6.</span> <span class="toc-text">vue-cli 项目搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nuxt%E6%98%AF%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E-vuejs-%E7%9A%84%E9%80%9A%E7%94%A8%E5%BA%94%E7%94%A8%E6%A1%86%E6%9E%B6%E5%AE%83%E6%8F%90%E4%BE%9B%E4%BA%86%E4%B8%80%E7%A7%8D%E7%AE%80%E5%8D%95%E8%80%8C%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E5%88%9B%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%B8%B2%E6%9F%93%E7%9A%84-vuejs-%E5%BA%94%E7%94%A8"><span class="toc-number">1.7.</span> <span class="toc-text">nuxt 是一个基于 Vue.js 的通用应用框架，它提供了一种简单而强大的方式来创建服务器渲染的 Vue.js 应用</span></a></li></ol></li></ol></div><div class="related panel pjax" data-title="系列文章"><ul><li class="active"><a href="/performance-optimization/Express%20+%20vue%E6%90%AD%E5%BB%BASSR/" rel="bookmark" title="Express + vue搭建SSR">Express + vue搭建SSR</a></li><li><a href="/performance-optimization/Vue%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96/" rel="bookmark" title="vue首屏优化">vue首屏优化</a></li><li><a href="/performance-optimization/html%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96/" rel="bookmark" title="html 加载优化">html 加载优化</a></li><li><a href="/performance-optimization/css%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AF%87/" rel="bookmark" title="css性能优化篇">css性能优化篇</a></li><li><a href="/performance-optimization/Web%20Worker/" rel="bookmark" title="Web Worker">Web Worker</a></li><li><a href="/performance-optimization/%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E2%BC%8F%E4%B8%87%E6%9D%A1%E6%95%B0%E6%8D%AE%E5%B9%B6%E4%B8%8D%E5%8D%A1%E4%BD%8F%E7%95%8C%E2%BE%AF/" rel="bookmark" title="如何渲染⼏万条数据并不卡住界⾯">如何渲染⼏万条数据并不卡住界⾯</a></li><li><a href="/performance-optimization/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A6%96%E5%B1%8F%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="bookmark" title="小程序首屏性能优化">小程序首屏性能优化</a></li><li><a href="/performance-optimization/%E6%94%AF%E4%BB%98%E5%AE%9D%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" rel="bookmark" title="支付宝小程序性能优化方案">支付宝小程序性能优化方案</a></li><li><a href="/performance-optimization/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E7%BA%B2/" rel="bookmark" title="前端性能优化大纲">前端性能优化大纲</a></li><li><a href="/performance-optimization/%E5%9C%A8%E6%9F%90%E6%9F%90%E4%BC%81%E4%B8%9A%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BC%98%E5%8C%96%E6%80%9D%E8%80%83(uniapp)/" rel="bookmark" title="在某某企业小程序优化思考(uniapp)">在某某企业小程序优化思考(uniapp)</a></li><li><a href="/performance-optimization/%E6%8F%90%E9%AB%98Webpack%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6/" rel="bookmark" title="webpack性能优化">webpack性能优化</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="image" itemprop="image" alt="sanxin98" data-src="/images/avatar.jpg"><p class="name" itemprop="name">sanxin98</p><div class="description" itemprop="description">编程 & 生活</div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">91</span> <span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">34</span> <span class="name">分类</span></a></div><div class="item tags"><a href="/tags/"><span class="count">25</span> <span class="name">标签</span></a></div></nav><div class="social"><span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BpbmstcG5n" title="https:&#x2F;&#x2F;github.com&#x2F;pink-png"><i class="ic i-github"></i></span></div><ul class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li><li class="item dropdown"><a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a><ul class="submenu"><li class="item"><a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a></li><li class="item"><a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a></li><li class="item"><a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a></li></ul></li></ul></div></div></div><ul id="quick"><li class="prev pjax"><a href="/performance-optimization/Vue%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/front-end/vue2.x%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a></div><span><a href="/js-base/js%E6%B5%85%E8%B0%88new%20this/" title="浅谈js中new this 关键字">浅谈js中new this 关键字</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/gulp/" title="分类于 gulp">gulp</a></div><span><a href="/front-end/gulp/" title="gulp">gulp</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/css/" title="分类于 css">css</a></div><span><a href="/front-end/%E5%89%8D%E7%AB%AF%E5%B8%83%E5%B1%80/" title="前端常见布局">前端常见布局</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a></div><span><a href="/computer-science/vueyuanma/dosc/16%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8B/" title="Step.16 彻底搞懂Vue中keep-alive的魔法-上">Step.16 彻底搞懂Vue中keep-alive的魔法-上</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" title="分类于 移动端适配">移动端适配</a></div><span><a href="/front-end/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" title="移动端相关适配方案">移动端相关适配方案</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a></div><span><a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" title="Step.7 深入响应式系统构建-上">Step.7 深入响应式系统构建-上</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a></div><span><a href="/js-base/js%E5%85%B3%E4%BA%8EString%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E6%80%BB%E7%BB%93/" title="关于String包装类型处理数据的总结">关于String包装类型处理数据的总结</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a></div><span><a href="/performance-optimization/Express%20+%20vue%E6%90%AD%E5%BB%BASSR/" title="Express + vue搭建SSR">Express + vue搭建SSR</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a></div><span><a href="/js-base/js%E6%B5%85%E8%B0%88%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%BB%A5%E5%8F%8A%E5%8F%98%E9%87%8F%E4%BB%A5%E5%8F%8A%E9%97%AD%E5%8C%85/" title="js浅谈作用域 - 变量 - 闭包">js浅谈作用域 - 变量 - 闭包</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a></div><span><a href="/performance-optimization/%E6%8F%90%E9%AB%98Webpack%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6/" title="webpack性能优化">webpack性能优化</a></span></li></ul></div><div><h2>最新评论</h2><ul class="leancloud-recent-comment"></ul></div></div><div class="status"><div class="copyright">&copy; 2010 – <span itemprop="copyrightYear">2023</span> <span class="with-love"><i class="ic i-sakura rotate"></i> </span><span class="author" itemprop="copyrightHolder">sanxin98 @ Yume Shoka</span></div><div class="powered-by">基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL={path:"performance-optimization/Express + vue搭建SSR/",favicon:{show:"（●´3｀●）やれやれだぜ",hide:"(´Д｀)大変だ！"},search:{placeholder:"文章搜索",empty:"关于 「 ${query} 」，什么也没搜到",stats:"${time} ms 内找到 ${hits} 条结果"},valine:!0,fancybox:!0,copyright:'复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',ignores:[function(e){return e.includes("#")},function(e){return new RegExp(LOCAL.path+"$").test(e)}]}</script><script src="https://cdn.polyfill.io/v2/polyfill.js"></script><script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script><script src="/js/app.js?v=0.2.5"></script></body></html>
