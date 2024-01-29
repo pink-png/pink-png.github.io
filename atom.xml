@@ -25,20 +25,23 @@
         <id>https://pink-png.github.io/performance-optimization/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</id>
         <title>前端调试技巧</title>
         <link rel="alternate" href="https://pink-png.github.io/performance-optimization/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/"/>
-        <content type="html">&lt;p&gt;1、网络 请求重新发送 xhr&lt;br /&gt;
-2、修改请求参数： 复制 -&amp;gt; 以 fetch 格式复制&lt;br /&gt;
- 3、复制 JavaScript 变量：右键复制 object、将 object 存储为全局变量&lt;br /&gt;
- 4、&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mtext&gt;输出选中的第一个元素&lt;/mtext&gt;&lt;mn&gt;5&lt;/mn&gt;&lt;mtext&gt;、截屏：&lt;/mtext&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;h&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mn&gt;6&lt;/mn&gt;&lt;mtext&gt;、同时展开多级节点选中元素，按住&lt;/mtext&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mtext&gt;再点击&lt;/mtext&gt;&lt;mn&gt;7&lt;/mn&gt;&lt;mtext&gt;、&lt;/mtext&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;0 输出选中的第一个元素
-5、截屏：Ctrl+shift+p screen
-6、同时展开多级节点 选中元素，按住alt再点击7、&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.77777em;vertical-align:-0.08333em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;输&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;出&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;选&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;中&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;的&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;第&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;一&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;个&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;元&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;素&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;、&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;截&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;屏&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;：&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.07153em;&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mbin&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.8888799999999999em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10764em;&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mbin&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222222222222222em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.8888799999999999em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;、&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;同&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;时&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;展&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;开&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;多&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;级&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;节&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;点&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;选&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;中&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;元&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;素&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;按&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;住&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;再&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;点&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;击&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;、&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;_ 上一个输出结果&lt;br /&gt;
- 8、Ctrl +shift +p switch 切换主题&lt;br /&gt;
- 9、$$() 选中所有匹配元素&lt;br /&gt;
- 10、debugger&lt;/p&gt;
-</content>
+        <content type="html">&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;figcaption data-lang=&#34;javascript&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;、网络 请求重新发送xhr &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;、修改请求参数： 复制&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;以fetch格式复制&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;、复制JavaScript变量：右键复制object、将object存储为全局变量&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;、$0 输出选中的第一个元素&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt;、截屏：Ctrl&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;shift&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;p screen&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;6&lt;/span&gt;、同时展开多级节点 选中元素，按住alt再点击&lt;span class=&#34;token number&#34;&gt;7&lt;/span&gt;、$_ 上一个输出结果&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;8&lt;/span&gt;、Ctrl &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;shift &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;p &lt;span class=&#34;token keyword&#34;&gt;switch&lt;/span&gt;切换主题&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;、$$&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;选中所有匹配元素&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;10&lt;/span&gt;、&lt;span class=&#34;token keyword&#34;&gt;debugger&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
         <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
         <category term="前端调试" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95/" />
         <category term="前端调试" scheme="https://pink-png.github.io/tags/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95/" />
         <updated>2023-12-04T03:41:00.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://pink-png.github.io/tool/%E4%B8%8B%E8%BD%BD%E7%B1%BB/</id>
+        <title>下载</title>
+        <link rel="alternate" href="https://pink-png.github.io/tool/%E4%B8%8B%E8%BD%BD%E7%B1%BB/"/>
+        <content type="html">&lt;h1 id=&#34;xshell-下载地址&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#xshell-下载地址&#34;&gt;#&lt;/a&gt; xshell 下载地址&lt;/h1&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cueHNoZWxsLmNvbS96aC9mcmVlLWZvci1ob21lLXNjaG9vbC8=&#34;&gt;https://www.xshell.com/zh/free-for-home-school/&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="下载" scheme="https://pink-png.github.io/categories/%E4%B8%8B%E8%BD%BD/" />
+        <category term="xshell" scheme="https://pink-png.github.io/categories/%E4%B8%8B%E8%BD%BD/xshell/" />
+        <category term="xshell" scheme="https://pink-png.github.io/tags/xshell/" />
+        <updated>2023-12-01T08:43:00.000Z</updated>
     </entry>
     <entry>
         <id>https://pink-png.github.io/tool/git%E5%AD%A6%E4%B9%A0%E6%B8%85%E5%8D%95/</id>
@@ -96,18 +99,6 @@
         <category term="版本管理" scheme="https://pink-png.github.io/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" />
         <category term="git" scheme="https://pink-png.github.io/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/git/" />
         <category term="版本管理" scheme="https://pink-png.github.io/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" />
-        <updated>2023-12-01T08:43:00.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://pink-png.github.io/tool/%E4%B8%8B%E8%BD%BD%E7%B1%BB/</id>
-        <title>下载</title>
-        <link rel="alternate" href="https://pink-png.github.io/tool/%E4%B8%8B%E8%BD%BD%E7%B1%BB/"/>
-        <content type="html">&lt;h1 id=&#34;xshell-下载地址&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#xshell-下载地址&#34;&gt;#&lt;/a&gt; xshell 下载地址&lt;/h1&gt;
-&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cueHNoZWxsLmNvbS96aC9mcmVlLWZvci1ob21lLXNjaG9vbC8=&#34;&gt;https://www.xshell.com/zh/free-for-home-school/&lt;/span&gt;&lt;/p&gt;
-</content>
-        <category term="下载" scheme="https://pink-png.github.io/categories/%E4%B8%8B%E8%BD%BD/" />
-        <category term="xshell" scheme="https://pink-png.github.io/categories/%E4%B8%8B%E8%BD%BD/xshell/" />
-        <category term="xshell" scheme="https://pink-png.github.io/tags/xshell/" />
         <updated>2023-12-01T08:43:00.000Z</updated>
     </entry>
     <entry>
@@ -648,18 +639,6 @@ CLS: 页面稳定性。累积布局偏移，需手动计算，CLS 应保持在 0
         <updated>2021-06-25T08:43:00.000Z</updated>
     </entry>
     <entry>
-        <id>https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/</id>
-        <title>浏览器渲染原理以及优化思路</title>
-        <link rel="alternate" href="https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/"/>
-        <content type="html">&lt;h1 id=&#34;浏览器渲染原理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#浏览器渲染原理&#34;&gt;#&lt;/a&gt; 浏览器渲染原理&lt;/h1&gt;
-&lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption data-lang=&#34;text&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;1. 渲染过程：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;解析HTML：浏览器解析HTML代码，构建DOM树。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;解析CSS：浏览器解析CSS样式表，构建CSSOM树。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;构建渲染树：将DOM树和CSSOM树合并成渲染树，该树只包含需要显示元素的信息。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;布局（Layout）：计算每个元素的大小和位置。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;绘制（Paint）：根据计算好的布局信息，将每个元素绘制成屏幕上的像素。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;合成（Composite）：将绘制好的元素按正确的顺序合成到最终的图像上。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;2. 阻塞过程：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;脚本阻塞：当浏览器遇到&amp;lt;script&gt;标签或执行JavaScript代码时，会暂停HTML解析和渲染，直到脚本执行完毕。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;样式加载阻塞：如果浏览器遇到外部CSS文件，会等待该文件下载和解析完毕后再继续渲染。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;资源加载阻塞：当浏览器遇到资源文件如图片、字体或其他媒体时，会等待资源下载和加载完毕后再继续渲染。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;3. 重绘与汇流：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;重绘（Repaint）：当元素的样式改变，但不影响布局时，浏览器只需要重新绘制元素的可视部分。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;汇流（Reflow）：当布局发生改变，例如改变元素的大小或位置时，浏览器需要重新计算并调整元素的布局和相关元素的位置。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;优化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#优化&#34;&gt;#&lt;/a&gt; 优化&lt;/h1&gt;
-&lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption data-lang=&#34;text&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;1. 减少阻塞时间：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;脚本加载优化：将JavaScript脚本放在页面底部，或者使用defer属性将其延迟执行，以免阻塞HTML解析和渲染过程。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;样式加载优化：将CSS样式表放在&amp;lt;head&gt;标签中，避免样式表的加载阻塞页面渲染。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;资源加载优化：使用合适的缓存策略、减小资源文件的大小，以及使用CDN等方式来提高资源加载速度。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;2. 最小化重绘与汇流：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;批量修改样式：避免频繁读取和修改单个元素的样式属性，最好使用CSS类进行批量修改，这样可以减少重绘和汇流的次数。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;避免强制同步布局：在修改多个元素的样式时，避免强制同步布局，即尽量将布局相关的修改集中在一起，减少不必要的重绘和汇流。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;3.使用现代CSS特性：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;使用CSS动画代替JavaScript动画：CSS动画借助浏览器的硬件加速，性能更高，并且不会阻塞JavaScript主线程。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;使用CSS Grid 和 Flexbox 布局：这些现代的布局方式能够更有效地处理布局，减少重绘和汇流的次数。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;4.图片优化：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;使用适当的图片格式：根据图片特性选择合适的图片格式，例如JPEG、PNG、WebP等，以尽量减小文件大小。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;图片懒加载：只在视口范围内加载可见区域的图片，延迟加载其他图片，以提高页面加载速度。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;5. 代码优化：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;避免频繁操作DOM：减少对DOM的修改和查询次数，可以使用文档片段（DocumentFragment）来进行批量操作。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;压缩和合并代码：对CSS和JavaScript文件进行压缩和合并，减小文件体积，加快加载速度。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
-        <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
-        <category term="浏览器" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" />
-        <category term="web综合问题" scheme="https://pink-png.github.io/tags/web%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98/" />
-        <updated>2021-06-25T08:43:00.000Z</updated>
-    </entry>
-    <entry>
         <id>https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/</id>
         <title>浏览器缓存机制</title>
         <link rel="alternate" href="https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/"/>
@@ -717,6 +696,234 @@ Service Worker 缓存具有灵活性和高度可自定义的特性，适用于�
 &lt;/ol&gt;
 &lt;h1 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h1&gt;
 &lt;p&gt;通过合理设置缓存策略，可以减少对服务器的请求次数，加快网页加载速度，降低网络流量消耗。同时，如果网页内容有更新，通过修改资源的版本号或过期时间等方式来使浏览器重新请求新的资源版本。&lt;/p&gt;
+</content>
+        <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
+        <category term="浏览器" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" />
+        <category term="web综合问题" scheme="https://pink-png.github.io/tags/web%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98/" />
+        <updated>2021-06-25T08:43:00.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%9D%A2%E8%AF%95/</id>
+        <title>web综合问题</title>
+        <link rel="alternate" href="https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%9D%A2%E8%AF%95/"/>
+        <content type="html">&lt;h1 id=&#34;常见的浏览器内核有哪些&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#常见的浏览器内核有哪些&#34;&gt;#&lt;/a&gt; 常见的浏览器内核有哪些？&lt;/h1&gt;
+&lt;p&gt;主要分成两部分：渲染引擎 (layout engineer 或 Rendering Engine) 和 JS 引擎。&lt;br /&gt;
+渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入 CSS 等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。&lt;br /&gt;
+JS 引擎则：解析和执行 javascript 来实现网页的动态效果。&lt;br /&gt;
+最开始渲染引擎和 JS 引擎并没有区分的很明确，后来 JS 引擎越来越独立，内核就倾向于只指渲染引擎。&lt;br /&gt;
+常见内核&lt;br /&gt;
+ Trident 内核：IE, MaxThon, TT, The World, 360, 搜狗浏览器等。[又称 MSHTML]&lt;br /&gt;
+ Gecko 内核：Netscape6 及以上版本，FF, MozillaSuite / SeaMonkey 等&lt;br /&gt;
+ Presto 内核：Opera7 及以上。 [Opera 内核原为：Presto，现为：Blink;]&lt;br /&gt;
+ Webkit 内核：Safari, Chrome 等。 [Chrome 的：Blink（WebKit 的分支）]&lt;/p&gt;
+&lt;h1 id=&#34;网页前端性能优化的方式有哪些&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#网页前端性能优化的方式有哪些&#34;&gt;#&lt;/a&gt; 网页前端性能优化的方式有哪些？&lt;/h1&gt;
+&lt;p&gt;1. 压缩 css, js, 图片&lt;br /&gt;
+ 2. 减少 http 请求次数， 合并 css、js 、合并图片（雪碧图）&lt;br /&gt;
+3. 使用 CDN&lt;br /&gt;
+4. 减少 dom 元素数量&lt;br /&gt;
+ 5. 图片懒加载&lt;br /&gt;
+ 6. 静态资源另外用无 cookie 的域名&lt;br /&gt;
+ 7. 减少 dom 的访问（缓存 dom）&lt;br /&gt;
+8. 巧用事件委托&lt;br /&gt;
+ 9. 样式表置顶、脚本置低&lt;/p&gt;
+&lt;h1 id=&#34;网页从输入网址到渲染完成经历了哪些过程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#网页从输入网址到渲染完成经历了哪些过程&#34;&gt;#&lt;/a&gt; 网页从输入网址到渲染完成经历了哪些过程？&lt;/h1&gt;
+&lt;p&gt;大致可以分为如下 7 步：&lt;/p&gt;
+&lt;p&gt;输入网址；&lt;br /&gt;
+发送到 DNS 服务器，并获取域名对应的 web 服务器对应的 ip 地址；&lt;br /&gt;
+与 web 服务器建立 TCP 连接；&lt;br /&gt;
+浏览器向 web 服务器发送 http 请求；&lt;br /&gt;
+web 服务器响应请求，并返回指定 url 的数据（或错误信息，或重定向的新的 url 地址）；&lt;br /&gt;
+浏览器下载 web 服务器返回的数据及解析 html 源文件；&lt;br /&gt;
+生成 DOM 树，解析 css 和 js，渲染页面，直至显示完成；&lt;/p&gt;
+&lt;h1 id=&#34;线程与进程的区别&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#线程与进程的区别&#34;&gt;#&lt;/a&gt; 线程与进程的区别？&lt;/h1&gt;
+&lt;p&gt;一个程序至少有一个进程，一个进程至少有一个线程.&lt;br /&gt;
+ 线程的划分尺度小于进程，使得多线程程序的并发性高。&lt;br /&gt;
+另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。&lt;br /&gt;
+线程在执行过程中与进程还是有区别的。每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。&lt;br /&gt;
+从逻辑角度来看，多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理以及资源分配。这就是进程和线程的重要区别。&lt;/p&gt;
+&lt;h1 id=&#34;http常见的状态码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#http常见的状态码&#34;&gt;#&lt;/a&gt; HTTP 常见的状态码？&lt;/h1&gt;
+&lt;p&gt;100 Continue 继续，一般在发送 post 请求时，已发送了 http header 之后服务端将返回此信息，表示确认，之后发送具体参数信息&lt;br /&gt;
+ 200 OK 正常返回信息&lt;br /&gt;
+ 201 Created 请求成功并且服务器创建了新的资源&lt;br /&gt;
+ 202 Accepted 服务器已接受请求，但尚未处理&lt;br /&gt;
+ 301 Moved Permanently 请求的网页已永久移动到新位置。&lt;br /&gt;
+302 Found 临时性重定向。&lt;br /&gt;
+303 See Other 临时性重定向，且总是使用 GET 请求新的 URI。&lt;br /&gt;
+304 Not Modified 自从上次请求后，请求的网页未修改过。&lt;br /&gt;
+400 Bad Request 服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。&lt;br /&gt;
+401 Unauthorized 请求未授权。&lt;br /&gt;
+403 Forbidden 禁止访问。&lt;br /&gt;
+404 Not Found 找不到如何与 URI 相匹配的资源。&lt;br /&gt;
+500 Internal Server Error 最常见的服务器端错误。&lt;br /&gt;
+503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。&lt;/p&gt;
+&lt;h1 id=&#34;图片懒加载&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#图片懒加载&#34;&gt;#&lt;/a&gt; 图片懒加载？&lt;/h1&gt;
+&lt;p&gt;当页面滚动的时间被触发 -&amp;gt; 执行加载图片操作 -&amp;gt; 判断图片是否在可视区域内 -&amp;gt; 在，则动态将 data-src 的值赋予该图片&lt;/p&gt;
+&lt;h1 id=&#34;移动端性能优化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#移动端性能优化&#34;&gt;#&lt;/a&gt; 移动端性能优化？&lt;/h1&gt;
+&lt;p&gt;尽量使用 css3 动画，开启硬件加速&lt;br /&gt;
+适当使用 touch 时间代替 click 时间&lt;br /&gt;
+避免使用 css3 渐变阴影效果&lt;br /&gt;
+可以用 transform: translateZ (0) 来开启硬件加速&lt;br /&gt;
+不滥用 float。float 在渲染时计算量比较大，尽量减少使用&lt;br /&gt;
+不滥用 web 字体。web 字体需要下载，解析，重绘当前页面&lt;br /&gt;
+合理使用 requestAnimationFrame 动画代替 setTimeout&lt;br /&gt;
+css 中的属性（css3 transitions、css3 3D transforms、opacity、webGL、video）会触发 GUP 渲染，耗电&lt;/p&gt;
+&lt;h1 id=&#34;tcp-传输的三次握手-四次挥手策略&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#tcp-传输的三次握手-四次挥手策略&#34;&gt;#&lt;/a&gt; TCP 传输的三次握手、四次挥手策略&lt;/h1&gt;
+&lt;p&gt;三次握手：&lt;br /&gt;
+为了准确无误地吧数据送达目标处，TCP 协议采用了三次握手策略。用 TCP 协议把数据包送出去后，TCP 不会对传送后的情况置之不理，他一定会向对方确认是否送达，握手过程中使用 TCP 的标志：SYN 和 ACK&lt;br /&gt;
+ 发送端首先发送一个带 SYN 的标志的数据包给对方&lt;br /&gt;
+接收端收到后，回传一个带有 SYN/ACK 标志的数据包以示传达确认信息&lt;br /&gt;
+最后，发送端再回传一个带 ACK 的标志的数据包，代表 “握手” 结束&lt;br /&gt;
+如在握手过程中某个阶段莫明中断，TCP 协议会再次以相同的顺序发送相同的数据包&lt;/p&gt;
+&lt;p&gt;断开一个 TCP 连接需要 “四次挥手”&lt;br /&gt;
+ 第一次挥手：主动关闭方发送一个 FIN，用来关注主动方到被动关闭方的数据传送，也即是主动关闭方告诫被动关闭方：我已经不会再给你发数据了（在 FIN 包之前发送的数据，如果没有收到对应的 ACK 确认报文，主动关闭方依然会重发这些数据）。但是，此时主动关闭方还可以接受数据&lt;br /&gt;
+第二次挥手：被动关闭方收到 FIN 包后，发送一个 ACK 给对方，确认序号收到序号 +1（与 SYN 相同，一个 FIN 占用一个序号）&lt;br /&gt;
+第三次挥手：被动关闭方发送一个 FIN。用来关闭被动关闭方到主动关闭方的数据传送，也就是告诉主动关闭方，我的数据也发送完了，不会给你发送数据了&lt;br /&gt;
+第四次挥手：主动关闭方收到 FIN 后，发送一个 ACK 给被动关闭方，确认序号为收到序号 + 1，至此，完成四次挥手&lt;/p&gt;
+&lt;h1 id=&#34;http-和-https为什么https安全&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#http-和-https为什么https安全&#34;&gt;#&lt;/a&gt; HTTP 和 HTTPS，为什么 HTTPS 安全？&lt;/h1&gt;
+&lt;p&gt;HTTP 协议通常承载与 TCP 协议之上，在 HTTP 和 TCP 之间添加一个安全协议层（SSL 或 TSL），这个时候，就成了我们常说的 HTTPS&lt;br /&gt;
+ 默认 HTTP 的端口号为 80，HTTPS 的端口号为 443&lt;br /&gt;
+ 因为网络请求需要中间有很多的服务器路由的转发，中间的节点都可能篡改信息，而如果使用 HTTPS，密钥在你和终点站才有，https 之所有说比 http 安全，是因为他利用 ssl/tls 协议传输。包含证书，流量转发，负载均衡，页面适配，浏览器适配，refer 传递等，保障了传输过程的安全性&lt;/p&gt;
+&lt;h1 id=&#34;axios和fetch区别对比&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#axios和fetch区别对比&#34;&gt;#&lt;/a&gt; axios 和 fetch 区别对比&lt;/h1&gt;
+&lt;p&gt;axios 是一个基于 Promise 用于浏览器和 nodejs 的 HTTP 客户端，本质上也是对原生 XHR 的封装，只不过它是 Promise 的实现版本，符合最新的 ES 规范，它本身具有以下特征&lt;/p&gt;
+&lt;p&gt;从浏览器中创建 XMLHttpRequest&lt;br /&gt;
+ 支持 Promise API&lt;br /&gt;
+ 客户端支持防止 CSRF&lt;br /&gt;
+ 提供了一些并发请求的接口（重要，方便了很多的操作）&lt;br /&gt;
+从 node.js 创建 http 请求&lt;br /&gt;
+拦截请求和响应&lt;br /&gt;
+转换请求和响应数据&lt;br /&gt;
+取消请求&lt;br /&gt;
+自动转换 JSON 数据&lt;br /&gt;
+ fetch 优势：&lt;/p&gt;
+&lt;p&gt;语法简洁，更加语义化&lt;br /&gt;
+基于标准 Promise 实现，支持 async/await&lt;br /&gt;
+ 同构方便，使用 isomorphic-fetch&lt;br /&gt;
+ 更加底层，提供的 API 丰富（request, response）&lt;br /&gt;
+脱离了 XHR，是 ES 规范里新的实现方式&lt;br /&gt;
+ fetch 存在问题&lt;/p&gt;
+&lt;p&gt;fetch 是一个低层次的 API，你可以把它考虑成原生的 XHR，所以使用起来并不是那么舒服，需要进行封装。&lt;br /&gt;
+fetch 只对网络请求报错，对 400，500 都当做成功的请求，服务器返回 400，500 错误码时并不会 reject，只有网络错误这些导致请求不能完成时，fetch 才会被 reject。&lt;br /&gt;
+fetch 默认不会带 cookie，需要添加配置项： fetch (url, {credentials: ‘include’})&lt;br /&gt;
+ fetch 不支持 abort，不支持超时控制，使用 setTimeout 及 Promise.reject 的实现的超时控制并不能阻止请求过程继续在后台运行，造成了流量的浪费&lt;br /&gt;
+ fetch 没有办法原生监测请求的进度，而 XHR 可以&lt;/p&gt;
+</content>
+        <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
+        <category term="浏览器" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" />
+        <category term="web综合问题" scheme="https://pink-png.github.io/tags/web%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98/" />
+        <updated>2021-06-25T08:43:00.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/</id>
+        <title>浏览器渲染原理以及优化思路</title>
+        <link rel="alternate" href="https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/"/>
+        <content type="html">&lt;h1 id=&#34;浏览器渲染原理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#浏览器渲染原理&#34;&gt;#&lt;/a&gt; 浏览器渲染原理&lt;/h1&gt;
+&lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption data-lang=&#34;text&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;1. 渲染过程：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;解析HTML：浏览器解析HTML代码，构建DOM树。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;解析CSS：浏览器解析CSS样式表，构建CSSOM树。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;构建渲染树：将DOM树和CSSOM树合并成渲染树，该树只包含需要显示元素的信息。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;布局（Layout）：计算每个元素的大小和位置。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;绘制（Paint）：根据计算好的布局信息，将每个元素绘制成屏幕上的像素。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;合成（Composite）：将绘制好的元素按正确的顺序合成到最终的图像上。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;2. 阻塞过程：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;脚本阻塞：当浏览器遇到&amp;lt;script&gt;标签或执行JavaScript代码时，会暂停HTML解析和渲染，直到脚本执行完毕。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;样式加载阻塞：如果浏览器遇到外部CSS文件，会等待该文件下载和解析完毕后再继续渲染。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;资源加载阻塞：当浏览器遇到资源文件如图片、字体或其他媒体时，会等待资源下载和加载完毕后再继续渲染。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;3. 重绘与汇流：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;重绘（Repaint）：当元素的样式改变，但不影响布局时，浏览器只需要重新绘制元素的可视部分。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;汇流（Reflow）：当布局发生改变，例如改变元素的大小或位置时，浏览器需要重新计算并调整元素的布局和相关元素的位置。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;优化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#优化&#34;&gt;#&lt;/a&gt; 优化&lt;/h1&gt;
+&lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption data-lang=&#34;text&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;1. 减少阻塞时间：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;脚本加载优化：将JavaScript脚本放在页面底部，或者使用defer属性将其延迟执行，以免阻塞HTML解析和渲染过程。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;样式加载优化：将CSS样式表放在&amp;lt;head&gt;标签中，避免样式表的加载阻塞页面渲染。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;资源加载优化：使用合适的缓存策略、减小资源文件的大小，以及使用CDN等方式来提高资源加载速度。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;2. 最小化重绘与汇流：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;批量修改样式：避免频繁读取和修改单个元素的样式属性，最好使用CSS类进行批量修改，这样可以减少重绘和汇流的次数。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;避免强制同步布局：在修改多个元素的样式时，避免强制同步布局，即尽量将布局相关的修改集中在一起，减少不必要的重绘和汇流。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;3.使用现代CSS特性：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;使用CSS动画代替JavaScript动画：CSS动画借助浏览器的硬件加速，性能更高，并且不会阻塞JavaScript主线程。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;使用CSS Grid 和 Flexbox 布局：这些现代的布局方式能够更有效地处理布局，减少重绘和汇流的次数。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;4.图片优化：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;使用适当的图片格式：根据图片特性选择合适的图片格式，例如JPEG、PNG、WebP等，以尽量减小文件大小。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;图片懒加载：只在视口范围内加载可见区域的图片，延迟加载其他图片，以提高页面加载速度。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;5. 代码优化：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;避免频繁操作DOM：减少对DOM的修改和查询次数，可以使用文档片段（DocumentFragment）来进行批量操作。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;压缩和合并代码：对CSS和JavaScript文件进行压缩和合并，减小文件体积，加快加载速度。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+        <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
+        <category term="浏览器" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" />
+        <category term="web综合问题" scheme="https://pink-png.github.io/tags/web%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98/" />
+        <updated>2021-06-25T08:43:00.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://pink-png.github.io/Web-Integration/%E8%AF%A6%E8%A7%A3%E4%BB%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E2%BC%8Aurl%E5%88%B0%E6%98%BE%E7%A4%BA%E2%BB%9A%E2%BE%AF/</id>
+        <title>从浏览器地址栏输⼊url到显示⻚⾯的步骤</title>
+        <link rel="alternate" href="https://pink-png.github.io/Web-Integration/%E8%AF%A6%E8%A7%A3%E4%BB%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E2%BC%8Aurl%E5%88%B0%E6%98%BE%E7%A4%BA%E2%BB%9A%E2%BE%AF/"/>
+        <content type="html">&lt;ol&gt;
+&lt;li&gt;在浏览器地址栏输⼊ URL&lt;/li&gt;
+&lt;li&gt;浏览器查看缓存，如果请求资源在缓存中并且新鲜，跳转到转码步骤&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;如果资源未缓存，发起新请求&lt;/li&gt;
+&lt;li&gt;如果已缓存，检验是否⾜够新鲜，⾜够新鲜直接提供给客户端，否则与服务器进⾏验证。&lt;/li&gt;
+&lt;li&gt;检验新鲜通常有两个 HTTP 头进⾏控制 Expires 和 Cache-Control ：(  HTTP1.0 提供 Expires，值为⼀个绝对时间表示缓存新鲜⽇期&lt;br /&gt;
+ HTTP1.1 增加了 Cache-Control: max-age=, 值为以秒为单位的最⼤新鲜时间)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;浏览器解析 URL 获取协议，主机，端⼝，path&lt;/li&gt;
+&lt;li&gt;浏览器组装⼀个 HTTP（GET）请求报⽂&lt;/li&gt;
+&lt;li&gt;浏览器获取主机 ip 地址，过程如下：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;浏览器缓存：(浏览器会在本地进行 DNS 缓存，将之前解析过的域名和其对应的 IP 地址保存起来。当再次请求相同的域名时，浏览器会首先检查本地缓存中是否存在对应的记录)&lt;/li&gt;
+&lt;li&gt;本机缓存：(如果在浏览器缓存中找不到域名的 IP 地址，浏览器将查找操作系统（如 Windows、Mac 等）的本机 DNS 缓存。操作系统也会对 DNS 查询结果进行缓存，以提高性能和减少网络请求)&lt;/li&gt;
+&lt;li&gt;hosts ⽂件：(如果在本机缓存中没有找到域名的 IP 地址，系统将查找操作系统的 Hosts 文件。Hosts 文件是一个文本文件，可以手动配置域名和对应的 IP 地址映射关系)&lt;/li&gt;
+&lt;li&gt;路由器缓存：(如果在 Hosts 文件中找不到域名的 IP 地址，系统将向路由器发送 DNS 查询请求。某些路由器会在自身进行 DNS 缓存，以便快速响应本地网络设备的 DNS 查询)&lt;/li&gt;
+&lt;li&gt;ISP DNS 缓存：(如果在路由器缓存中没有找到域名的 IP 地址，系统将向互联网服务提供商（ISP）的 DNS 服务器发送 DNS 查询请求。ISP 的 DNS 服务器也会进行缓存，以提高 DNS 解析速度和网络访问效率)&lt;/li&gt;
+&lt;li&gt;DNS 递归查询：(如果在 ISP DNS 缓存中找不到域名的 IP 地址，ISP 的 DNS 服务器将发起递归查询。递归查询是指 DNS 服务器按照一定的顺序向上级 DNS 服务器发出查询请求，直到找到所需的 IP 地址或者查询失败。在递归查询过程中，可能会经过多个 DNS 服务器，这可能导致负载均衡使得每次获得的 IP 地址可能不一样)（可能存在负载均衡导致每次 IP 不⼀样）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;打开⼀个 socket 与⽬标 IP 地址，端⼝建⽴ TCP 链接，三次握⼿如下：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;客户端发送⼀个 TCP 的 SYN=1，Seq=X 的包到服务器端⼝&lt;/li&gt;
+&lt;li&gt;服务器发回 SYN=1， ACK=X+1， Seq=Y 的响应包&lt;/li&gt;
+&lt;li&gt;客户端发送 ACK=Y+1， Seq=Z&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;TCP 链接建⽴后发送 HTTP 请求&lt;/li&gt;
+&lt;li&gt;服务器接受请求并解析，将请求转发到服务程序，如虚拟主机使⽤ HTTP Host 头部判断请求的服务程序&lt;/li&gt;
+&lt;li&gt;服务器检查 HTTP 请求头是否包含缓存验证信息如果验证缓存新鲜，返回 304 等对应状态码&lt;/li&gt;
+&lt;li&gt;处理程序读取完整请求并准备 HTTP 响应，可能需要查询数据库等操作&lt;/li&gt;
+&lt;li&gt;服务器将响应报⽂通过 TCP 连接发送回浏览器&lt;/li&gt;
+&lt;li&gt;浏览器接收 HTTP 响应，然后根据情况选择关闭 TCP 连接或者保留重⽤，关闭 TCP 连接的四&lt;br /&gt;
+次握⼿如下：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;主动⽅发送 Fin=1， Ack=Z， Seq= X 报⽂&lt;/li&gt;
+&lt;li&gt;被动⽅发送 ACK=X+1， Seq=Z 报⽂&lt;/li&gt;
+&lt;li&gt;被动⽅发送 Fin=1， ACK=X， Seq=Y 报⽂&lt;/li&gt;
+&lt;li&gt;主动⽅发送 ACK=Y， Seq=X 报⽂&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;13&#34;&gt;
+&lt;li&gt;浏览器检查响应状态吗：是否为 1XX，3XX， 4XX， 5XX，这些情况处理与 2XX 不同&lt;/li&gt;
+&lt;li&gt;如果资源可缓存，进⾏缓存&lt;/li&gt;
+&lt;li&gt;对响应进⾏解码（例如 gzip 压缩）&lt;/li&gt;
+&lt;li&gt;根据资源类型决定如何处理（假设资源为 HTML ⽂档）&lt;/li&gt;
+&lt;li&gt;解析 HTML ⽂档，构件 DOM 树，下载资源，构造 CSSOM 树，执⾏ js 脚本，这些操作没有严格的先后顺序，以下分别解释&lt;/li&gt;
+&lt;li&gt;构建 DOM 树：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Tokenizing：根据 HTML 规范将字符流解析为标记&lt;/li&gt;
+&lt;li&gt;Lexing：词法分析将标记转换为对象并定义属性和规则&lt;/li&gt;
+&lt;li&gt;DOM construction：根据 HTML 标记关系将对象组成 DOM 树&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;19&#34;&gt;
+&lt;li&gt;解析过程中遇到图⽚、样式表、js ⽂件，启动下载&lt;/li&gt;
+&lt;li&gt;构建 CSSOM 树：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Tokenizing：字符流转换为标记流&lt;/li&gt;
+&lt;li&gt;Node：根据标记创建节点&lt;/li&gt;
+&lt;li&gt;CSSOM：节点创建 CSSOM 树&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;21&#34;&gt;
+&lt;li&gt;根据 DOM 树和 CSSOM 树构建渲染树 :&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;从 DOM 树的根节点遍历所有可⻅节点，不可⻅节点包括：1） script , meta 这样本身&lt;br /&gt;
+不可⻅的标签。2) 被 css 隐藏的节点，如 display: none&lt;/li&gt;
+&lt;li&gt;对每⼀个可⻅节点，找到恰当的 CSSOM 规则并应⽤&lt;/li&gt;
+&lt;li&gt;发布可视节点的内容和计算样式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;22&#34;&gt;
+&lt;li&gt;js 解析如下：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;浏览器创建 Document 对象并解析 HTML，将解析到的元素和⽂本节点添加到⽂档中，此&lt;br /&gt;
+时 document.readystate 为 loading&lt;/li&gt;
+&lt;li&gt;HTML 解析器遇到没有 async 和 defer 的 script 时，将他们添加到⽂档中，然后执⾏⾏内&lt;br /&gt;
+或外部脚本。这些脚本会同步执⾏，并且在脚本下载和执⾏时解析器会暂停。这样就可&lt;br /&gt;
+以⽤ document.write () 把⽂本插⼊到输⼊流中。同步脚本经常简单定义函数和注册事件&lt;br /&gt;
+处理程序，他们可以遍历和操作 script 和他们之前的⽂档内容&lt;/li&gt;
+&lt;li&gt;当解析器遇到设置了 async 属性的 script 时，开始下载脚本并继续解析⽂档。脚本会在它下载完成后尽快执⾏，但是解析器不会停下来等它下载。异步脚本禁使⽤ document.write ()，它们可以访问⾃⼰ script 和之前的⽂档元素&lt;/li&gt;
+&lt;li&gt;当⽂档完成解析，document.readState 变成 interactive&lt;/li&gt;
+&lt;li&gt;所有 defer 脚本会按照在⽂档出现的顺序执⾏，延迟脚本能访问完整⽂档树，禁⽌使⽤ document.write ()&lt;/li&gt;
+&lt;li&gt;浏览器在 Document 对象上触发 DOMContentLoaded 事件&lt;/li&gt;
+&lt;li&gt;此时⽂档完全解析完成，浏览器可能还在等待如图⽚等内容加载，等这些内容完成载⼊并且所有异步脚本完成载⼊和执⾏，document.readState 变 complete，window 触发 load 事件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;23&#34;&gt;
+&lt;li&gt;显示⻚⾯（HTML 解析过程中会逐步显示⻚⾯）&lt;/li&gt;
+&lt;/ol&gt;
 </content>
         <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
         <category term="浏览器" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" />
@@ -834,190 +1041,6 @@ id=&amp;quot;dropdownMenu1&amp;quot; data-toggle=&amp;quot;dropdown&amp;quot;&lt
         <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
         <category term="Bootstrap" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Bootstrap/" />
         <category term="Bootstrap" scheme="https://pink-png.github.io/tags/Bootstrap/" />
-        <updated>2021-06-25T08:43:00.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://pink-png.github.io/front-end/PM2%20+%20linux/</id>
-        <title>PM2</title>
-        <link rel="alternate" href="https://pink-png.github.io/front-end/PM2%20+%20linux/"/>
-        <content type="html">&lt;h1 id=&#34;什么是pm2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什么是pm2&#34;&gt;#&lt;/a&gt; 什么是 pm2&lt;/h1&gt;
-&lt;p&gt;pm2 是一个带有负载均衡功能的 Node 应用的进程管理器.&lt;br /&gt;
- 当你要把你的独立代码利用全部的服务器上的所有 CPU，并保证进程永远都活着，0 秒的重载， PM2 是完美的。它非常适合 IaaS 结构，但不要把它用于 PaaS 方案（随后将开发 Paas 的解决方案）&lt;/p&gt;
-&lt;h1 id=&#34;主要特性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#主要特性&#34;&gt;#&lt;/a&gt; 主要特性&lt;/h1&gt;
-&lt;p&gt;内建负载均衡（使用 Node cluster 集群模块）&lt;br /&gt;
-后台运行&lt;br /&gt;
- 0 秒停机重载，我理解大概意思是维护升级的时候不需要停机.&lt;br /&gt;
- 具有 Ubuntu 和 CentOS 的启动脚本&lt;br /&gt;
-停止不稳定的进程（避免无限循环）&lt;br /&gt;
-控制台检测&lt;br /&gt;
-提供 HTTP API&lt;br /&gt;
- 远程控制和实时的接口 API (Nodejs 模块，允许和 PM2 进程管理器交互)&lt;br /&gt;
- 测试过 Nodejs v0.11 v0.10 v0.8 版本，兼容 CoffeeScript, 基于 Linux 和 MacOS.&lt;/p&gt;
-&lt;h1 id=&#34;安装&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装&#34;&gt;#&lt;/a&gt; 安装&lt;/h1&gt;
-&lt;p&gt;npm install -g pm2&lt;/p&gt;
-&lt;h1 id=&#34;用法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#用法&#34;&gt;#&lt;/a&gt; 用法&lt;/h1&gt;
-&lt;p&gt;pm2 start app.js -i 4 #后台运行 pm2，启动 4 个 app.js&lt;br /&gt;
-# 也可以把 &#39;max&#39; 参数传递给 start&lt;br /&gt;
-# 正确的进程数目依赖于 Cpu 的核心数目&lt;br /&gt;
- pm2 start app.js --name my-api # 命名进程&lt;br /&gt;
- pm2 list               # 显示所有进程状态&lt;br /&gt;
- pm2 monit              # 监视所有进程&lt;br /&gt;
- pm2 logs               # 显示所有进程日志&lt;br /&gt;
- pm2 stop all           # 停止所有进程&lt;br /&gt;
- pm2 restart all        # 重启所有进程&lt;br /&gt;
- pm2 reload all         # 0 秒停机重载进程 (用于 NETWORKED 进程)&lt;br /&gt;
- pm2 stop 0             # 停止指定的进程&lt;br /&gt;
- pm2 restart 0          # 重启指定的进程&lt;br /&gt;
- pm2 startup            # 产生 init 脚本 保持进程活着&lt;br /&gt;
- pm2 web                # 运行健壮的 computer API endpoint (&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2xvY2FsaG9zdDo5NjE1&#34;&gt;http://localhost:9615&lt;/span&gt;)&lt;br /&gt;
- pm2 delete 0           # 杀死指定的进程&lt;br /&gt;
- pm2 delete all         # 杀死全部进程&lt;/p&gt;
-&lt;h2 id=&#34;运行进程的不同方式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#运行进程的不同方式&#34;&gt;#&lt;/a&gt; 运行进程的不同方式：&lt;/h2&gt;
-&lt;p&gt;pm2 start app.js -i max  # 根据有效 CPU 数目启动最大进程数目&lt;br /&gt;
- pm2 start app.js -i 3      # 启动 3 个进程&lt;br /&gt;
- pm2 start app.js -x        #用 fork 模式启动 app.js 而不是使用 cluster&lt;br /&gt;
-pm2 start app.js -x -- -a 23   # 用 fork 模式启动 app.js 并且传递参数 (-a 23)&lt;br /&gt;
- pm2 start app.js --name serverone  # 启动一个进程并把它命名为 serverone&lt;br /&gt;
-pm2 stop serverone       # 停止 serverone 进程&lt;br /&gt;
- pm2 start app.json        # 启动进程，在 app.json 里设置选项&lt;br /&gt;
- pm2 start app.js -i max -- -a 23        #在 -- 之后给 app.js 传递参数&lt;br /&gt;
- pm2 start app.js -i max -e err.log -o out.log  # 启动 并 生成一个配置文件&lt;/p&gt;
-&lt;h2 id=&#34;你也可以执行用其他语言编写的app-fork-模式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#你也可以执行用其他语言编写的app-fork-模式&#34;&gt;#&lt;/a&gt; 你也可以执行用其他语言编写的 app  (fork 模式):&lt;/h2&gt;
-&lt;p&gt;pm2 start &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL215LWJhc2gtc2NyaXB0LnNo&#34;&gt;my-bash-script.sh&lt;/span&gt;    -x --interpreter bash&lt;br /&gt;
-pm2 start &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL215LXB5dGhvbi1zY3JpcHQucHk=&#34;&gt;my-python-script.py&lt;/span&gt; -x --interpreter python&lt;/p&gt;
-&lt;p&gt;0 秒停机重载:&lt;br /&gt;
- 这项功能允许你重新载入代码而不用失去请求连接。&lt;br /&gt;
-注意：&lt;br /&gt;
-仅能用于 web 应用&lt;br /&gt;
-运行于 Node 0.11.x 版本&lt;br /&gt;
-运行于 cluster 模式（默认模式）&lt;br /&gt;
-pm2 reload all&lt;br /&gt;
-CoffeeScript:&lt;br /&gt;
-pm2 start my_app.coffee  #这就是全部&lt;br /&gt;
- PM2 准备好为产品级服务了吗？&lt;br /&gt;
-只需在你的服务器上测试&lt;br /&gt;
- git clone &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1VuaXRlY2gvcG0yLmdpdA==&#34;&gt;https://github.com/Unitech/pm2.git&lt;/span&gt;&lt;br /&gt;
-cd pm2&lt;br /&gt;
-npm install  # 或者 npm install --dev ，如果 devDependencies 没有安装&lt;br /&gt;
- npm test&lt;br /&gt;
-pm2 list&lt;br /&gt;
- 列出由 pm2 管理的所有进程信息，还会显示一个进程会被启动多少次，因为没处理的异常。&lt;/p&gt;
-&lt;p&gt;pm2 monit&lt;br /&gt;
- 监视每个 node 进程的 CPU 和内存的使用情况。&lt;/p&gt;
-</content>
-        <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
-        <category term="PM2" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/PM2/" />
-        <category term="PM2" scheme="https://pink-png.github.io/tags/PM2/" />
-        <updated>2021-06-25T08:43:00.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%9D%A2%E8%AF%95/</id>
-        <title>web综合问题</title>
-        <link rel="alternate" href="https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%9D%A2%E8%AF%95/"/>
-        <content type="html">&lt;h1 id=&#34;常见的浏览器内核有哪些&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#常见的浏览器内核有哪些&#34;&gt;#&lt;/a&gt; 常见的浏览器内核有哪些？&lt;/h1&gt;
-&lt;p&gt;主要分成两部分：渲染引擎 (layout engineer 或 Rendering Engine) 和 JS 引擎。&lt;br /&gt;
-渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入 CSS 等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。&lt;br /&gt;
-JS 引擎则：解析和执行 javascript 来实现网页的动态效果。&lt;br /&gt;
-最开始渲染引擎和 JS 引擎并没有区分的很明确，后来 JS 引擎越来越独立，内核就倾向于只指渲染引擎。&lt;br /&gt;
-常见内核&lt;br /&gt;
- Trident 内核：IE, MaxThon, TT, The World, 360, 搜狗浏览器等。[又称 MSHTML]&lt;br /&gt;
- Gecko 内核：Netscape6 及以上版本，FF, MozillaSuite / SeaMonkey 等&lt;br /&gt;
- Presto 内核：Opera7 及以上。 [Opera 内核原为：Presto，现为：Blink;]&lt;br /&gt;
- Webkit 内核：Safari, Chrome 等。 [Chrome 的：Blink（WebKit 的分支）]&lt;/p&gt;
-&lt;h1 id=&#34;网页前端性能优化的方式有哪些&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#网页前端性能优化的方式有哪些&#34;&gt;#&lt;/a&gt; 网页前端性能优化的方式有哪些？&lt;/h1&gt;
-&lt;p&gt;1. 压缩 css, js, 图片&lt;br /&gt;
- 2. 减少 http 请求次数， 合并 css、js 、合并图片（雪碧图）&lt;br /&gt;
-3. 使用 CDN&lt;br /&gt;
-4. 减少 dom 元素数量&lt;br /&gt;
- 5. 图片懒加载&lt;br /&gt;
- 6. 静态资源另外用无 cookie 的域名&lt;br /&gt;
- 7. 减少 dom 的访问（缓存 dom）&lt;br /&gt;
-8. 巧用事件委托&lt;br /&gt;
- 9. 样式表置顶、脚本置低&lt;/p&gt;
-&lt;h1 id=&#34;网页从输入网址到渲染完成经历了哪些过程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#网页从输入网址到渲染完成经历了哪些过程&#34;&gt;#&lt;/a&gt; 网页从输入网址到渲染完成经历了哪些过程？&lt;/h1&gt;
-&lt;p&gt;大致可以分为如下 7 步：&lt;/p&gt;
-&lt;p&gt;输入网址；&lt;br /&gt;
-发送到 DNS 服务器，并获取域名对应的 web 服务器对应的 ip 地址；&lt;br /&gt;
-与 web 服务器建立 TCP 连接；&lt;br /&gt;
-浏览器向 web 服务器发送 http 请求；&lt;br /&gt;
-web 服务器响应请求，并返回指定 url 的数据（或错误信息，或重定向的新的 url 地址）；&lt;br /&gt;
-浏览器下载 web 服务器返回的数据及解析 html 源文件；&lt;br /&gt;
-生成 DOM 树，解析 css 和 js，渲染页面，直至显示完成；&lt;/p&gt;
-&lt;h1 id=&#34;线程与进程的区别&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#线程与进程的区别&#34;&gt;#&lt;/a&gt; 线程与进程的区别？&lt;/h1&gt;
-&lt;p&gt;一个程序至少有一个进程，一个进程至少有一个线程.&lt;br /&gt;
- 线程的划分尺度小于进程，使得多线程程序的并发性高。&lt;br /&gt;
-另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。&lt;br /&gt;
-线程在执行过程中与进程还是有区别的。每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。&lt;br /&gt;
-从逻辑角度来看，多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理以及资源分配。这就是进程和线程的重要区别。&lt;/p&gt;
-&lt;h1 id=&#34;http常见的状态码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#http常见的状态码&#34;&gt;#&lt;/a&gt; HTTP 常见的状态码？&lt;/h1&gt;
-&lt;p&gt;100 Continue 继续，一般在发送 post 请求时，已发送了 http header 之后服务端将返回此信息，表示确认，之后发送具体参数信息&lt;br /&gt;
- 200 OK 正常返回信息&lt;br /&gt;
- 201 Created 请求成功并且服务器创建了新的资源&lt;br /&gt;
- 202 Accepted 服务器已接受请求，但尚未处理&lt;br /&gt;
- 301 Moved Permanently 请求的网页已永久移动到新位置。&lt;br /&gt;
-302 Found 临时性重定向。&lt;br /&gt;
-303 See Other 临时性重定向，且总是使用 GET 请求新的 URI。&lt;br /&gt;
-304 Not Modified 自从上次请求后，请求的网页未修改过。&lt;br /&gt;
-400 Bad Request 服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。&lt;br /&gt;
-401 Unauthorized 请求未授权。&lt;br /&gt;
-403 Forbidden 禁止访问。&lt;br /&gt;
-404 Not Found 找不到如何与 URI 相匹配的资源。&lt;br /&gt;
-500 Internal Server Error 最常见的服务器端错误。&lt;br /&gt;
-503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。&lt;/p&gt;
-&lt;h1 id=&#34;图片懒加载&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#图片懒加载&#34;&gt;#&lt;/a&gt; 图片懒加载？&lt;/h1&gt;
-&lt;p&gt;当页面滚动的时间被触发 -&amp;gt; 执行加载图片操作 -&amp;gt; 判断图片是否在可视区域内 -&amp;gt; 在，则动态将 data-src 的值赋予该图片&lt;/p&gt;
-&lt;h1 id=&#34;移动端性能优化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#移动端性能优化&#34;&gt;#&lt;/a&gt; 移动端性能优化？&lt;/h1&gt;
-&lt;p&gt;尽量使用 css3 动画，开启硬件加速&lt;br /&gt;
-适当使用 touch 时间代替 click 时间&lt;br /&gt;
-避免使用 css3 渐变阴影效果&lt;br /&gt;
-可以用 transform: translateZ (0) 来开启硬件加速&lt;br /&gt;
-不滥用 float。float 在渲染时计算量比较大，尽量减少使用&lt;br /&gt;
-不滥用 web 字体。web 字体需要下载，解析，重绘当前页面&lt;br /&gt;
-合理使用 requestAnimationFrame 动画代替 setTimeout&lt;br /&gt;
-css 中的属性（css3 transitions、css3 3D transforms、opacity、webGL、video）会触发 GUP 渲染，耗电&lt;/p&gt;
-&lt;h1 id=&#34;tcp-传输的三次握手-四次挥手策略&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#tcp-传输的三次握手-四次挥手策略&#34;&gt;#&lt;/a&gt; TCP 传输的三次握手、四次挥手策略&lt;/h1&gt;
-&lt;p&gt;三次握手：&lt;br /&gt;
-为了准确无误地吧数据送达目标处，TCP 协议采用了三次握手策略。用 TCP 协议把数据包送出去后，TCP 不会对传送后的情况置之不理，他一定会向对方确认是否送达，握手过程中使用 TCP 的标志：SYN 和 ACK&lt;br /&gt;
- 发送端首先发送一个带 SYN 的标志的数据包给对方&lt;br /&gt;
-接收端收到后，回传一个带有 SYN/ACK 标志的数据包以示传达确认信息&lt;br /&gt;
-最后，发送端再回传一个带 ACK 的标志的数据包，代表 “握手” 结束&lt;br /&gt;
-如在握手过程中某个阶段莫明中断，TCP 协议会再次以相同的顺序发送相同的数据包&lt;/p&gt;
-&lt;p&gt;断开一个 TCP 连接需要 “四次挥手”&lt;br /&gt;
- 第一次挥手：主动关闭方发送一个 FIN，用来关注主动方到被动关闭方的数据传送，也即是主动关闭方告诫被动关闭方：我已经不会再给你发数据了（在 FIN 包之前发送的数据，如果没有收到对应的 ACK 确认报文，主动关闭方依然会重发这些数据）。但是，此时主动关闭方还可以接受数据&lt;br /&gt;
-第二次挥手：被动关闭方收到 FIN 包后，发送一个 ACK 给对方，确认序号收到序号 +1（与 SYN 相同，一个 FIN 占用一个序号）&lt;br /&gt;
-第三次挥手：被动关闭方发送一个 FIN。用来关闭被动关闭方到主动关闭方的数据传送，也就是告诉主动关闭方，我的数据也发送完了，不会给你发送数据了&lt;br /&gt;
-第四次挥手：主动关闭方收到 FIN 后，发送一个 ACK 给被动关闭方，确认序号为收到序号 + 1，至此，完成四次挥手&lt;/p&gt;
-&lt;h1 id=&#34;http-和-https为什么https安全&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#http-和-https为什么https安全&#34;&gt;#&lt;/a&gt; HTTP 和 HTTPS，为什么 HTTPS 安全？&lt;/h1&gt;
-&lt;p&gt;HTTP 协议通常承载与 TCP 协议之上，在 HTTP 和 TCP 之间添加一个安全协议层（SSL 或 TSL），这个时候，就成了我们常说的 HTTPS&lt;br /&gt;
- 默认 HTTP 的端口号为 80，HTTPS 的端口号为 443&lt;br /&gt;
- 因为网络请求需要中间有很多的服务器路由的转发，中间的节点都可能篡改信息，而如果使用 HTTPS，密钥在你和终点站才有，https 之所有说比 http 安全，是因为他利用 ssl/tls 协议传输。包含证书，流量转发，负载均衡，页面适配，浏览器适配，refer 传递等，保障了传输过程的安全性&lt;/p&gt;
-&lt;h1 id=&#34;axios和fetch区别对比&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#axios和fetch区别对比&#34;&gt;#&lt;/a&gt; axios 和 fetch 区别对比&lt;/h1&gt;
-&lt;p&gt;axios 是一个基于 Promise 用于浏览器和 nodejs 的 HTTP 客户端，本质上也是对原生 XHR 的封装，只不过它是 Promise 的实现版本，符合最新的 ES 规范，它本身具有以下特征&lt;/p&gt;
-&lt;p&gt;从浏览器中创建 XMLHttpRequest&lt;br /&gt;
- 支持 Promise API&lt;br /&gt;
- 客户端支持防止 CSRF&lt;br /&gt;
- 提供了一些并发请求的接口（重要，方便了很多的操作）&lt;br /&gt;
-从 node.js 创建 http 请求&lt;br /&gt;
-拦截请求和响应&lt;br /&gt;
-转换请求和响应数据&lt;br /&gt;
-取消请求&lt;br /&gt;
-自动转换 JSON 数据&lt;br /&gt;
- fetch 优势：&lt;/p&gt;
-&lt;p&gt;语法简洁，更加语义化&lt;br /&gt;
-基于标准 Promise 实现，支持 async/await&lt;br /&gt;
- 同构方便，使用 isomorphic-fetch&lt;br /&gt;
- 更加底层，提供的 API 丰富（request, response）&lt;br /&gt;
-脱离了 XHR，是 ES 规范里新的实现方式&lt;br /&gt;
- fetch 存在问题&lt;/p&gt;
-&lt;p&gt;fetch 是一个低层次的 API，你可以把它考虑成原生的 XHR，所以使用起来并不是那么舒服，需要进行封装。&lt;br /&gt;
-fetch 只对网络请求报错，对 400，500 都当做成功的请求，服务器返回 400，500 错误码时并不会 reject，只有网络错误这些导致请求不能完成时，fetch 才会被 reject。&lt;br /&gt;
-fetch 默认不会带 cookie，需要添加配置项： fetch (url, {credentials: ‘include’})&lt;br /&gt;
- fetch 不支持 abort，不支持超时控制，使用 setTimeout 及 Promise.reject 的实现的超时控制并不能阻止请求过程继续在后台运行，造成了流量的浪费&lt;br /&gt;
- fetch 没有办法原生监测请求的进度，而 XHR 可以&lt;/p&gt;
-</content>
-        <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
-        <category term="浏览器" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" />
-        <category term="web综合问题" scheme="https://pink-png.github.io/tags/web%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98/" />
         <updated>2021-06-25T08:43:00.000Z</updated>
     </entry>
     <entry>
