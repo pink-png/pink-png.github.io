@@ -99,6 +99,17 @@
         <updated>2023-12-01T08:43:00.000Z</updated>
     </entry>
     <entry>
+        <id>https://pink-png.github.io/tool/%E4%B8%8B%E8%BD%BD%E7%B1%BB/</id>
+        <title>下载</title>
+        <link rel="alternate" href="https://pink-png.github.io/tool/%E4%B8%8B%E8%BD%BD%E7%B1%BB/"/>
+        <content type="html">&lt;h1 id=&#34;xshell-下载地址&#34;&gt;&lt;a href=&#34;#xshell-下载地址&#34; class=&#34;headerlink&#34; title=&#34;xshell 下载地址&#34;&gt;&lt;/a&gt;xshell 下载地址&lt;/h1&gt;&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cueHNoZWxsLmNvbS96aC9mcmVlLWZvci1ob21lLXNjaG9vbC8=&#34;&gt;https://www.xshell.com/zh/free-for-home-school/&lt;/span&gt; &lt;/p&gt;
+</content>
+        <category term="下载" scheme="https://pink-png.github.io/categories/%E4%B8%8B%E8%BD%BD/" />
+        <category term="xshell" scheme="https://pink-png.github.io/categories/%E4%B8%8B%E8%BD%BD/xshell/" />
+        <category term="xshell" scheme="https://pink-png.github.io/tags/xshell/" />
+        <updated>2023-12-01T08:43:00.000Z</updated>
+    </entry>
+    <entry>
         <id>https://pink-png.github.io/js-base/jsES6-ES13%E6%96%B0%E5%A2%9E%E7%9A%84%E5%8A%9F%E8%83%BD/</id>
         <title>ES6-ES13新增的特性</title>
         <link rel="alternate" href="https://pink-png.github.io/js-base/jsES6-ES13%E6%96%B0%E5%A2%9E%E7%9A%84%E5%8A%9F%E8%83%BD/"/>
@@ -1908,16 +1919,6 @@ socket.listen(server).on(&amp;#39;connection&amp;#39;, function(client) &amp;#12
         <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
         <category term="Bootstrap" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Bootstrap/" />
         <category term="Bootstrap" scheme="https://pink-png.github.io/tags/Bootstrap/" />
-        <updated>2021-06-25T08:43:00.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://pink-png.github.io/front-end/Typescript/</id>
-        <title>Typescript基础</title>
-        <link rel="alternate" href="https://pink-png.github.io/front-end/Typescript/"/>
-        <content type="html"></content>
-        <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
-        <category term="Typescript" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Typescript/" />
-        <category term="Typescript" scheme="https://pink-png.github.io/tags/Typescript/" />
         <updated>2021-06-25T08:43:00.000Z</updated>
     </entry>
 </feed>

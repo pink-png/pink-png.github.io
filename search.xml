@@ -17425,4 +17425,37 @@ Watcher.prototype.get = function get() &#123;
         <tag>前端调试</tag>
       </tags>
   </entry>
+  <entry>
+    <title>PM2</title>
+    <url>/front-end/PM2%20+%20linux/</url>
+    <content><![CDATA[<h1 id="什么是pm2"><a href="#什么是pm2" class="headerlink" title="什么是pm2"></a>什么是pm2</h1><p>pm2 是一个带有负载均衡功能的Node应用的进程管理器.<br>当你要把你的独立代码利用全部的服务器上的所有CPU，并保证进程永远都活着，0秒的重载， PM2是完美的。它非常适合IaaS结构，但不要把它用于PaaS方案（随后将开发Paas的解决方案）</p>
+<h1 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性"></a>主要特性</h1><p>内建负载均衡（使用Node cluster 集群模块）<br>后台运行<br>0秒停机重载，我理解大概意思是维护升级的时候不需要停机.<br>具有Ubuntu和CentOS 的启动脚本<br>停止不稳定的进程（避免无限循环）<br>控制台检测<br>提供 HTTP API<br>远程控制和实时的接口API ( Nodejs 模块,允许和PM2进程管理器交互 )<br>测试过Nodejs v0.11 v0.10 v0.8版本，兼容CoffeeScript,基于Linux 和MacOS.</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>npm install -g pm2</p>
+<h1 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h1><p>pm2 start app.js -i 4 #后台运行pm2，启动4个app.js<br>                      # 也可以把’max’ 参数传递给 start<br>                      # 正确的进程数目依赖于Cpu的核心数目<br>pm2 start app.js –name my-api # 命名进程<br>pm2 list               # 显示所有进程状态<br>pm2 monit              # 监视所有进程<br>pm2 logs               # 显示所有进程日志<br>pm2 stop all           # 停止所有进程<br>pm2 restart all        # 重启所有进程<br>pm2 reload all         # 0秒停机重载进程 (用于 NETWORKED 进程)<br>pm2 stop 0             # 停止指定的进程<br>pm2 restart 0          # 重启指定的进程<br>pm2 startup            # 产生 init 脚本 保持进程活着<br>pm2 web                # 运行健壮的 computer API endpoint (<span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo5NjE1Lw==">http://localhost:9615</span>)<br>pm2 delete 0           # 杀死指定的进程<br>pm2 delete all         # 杀死全部进程</p>
+<h2 id="运行进程的不同方式："><a href="#运行进程的不同方式：" class="headerlink" title="运行进程的不同方式："></a>运行进程的不同方式：</h2><p>pm2 start app.js -i max  # 根据有效CPU数目启动最大进程数目<br>pm2 start app.js -i 3      # 启动3个进程<br>pm2 start app.js -x        #用fork模式启动 app.js 而不是使用 cluster<br>pm2 start app.js -x – -a 23   # 用fork模式启动 app.js 并且传递参数 (-a 23)<br>pm2 start app.js –name serverone  # 启动一个进程并把它命名为 serverone<br>pm2 stop serverone       # 停止 serverone 进程<br>pm2 start app.json        # 启动进程, 在 app.json里设置选项<br>pm2 start app.js -i max – -a 23        #在–之后给 app.js 传递参数<br>pm2 start app.js -i max -e err.log -o out.log  # 启动 并 生成一个配置文件</p>
+<h2 id="你也可以执行用其他语言编写的app-fork-模式"><a href="#你也可以执行用其他语言编写的app-fork-模式" class="headerlink" title="你也可以执行用其他语言编写的app  ( fork 模式):"></a>你也可以执行用其他语言编写的app  ( fork 模式):</h2><p>pm2 start my-bash-script.sh    -x –interpreter bash<br>pm2 start my-python-script.py -x –interpreter python</p>
+<p>0秒停机重载:<br>这项功能允许你重新载入代码而不用失去请求连接。<br>注意：<br>仅能用于web应用<br>运行于Node 0.11.x版本<br>运行于 cluster 模式（默认模式）<br>pm2 reload all<br>CoffeeScript:<br>pm2 start my_app.coffee  #这就是全部<br>PM2准备好为产品级服务了吗？<br>只需在你的服务器上测试<br>git clone <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1VuaXRlY2gvcG0yLmdpdA==">https://github.com/Unitech/pm2.git</span><br>cd pm2<br>npm install  # 或者 npm install –dev ，如果devDependencies 没有安装<br>npm test<br>pm2 list<br>列出由pm2管理的所有进程信息，还会显示一个进程会被启动多少次，因为没处理的异常。</p>
+<p>pm2 monit<br>监视每个node进程的CPU和内存的使用情况。</p>
+]]></content>
+      <categories>
+        <category>前端开发</category>
+        <category>PM2</category>
+      </categories>
+      <tags>
+        <tag>PM2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>下载</title>
+    <url>/tool/%E4%B8%8B%E8%BD%BD%E7%B1%BB/</url>
+    <content><![CDATA[<h1 id="xshell-下载地址"><a href="#xshell-下载地址" class="headerlink" title="xshell 下载地址"></a>xshell 下载地址</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueHNoZWxsLmNvbS96aC9mcmVlLWZvci1ob21lLXNjaG9vbC8=">https://www.xshell.com/zh/free-for-home-school/</span> </p>
+]]></content>
+      <categories>
+        <category>下载</category>
+        <category>xshell</category>
+      </categories>
+      <tags>
+        <tag>xshell</tag>
+      </tags>
+  </entry>
 </search>
