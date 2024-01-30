@@ -1214,31 +1214,6 @@ for (let i = 0; i &amp;lt; 100; i++) &amp;#123;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%9D%A2%E8%AF%95/</guid>
-            <title>web综合问题</title>
-            <link>https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%9D%A2%E8%AF%95/</link>
-            <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
-            <category term="浏览器" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" />
-            <category term="web综合问题" scheme="https://pink-png.github.io/tags/web%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98/" />
-            <pubDate>Fri, 25 Jun 2021 16:43:00 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;常见的浏览器内核有哪些？&#34;&gt;&lt;a href=&#34;#常见的浏览器内核有哪些？&#34; class=&#34;headerlink&#34; title=&#34;常见的浏览器内核有哪些？&#34;&gt;&lt;/a&gt;常见的浏览器内核有哪些？&lt;/h1&gt;&lt;p&gt;主要分成两部分：渲染引擎(layout engineer或Rendering Engine)和JS引擎。&lt;br&gt;渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。&lt;br&gt;JS引擎则：解析和执行javascript来实现网页的动态效果。&lt;br&gt;最开始渲染引擎和JS引擎并没有区分的很明确，后来JS引擎越来越独立，内核就倾向于只指渲染引擎。&lt;br&gt;常见内核&lt;br&gt;Trident 内核：IE, MaxThon, TT, The World, 360, 搜狗浏览器等。[又称 MSHTML]&lt;br&gt;Gecko 内核：Netscape6 及以上版本，FF, MozillaSuite &amp;#x2F; SeaMonkey 等&lt;br&gt;Presto 内核：Opera7 及以上。 [Opera内核原为：Presto，现为：Blink;]&lt;br&gt;Webkit 内核：Safari, Chrome等。 [ Chrome的：Blink（WebKit 的分支）]&lt;/p&gt;
-&lt;h1 id=&#34;网页前端性能优化的方式有哪些？&#34;&gt;&lt;a href=&#34;#网页前端性能优化的方式有哪些？&#34; class=&#34;headerlink&#34; title=&#34;网页前端性能优化的方式有哪些？&#34;&gt;&lt;/a&gt;网页前端性能优化的方式有哪些？&lt;/h1&gt;&lt;p&gt;1.压缩 css, js, 图片&lt;br&gt;2.减少 http 请求次数， 合并 css、js 、合并图片（雪碧图）&lt;br&gt;3.使用 CDN&lt;br&gt;4.减少 dom 元素数量&lt;br&gt;5.图片懒加载&lt;br&gt;6.静态资源另外用无 cookie 的域名&lt;br&gt;7.减少 dom 的访问（缓存 dom）&lt;br&gt;8.巧用事件委托&lt;br&gt;9.样式表置顶、脚本置低&lt;/p&gt;
-&lt;h1 id=&#34;网页从输入网址到渲染完成经历了哪些过程？&#34;&gt;&lt;a href=&#34;#网页从输入网址到渲染完成经历了哪些过程？&#34; class=&#34;headerlink&#34; title=&#34;网页从输入网址到渲染完成经历了哪些过程？&#34;&gt;&lt;/a&gt;网页从输入网址到渲染完成经历了哪些过程？&lt;/h1&gt;&lt;p&gt;大致可以分为如下7步：&lt;/p&gt;
-&lt;p&gt;输入网址；&lt;br&gt;发送到DNS服务器，并获取域名对应的web服务器对应的ip地址；&lt;br&gt;与web服务器建立TCP连接；&lt;br&gt;浏览器向web服务器发送http请求；&lt;br&gt;web服务器响应请求，并返回指定url的数据（或错误信息，或重定向的新的url地址）；&lt;br&gt;浏览器下载web服务器返回的数据及解析html源文件；&lt;br&gt;生成DOM树，解析css和js，渲染页面，直至显示完成；&lt;/p&gt;
-&lt;h1 id=&#34;线程与进程的区别？&#34;&gt;&lt;a href=&#34;#线程与进程的区别？&#34; class=&#34;headerlink&#34; title=&#34;线程与进程的区别？&#34;&gt;&lt;/a&gt;线程与进程的区别？&lt;/h1&gt;&lt;p&gt;一个程序至少有一个进程,一个进程至少有一个线程.&lt;br&gt;线程的划分尺度小于进程，使得多线程程序的并发性高。&lt;br&gt;另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。&lt;br&gt;线程在执行过程中与进程还是有区别的。每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。&lt;br&gt;从逻辑角度来看，多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理以及资源分配。这就是进程和线程的重要区别。&lt;/p&gt;
-&lt;h1 id=&#34;HTTP常见的状态码？&#34;&gt;&lt;a href=&#34;#HTTP常见的状态码？&#34; class=&#34;headerlink&#34; title=&#34;HTTP常见的状态码？&#34;&gt;&lt;/a&gt;HTTP常见的状态码？&lt;/h1&gt;&lt;p&gt;100 Continue 继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息&lt;br&gt;200 OK 正常返回信息&lt;br&gt;201 Created 请求成功并且服务器创建了新的资源&lt;br&gt;202 Accepted 服务器已接受请求，但尚未处理&lt;br&gt;301 Moved Permanently 请求的网页已永久移动到新位置。&lt;br&gt;302 Found 临时性重定向。&lt;br&gt;303 See Other 临时性重定向，且总是使用 GET 请求新的 URI。&lt;br&gt;304 Not Modified 自从上次请求后，请求的网页未修改过。&lt;br&gt;400 Bad Request 服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。&lt;br&gt;401 Unauthorized 请求未授权。&lt;br&gt;403 Forbidden 禁止访问。&lt;br&gt;404 Not Found 找不到如何与 URI 相匹配的资源。&lt;br&gt;500 Internal Server Error 最常见的服务器端错误。&lt;br&gt;503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。&lt;/p&gt;
-&lt;h1 id=&#34;图片懒加载？&#34;&gt;&lt;a href=&#34;#图片懒加载？&#34; class=&#34;headerlink&#34; title=&#34;图片懒加载？&#34;&gt;&lt;/a&gt;图片懒加载？&lt;/h1&gt;&lt;p&gt;当页面滚动的时间被触发 -&amp;gt; 执行加载图片操作 -&amp;gt; 判断图片是否在可视区域内 -&amp;gt; 在，则动态将data-src的值赋予该图片&lt;/p&gt;
-&lt;h1 id=&#34;移动端性能优化？&#34;&gt;&lt;a href=&#34;#移动端性能优化？&#34; class=&#34;headerlink&#34; title=&#34;移动端性能优化？&#34;&gt;&lt;/a&gt;移动端性能优化？&lt;/h1&gt;&lt;p&gt;尽量使用css3动画，开启硬件加速&lt;br&gt;适当使用touch时间代替click时间&lt;br&gt;避免使用css3渐变阴影效果&lt;br&gt;可以用transform: translateZ(0) 来开启硬件加速&lt;br&gt;不滥用float。float在渲染时计算量比较大，尽量减少使用&lt;br&gt;不滥用web字体。web字体需要下载，解析，重绘当前页面&lt;br&gt;合理使用requestAnimationFrame动画代替setTimeout&lt;br&gt;css中的属性（css3 transitions、css3 3D transforms、opacity、webGL、video）会触发GUP渲染，耗电&lt;/p&gt;
-&lt;h1 id=&#34;TCP-传输的三次握手、四次挥手策略&#34;&gt;&lt;a href=&#34;#TCP-传输的三次握手、四次挥手策略&#34; class=&#34;headerlink&#34; title=&#34;TCP 传输的三次握手、四次挥手策略&#34;&gt;&lt;/a&gt;TCP 传输的三次握手、四次挥手策略&lt;/h1&gt;&lt;p&gt;三次握手：&lt;br&gt;为了准确无误地吧数据送达目标处，TCP协议采用了三次握手策略。用TCP协议把数据包送出去后，TCP不会对传送后的情况置之不理，他一定会向对方确认是否送达，握手过程中使用TCP的标志：SYN和ACK&lt;br&gt;发送端首先发送一个带SYN的标志的数据包给对方&lt;br&gt;接收端收到后，回传一个带有SYN&amp;#x2F;ACK标志的数据包以示传达确认信息&lt;br&gt;最后，发送端再回传一个带ACK的标志的数据包，代表“握手”结束&lt;br&gt;如在握手过程中某个阶段莫明中断，TCP协议会再次以相同的顺序发送相同的数据包&lt;/p&gt;
-&lt;p&gt;断开一个TCP连接需要“四次挥手”&lt;br&gt;第一次挥手：主动关闭方发送一个FIN，用来关注主动方到被动关闭方的数据传送，也即是主动关闭方告诫被动关闭方：我已经不会再给你发数据了（在FIN包之前发送的数据，如果没有收到对应的ACK确认报文，主动关闭方依然会重发这些数据）。但是，此时主动关闭方还可以接受数据&lt;br&gt;第二次挥手：被动关闭方收到FIN包后，发送一个ACK给对方，确认序号收到序号 +1（与SYN相同，一个 FIN占用一个序号）&lt;br&gt;第三次挥手：被动关闭方发送一个 FIN。用来关闭被动关闭方到主动关闭方的数据传送，也就是告诉主动关闭方，我的数据也发送完了，不会给你发送数据了&lt;br&gt;第四次挥手：主动关闭方收到FIN后，发送一个ACK给被动关闭方，确认序号为收到序号+1，至此，完成四次挥手&lt;/p&gt;
-&lt;h1 id=&#34;HTTP-和-HTTPS，为什么HTTPS安全？&#34;&gt;&lt;a href=&#34;#HTTP-和-HTTPS，为什么HTTPS安全？&#34; class=&#34;headerlink&#34; title=&#34;HTTP 和 HTTPS，为什么HTTPS安全？&#34;&gt;&lt;/a&gt;HTTP 和 HTTPS，为什么HTTPS安全？&lt;/h1&gt;&lt;p&gt;HTTP协议通常承载与 TCP协议之上，在HTTP和TCP之间添加一个安全协议层（SSL或TSL），这个时候，就成了我们常说的HTTPS&lt;br&gt;默认HTTP的端口号为80，HTTPS的端口号为443&lt;br&gt;因为网络请求需要中间有很多的服务器路由的转发，中间的节点都可能篡改信息，而如果使用HTTPS，密钥在你和终点站才有，https之所有说比http安全，是因为他利用ssl&amp;#x2F;tls协议传输。包含证书，流量转发，负载均衡，页面适配，浏览器适配，refer传递等，保障了传输过程的安全性&lt;/p&gt;
-&lt;h1 id=&#34;axios和fetch区别对比&#34;&gt;&lt;a href=&#34;#axios和fetch区别对比&#34; class=&#34;headerlink&#34; title=&#34;axios和fetch区别对比&#34;&gt;&lt;/a&gt;axios和fetch区别对比&lt;/h1&gt;&lt;p&gt;axios 是一个基于Promise 用于浏览器和 nodejs 的 HTTP 客户端，本质上也是对原生XHR的封装，只不过它是Promise的实现版本，符合最新的ES规范，它本身具有以下特征&lt;/p&gt;
-&lt;p&gt;从浏览器中创建 XMLHttpRequest&lt;br&gt;支持 Promise API&lt;br&gt;客户端支持防止CSRF&lt;br&gt;提供了一些并发请求的接口（重要，方便了很多的操作）&lt;br&gt;从 node.js 创建 http 请求&lt;br&gt;拦截请求和响应&lt;br&gt;转换请求和响应数据&lt;br&gt;取消请求&lt;br&gt;自动转换JSON数据&lt;br&gt;fetch优势：&lt;/p&gt;
-&lt;p&gt;语法简洁，更加语义化&lt;br&gt;基于标准 Promise 实现，支持 async&amp;#x2F;await&lt;br&gt;同构方便，使用 isomorphic-fetch&lt;br&gt;更加底层，提供的API丰富（request, response）&lt;br&gt;脱离了XHR，是ES规范里新的实现方式&lt;br&gt;fetch存在问题&lt;/p&gt;
-&lt;p&gt;fetch是一个低层次的API，你可以把它考虑成原生的XHR，所以使用起来并不是那么舒服，需要进行封装。&lt;br&gt;fetch只对网络请求报错，对400，500都当做成功的请求，服务器返回 400，500 错误码时并不会 reject，只有网络错误这些导致请求不能完成时，fetch 才会被 reject。&lt;br&gt;fetch默认不会带cookie，需要添加配置项： fetch(url, {credentials: ‘include’})&lt;br&gt;fetch不支持abort，不支持超时控制，使用setTimeout及Promise.reject的实现的超时控制并不能阻止请求过程继续在后台运行，造成了流量的浪费&lt;br&gt;fetch没有办法原生监测请求的进度，而XHR可以&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
             <guid isPermalink="true">https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/</guid>
             <title>浏览器渲染原理以及优化思路</title>
             <link>https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/</link>
@@ -1284,6 +1259,31 @@ for (let i = 0; i &amp;lt; 100; i++) &amp;#123;
 避免频繁操作DOM：减少对DOM的修改和查询次数，可以使用文档片段（DocumentFragment）来进行批量操作。
 压缩和合并代码：对CSS和JavaScript文件进行压缩和合并，减小文件体积，加快加载速度。
 &lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%9D%A2%E8%AF%95/</guid>
+            <title>web综合问题</title>
+            <link>https://pink-png.github.io/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%9D%A2%E8%AF%95/</link>
+            <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
+            <category term="浏览器" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" />
+            <category term="web综合问题" scheme="https://pink-png.github.io/tags/web%E7%BB%BC%E5%90%88%E9%97%AE%E9%A2%98/" />
+            <pubDate>Fri, 25 Jun 2021 16:43:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;常见的浏览器内核有哪些？&#34;&gt;&lt;a href=&#34;#常见的浏览器内核有哪些？&#34; class=&#34;headerlink&#34; title=&#34;常见的浏览器内核有哪些？&#34;&gt;&lt;/a&gt;常见的浏览器内核有哪些？&lt;/h1&gt;&lt;p&gt;主要分成两部分：渲染引擎(layout engineer或Rendering Engine)和JS引擎。&lt;br&gt;渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。&lt;br&gt;JS引擎则：解析和执行javascript来实现网页的动态效果。&lt;br&gt;最开始渲染引擎和JS引擎并没有区分的很明确，后来JS引擎越来越独立，内核就倾向于只指渲染引擎。&lt;br&gt;常见内核&lt;br&gt;Trident 内核：IE, MaxThon, TT, The World, 360, 搜狗浏览器等。[又称 MSHTML]&lt;br&gt;Gecko 内核：Netscape6 及以上版本，FF, MozillaSuite &amp;#x2F; SeaMonkey 等&lt;br&gt;Presto 内核：Opera7 及以上。 [Opera内核原为：Presto，现为：Blink;]&lt;br&gt;Webkit 内核：Safari, Chrome等。 [ Chrome的：Blink（WebKit 的分支）]&lt;/p&gt;
+&lt;h1 id=&#34;网页前端性能优化的方式有哪些？&#34;&gt;&lt;a href=&#34;#网页前端性能优化的方式有哪些？&#34; class=&#34;headerlink&#34; title=&#34;网页前端性能优化的方式有哪些？&#34;&gt;&lt;/a&gt;网页前端性能优化的方式有哪些？&lt;/h1&gt;&lt;p&gt;1.压缩 css, js, 图片&lt;br&gt;2.减少 http 请求次数， 合并 css、js 、合并图片（雪碧图）&lt;br&gt;3.使用 CDN&lt;br&gt;4.减少 dom 元素数量&lt;br&gt;5.图片懒加载&lt;br&gt;6.静态资源另外用无 cookie 的域名&lt;br&gt;7.减少 dom 的访问（缓存 dom）&lt;br&gt;8.巧用事件委托&lt;br&gt;9.样式表置顶、脚本置低&lt;/p&gt;
+&lt;h1 id=&#34;网页从输入网址到渲染完成经历了哪些过程？&#34;&gt;&lt;a href=&#34;#网页从输入网址到渲染完成经历了哪些过程？&#34; class=&#34;headerlink&#34; title=&#34;网页从输入网址到渲染完成经历了哪些过程？&#34;&gt;&lt;/a&gt;网页从输入网址到渲染完成经历了哪些过程？&lt;/h1&gt;&lt;p&gt;大致可以分为如下7步：&lt;/p&gt;
+&lt;p&gt;输入网址；&lt;br&gt;发送到DNS服务器，并获取域名对应的web服务器对应的ip地址；&lt;br&gt;与web服务器建立TCP连接；&lt;br&gt;浏览器向web服务器发送http请求；&lt;br&gt;web服务器响应请求，并返回指定url的数据（或错误信息，或重定向的新的url地址）；&lt;br&gt;浏览器下载web服务器返回的数据及解析html源文件；&lt;br&gt;生成DOM树，解析css和js，渲染页面，直至显示完成；&lt;/p&gt;
+&lt;h1 id=&#34;线程与进程的区别？&#34;&gt;&lt;a href=&#34;#线程与进程的区别？&#34; class=&#34;headerlink&#34; title=&#34;线程与进程的区别？&#34;&gt;&lt;/a&gt;线程与进程的区别？&lt;/h1&gt;&lt;p&gt;一个程序至少有一个进程,一个进程至少有一个线程.&lt;br&gt;线程的划分尺度小于进程，使得多线程程序的并发性高。&lt;br&gt;另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。&lt;br&gt;线程在执行过程中与进程还是有区别的。每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。&lt;br&gt;从逻辑角度来看，多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理以及资源分配。这就是进程和线程的重要区别。&lt;/p&gt;
+&lt;h1 id=&#34;HTTP常见的状态码？&#34;&gt;&lt;a href=&#34;#HTTP常见的状态码？&#34; class=&#34;headerlink&#34; title=&#34;HTTP常见的状态码？&#34;&gt;&lt;/a&gt;HTTP常见的状态码？&lt;/h1&gt;&lt;p&gt;100 Continue 继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息&lt;br&gt;200 OK 正常返回信息&lt;br&gt;201 Created 请求成功并且服务器创建了新的资源&lt;br&gt;202 Accepted 服务器已接受请求，但尚未处理&lt;br&gt;301 Moved Permanently 请求的网页已永久移动到新位置。&lt;br&gt;302 Found 临时性重定向。&lt;br&gt;303 See Other 临时性重定向，且总是使用 GET 请求新的 URI。&lt;br&gt;304 Not Modified 自从上次请求后，请求的网页未修改过。&lt;br&gt;400 Bad Request 服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。&lt;br&gt;401 Unauthorized 请求未授权。&lt;br&gt;403 Forbidden 禁止访问。&lt;br&gt;404 Not Found 找不到如何与 URI 相匹配的资源。&lt;br&gt;500 Internal Server Error 最常见的服务器端错误。&lt;br&gt;503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。&lt;/p&gt;
+&lt;h1 id=&#34;图片懒加载？&#34;&gt;&lt;a href=&#34;#图片懒加载？&#34; class=&#34;headerlink&#34; title=&#34;图片懒加载？&#34;&gt;&lt;/a&gt;图片懒加载？&lt;/h1&gt;&lt;p&gt;当页面滚动的时间被触发 -&amp;gt; 执行加载图片操作 -&amp;gt; 判断图片是否在可视区域内 -&amp;gt; 在，则动态将data-src的值赋予该图片&lt;/p&gt;
+&lt;h1 id=&#34;移动端性能优化？&#34;&gt;&lt;a href=&#34;#移动端性能优化？&#34; class=&#34;headerlink&#34; title=&#34;移动端性能优化？&#34;&gt;&lt;/a&gt;移动端性能优化？&lt;/h1&gt;&lt;p&gt;尽量使用css3动画，开启硬件加速&lt;br&gt;适当使用touch时间代替click时间&lt;br&gt;避免使用css3渐变阴影效果&lt;br&gt;可以用transform: translateZ(0) 来开启硬件加速&lt;br&gt;不滥用float。float在渲染时计算量比较大，尽量减少使用&lt;br&gt;不滥用web字体。web字体需要下载，解析，重绘当前页面&lt;br&gt;合理使用requestAnimationFrame动画代替setTimeout&lt;br&gt;css中的属性（css3 transitions、css3 3D transforms、opacity、webGL、video）会触发GUP渲染，耗电&lt;/p&gt;
+&lt;h1 id=&#34;TCP-传输的三次握手、四次挥手策略&#34;&gt;&lt;a href=&#34;#TCP-传输的三次握手、四次挥手策略&#34; class=&#34;headerlink&#34; title=&#34;TCP 传输的三次握手、四次挥手策略&#34;&gt;&lt;/a&gt;TCP 传输的三次握手、四次挥手策略&lt;/h1&gt;&lt;p&gt;三次握手：&lt;br&gt;为了准确无误地吧数据送达目标处，TCP协议采用了三次握手策略。用TCP协议把数据包送出去后，TCP不会对传送后的情况置之不理，他一定会向对方确认是否送达，握手过程中使用TCP的标志：SYN和ACK&lt;br&gt;发送端首先发送一个带SYN的标志的数据包给对方&lt;br&gt;接收端收到后，回传一个带有SYN&amp;#x2F;ACK标志的数据包以示传达确认信息&lt;br&gt;最后，发送端再回传一个带ACK的标志的数据包，代表“握手”结束&lt;br&gt;如在握手过程中某个阶段莫明中断，TCP协议会再次以相同的顺序发送相同的数据包&lt;/p&gt;
+&lt;p&gt;断开一个TCP连接需要“四次挥手”&lt;br&gt;第一次挥手：主动关闭方发送一个FIN，用来关注主动方到被动关闭方的数据传送，也即是主动关闭方告诫被动关闭方：我已经不会再给你发数据了（在FIN包之前发送的数据，如果没有收到对应的ACK确认报文，主动关闭方依然会重发这些数据）。但是，此时主动关闭方还可以接受数据&lt;br&gt;第二次挥手：被动关闭方收到FIN包后，发送一个ACK给对方，确认序号收到序号 +1（与SYN相同，一个 FIN占用一个序号）&lt;br&gt;第三次挥手：被动关闭方发送一个 FIN。用来关闭被动关闭方到主动关闭方的数据传送，也就是告诉主动关闭方，我的数据也发送完了，不会给你发送数据了&lt;br&gt;第四次挥手：主动关闭方收到FIN后，发送一个ACK给被动关闭方，确认序号为收到序号+1，至此，完成四次挥手&lt;/p&gt;
+&lt;h1 id=&#34;HTTP-和-HTTPS，为什么HTTPS安全？&#34;&gt;&lt;a href=&#34;#HTTP-和-HTTPS，为什么HTTPS安全？&#34; class=&#34;headerlink&#34; title=&#34;HTTP 和 HTTPS，为什么HTTPS安全？&#34;&gt;&lt;/a&gt;HTTP 和 HTTPS，为什么HTTPS安全？&lt;/h1&gt;&lt;p&gt;HTTP协议通常承载与 TCP协议之上，在HTTP和TCP之间添加一个安全协议层（SSL或TSL），这个时候，就成了我们常说的HTTPS&lt;br&gt;默认HTTP的端口号为80，HTTPS的端口号为443&lt;br&gt;因为网络请求需要中间有很多的服务器路由的转发，中间的节点都可能篡改信息，而如果使用HTTPS，密钥在你和终点站才有，https之所有说比http安全，是因为他利用ssl&amp;#x2F;tls协议传输。包含证书，流量转发，负载均衡，页面适配，浏览器适配，refer传递等，保障了传输过程的安全性&lt;/p&gt;
+&lt;h1 id=&#34;axios和fetch区别对比&#34;&gt;&lt;a href=&#34;#axios和fetch区别对比&#34; class=&#34;headerlink&#34; title=&#34;axios和fetch区别对比&#34;&gt;&lt;/a&gt;axios和fetch区别对比&lt;/h1&gt;&lt;p&gt;axios 是一个基于Promise 用于浏览器和 nodejs 的 HTTP 客户端，本质上也是对原生XHR的封装，只不过它是Promise的实现版本，符合最新的ES规范，它本身具有以下特征&lt;/p&gt;
+&lt;p&gt;从浏览器中创建 XMLHttpRequest&lt;br&gt;支持 Promise API&lt;br&gt;客户端支持防止CSRF&lt;br&gt;提供了一些并发请求的接口（重要，方便了很多的操作）&lt;br&gt;从 node.js 创建 http 请求&lt;br&gt;拦截请求和响应&lt;br&gt;转换请求和响应数据&lt;br&gt;取消请求&lt;br&gt;自动转换JSON数据&lt;br&gt;fetch优势：&lt;/p&gt;
+&lt;p&gt;语法简洁，更加语义化&lt;br&gt;基于标准 Promise 实现，支持 async&amp;#x2F;await&lt;br&gt;同构方便，使用 isomorphic-fetch&lt;br&gt;更加底层，提供的API丰富（request, response）&lt;br&gt;脱离了XHR，是ES规范里新的实现方式&lt;br&gt;fetch存在问题&lt;/p&gt;
+&lt;p&gt;fetch是一个低层次的API，你可以把它考虑成原生的XHR，所以使用起来并不是那么舒服，需要进行封装。&lt;br&gt;fetch只对网络请求报错，对400，500都当做成功的请求，服务器返回 400，500 错误码时并不会 reject，只有网络错误这些导致请求不能完成时，fetch 才会被 reject。&lt;br&gt;fetch默认不会带cookie，需要添加配置项： fetch(url, {credentials: ‘include’})&lt;br&gt;fetch不支持abort，不支持超时控制，使用setTimeout及Promise.reject的实现的超时控制并不能阻止请求过程继续在后台运行，造成了流量的浪费&lt;br&gt;fetch没有办法原生监测请求的进度，而XHR可以&lt;/p&gt;
  ]]></description>
         </item>
         <item>
@@ -1932,67 +1932,65 @@ socket.listen(server).on(&amp;#39;connection&amp;#39;, function(client) &amp;#12
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://pink-png.github.io/performance-optimization/Web%20Worker/</guid>
-            <title>Web Worker</title>
-            <link>https://pink-png.github.io/performance-optimization/Web%20Worker/</link>
+            <guid isPermalink="true">https://pink-png.github.io/front-end/Bootstrap/</guid>
+            <title>Bootstrap</title>
+            <link>https://pink-png.github.io/front-end/Bootstrap/</link>
             <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
-            <category term="前端性能优化" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" />
-            <category term="前端性能优化" scheme="https://pink-png.github.io/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" />
+            <category term="Bootstrap" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Bootstrap/" />
+            <category term="Bootstrap" scheme="https://pink-png.github.io/tags/Bootstrap/" />
             <pubDate>Fri, 25 Jun 2021 16:43:00 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;什么是Web-Worker&#34;&gt;&lt;a href=&#34;#什么是Web-Worker&#34; class=&#34;headerlink&#34; title=&#34;什么是Web Worker&#34;&gt;&lt;/a&gt;什么是Web Worker&lt;/h1&gt;&lt;p&gt;Web Worker 是 HTML5 提供的一项技术，用于在后台运行 JavaScript 脚本，以提高页面的性能和响应能力。Web Worker 可以在独立的线程中执行代码，与主线程并行工作，从而不阻塞页面的渲染和用户交互。&lt;/p&gt;
-&lt;h1 id=&#34;以下是-Web-Worker-的一些关键特点：&#34;&gt;&lt;a href=&#34;#以下是-Web-Worker-的一些关键特点：&#34; class=&#34;headerlink&#34; title=&#34;以下是 Web Worker 的一些关键特点：&#34;&gt;&lt;/a&gt;以下是 Web Worker 的一些关键特点：&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;独立线程：Web Worker 在后台运行，与主线程并行工作，由浏览器自动创建、管理和销毁。它不会阻塞主线程的执行，因此可以提高页面的响应速度。&lt;/li&gt;
-&lt;li&gt;无访问 DOM：由于 Web Worker 运行在独立的线程中，它不能直接访问页面的 DOM 元素，也不能操作界面。这样可以保证数据的安全性和线程之间的隔离。&lt;/li&gt;
-&lt;li&gt;通信机制：Web Worker 通过消息传递的方式与主线程进行通信。主线程可以向 Web Worker 发送消息，Web Worker 处理完任务后再将结果返回给主线程。&lt;/li&gt;
-&lt;li&gt;脚本外部化：Web Worker 的脚本文件必须是单独的外部文件，不能直接将代码写在 HTML 页面中。这样可以提高代码的可维护性和重用性。&lt;/li&gt;
+            <description><![CDATA[ &lt;h1 id=&#34;什么是Bootstrap？以及为什么要使⽤Bootstrap？&#34;&gt;&lt;a href=&#34;#什么是Bootstrap？以及为什么要使⽤Bootstrap？&#34; class=&#34;headerlink&#34; title=&#34;什么是Bootstrap？以及为什么要使⽤Bootstrap？&#34;&gt;&lt;/a&gt;什么是Bootstrap？以及为什么要使⽤Bootstrap？&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;Bootstrap 是⼀个⽤于快速开发 Web 应⽤程序和⽹站的前端框架。&lt;/li&gt;
+&lt;li&gt;Bootstrap 是基于 HTML 、 CSS 、 JAVASCRIPT 的&lt;/li&gt;
+&lt;li&gt;Bootstrap 具有移动设备优先、浏览器⽀持良好、容易上⼿、响应式设计等优点，所以Bootstrap 被⼴泛应⽤&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&#34;使用-Web-Worker-可以实现以下功能：&#34;&gt;&lt;a href=&#34;#使用-Web-Worker-可以实现以下功能：&#34; class=&#34;headerlink&#34; title=&#34;使用 Web Worker 可以实现以下功能：&#34;&gt;&lt;/a&gt;使用 Web Worker 可以实现以下功能：&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;执行复杂计算：将一些耗时的计算任务放到 Web Worker 中执行，避免阻塞页面渲染和用户交互。&lt;/li&gt;
-&lt;li&gt;处理大量数据：当需要处理大量的数据或进行复杂的数据操作时，可以将这些操作放到 Web Worker 中进行并发处理。&lt;/li&gt;
-&lt;li&gt;后台加载资源：Web Worker 可以在后台加载数据、解析文件等操作，提前准备好数据，以便在需要时快速响应。&lt;/li&gt;
-&lt;li&gt;实时通信：Web Worker 与主线程之间可以进行实时的双向通信，例如传递消息、更新进度等。&lt;/li&gt;
+&lt;h1 id=&#34;使⽤Bootstrap时，要声明的⽂档类型是什么？以及为什么要这样声明？&#34;&gt;&lt;a href=&#34;#使⽤Bootstrap时，要声明的⽂档类型是什么？以及为什么要这样声明？&#34; class=&#34;headerlink&#34; title=&#34;使⽤Bootstrap时，要声明的⽂档类型是什么？以及为什么要这样声明？&#34;&gt;&lt;/a&gt;使⽤Bootstrap时，要声明的⽂档类型是什么？以及为什么要这样声明？&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;使⽤ Bootstrap 时，需要使⽤ HTML5 ⽂档类型（ Doctype ）。 &lt;!DOCTYPE html&gt;&lt;/li&gt;
+&lt;li&gt;因为 Bootstrap 使⽤了⼀些 HTML5 元素和 CSS 属性，如果在 Bootstrap 创建的⽹⻚开头不使⽤ HTML5 的⽂档类型（ Doctype ），可能会⾯临⼀些浏览器显示不⼀致的问题，甚⾄可能⾯临⼀些特定情境下的不⼀致，以致于代码不能通过 W3C 标准的验证&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&#34;需要注意的&#34;&gt;&lt;a href=&#34;#需要注意的&#34; class=&#34;headerlink&#34; title=&#34;需要注意的&#34;&gt;&lt;/a&gt;需要注意的&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;Web Worker 仅在支持 HTML5 的现代浏览器中可用。并且由于 Web Worker 运行在独立线程中，因此需要考虑线程安全和数据同步的问题。&lt;/li&gt;
+&lt;h1 id=&#34;什么是Bootstrap⽹格系统&#34;&gt;&lt;a href=&#34;#什么是Bootstrap⽹格系统&#34; class=&#34;headerlink&#34; title=&#34;什么是Bootstrap⽹格系统&#34;&gt;&lt;/a&gt;什么是Bootstrap⽹格系统&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;Bootstrap 包含了⼀个响应式的、移动设备优先的、不固定的⽹格系统，可以随着设备或视⼝⼤⼩的增加⽽适当地扩展到 12 列。它包含了⽤于简单的布局选项的预定义类，也包含了⽤于⽣成更多语义布局的功能强⼤的混合类&lt;/li&gt;
+&lt;li&gt;响应式⽹格系统随着屏幕或视⼝（ viewport ）尺⼨的增加，系统会⾃动分为最多 12列。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&#34;vue3-使用Web-Worker&#34;&gt;&lt;a href=&#34;#vue3-使用Web-Worker&#34; class=&#34;headerlink&#34; title=&#34;vue3 使用Web Worker&#34;&gt;&lt;/a&gt;vue3 使用Web Worker&lt;/h1&gt;&lt;pre&gt;&lt;code class=&#34;vue&#34;&gt;worker.vue 组件内容
-&amp;lt;script setup&amp;gt;
-import &amp;#123; onMounted, reactive &amp;#125; from &amp;#39;vue&amp;#39;;
-const sortedData = reactive([])
-onMounted(() =&amp;gt; &amp;#123;
-    // 创建 Web Worker
-    const code = `
-    self.onmessage = function(event) &amp;#123;
-      const data = event.data;
-  
-      // 在后台线程进行排序
-      const sortedData = data.sort();
-  
-      // 将排序结果发送给主线程
-      self.postMessage(sortedData);
-    &amp;#125;;
-  `;
-    const blob = new Blob([code], &amp;#123; type: &amp;#39;text/javascript&amp;#39; &amp;#125;);
-    const worker = new Worker(URL.createObjectURL(blob));   // 这里的worker 得用本地创建的文件
-
-    // 接收来自 Web Worker 的消息
-    worker.onmessage = (event) =&amp;gt; &amp;#123;
-        const sortedDataResult = event.data;
-        sortedData.length = 0; // 清空数组
-        sortedData.push(...sortedDataResult); // 更新排序结果到 sortedData
-    &amp;#125;;
-
-    // 发送数据给 Web Worker
-    const data = [5, 2, 8, 4, 1, 9];
-    worker.postMessage(data);
-&amp;#125;)
-
-&amp;lt;/script&amp;gt;
-&amp;lt;template&amp;gt;
-    &amp;lt;ul&amp;gt;
-        &amp;lt;li v-for=&amp;quot;number in sortedData&amp;quot; :key=&amp;quot;number&amp;quot;&amp;gt;&amp;#123;&amp;#123; number &amp;#125;&amp;#125;&amp;lt;/li&amp;gt;
-    &amp;lt;/ul&amp;gt;
-&amp;lt;/template&amp;gt;
+&lt;h1 id=&#34;Bootstrap-⽹格系统（Grid-System）的⼯作原理&#34;&gt;&lt;a href=&#34;#Bootstrap-⽹格系统（Grid-System）的⼯作原理&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap ⽹格系统（Grid System）的⼯作原理&#34;&gt;&lt;/a&gt;Bootstrap ⽹格系统（Grid System）的⼯作原理&lt;/h1&gt;&lt;p&gt;（1）⾏必须放置在 .container class 内，以便获得适当的对⻬（ alignment ）和内&lt;br&gt;边距（ padding ）。&lt;br&gt;（2）使⽤⾏来创建列的⽔平组。&lt;br&gt;（3）内容应该放置在列内，且唯有列可以是⾏的直接⼦元素。&lt;br&gt;（4）预定义的⽹格类，⽐如 .row 和 .col-xs-4 ，可⽤于快速创建⽹格布局。 LESS&lt;br&gt;混合类可⽤于更多语义布局。&lt;br&gt;（5）列通过内边距（ padding ）来创建列内容之间的间隙。该内边距是通过 .rows 上&lt;br&gt;的外边距（ margin ）取负，表示第⼀列和最后⼀列的⾏偏移。&lt;br&gt;（6）⽹格系统是通过指定您想要横跨的⼗⼆个可⽤的列来创建的。例如，要创建三个相等&lt;br&gt;的列，则使⽤三个 .col-xs-4&lt;/p&gt;
+&lt;h1 id=&#34;对于各类尺⼨的设备，Bootstrap设置的class前缀分别是什么&#34;&gt;&lt;a href=&#34;#对于各类尺⼨的设备，Bootstrap设置的class前缀分别是什么&#34; class=&#34;headerlink&#34; title=&#34;对于各类尺⼨的设备，Bootstrap设置的class前缀分别是什么&#34;&gt;&lt;/a&gt;对于各类尺⼨的设备，Bootstrap设置的class前缀分别是什么&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;超⼩设备⼿机（ &amp;lt;768px ）： .col-xs-*&lt;/li&gt;
+&lt;li&gt;⼩型设备平板电脑（ &amp;gt;&amp;#x3D;768px ）： .col-sm-*&lt;/li&gt;
+&lt;li&gt;中型设备台式电脑（ &amp;gt;&amp;#x3D;992px ）： .col-md-*&lt;/li&gt;
+&lt;li&gt;⼤型设备台式电脑（ &amp;gt;&amp;#x3D;1200px ）： .col-lg-*&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;Bootstrap-⽹格系统列与列之间的间隙宽度是多少&#34;&gt;&lt;a href=&#34;#Bootstrap-⽹格系统列与列之间的间隙宽度是多少&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap ⽹格系统列与列之间的间隙宽度是多少&#34;&gt;&lt;/a&gt;Bootstrap ⽹格系统列与列之间的间隙宽度是多少&lt;/h1&gt;&lt;p&gt;间隙宽度为 30px （⼀个列的每边分别是 15px ）&lt;/p&gt;
+&lt;h1 id=&#34;如果需要在⼀个标题的旁边创建副标题，可以怎样操作&#34;&gt;&lt;a href=&#34;#如果需要在⼀个标题的旁边创建副标题，可以怎样操作&#34; class=&#34;headerlink&#34; title=&#34;如果需要在⼀个标题的旁边创建副标题，可以怎样操作&#34;&gt;&lt;/a&gt;如果需要在⼀个标题的旁边创建副标题，可以怎样操作&lt;/h1&gt;&lt;p&gt;在元素两旁添加 &lt;small&gt; ，或者添加 .small 的 class&lt;/p&gt;
+&lt;h1 id=&#34;⽤Bootstrap，如何设置⽂字的对⻬⽅式&#34;&gt;&lt;a href=&#34;#⽤Bootstrap，如何设置⽂字的对⻬⽅式&#34; class=&#34;headerlink&#34; title=&#34;⽤Bootstrap，如何设置⽂字的对⻬⽅式&#34;&gt;&lt;/a&gt;⽤Bootstrap，如何设置⽂字的对⻬⽅式&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;class&amp;#x3D;”text-center” 设置居中⽂本&lt;/li&gt;
+&lt;li&gt;class&amp;#x3D;”text-right” 设置向右对⻬⽂本&lt;/li&gt;
+&lt;li&gt;class&amp;#x3D;”text-left” 设置向左对⻬⽂本&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;Bootstrap如何设置响应式表格？&#34;&gt;&lt;a href=&#34;#Bootstrap如何设置响应式表格？&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap如何设置响应式表格？&#34;&gt;&lt;/a&gt;Bootstrap如何设置响应式表格？&lt;/h1&gt;&lt;p&gt;增加 class&amp;#x3D;”table-responsive”&lt;/p&gt;
+&lt;h1 id=&#34;使⽤Bootstrap创建垂直表单的基本步骤？&#34;&gt;&lt;a href=&#34;#使⽤Bootstrap创建垂直表单的基本步骤？&#34; class=&#34;headerlink&#34; title=&#34;使⽤Bootstrap创建垂直表单的基本步骤？&#34;&gt;&lt;/a&gt;使⽤Bootstrap创建垂直表单的基本步骤？&lt;/h1&gt;&lt;p&gt;（1）向⽗ &lt;form&gt; 元素添加 role&amp;#x3D;”form” ；&lt;br&gt;（2）把标签和控件放在⼀个带有 class&amp;#x3D;”form-group” 的 &lt;div&gt; 中，这是获取最佳间距&lt;br&gt;所必需的；&lt;br&gt;（3）向所有的⽂本元素 &lt;input&gt; 、 &lt;textarea&gt; 、 &lt;select&gt; 添加 class&amp;#x3D;”form-control”&lt;/p&gt;
+&lt;h1 id=&#34;使⽤Bootstrap创建⽔平表单的基本步骤？&#34;&gt;&lt;a href=&#34;#使⽤Bootstrap创建⽔平表单的基本步骤？&#34; class=&#34;headerlink&#34; title=&#34;使⽤Bootstrap创建⽔平表单的基本步骤？&#34;&gt;&lt;/a&gt;使⽤Bootstrap创建⽔平表单的基本步骤？&lt;/h1&gt;&lt;p&gt;（1）向⽗ &lt;form&gt; 元素添加 class&amp;#x3D;”form-horizontal” ；&lt;br&gt;（2）把标签和控件放在⼀个带有 class&amp;#x3D;”form-group” 的 &lt;div&gt; 中；&lt;br&gt;（3）向标签添加 class&amp;#x3D;”control-label” 。&lt;/p&gt;
+&lt;h1 id=&#34;使⽤Bootstrap如何创建表单控件的帮助⽂本？&#34;&gt;&lt;a href=&#34;#使⽤Bootstrap如何创建表单控件的帮助⽂本？&#34; class=&#34;headerlink&#34; title=&#34;使⽤Bootstrap如何创建表单控件的帮助⽂本？&#34;&gt;&lt;/a&gt;使⽤Bootstrap如何创建表单控件的帮助⽂本？&lt;/h1&gt;&lt;p&gt;增加 class&amp;#x3D;”help-block” 的 span 标签或 p 标签。&lt;/p&gt;
+&lt;h1 id=&#34;使⽤Bootstrap激活或禁⽤按钮要如何操作？&#34;&gt;&lt;a href=&#34;#使⽤Bootstrap激活或禁⽤按钮要如何操作？&#34; class=&#34;headerlink&#34; title=&#34;使⽤Bootstrap激活或禁⽤按钮要如何操作？&#34;&gt;&lt;/a&gt;使⽤Bootstrap激活或禁⽤按钮要如何操作？&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;激活按钮：给按钮增加 .active 的 class&lt;/li&gt;
+&lt;li&gt;禁⽤按钮：给按钮增加 disabled&amp;#x3D;”disabled” 的属性&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;Bootstrap有哪些关于的class？&#34;&gt;&lt;a href=&#34;#Bootstrap有哪些关于的class？&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap有哪些关于的class？&#34;&gt;&lt;/a&gt;Bootstrap有哪些关于的class？&lt;/h1&gt;&lt;p&gt;（1） .img-rounded 为图⽚添加圆⻆&lt;br&gt;（2） .img-circle 将图⽚变为圆形&lt;br&gt;（3） .img-thumbnail 缩略图功能&lt;br&gt;（4） .img-responsive 图⽚响应式 (将很好地扩展到⽗元素)&lt;/p&gt;
+&lt;h1 id=&#34;Bootstrap中有关元素浮动及清除浮动的class？&#34;&gt;&lt;a href=&#34;#Bootstrap中有关元素浮动及清除浮动的class？&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap中有关元素浮动及清除浮动的class？&#34;&gt;&lt;/a&gt;Bootstrap中有关元素浮动及清除浮动的class？&lt;/h1&gt;&lt;p&gt;（1） class&amp;#x3D;”pull-left” 元素浮动到左边&lt;br&gt;（2） class&amp;#x3D;”pull-right” 元素浮动到右边&lt;br&gt;（3） class&amp;#x3D;”clearfix” 清除浮动&lt;/p&gt;
+&lt;h1 id=&#34;除了屏幕阅读器外，其他设备上隐藏元素的class？&#34;&gt;&lt;a href=&#34;#除了屏幕阅读器外，其他设备上隐藏元素的class？&#34; class=&#34;headerlink&#34; title=&#34;除了屏幕阅读器外，其他设备上隐藏元素的class？&#34;&gt;&lt;/a&gt;除了屏幕阅读器外，其他设备上隐藏元素的class？&lt;/h1&gt;&lt;p&gt;&lt;code&gt;class=&amp;quot;sr-only&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&#34;Bootstrap如何制作下拉菜单？&#34;&gt;&lt;a href=&#34;#Bootstrap如何制作下拉菜单？&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap如何制作下拉菜单？&#34;&gt;&lt;/a&gt;Bootstrap如何制作下拉菜单？&lt;/h1&gt;&lt;p&gt;（1）将下拉菜单包裹在 class&amp;#x3D;”dropdown” 的 &lt;div&gt; 中；&lt;br&gt;（2）在触发下拉菜单的按钮中添加： class&amp;#x3D;”btn dropdown-toggle”&lt;br&gt;id&amp;#x3D;”dropdownMenu1” data-toggle&amp;#x3D;”dropdown”&lt;br&gt;（3）在包裹下拉菜单的ul中添加： class&amp;#x3D;”dropdown-menu” role&amp;#x3D;”menu” aria-labelledby&amp;#x3D;”dropdownMenu1”&lt;br&gt;（4）在下拉菜单的列表项中添加： role&amp;#x3D;”presentation” 。其中，下拉菜单的标题要添&lt;br&gt;加 class&amp;#x3D;”dropdown-header” ，选项部分要添加 tabindex&amp;#x3D;”-1” 。&lt;/p&gt;
+&lt;h1 id=&#34;Bootstrap如何制作按钮组？以及⽔平按钮组和垂直按钮组的优先级？&#34;&gt;&lt;a href=&#34;#Bootstrap如何制作按钮组？以及⽔平按钮组和垂直按钮组的优先级？&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap如何制作按钮组？以及⽔平按钮组和垂直按钮组的优先级？&#34;&gt;&lt;/a&gt;Bootstrap如何制作按钮组？以及⽔平按钮组和垂直按钮组的优先级？&lt;/h1&gt;&lt;p&gt;（1）⽤ class&amp;#x3D;”btn-group” 的 &lt;div&gt; 去包裹按钮组； class&amp;#x3D;”btn-group-vertical” 可设置垂直按钮组。&lt;br&gt;（2） btn-group 的优先级⾼于 btn-group-vertical 的优先级。&lt;/p&gt;
+&lt;h1 id=&#34;Bootstrap如何设置按钮的下拉菜单？&#34;&gt;&lt;a href=&#34;#Bootstrap如何设置按钮的下拉菜单？&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap如何设置按钮的下拉菜单？&#34;&gt;&lt;/a&gt;Bootstrap如何设置按钮的下拉菜单？&lt;/h1&gt;&lt;p&gt;在⼀个 .btn-group 中放置按钮和下拉菜单即可。&lt;/p&gt;
+&lt;h1 id=&#34;Bootstrap中的输⼊框组如何制作？&#34;&gt;&lt;a href=&#34;#Bootstrap中的输⼊框组如何制作？&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap中的输⼊框组如何制作？&#34;&gt;&lt;/a&gt;Bootstrap中的输⼊框组如何制作？&lt;/h1&gt;&lt;p&gt;（1）把前缀或者后缀元素放在⼀个带有 class&amp;#x3D;”input-group” 中的 &lt;div&gt; 中&lt;br&gt;（2）在该 &lt;div&gt; 内，在 class&amp;#x3D;”input-group-addon” 的 &lt;span&gt; ⾥⾯放置额外的内&lt;br&gt;容；&lt;br&gt;（3）把 &lt;span&gt; 放在 &lt;input&gt; 元素的前⾯或后⾯。&lt;/p&gt;
+&lt;h1 id=&#34;Bootstrap中的导航都有哪些？&#34;&gt;&lt;a href=&#34;#Bootstrap中的导航都有哪些？&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap中的导航都有哪些？&#34;&gt;&lt;/a&gt;Bootstrap中的导航都有哪些？&lt;/h1&gt;&lt;p&gt;（1）导航元素：有 class&amp;#x3D;”nav nav-tabs” 的标签⻚导航，还有 class&amp;#x3D;”nav navpills” 的胶囊式标签⻚导航；&lt;br&gt;（2）导航栏： class&amp;#x3D;”navbar navbar-default” role&amp;#x3D;”navigation” ；&lt;br&gt;（3）⾯包屑导航： class&amp;#x3D;”breadcrumb”&lt;/p&gt;
+&lt;h1 id=&#34;Bootstrap中设置分⻚的class？&#34;&gt;&lt;a href=&#34;#Bootstrap中设置分⻚的class？&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap中设置分⻚的class？&#34;&gt;&lt;/a&gt;Bootstrap中设置分⻚的class？&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;默认的分⻚： class&amp;#x3D;”pagination”&lt;/li&gt;
+&lt;li&gt;默认的翻⻚： class&amp;#x3D;”pager”&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;Bootstrap中显示标签的class？&#34;&gt;&lt;a href=&#34;#Bootstrap中显示标签的class？&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap中显示标签的class？&#34;&gt;&lt;/a&gt;Bootstrap中显示标签的class？&lt;/h1&gt;&lt;p&gt;class&amp;#x3D;”label”&lt;/p&gt;
+&lt;h1 id=&#34;Bootstrap中如何制作徽章？&#34;&gt;&lt;a href=&#34;#Bootstrap中如何制作徽章？&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap中如何制作徽章？&#34;&gt;&lt;/a&gt;Bootstrap中如何制作徽章？&lt;/h1&gt;&lt;pre&gt;&lt;code class=&#34;css&#34;&gt;&amp;lt;span class=&amp;quot;badge&amp;quot;&amp;gt;26&amp;lt;/span&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;Bootstrap中超⼤屏幕的作⽤是什么&#34;&gt;&lt;a href=&#34;#Bootstrap中超⼤屏幕的作⽤是什么&#34; class=&#34;headerlink&#34; title=&#34;Bootstrap中超⼤屏幕的作⽤是什么&#34;&gt;&lt;/a&gt;Bootstrap中超⼤屏幕的作⽤是什么&lt;/h1&gt;&lt;pre&gt;&lt;code class=&#34;text&#34;&gt;设置 class=&amp;quot;jumbotron&amp;quot; 可以制作超⼤屏幕，该组件可以增加标题的⼤⼩并
+增加更多的外边距
 &lt;/code&gt;&lt;/pre&gt;
  ]]></description>
         </item>

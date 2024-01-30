@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#FFF"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png"><link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" type="application/rss+xml" title="死肥宅" href="https://pink-png.github.io/rss.xml"><link rel="alternate" type="application/atom+xml" title="死肥宅" href="https://pink-png.github.io/atom.xml"><link rel="alternate" type="application/json" title="死肥宅" href="https://pink-png.github.io/feed.json"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="/css/app.css?v=0.2.5"><meta name="keywords" content="前端性能优化"><link rel="canonical" href="https://pink-png.github.io/performance-optimization/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E7%BA%B2/"><title>前端性能优化大纲 - 前端性能优化 - 前端开发 | Yume Shoka = 死肥宅 = 肥宅快乐水</title><meta name="generator" content="Hexo 6.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">前端性能优化大纲</h1><div class="meta"><span class="item" title="创建时间：2022-06-25 16:43:00"><span class="icon"><i class="ic i-calendar"></i> </span><span class="text">发表于</span> <time itemprop="dateCreated datePublished" datetime="2022-06-25T16:43:00+08:00">2022-06-25</time></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span> <span class="line"></span> <span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">Yume Shoka</a></li></ul><ul class="right"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div id="imgs" class="pjax"><ul><li class="item" data-background-image="https://cdn.cdnjson.com/tva4.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva4.sinaimg.cn/large/6833939bly1gipet8c1a2j20zk0m8kct.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva4.sinaimg.cn/large/6833939bly1gipeubcbajj20zk0m8h1h.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva4.sinaimg.cn/large/6833939bly1gicitcxhpij20zk0m8hdt.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva4.sinaimg.cn/large/6833939bly1giciuv0socj20zk0m8qes.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva4.sinaimg.cn/large/6833939bly1gicis3attqj20zk0m8k7l.jpg"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"/><use xlink:href="#gentle-wave" x="48" y="3"/><use xlink:href="#gentle-wave" x="48" y="5"/><use xlink:href="#gentle-wave" x="48" y="7"/></g></svg></div><main><div class="inner"><div id="main" class="pjax"><div class="article wrap"><div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i> <span><a href="/">首页</a></span><i class="ic i-angle-right"></i> <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="item" rel="index" title="分类于 前端开发"><span itemprop="name">前端开发</span></a><meta itemprop="position" content="1"></span><i class="ic i-angle-right"></i> <span class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" itemprop="item" rel="index" title="分类于 前端性能优化"><span itemprop="name">前端性能优化</span></a><meta itemprop="position" content="2"></span></div><article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://pink-png.github.io/performance-optimization/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E7%BA%B2/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/avatar.jpg"><meta itemprop="name" content="sanxin98"><meta itemprop="description" content="肥宅快乐水, 编程 & 生活"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="死肥宅"></span><div class="body md" itemprop="articleBody"><h1 id="性能优化六大指标"><a href="#性能优化六大指标" class="headerlink" title="性能优化六大指标"></a>性能优化六大指标</h1><p><strong>六大指标基本囊括大部分性能优化细节，可作为优化策略的补充。</strong></p><ol><li>「加载优化」：资源在加载时可做的性能优化</li><li>「执行优化」：资源在执行时可做的性能优化</li><li>「渲染优化」：资源在渲染时可做的性能优化</li><li>「样式优化」：样式在编码时可做的性能优化</li><li>「脚本优化」：脚本在编码时可做的性能优化</li><li>「V8引擎优化」：针对V8引擎特征可做的性能优化</li></ol><h2 id="加载优化"><a href="#加载优化" class="headerlink" title="加载优化"></a>加载优化</h2><ol><li>优化HTTP请求：减少请求次数、合并与压缩静态资源、使用CDN等</li></ol><pre><code class="text">1. CDN：将资源分发到 CDN 的边缘网络节点，使用户可就近获
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#FFF"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png"><link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" type="application/rss+xml" title="死肥宅" href="https://pink-png.github.io/rss.xml"><link rel="alternate" type="application/atom+xml" title="死肥宅" href="https://pink-png.github.io/atom.xml"><link rel="alternate" type="application/json" title="死肥宅" href="https://pink-png.github.io/feed.json"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="/css/app.css?v=0.2.5"><meta name="keywords" content="前端性能优化"><link rel="canonical" href="https://pink-png.github.io/performance-optimization/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E7%BA%B2/"><title>前端性能优化大纲 - 前端性能优化 - 前端开发 | Yume Shoka = 死肥宅 = 肥宅快乐水</title><meta name="generator" content="Hexo 6.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">前端性能优化大纲</h1><div class="meta"><span class="item" title="创建时间：2022-06-25 16:43:00"><span class="icon"><i class="ic i-calendar"></i> </span><span class="text">发表于</span> <time itemprop="dateCreated datePublished" datetime="2022-06-25T16:43:00+08:00">2022-06-25</time></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span> <span class="line"></span> <span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">Yume Shoka</a></li></ul><ul class="right"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div id="imgs" class="pjax"><ul><li class="item" data-background-image="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/6833939bly1giclize41wj20zk0m87gk.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/6833939bly1gipeudstjqj20zk0m8k3r.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/6833939bly1giclhfehz7j20zk0m8u0x.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/6833939bly1giph47e9vtj20zk0m8x6l.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/6833939bly1gipevgoki5j20zk0m84qp.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva1.sinaimg.cn/large/6833939bly1gipet8c1a2j20zk0m8kct.jpg"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"/><use xlink:href="#gentle-wave" x="48" y="3"/><use xlink:href="#gentle-wave" x="48" y="5"/><use xlink:href="#gentle-wave" x="48" y="7"/></g></svg></div><main><div class="inner"><div id="main" class="pjax"><div class="article wrap"><div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i> <span><a href="/">首页</a></span><i class="ic i-angle-right"></i> <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" itemprop="item" rel="index" title="分类于 前端开发"><span itemprop="name">前端开发</span></a><meta itemprop="position" content="1"></span><i class="ic i-angle-right"></i> <span class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" itemprop="item" rel="index" title="分类于 前端性能优化"><span itemprop="name">前端性能优化</span></a><meta itemprop="position" content="2"></span></div><article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://pink-png.github.io/performance-optimization/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E7%BA%B2/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/avatar.jpg"><meta itemprop="name" content="sanxin98"><meta itemprop="description" content="肥宅快乐水, 编程 & 生活"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="死肥宅"></span><div class="body md" itemprop="articleBody"><h1 id="性能优化六大指标"><a href="#性能优化六大指标" class="headerlink" title="性能优化六大指标"></a>性能优化六大指标</h1><p><strong>六大指标基本囊括大部分性能优化细节，可作为优化策略的补充。</strong></p><ol><li>「加载优化」：资源在加载时可做的性能优化</li><li>「执行优化」：资源在执行时可做的性能优化</li><li>「渲染优化」：资源在渲染时可做的性能优化</li><li>「样式优化」：样式在编码时可做的性能优化</li><li>「脚本优化」：脚本在编码时可做的性能优化</li><li>「V8引擎优化」：针对V8引擎特征可做的性能优化</li></ol><h2 id="加载优化"><a href="#加载优化" class="headerlink" title="加载优化"></a>加载优化</h2><ol><li>优化HTTP请求：减少请求次数、合并与压缩静态资源、使用CDN等</li></ol><pre><code class="text">1. CDN：将资源分发到 CDN 的边缘网络节点，使用户可就近获
 取所需内容，大幅减小了光纤传输距离，使全球各地用户打开网站都拥有良好的网络体验。
 
 2. http2：http2 的诸多特性决定了它更快的传输速度。
@@ -248,7 +248,7 @@ for (let i = 0; i &lt; 100; i++) &#123;
     <div class="item left">
       
 
-  <a href="/performance-optimization/%E5%9C%A8%E6%9F%90%E6%9F%90%E4%BC%81%E4%B8%9A%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BC%98%E5%8C%96%E6%80%9D%E8%80%83(uniapp)/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicm07ih54j20zk0m84qp.jpg" title="在某某企业小程序优化思考(uniapp)">
+  <a href="/performance-optimization/%E5%9C%A8%E6%9F%90%E6%9F%90%E4%BC%81%E4%B8%9A%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BC%98%E5%8C%96%E6%80%9D%E8%80%83(uniapp)/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciryrr3rj20zk0m8nhk.jpg" title="在某某企业小程序优化思考(uniapp)">
   <span class="type">上一篇</span>
   <span class="category"><i class="ic i-flag"></i> 前端性能优化</span>
   <h3>在某某企业小程序优化思考(uniapp)</h3>
@@ -258,7 +258,7 @@ for (let i = 0; i &lt; 100; i++) &#123;
     <div class="item right">
       
 
-  <a href="/performance-optimization/%E6%8F%90%E9%AB%98Webpack%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeu7txpzj20zk0m81kx.jpg" title="webpack性能优化">
+  <a href="/performance-optimization/%E6%8F%90%E9%AB%98Webpack%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclxfdlttj20zk0m8npd.jpg" title="webpack性能优化">
   <span class="type">下一篇</span>
   <span class="category"><i class="ic i-flag"></i> 前端性能优化</span>
   <h3>webpack性能优化</h3>
@@ -284,7 +284,7 @@ for (let i = 0; i &lt; 100; i++) &#123;
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
-          <li><a href="/performance-optimization/Express%20+%20vue%E6%90%AD%E5%BB%BASSR/" rel="bookmark" title="Express + vue搭建SSR">Express + vue搭建SSR</a></li><li><a href="/performance-optimization/Vue%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96/" rel="bookmark" title="vue首屏优化">vue首屏优化</a></li><li><a href="/performance-optimization/html%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96/" rel="bookmark" title="html 加载优化">html 加载优化</a></li><li><a href="/performance-optimization/Web%20Worker/" rel="bookmark" title="Web Worker">Web Worker</a></li><li><a href="/performance-optimization/css%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AF%87/" rel="bookmark" title="css性能优化篇">css性能优化篇</a></li><li><a href="/performance-optimization/%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E2%BC%8F%E4%B8%87%E6%9D%A1%E6%95%B0%E6%8D%AE%E5%B9%B6%E4%B8%8D%E5%8D%A1%E4%BD%8F%E7%95%8C%E2%BE%AF/" rel="bookmark" title="如何渲染⼏万条数据并不卡住界⾯">如何渲染⼏万条数据并不卡住界⾯</a></li><li><a href="/performance-optimization/%E6%94%AF%E4%BB%98%E5%AE%9D%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" rel="bookmark" title="支付宝小程序性能优化方案">支付宝小程序性能优化方案</a></li><li><a href="/performance-optimization/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A6%96%E5%B1%8F%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="bookmark" title="小程序首屏性能优化">小程序首屏性能优化</a></li><li class="active"><a href="/performance-optimization/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E7%BA%B2/" rel="bookmark" title="前端性能优化大纲">前端性能优化大纲</a></li><li><a href="/performance-optimization/%E5%9C%A8%E6%9F%90%E6%9F%90%E4%BC%81%E4%B8%9A%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BC%98%E5%8C%96%E6%80%9D%E8%80%83(uniapp)/" rel="bookmark" title="在某某企业小程序优化思考(uniapp)">在某某企业小程序优化思考(uniapp)</a></li><li><a href="/performance-optimization/%E6%8F%90%E9%AB%98Webpack%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6/" rel="bookmark" title="webpack性能优化">webpack性能优化</a></li>
+          <li><a href="/performance-optimization/Express%20+%20vue%E6%90%AD%E5%BB%BASSR/" rel="bookmark" title="Express + vue搭建SSR">Express + vue搭建SSR</a></li><li><a href="/performance-optimization/Vue%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96/" rel="bookmark" title="vue首屏优化">vue首屏优化</a></li><li><a href="/performance-optimization/html%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96/" rel="bookmark" title="html 加载优化">html 加载优化</a></li><li><a href="/performance-optimization/Web%20Worker/" rel="bookmark" title="Web Worker">Web Worker</a></li><li><a href="/performance-optimization/css%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AF%87/" rel="bookmark" title="css性能优化篇">css性能优化篇</a></li><li><a href="/performance-optimization/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A6%96%E5%B1%8F%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="bookmark" title="小程序首屏性能优化">小程序首屏性能优化</a></li><li><a href="/performance-optimization/%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E2%BC%8F%E4%B8%87%E6%9D%A1%E6%95%B0%E6%8D%AE%E5%B9%B6%E4%B8%8D%E5%8D%A1%E4%BD%8F%E7%95%8C%E2%BE%AF/" rel="bookmark" title="如何渲染⼏万条数据并不卡住界⾯">如何渲染⼏万条数据并不卡住界⾯</a></li><li><a href="/performance-optimization/%E6%94%AF%E4%BB%98%E5%AE%9D%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" rel="bookmark" title="支付宝小程序性能优化方案">支付宝小程序性能优化方案</a></li><li class="active"><a href="/performance-optimization/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E7%BA%B2/" rel="bookmark" title="前端性能优化大纲">前端性能优化大纲</a></li><li><a href="/performance-optimization/%E5%9C%A8%E6%9F%90%E6%9F%90%E4%BC%81%E4%B8%9A%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BC%98%E5%8C%96%E6%80%9D%E8%80%83(uniapp)/" rel="bookmark" title="在某某企业小程序优化思考(uniapp)">在某某企业小程序优化思考(uniapp)</a></li><li><a href="/performance-optimization/%E6%8F%90%E9%AB%98Webpack%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6/" rel="bookmark" title="webpack性能优化">webpack性能优化</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
@@ -384,6 +384,18 @@ for (let i = 0; i &lt; 100; i++) &#123;
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a>
+</div>
+
+    <span><a href="/js-base/js%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8F/" title="js创建对象的多种方式">js创建对象的多种方式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
 <i class="ic i-angle-right"></i>
 <a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
@@ -391,7 +403,7 @@ for (let i = 0; i &lt; 100; i++) &#123;
 <a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
 </div>
 
-    <span><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" title="Step.5 组件基础剖析">Step.5 组件基础剖析</a></span>
+    <span><a href="/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" title="Step.1 丰富的选项合并策略">Step.1 丰富的选项合并策略</a></span>
   </li>
 
       
@@ -403,7 +415,83 @@ for (let i = 0; i &lt; 100; i++) &#123;
 <a href="/categories/computer-science/react0-1/" title="分类于 react">react</a>
 </div>
 
-    <span><a href="/computer-science/react0-1/redux/" title="step.4 redux">step.4 redux</a></span>
+    <span><a href="/computer-science/react0-1/%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96/" title="step.8 react首屏优化">step.8 react首屏优化</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/spring/" title="分类于 Spring">Spring</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/spring/Spring%E5%9F%BA%E7%A1%80/" title="分类于 Spring基础">Spring基础</a>
+</div>
+
+    <span><a href="/computer-science/spring/docssp/Spring-01/" title="Step.1">Step.1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Uniapp/" title="分类于 Uniapp">Uniapp</a>
+</div>
+
+    <span><a href="/front-end/uniapp%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86/" title="uniapp框架原理">uniapp框架原理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a>
+</div>
+
+    <span><a href="/performance-optimization/Express%20+%20vue%E6%90%AD%E5%BB%BASSR/" title="Express + vue搭建SSR">Express + vue搭建SSR</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95/" title="分类于 前端调试">前端调试</a>
+</div>
+
+    <span><a href="/performance-optimization/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/" title="前端调试技巧">前端调试技巧</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
+</div>
+
+    <span><a href="/computer-science/vueyuanma/dosc/8%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%AD/" title="Step.8 深入响应式系统构建-中">Step.8 深入响应式系统构建-中</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="分类于 前端设计模式">前端设计模式</a>
+</div>
+
+    <span><a href="/front-end/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="前端设计模式">前端设计模式</a></span>
   </li>
 
       
@@ -415,95 +503,7 @@ for (let i = 0; i &lt; 100; i++) &#123;
 <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a>
 </div>
 
-    <span><a href="/js-base/js%E5%85%B3%E4%BA%8EString%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E6%80%BB%E7%BB%93/" title="关于String包装类型处理数据的总结">关于String包装类型处理数据的总结</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
-</div>
-
-    <span><a href="/computer-science/vueyuanma/dosc/12vue%E6%8F%92%E6%A7%BD%EF%BC%8C%E4%BD%A0%E6%83%B3%E4%BA%86%E8%A7%A3%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C/" title="Step.12 vue插槽，你想了解的都在这里">Step.12 vue插槽，你想了解的都在这里</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/computer-science/react0-1/" title="分类于 react">react</a>
-</div>
-
-    <span><a href="/computer-science/react0-1/react-router/" title="step.3 react-router">step.3 react-router</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a>
-</div>
-
-    <span><a href="/js-base/js%E5%85%B3%E4%BA%8EArray%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" title="关于Array处理数据的方法总结">关于Array处理数据的方法总结</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/PM2/" title="分类于 PM2">PM2</a>
-</div>
-
-    <span><a href="/front-end/PM2%20+%20linux/" title="PM2">PM2</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Typescript/" title="分类于 Typescript">Typescript</a>
-</div>
-
-    <span><a href="/front-end/Typescript/" title="Typescript基础">Typescript基础</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
-</div>
-
-    <span><a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" title="Step.7 深入响应式系统构建-上">Step.7 深入响应式系统构建-上</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/computer-science/react0-1/" title="分类于 react">react</a>
-</div>
-
-    <span><a href="/computer-science/react0-1/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="step.5 react性能优化">step.5 react性能优化</a></span>
+    <span><a href="/js-base/javascript%E9%9D%A2%E8%AF%95/" title="js面试">js面试</a></span>
   </li>
 
   </ul>
