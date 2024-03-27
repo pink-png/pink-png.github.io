@@ -1005,265 +1005,167 @@ sideEffects用于告知webpack compiler哪些模块时有副作用，配置方�
             <category term="前端性能优化" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" />
             <category term="前端性能优化" scheme="https://pink-png.github.io/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" />
             <pubDate>Sat, 25 Jun 2022 16:43:00 +0800</pubDate>
-            <description><![CDATA[ &lt;h1 id=&#34;性能优化六大指标&#34;&gt;&lt;a href=&#34;#性能优化六大指标&#34; class=&#34;headerlink&#34; title=&#34;性能优化六大指标&#34;&gt;&lt;/a&gt;性能优化六大指标&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;六大指标基本囊括大部分性能优化细节，可作为优化策略的补充。&lt;/strong&gt;&lt;/p&gt;
+            <description><![CDATA[ &lt;h1 id=&#34;性能优化六大指标&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#性能优化六大指标&#34;&gt;#&lt;/a&gt; 性能优化六大指标&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;六大指标基本囊括大部分性能优化细节，可作为优化策略的补充。&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;「加载优化」：资源在加载时可做的性能优化&lt;/li&gt;
 &lt;li&gt;「执行优化」：资源在执行时可做的性能优化&lt;/li&gt;
 &lt;li&gt;「渲染优化」：资源在渲染时可做的性能优化&lt;/li&gt;
 &lt;li&gt;「样式优化」：样式在编码时可做的性能优化&lt;/li&gt;
 &lt;li&gt;「脚本优化」：脚本在编码时可做的性能优化&lt;/li&gt;
-&lt;li&gt;「V8引擎优化」：针对V8引擎特征可做的性能优化&lt;/li&gt;
+&lt;li&gt;「V8 引擎优化」：针对 V8 引擎特征可做的性能优化&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;加载优化&#34;&gt;&lt;a href=&#34;#加载优化&#34; class=&#34;headerlink&#34; title=&#34;加载优化&#34;&gt;&lt;/a&gt;加载优化&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;优化HTTP请求：减少请求次数、合并与压缩静态资源、使用CDN等&lt;/li&gt;
+&lt;h2 id=&#34;加载优化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#加载优化&#34;&gt;#&lt;/a&gt; 加载优化&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;优化 HTTP 请求：减少请求次数、合并与压缩静态资源、使用 CDN、http2、preload/prefetch,HTTP 缓存等&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&#34;text&#34;&gt;1. CDN：将资源分发到 CDN 的边缘网络节点，使用户可就近获
-取所需内容，大幅减小了光纤传输距离，使全球各地用户打开网站都拥有良好的网络体验。
-
-2. http2：http2 的诸多特性决定了它更快的传输速度。
-2.1.多路复用，在浏览器可并行发送 N 条请求。
-2.2.首部压缩，更小的负载体积。
-2.3.请求优先级，更快的关键请求
-目前，网站已大多上了 http2，可在控制台面板进行查看。
-由于 http2 可并行请求，解决了 http1.1 线头阻塞的问题，以下几个性能优化点将会过时
-资源合并。如 https://shanyue.tech/assets??index.js,interview.js,report.js
-域名分片。
-雪碧图。将无数小图片合并成单个大图片。
-
-3. 充分利用 HTTP 缓存
-更好的资源缓存策略，对于 CDN 来讲可减少回源次数，对于浏览器而言可减少请求发送次数。无论哪一点，对于二次网站访问都具有更好的访问体验。
-一:缓存策略
-  1.强缓存: 打包后带有 hash 值的资源 (如 /build/a3b4c8a8.js)
-  2.协商缓存: 打包后不带有 hash 值的资源 (如 /index.html)
-二:分包加载 (Bundle Spliting)
-  1.避免一行代码修改导致整个 bundle 的缓存失效 
-
-4. 减少 HTTP 请求及负载
-对一个网站的资源进行压缩优化，从而达到减少 HTTP 负载的目的。
-js/css/image 等常规资源体积优化，这是一个大话题，再以下分别讨论
-4.1小图片优化，将小图片内联为 Data URI，减小请求数量
-4.2图片懒加载
-4.3新的 API: IntersectionObserver API
-4.4新的属性: loading=lazy 
-
-5. preload/prefetch
- preload/prefetch 可控制 HTTP 优先级，从而达到关键请求更快响应的目的。
-
-&amp;lt;link rel=&amp;quot;prefetch&amp;quot; href=&amp;quot;style.css&amp;quot; as=&amp;quot;style&amp;quot;&amp;gt;
-&amp;lt;link rel=&amp;quot;preload&amp;quot; href=&amp;quot;main.js&amp;quot; as=&amp;quot;script&amp;quot;&amp;gt;
-1. preload 加载当前路由必需资源，优先级高。一般对于 Bundle Spliting 资源与 Code Spliting 资源做 preload
-2. prefetch 优先级低，在浏览器 idle 状态时加载资源。一般用以加载其它路由资源，如当页面出现 Link，可 prefetch 当前 Link 的路由资源。（next.js 默认会对 link 做懒加载+prefetch，即当某条 Link 出现页面中，即自动 prefetch 该 Link 指向的路由资源
-捎带说一下 dns-prefetch，可对主机地址的 DNS 进行预解析。
-
-&amp;lt;link rel=&amp;quot;dns-prefetch&amp;quot; href=&amp;quot;//shanyue.tech&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;使用缓存：利用浏览器缓存机制，设置适当的缓存头信息&lt;/li&gt;
-&lt;li&gt;图片优化：选择合适的图片格式、压缩图片文件大小、响应式图片或按需加载图片&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&#34;text&#34;&gt;在前端发展的现在，webp 普遍比 jpeg/png 更小，而 avif 又比 webp 小一个级别
-
-为了无缝兼容，可选择 picture/source 进行回退处理
-&amp;lt;picture&amp;gt;
-  &amp;lt;source srcset=&amp;quot;img/photo.avif&amp;quot; type=&amp;quot;image/avif&amp;quot;&amp;gt;
-  &amp;lt;source srcset=&amp;quot;img/photo.webp&amp;quot; type=&amp;quot;image/webp&amp;quot;&amp;gt;
-  &amp;lt;img src=&amp;quot;img/photo.jpg&amp;quot; width=&amp;quot;360&amp;quot; height=&amp;quot;240&amp;quot;&amp;gt;
-&amp;lt;/picture&amp;gt;
-
-1.更合适的尺寸: 当页面仅需显示 100px/100px 大小图片时，对图片进行压缩到 100px/100px
-2.更合适的压缩: 可对前端图片进行适当压缩，如通过 sharp 等
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ol start=&#34;4&#34;&gt;
-&lt;li&gt;延迟加载：将非关键资源延迟加载，如图片、视频、第三方插件等&lt;/li&gt;
-&lt;li&gt;使用字体图标和矢量图形：替代大量图片的使用&lt;/li&gt;
-&lt;li&gt;更小的 Javascript&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&#34;text&#34;&gt;gzip/brotli
-terser (minify)
-还有以下几点可以考虑考虑:
-
-路由懒加载，无需加载整个应用的资源
-Tree Shaking: 无用导出将在生产环境进行删除
-browserlist/babel: 及时更新 browserlist，将会产生更小的垫片体积
-再补充一个问题:
-
-如何分析并优化当前项目的 Javascript 体积？如果使用 webpack 那就简单很多。
-
-使用 webpack-bundle-analyze 分析打包体积
-对一些库替换为更小体积的库，如 moment -&amp;gt; dayjs
-对一些库进行按需加载，如 import lodash -&amp;gt; import lodash/get
-对一些库使用支持 Tree Shaking，如 import lodash -&amp;gt; import lodash-es
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ol start=&#34;7&#34;&gt;
-&lt;li&gt;压缩混淆工具&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&#34;text&#34;&gt;1.Terser (opens new window)是 Javascript 资源压缩混淆的神器。
-
-它可以根据以下策略进行压缩处理:
-
-长变量名替换短变量
-删除空格换行符
-预计算: const a = 24 * 60 * 60 * 1000 -&amp;gt; const a = 86400000
-移除无法被执行的代码·
-移除无用的变量及函数
-可在 Terser Repl (opens new window)在线查看代码压缩效果。
-
-2.swc (opens new window)是另外一个用以压缩 Javascript 的工具，它拥有与 terser 相同的 API，由于它是由 rust 所写，因此它拥有更高的性能。
-
-3.html-minifier-terser (opens new window)用以压缩 HTML 的工具
-
-4. gzip/brotli
-对 JS、CSS、HTML 等文本资源均有效，但是对图片效果不大。
-
-gzip 通过 LZ77 算法与 Huffman 编码来压缩文件，重复度越高的文件可压缩的空间就越大。
-brotli 通过变种的 LZ77 算法、Huffman 编码及二阶文本建模来压缩文件，更先进的压缩算法，比 gzip 有更高的性能及压缩率
-可在浏览器的 Content-Encoding 响应头查看该网站是否开启了压缩算法，目前知乎、掘金等已全面开启了 brotli 压缩。
-
-Request Header
-Accept-Encoding: gzip, deflate, br
-
-gzip
-Content-Encoding: gzip
-
-gzip
-Content-Encoding: br 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;执行优化&#34;&gt;&lt;a href=&#34;#执行优化&#34; class=&#34;headerlink&#34; title=&#34;执行优化&#34;&gt;&lt;/a&gt;执行优化&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;代码优化：精简html，css，js代码，避免重复代码&lt;/li&gt;
-&lt;li&gt;异步加载：将JavaScript放在底部，使用async,defer属性&lt;/li&gt;
+&lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption data-lang=&#34;text&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;1.1 CDN：将资源分发到 CDN 的边缘网络节点，使用户可就近获取所需内容，大幅减小了光纤传输距离，使全球各地用户打开网站都拥有良好的网络体验。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; 1.2 http2：http2 的诸多特性决定了它更快的传输速度(多路复用，在浏览器可并行发送 N 条请求,首部压缩，更小的负载体积,请求优先级，更快的关键请求)。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;目前，网站已大多上了 http2，可在控制台面板进行查看。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;由于 http2 可并行请求，解决了 http1.1 线头阻塞的问题，以下几个性能优化点将会过时&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;资源合并。如 https://shanyue.tech/assets??index.js,interview.js,report.js&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;域名分片。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;雪碧图(CSS Sprite)。将无数小图片合并成单个大图片。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; 1.3 充分利用 HTTP 缓存&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;更好的资源缓存策略，对于 CDN 来讲可减少回源次数，对于浏览器而言可减少请求发送次数。无论哪一点，对于二次网站访问都具有更好的访问体验。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;一:缓存策略&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  1. 强缓存: 打包后带有 hash 值的资源 (如 /build/a3b4c8a8.js)&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  2. 协商缓存: 打包后不带有 hash 值的资源 (如 /index.html)&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;二:分包加载 (Bundle Spliting)&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  1. 避免一行代码修改导致整个 bundle 的缓存失效 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;1.4 减少 HTTP 请求及负载&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;对一个网站的资源进行压缩优化，从而达到减少 HTTP 负载的目的。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;javascript/css/image 等常规资源（图片等...）体积优化，这是一个大话题，再以下分别讨论&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;一：image     &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    1. 小图片优化，将小图片内联为 Data URI，减小请求数量 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    2. 选择合适的图片格式、响应式图片或按需加载图片&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    3. 在前端发展的现在，webp 普遍比 jpeg/png 更小，而 avif 又比 webp 小一个级别&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    为了无缝兼容，可选择 picture/source 进行回退处理&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&amp;lt;picture&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &amp;lt;source srcset=&#34;img/photo.avif&#34; type=&#34;image/avif&#34;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &amp;lt;source srcset=&#34;img/photo.webp&#34; type=&#34;image/webp&#34;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &amp;lt;img src=&#34;img/photo.jpg&#34; width=&#34;360&#34; height=&#34;240&#34;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&amp;lt;/picture&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    4. 更合适的尺寸: 当页面仅需显示 100px/100px 大小图片时，对图片进行压缩到 100px/100px&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    5. 更合适的压缩: 可对前端图片进行适当压缩，如通过 sharp 等&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    6. 新的 API: IntersectionObserver API&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;35&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    7. 新的属性: loading=lazy &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;36&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;37&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;二：javascript&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;38&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    1. 更小的 Javascript&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;39&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      gzip/brotli&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;40&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      terser (minify)&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;41&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;42&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    还有以下几点可以考虑考虑:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;43&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;路由懒加载，无需加载整个应用的资源&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;44&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Tree Shaking: 无用导出将在生产环境进行删除&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;45&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;browserlist/babel: 及时更新 browserlist，将会产生更小的垫片体积&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;46&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;再补充一个问题:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;47&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;48&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;如何分析并优化当前项目的 Javascript 体积？如果使用 webpack 那就简单很多。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;49&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;50&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;使用 webpack-bundle-analyze 分析打包体积&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;51&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;对一些库替换为更小体积的库，如 moment -&gt; dayjs&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;52&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;对一些库进行按需加载，如 import lodash -&gt; import lodash/get&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;53&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;对一些库使用支持 Tree Shaking，如 import lodash -&gt; import lodash-es&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;54&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;55&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;三：字体&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;56&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    1.使用字体图标和矢量图形：替代大量图片的使用&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;57&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;58&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;59&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;四：css&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;60&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  1. 把样式表放在顶部&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;61&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  2. 选择&amp;lt;link&gt;舍弃@import&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;62&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  3. 避免使用滤镜&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;63&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  4. 避免使用CSS表达式&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;64&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    用CSS表达式动态设置CSS属性，是一种强大又危险的方式。从IE5开始支持，但从IE8起就不推荐使用了。例如，可以用CSS表达式把背景颜色设置成按小时交替的：&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;65&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    background-color: expression( (new Date()).getHours()%2 ? &#34;#B8D4FF&#34; : &#34;#F08A00&#34; );&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;66&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;67&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;68&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;69&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;五：压缩工具&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;70&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;1.Terser (opens new window)是 Javascript 资源压缩混淆的神器。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;71&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;72&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;2.swc (opens new window)是另外一个用以压缩 Javascript 的工具，它拥有与 terser 相同的 API，由于它是由 rust 所写，因此它拥有更高的性能。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;73&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;74&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;3.html-minifier-terser (opens new window)用以压缩 HTML 的工具&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;75&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;76&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;4. gzip/brotli&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;77&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;对 JS、CSS、HTML 等文本资源均有效，但是对图片效果不大。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;78&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;79&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;gzip 通过 LZ77 算法与 Huffman 编码来压缩文件，重复度越高的文件可压缩的空间就越大。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;80&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;brotli 通过变种的 LZ77 算法、Huffman 编码及二阶文本建模来压缩文件，更先进的压缩算法，比 gzip 有更高的性能及压缩率&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;81&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;可在浏览器的 Content-Encoding 响应头查看该网站是否开启了压缩算法，目前知乎、掘金等已全面开启了 brotli 压缩。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;82&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;83&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Request Header&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;84&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Accept-Encoding: gzip, deflate, br&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;85&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;86&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;gzip&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;87&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Content-Encoding: gzip&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;88&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;89&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;gzip&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;90&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Content-Encoding: br &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;91&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;92&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;93&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;5. preload/prefetch : preload/prefetch 可控制 HTTP 优先级，从而达到关键请求更快响应的目的。(延迟加载：将非关键资源延迟加载，如图片、视频、第三方插件等)&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;94&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;95&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&amp;lt;link rel=&#34;prefetch&#34; href=&#34;style.css&#34; as=&#34;style&#34;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;96&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&amp;lt;link rel=&#34;preload&#34; href=&#34;main.js&#34; as=&#34;script&#34;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;97&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;5.1 preload 加载当前路由必需资源，优先级高。一般对于 Bundle Spliting 资源与 Code Spliting 资源做 preload&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;98&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;5.2. prefetch 优先级低，在浏览器 idle 状态时加载资源。一般用以加载其它路由资源，如当页面出现 Link，可 prefetch 当前 Link 的路由资源。（next.js 默认会对 link 做懒加载+prefetch，即当某条 Link 出现页面中，即自动 prefetch 该 Link 指向的路由资源&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;99&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;捎带说一下 dns-prefetch，可对主机地址的 DNS 进行预解析。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;100&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;101&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&amp;lt;link rel=&#34;dns-prefetch&#34; href=&#34;//shanyue.tech&#34;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;执行优化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#执行优化&#34;&gt;#&lt;/a&gt; 执行优化&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;代码优化：精简 html，css，js 代码，避免重复代码&lt;/li&gt;
+&lt;li&gt;异步加载：将 JavaScript 放在底部，使用 async,defer 属性&lt;/li&gt;
 &lt;li&gt;代码分割和懒加载：拆分大型应用程序为小模块，按需加载模块，减少初始加载时间&lt;/li&gt;
 &lt;li&gt;前端代码压缩混淆：对前端代码进行压缩和混淆，减小文件大小，提高加载速度&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;渲染优化&#34;&gt;&lt;a href=&#34;#渲染优化&#34; class=&#34;headerlink&#34; title=&#34;渲染优化&#34;&gt;&lt;/a&gt;渲染优化&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;「渲染层面」&lt;/strong&gt;的性能优化，无疑是如何让代码解析更好执行更快。&lt;/p&gt;
+&lt;h2 id=&#34;渲染优化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#渲染优化&#34;&gt;#&lt;/a&gt; 渲染优化&lt;/h2&gt;
+&lt;p&gt;**「渲染层面」** 的性能优化，无疑是如何让代码解析更好执行更快。&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;「CSS策略」：基于CSS规则&lt;/li&gt;
-&lt;li&gt;「DOM策略」：基于DOM操作&lt;/li&gt;
+&lt;li&gt;「CSS 策略」：基于 CSS 规则&lt;/li&gt;
+&lt;li&gt;「DOM 策略」：基于 DOM 操作&lt;/li&gt;
 &lt;li&gt;「阻塞策略」：基于脚本加载&lt;/li&gt;
 &lt;li&gt;「回流重绘策略」：基于回流重绘&lt;/li&gt;
 &lt;li&gt;「异步更新策略」：基于异步更新&lt;/li&gt;
 &lt;li&gt;「缓存策略」&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;CSS策略&lt;/strong&gt;&lt;br&gt;避免出现超过三层的嵌套规则&lt;br&gt;避免为ID选择器添加多余选择器&lt;br&gt;避免使用标签选择器代替类选择器&lt;br&gt;避免使用通配选择器，只对目标节点声明规则&lt;br&gt;避免重复匹配重复定义，关注可继承属性&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;DOM策略&lt;/strong&gt;&lt;br&gt;缓存DOM计算属性&lt;br&gt;避免过多DOM操作&lt;br&gt;使用DOMFragment缓存批量化DOM操作&lt;br&gt;虚拟列表优化&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;阻塞策略&lt;/strong&gt;&lt;br&gt;脚本与DOM&amp;#x2F;其它脚本的依赖关系很强：对&lt;script&gt;设置defer&lt;br&gt;脚本与DOM/其它脚本的依赖关系不强：对&lt;script&gt;设置async&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;「回流重绘策略」&lt;/strong&gt;在渲染层面的性能优化里占比较重，也是最常规的性能优化之一。&lt;br&gt;缓存DOM计算属性&lt;br&gt;使用类合并样式，避免逐条改变样式&lt;br&gt;使用display控制DOM显隐，将DOM离线化&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;异步更新策略&lt;/strong&gt;&lt;br&gt;在异步任务中修改DOM时把其包装成微任务&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CSS 策略&lt;/strong&gt;&lt;br /&gt;
+避免出现超过三层的嵌套规则&lt;br /&gt;
+避免为 ID 选择器添加多余选择器&lt;br /&gt;
+避免使用标签选择器代替类选择器&lt;br /&gt;
+避免使用通配选择器，只对目标节点声明规则&lt;br /&gt;
+避免重复匹配重复定义，关注可继承属性&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DOM 策略&lt;/strong&gt;&lt;br /&gt;
+缓存 DOM 计算属性&lt;br /&gt;
+避免过多 DOM 操作&lt;br /&gt;
+使用 DOMFragment 缓存批量化 DOM 操作&lt;br /&gt;
+虚拟列表优化&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;阻塞策略&lt;/strong&gt;&lt;br /&gt;
+脚本与 DOM / 其它脚本的依赖关系很强：对 &amp;lt;script&amp;gt; 设置 defer&lt;br /&gt;
+ 脚本与 DOM / 其它脚本的依赖关系不强：对 &amp;lt;script&amp;gt; 设置 async&lt;/p&gt;
+&lt;p&gt;**「回流重绘策略」** 在渲染层面的性能优化里占比较重，也是最常规的性能优化之一。&lt;br /&gt;
+缓存 DOM 计算属性&lt;br /&gt;
+使用类合并样式，避免逐条改变样式&lt;br /&gt;
+使用 display 控制 DOM 显隐，将 DOM 离线化&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;异步更新策略&lt;/strong&gt;&lt;br /&gt;
+在异步任务中修改 DOM 时把其包装成微任务&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;缓存策略&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;javascript&#34;&gt;在一些前端系统中，当加载页面时会发送请求，路由切换出去再切换回来时又会重新发送请求，每次请求完成后会对页面重新渲染。
-
-然而这些重新请求再大多数时是没有必要的，合理地对 API 进行缓存将达到优化渲染的目的。
-
-1.对每一条 GET API 添加 key
-2.根据 key 控制该 API 缓存，重复发生请求时将从缓存中取得
-
-function Example() &amp;#123;
-  // 设置缓存的 Key 为 Users:10086
-  const &amp;#123; isLoading, data &amp;#125; = useQuery([&amp;#39;users&amp;#39;, userId], () =&amp;gt; fetchUserById(userId))
-&amp;#125;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;样式优化&#34;&gt;&lt;a href=&#34;#样式优化&#34; class=&#34;headerlink&#34; title=&#34;样式优化&#34;&gt;&lt;/a&gt;样式优化&lt;/h2&gt;&lt;ol&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;figcaption data-lang=&#34;javascript&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;在一些前端系统中，当加载页面时会发送请求，路由切换出去再切换回来时又会重新发送请求，每次请求完成后会对页面重新渲染。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;然而这些重新请求再大多数时是没有必要的，合理地对 &lt;span class=&#34;token constant&#34;&gt;API&lt;/span&gt; 进行缓存将达到优化渲染的目的。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;1.&lt;/span&gt;对每一条 &lt;span class=&#34;token constant&#34;&gt;GET&lt;/span&gt; &lt;span class=&#34;token constant&#34;&gt;API&lt;/span&gt; 添加 key&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;2.&lt;/span&gt;根据 key 控制该 &lt;span class=&#34;token constant&#34;&gt;API&lt;/span&gt; 缓存，重复发生请求时将从缓存中取得&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;Example&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token comment&#34;&gt;// 设置缓存的 Key 为 Users:10086&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; isLoading&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; data &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;useQuery&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;users&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; userId&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&gt;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;fetchUserById&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;userId&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;样式优化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#样式优化&#34;&gt;#&lt;/a&gt; 样式优化&lt;/h2&gt;
+&lt;ol&gt;
 &lt;li&gt;响应式设计：使用响应式布局和媒体查询适应不同设备和屏幕大小&lt;/li&gt;
-&lt;li&gt;使用CSS预处理器：如Less、Sass等，提高样式编写的效率&lt;/li&gt;
+&lt;li&gt;使用 CSS 预处理器：如 Less、Sass 等，提高样式编写的效率&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;脚本优化&#34;&gt;&lt;a href=&#34;#脚本优化&#34; class=&#34;headerlink&#34; title=&#34;脚本优化&#34;&gt;&lt;/a&gt;脚本优化&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;使用模块化开发：使用模块化/组件化的方式组织JavaScript代码&lt;/li&gt;
-&lt;li&gt;优化DOM操作：减少DOM操作的次数，对多次操作进行批量处理&lt;/li&gt;
+&lt;h2 id=&#34;脚本优化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#脚本优化&#34;&gt;#&lt;/a&gt; 脚本优化&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;使用模块化开发：使用模块化 / 组件化的方式组织 JavaScript 代码&lt;/li&gt;
+&lt;li&gt;优化 DOM 操作：减少 DOM 操作的次数，对多次操作进行批量处理&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&#34;javascript&#34;&gt;1. 批量更新：将多个 DOM 操作合并为一个操作，以减少重排和重绘的次数。例如，如果要对一个元素进行多次样式修改，可以先使用 CSS 类来添加或删除样式，最后再应用一次类，而不是每次修改都直接操作样式属性。
-
-// 不优化的写法
-element.style.width = &amp;#39;100px&amp;#39;;
-element.style.height = &amp;#39;200px&amp;#39;;
-element.style.backgroundColor = &amp;#39;red&amp;#39;;
-
-// 优化的写法
-element.classList.add(&amp;#39;my-class&amp;#39;);
-element.classList.remove(&amp;#39;my-class&amp;#39;);
-
-
-2. 使用文档片段（DocumentFragment）：将多个 DOM 节点先添加到文档片段中，然后再一次性插入文档中，这样只会触发一次重排和重绘。这在需要动态添加大量元素时特别有效。
-
-// 不优化的写法
-for (let i = 0; i &amp;lt; 1000; i++) &amp;#123;
-  const element = document.createElement(&amp;#39;div&amp;#39;);
-  document.body.appendChild(element);
-&amp;#125;
-
-// 优化的写法
-const fragment = document.createDocumentFragment();
-for (let i = 0; i &amp;lt; 1000; i++) &amp;#123;
-  const element = document.createElement(&amp;#39;div&amp;#39;);
-  fragment.appendChild(element);
-&amp;#125;
-document.body.appendChild(fragment);
-
-3. 缓存 DOM 查询结果：当需要多次访问同一个 DOM 元素时，将查询结果缓存在变量中，避免重复查询。
-// 不优化的写法
-for (let i = 0; i &amp;lt; 100; i++) &amp;#123;
-  document.getElementById(&amp;#39;myElement&amp;#39;).innerHTML += &amp;#39;new content&amp;#39;;
-&amp;#125;
-
-// 优化的写法
-const element = document.getElementById(&amp;#39;myElement&amp;#39;);
-for (let i = 0; i &amp;lt; 100; i++) &amp;#123;
-  element.innerHTML += &amp;#39;new content&amp;#39;;
-&amp;#125;
-
-4. 使用虚拟 DOM：在涉及大量数据变动和复杂视图更新的情况下，可以使用虚拟 DOM 技术，通过比对虚拟 DOM 树来最小化实际 DOM 操作的次数。
-这些是一些常见的优化 DOM 操作的方法。请根据具体场景选择合适的方法进行优化。记住，减少 DOM 操作次数会显著提高性能和用户体验。
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;V8引擎优化&#34;&gt;&lt;a href=&#34;#V8引擎优化&#34; class=&#34;headerlink&#34; title=&#34;V8引擎优化&#34;&gt;&lt;/a&gt;V8引擎优化&lt;/h2&gt;&lt;ol&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;figcaption data-lang=&#34;javascript&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;1.&lt;/span&gt; 批量更新：将多个 &lt;span class=&#34;token constant&#34;&gt;DOM&lt;/span&gt; 操作合并为一个操作，以减少重排和重绘的次数。例如，如果要对一个元素进行多次样式修改，可以先使用 &lt;span class=&#34;token constant&#34;&gt;CSS&lt;/span&gt; 类来添加或删除样式，最后再应用一次类，而不是每次修改都直接操作样式属性。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 不优化的写法&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;element&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;style&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;width &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;100px&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;element&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;style&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;height &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;200px&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;element&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;style&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;backgroundColor &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;red&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 优化的写法&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;element&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;classList&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;my-class&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;element&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;classList&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;remove&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;my-class&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;2.&lt;/span&gt; 使用文档片段（DocumentFragment）：将多个 &lt;span class=&#34;token constant&#34;&gt;DOM&lt;/span&gt; 节点先添加到文档片段中，然后再一次性插入文档中，这样只会触发一次重排和重绘。这在需要动态添加大量元素时特别有效。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 不优化的写法&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;let&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;token operator&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; element &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;div&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;body&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;appendChild&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;element&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 优化的写法&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; fragment &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;createDocumentFragment&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;let&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;token operator&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; element &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;div&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  fragment&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;appendChild&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;element&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;body&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;appendChild&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;fragment&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;3.&lt;/span&gt; 缓存 &lt;span class=&#34;token constant&#34;&gt;DOM&lt;/span&gt; 查询结果：当需要多次访问同一个 &lt;span class=&#34;token constant&#34;&gt;DOM&lt;/span&gt; 元素时，将查询结果缓存在变量中，避免重复查询。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 不优化的写法&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;let&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;token operator&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;myElement&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;innerHTML &lt;span class=&#34;token operator&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;new content&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;35&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 优化的写法&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;36&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; element &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getElementById&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;myElement&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;37&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;let&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; i&lt;span class=&#34;token operator&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;38&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  element&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;innerHTML &lt;span class=&#34;token operator&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;new content&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;39&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;40&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;41&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;4.&lt;/span&gt; 使用虚拟 &lt;span class=&#34;token constant&#34;&gt;DOM&lt;/span&gt;：在涉及大量数据变动和复杂视图更新的情况下，可以使用虚拟 &lt;span class=&#34;token constant&#34;&gt;DOM&lt;/span&gt; 技术，通过比对虚拟 &lt;span class=&#34;token constant&#34;&gt;DOM&lt;/span&gt; 树来最小化实际 &lt;span class=&#34;token constant&#34;&gt;DOM&lt;/span&gt; 操作的次数。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;42&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;这些是一些常见的优化 &lt;span class=&#34;token constant&#34;&gt;DOM&lt;/span&gt; 操作的方法。请根据具体场景选择合适的方法进行优化。记住，减少 &lt;span class=&#34;token constant&#34;&gt;DOM&lt;/span&gt; 操作次数会显著提高性能和用户体验。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;v8引擎优化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#v8引擎优化&#34;&gt;#&lt;/a&gt; V8 引擎优化&lt;/h2&gt;
+&lt;ol&gt;
 &lt;li&gt;避免不必要的闭包：过多的闭包会导致内存消耗增加&lt;/li&gt;
-&lt;li&gt;使用高性能API和方法：如使用map而不是for循环等&lt;/li&gt;
+&lt;li&gt;使用高性能 API 和方法：如使用 map 而不是 for 循环等&lt;/li&gt;
 &lt;li&gt;优化循环和递归：尽量减少循环和递归的层数和次数，避免性能问题&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&#34;性能评测指标&#34;&gt;&lt;a href=&#34;#性能评测指标&#34; class=&#34;headerlink&#34; title=&#34;性能评测指标&#34;&gt;&lt;/a&gt;性能评测指标&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;三大指标&lt;/strong&gt; 使用工具 lighthouse，web-vitals 等&lt;br&gt;LCP: 加载性能。最大内容绘制应在 2.5s 内完成。&lt;br&gt;FID: 交互性能。首次输入延迟应在 100ms 内完成。&lt;br&gt;CLS: 页面稳定性。累积布局偏移，需手动计算，CLS 应保持在 0.1 以下。&lt;/p&gt;
-&lt;h1 id=&#34;浏览器缓存优化&#34;&gt;&lt;a href=&#34;#浏览器缓存优化&#34; class=&#34;headerlink&#34; title=&#34;浏览器缓存优化&#34;&gt;&lt;/a&gt;浏览器缓存优化&lt;/h1&gt;&lt;p&gt;为了让浏览器缓存发挥最大作用，该策略尽量遵循以下五点就能发挥浏览器缓存最大作用。&lt;/p&gt;
-&lt;p&gt;「考虑拒绝一切缓存策略」：Cache-Control:no-store&lt;br&gt;「考虑资源是否每次向服务器请求」：Cache-Control:no-cache&lt;br&gt;「考虑资源是否被代理服务器缓存」：Cache-Control:public/private&lt;br&gt;「考虑资源过期时间」：Expires:t/Cache-Control:max-age=t,s-maxage=t&lt;br&gt;「考虑协商缓存」：Last-Modified/Etag&lt;br&gt;缓存策略通过设置HTTP报文实现，在形式上分为&lt;strong&gt;「强缓存/强制缓存」和「协商缓存/对比缓存」&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;/images/xn/%E5%BC%BA%E7%BC%93%E5%AD%98.png&#34;&gt;&lt;br&gt;&lt;img data-src=&#34;/images/xn/%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;整个缓存策略机制很明了，先走强缓存，若命中失败才走协商缓存。若命中强缓存，直接使用强缓存；若未命中强缓存，发送请求到服务器检查是否命中协商缓存；若命中协商缓存，服务器返回304通知浏览器使用本地缓存，否则返回最新资源。&lt;/p&gt;
+&lt;h1 id=&#34;性能评测指标&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#性能评测指标&#34;&gt;#&lt;/a&gt; 性能评测指标&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;三大指标&lt;/strong&gt; 使用工具 lighthouse，web-vitals 等&lt;br /&gt;
+ LCP: 加载性能。最大内容绘制应在 2.5s 内完成。&lt;br /&gt;
+FID: 交互性能。首次输入延迟应在 100ms 内完成。&lt;br /&gt;
+CLS: 页面稳定性。累积布局偏移，需手动计算，CLS 应保持在 0.1 以下。&lt;/p&gt;
+&lt;h1 id=&#34;浏览器缓存优化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#浏览器缓存优化&#34;&gt;#&lt;/a&gt; 浏览器缓存优化&lt;/h1&gt;
+&lt;p&gt;为了让浏览器缓存发挥最大作用，该策略尽量遵循以下五点就能发挥浏览器缓存最大作用。&lt;/p&gt;
+&lt;p&gt;「考虑拒绝一切缓存策略」：Cache-Control:no-store&lt;br /&gt;
+「考虑资源是否每次向服务器请求」：Cache-Control:no-cache&lt;br /&gt;
+「考虑资源是否被代理服务器缓存」：Cache-Control:public/private&lt;br /&gt;
+「考虑资源过期时间」：Expires:t/Cache-Control:max-age=t,s-maxage=t&lt;br /&gt;
+「考虑协商缓存」：Last-Modified/Etag&lt;br /&gt;
+ 缓存策略通过设置 HTTP 报文实现，在形式上分为 **「强缓存 / 强制缓存」和「协商缓存 / 对比缓存」**。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/images/xn/%E5%BC%BA%E7%BC%93%E5%AD%98.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+&lt;img data-src=&#34;/images/xn/%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;整个缓存策略机制很明了，先走强缓存，若命中失败才走协商缓存。若命中强缓存，直接使用强缓存；若未命中强缓存，发送请求到服务器检查是否命中协商缓存；若命中协商缓存，服务器返回 304 通知浏览器使用本地缓存，否则返回最新资源。&lt;/p&gt;
 &lt;p&gt;有两种较常用的应用场景值得使用缓存策略一试，当然更多应用场景都可根据项目需求制定。&lt;/p&gt;
-&lt;p&gt;「频繁变动资源」：设置Cache-Control:no-cache，使浏览器每次都发送请求到服务器，配合Last-Modified/ETag验证资源是否有效&lt;br&gt;「不常变化资源」：设置Cache-Control:max-age=31536000，对文件名哈希处理，当代码修改后生成新的文件名，当HTML文件引入文件名发生改变才会下载最新文件&lt;/p&gt;
-&lt;h1 id=&#34;Web-Worker&#34;&gt;&lt;a href=&#34;#Web-Worker&#34; class=&#34;headerlink&#34; title=&#34;Web Worker&#34;&gt;&lt;/a&gt;Web Worker&lt;/h1&gt;&lt;p&gt;在纯浏览器中，如何实现高性能的实时代码编译及转换？&lt;/p&gt;
-&lt;p&gt;Babel Repl(opens new window)&lt;br&gt;如果纯碎使用传统的 Javascript 实现，将会耗时过多阻塞主线程，有可能导致页面卡顿。&lt;/p&gt;
+&lt;p&gt;「频繁变动资源」：设置 Cache-Control:no-cache，使浏览器每次都发送请求到服务器，配合 Last-Modified/ETag 验证资源是否有效&lt;br /&gt;
+「不常变化资源」：设置 Cache-Control:max-age=31536000，对文件名哈希处理，当代码修改后生成新的文件名，当 HTML 文件引入文件名发生改变才会下载最新文件&lt;/p&gt;
+&lt;h1 id=&#34;web-worker&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#web-worker&#34;&gt;#&lt;/a&gt; Web Worker&lt;/h1&gt;
+&lt;p&gt;在纯浏览器中，如何实现高性能的实时代码编译及转换？&lt;/p&gt;
+&lt;p&gt;Babel Repl(opens new window)&lt;br /&gt;
+ 如果纯碎使用传统的 Javascript 实现，将会耗时过多阻塞主线程，有可能导致页面卡顿。&lt;/p&gt;
 &lt;p&gt;如果使用 Web Worker 交由额外的线程来做这件事，将会高效很多，基本上所有在浏览器端进行代码编译的功能都由 Web Worker 实现。&lt;/p&gt;
-&lt;h1 id=&#34;WASM&#34;&gt;&lt;a href=&#34;#WASM&#34; class=&#34;headerlink&#34; title=&#34;WASM&#34;&gt;&lt;/a&gt;WASM&lt;/h1&gt;&lt;ol&gt;
+&lt;h1 id=&#34;wasmwebassembly&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#wasmwebassembly&#34;&gt;#&lt;/a&gt; WASM(WebAssembly)&lt;/h1&gt;
+&lt;ol&gt;
 &lt;li&gt;JS 性能低下&lt;/li&gt;
 &lt;li&gt;C++/Rust 高性能&lt;/li&gt;
-&lt;li&gt;使用 C++/Rust 编写代码，然后在 Javascript 环境运行&lt;br&gt;试举一例:&lt;/li&gt;
+&lt;li&gt;使用 C++/Rust 编写代码，然后在 Javascript 环境运行&lt;br /&gt;
+试举一例:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;在纯浏览器中，如何实现高性能的图片压缩？&lt;/p&gt;
 &lt;p&gt;基本上很难做到，Javascript 的性能与生态决定了实现图片压缩的艰难。&lt;/p&gt;
 &lt;p&gt;而借助于 WASM 就相当于借用了其它语言的生态。&lt;/p&gt;
-&lt;p&gt;1.libavif (opens new window): C语言写的 avif 解码编码库&lt;br&gt;2.libwebp (opens new window): C语言写的 webp 解码编码库&lt;br&gt;3.mozjpeg (opens new window): C语言写的 jpeg 解码编码库&lt;br&gt;4.oxipng (opens new window): Rust语言写的 png 优化库&lt;br&gt;而由于 WASM，完全可以把这些其它语言的生态移植到浏览器中，从而实现一个高性能的离线式的图片压缩工具。&lt;/p&gt;
+&lt;p&gt;1.libavif (opens new window): C 语言写的 avif 解码编码库&lt;br /&gt;
+ 2.libwebp (opens new window): C 语言写的 webp 解码编码库&lt;br /&gt;
+ 3.mozjpeg (opens new window): C 语言写的 jpeg 解码编码库&lt;br /&gt;
+ 4.oxipng (opens new window): Rust 语言写的 png 优化库&lt;br /&gt;
+而由于 WASM，完全可以把这些其它语言的生态移植到浏览器中，从而实现一个高性能的离线式的图片压缩工具。&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://pink-png.github.io/performance-optimization/%E5%9C%A8%E6%9F%90%E6%9F%90%E4%BC%81%E4%B8%9A%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BC%98%E5%8C%96%E6%80%9D%E8%80%83(uniapp)/</guid>
+            <guid isPermalink="true">https://pink-png.github.io/performance-optimization/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BC%98%E5%8C%96%E6%80%9D%E8%80%83(uniapp)/</guid>
             <title>在某某企业小程序优化思考(uniapp)</title>
-            <link>https://pink-png.github.io/performance-optimization/%E5%9C%A8%E6%9F%90%E6%9F%90%E4%BC%81%E4%B8%9A%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BC%98%E5%8C%96%E6%80%9D%E8%80%83(uniapp)/</link>
+            <link>https://pink-png.github.io/performance-optimization/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BC%98%E5%8C%96%E6%80%9D%E8%80%83(uniapp)/</link>
             <category term="前端开发" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" />
             <category term="前端性能优化" scheme="https://pink-png.github.io/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" />
             <category term="前端性能优化" scheme="https://pink-png.github.io/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" />
             <pubDate>Sat, 25 Jun 2022 16:43:00 +0800</pubDate>
             <description><![CDATA[ &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;vuex 对启动耗时的影响&lt;br&gt;Vuex 是一个状态管理库，在启动阶段如果存在大量的业务逻辑，会使启动耗时增加。这是因为在启动过程中，需要初始化 Vuex 的状态和相关的模块，可能会触发一些异步操作和计算，导致启动时间延长。因此，在设计和使用 Vuex 时，需要注意避免在启动阶段执行过多的繁重操作，以减少启动耗时。&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;vuex 对启动耗时的影响&lt;br /&gt;
+ Vuex 是一个状态管理库，在启动阶段如果存在大量的业务逻辑，会使启动耗时增加。这是因为在启动过程中，需要初始化 Vuex 的状态和相关的模块，可能会触发一些异步操作和计算，导致启动时间延长。因此，在设计和使用 Vuex 时，需要注意避免在启动阶段执行过多的繁重操作，以减少启动耗时。&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;mixins 对启动耗时的影响&lt;br&gt;Mixins 是一种在组件中复用代码的机制，通过将相同的逻辑和功能抽离到 Mixins 中，可以在多个组件中共享使用。在启动阶段，如果组件使用了 Mixins，会在组件实例化时执行 Mixins 中的代码逻辑，因此会增加启动耗时。如果 Mixins 中存在大量或复杂的业务逻辑，会进一步增加启动耗时。因此，使用 Mixins 时需要注意控制逻辑的复杂度，避免影响启动性能。&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;mixins 对启动耗时的影响&lt;br /&gt;
+ Mixins 是一种在组件中复用代码的机制，通过将相同的逻辑和功能抽离到 Mixins 中，可以在多个组件中共享使用。在启动阶段，如果组件使用了 Mixins，会在组件实例化时执行 Mixins 中的代码逻辑，因此会增加启动耗时。如果 Mixins 中存在大量或复杂的业务逻辑，会进一步增加启动耗时。因此，使用 Mixins 时需要注意控制逻辑的复杂度，避免影响启动性能。&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;子组件中的请求是从onReady 加载完再去调用请求的，所以是否组件中不要使用请求?&lt;br&gt;在小程序中，子组件的请求通常是在组件的 onReady 生命周期钩子函数中进行调用。由于 onReady 是在页面的渲染准备完成后调用的，此时页面已经可见，用户可以看到页面内容。因此，在 onReady 钩子中进行请求可能会导致页面加载完成后才开始请求数据，从而延长了页面加载时间。&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;子组件中的请求是从 onReady 加载完再去调用请求的，所以是否组件中不要使用请求？&lt;br /&gt;
+ 在小程序中，子组件的请求通常是在组件的 onReady 生命周期钩子函数中进行调用。由于 onReady 是在页面的渲染准备完成后调用的，此时页面已经可见，用户可以看到页面内容。因此，在 onReady 钩子中进行请求可能会导致页面加载完成后才开始请求数据，从而延长了页面加载时间。&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;挂载到原型上的东西 ,每次生成的页面都会执行这个数据 , 这里的影响多大?&lt;br&gt;当一些数据或方法挂载到小程序的原型对象上时，每次生成的页面都可以通过原型链访问到这些数据或方法。这样做的好处是可以实现数据和方法的全局共享和复用。&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;挂载到原型上的东西，每次生成的页面都会执行这个数据，这里的影响多大？&lt;br /&gt;
+ 当一些数据或方法挂载到小程序的原型对象上时，每次生成的页面都可以通过原型链访问到这些数据或方法。这样做的好处是可以实现数据和方法的全局共享和复用。&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;有没有根据包大小计算出来的 平均启动时间&amp;#x2F;加载耗时&lt;br&gt;通常情况下，并没有一个直接根据包大小计算出来的平均启动时间或加载耗时的公式或算法。因为启动时间和加载耗时受到多个因素的影响，如网络环境、设备性能、代码复杂度等。&lt;br&gt;包大小的增加可能会导致下载时间变长，从而影响启动时间。然而，仅仅根据包大小无法准确预测启动时间的增加，还需要考虑其他因素的综合影响。因此，对于不同的小程序和具体场景，需要进行实际测试和评估来得出准确的启动时间和加载耗时。&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;有没有根据包大小计算出来的 平均启动时间 / 加载耗时&lt;br /&gt;
+通常情况下，并没有一个直接根据包大小计算出来的平均启动时间或加载耗时的公式或算法。因为启动时间和加载耗时受到多个因素的影响，如网络环境、设备性能、代码复杂度等。&lt;br /&gt;
+包大小的增加可能会导致下载时间变长，从而影响启动时间。然而，仅仅根据包大小无法准确预测启动时间的增加，还需要考虑其他因素的综合影响。因此，对于不同的小程序和具体场景，需要进行实际测试和评估来得出准确的启动时间和加载耗时。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;ul&gt;
 &lt;li&gt;计算最佳收益点&lt;/li&gt;
-&lt;li&gt;其实这里想表达的是否2M 和 1.5M的包下载时间的差距是否几乎不计?&lt;/li&gt;
+&lt;li&gt;其实这里想表达的是否 2M 和 1.5M 的包下载时间的差距是否几乎不计？&lt;/li&gt;
 &lt;/ul&gt;
 &lt;ol start=&#34;6&#34;&gt;
-&lt;li&gt;从小程序加载流程上来讲，对于首次打开小程序用户，会去下载包，包大会造成下载时间变长（在相同网络条件下）；影响启动耗时的直接因素：&lt;br&gt;● 平台：不同的平台下（安卓、IOS）设备性能、操作系统、框架实现、优化方案存在较大的差异，启动耗时也存在较大的差异。只有分平台比较启动耗时（包括各阶段耗时）才有意义；&lt;br&gt; 1.怎么做到只是针对某个机型去判断?&lt;br&gt; 2.是不是要去处理慢的机型呢? 怎么处理是个问题&lt;br&gt;● 下载比例及大小：代码包下载和更新都会显著影响小程序启动耗时，在其他流程耗时稳定的情况下，下载比例升高会影响大盘启动耗时。&lt;br&gt;● 入口页面：不同页面启动时，根据所在分包的不同，需要下载的代码包数量和大小和代码注入量都存在差异。不同页面渲染耗时也存在差异。&lt;br&gt;● 机型分布：启动耗时和设备性能有较强关联，不同小程序或使用场景用户群体的差异可能导致机型分布的差异，进而影响大盘启动耗时。&lt;br&gt;● 网络环境：网络环境主要影响网络请求的耗时，如小程序信息获取、代码包下载等。&lt;br&gt;间接因素：&lt;br&gt;● 场景&amp;#x2F;访问来源：不同场景下，用户访问的页面不同，新用户比例也有差异，对启动耗时会有一定影响。此外，用户访问的目的性和自身的等待意愿也有差异，也会影响打开率。&lt;br&gt; 1.这里可能存在有些页面分享进来的，但是这个页面其实是不允许直接进入的，可能会造成某些问题导致的耗时&lt;br&gt; 2.进入的页面不是首页，这是一种什么场景?&lt;br&gt;● 首次访问用户比例：用户首次访问小程序时，需要完整的进行小程序信息准备、代码包下载的流程，代码缓存也需要重新生成，启动耗时会比非首次访问高。&lt;br&gt;● 小程序版本更新：小程序版本更新时，用户需要更新小程序信息和代码包，代码缓存也需要重新生成，启动耗时会出现上涨。&lt;br&gt; 1.这个其实就是每次更新版本对启动时长的影响，特别是发布灰度的时候&lt;br&gt; 2.一段时间不发新版本,启动时间会降低。这里其实说明我们登报的人，他存在多次进来看的情况（这个是肯定的）&lt;/li&gt;
+&lt;li&gt;从小程序加载流程上来讲，对于首次打开小程序用户，会去下载包，包大会造成下载时间变长（在相同网络条件下）；影响启动耗时的直接因素：&lt;br /&gt;
+● 平台：不同的平台下（安卓、IOS）设备性能、操作系统、框架实现、优化方案存在较大的差异，启动耗时也存在较大的差异。只有分平台比较启动耗时（包括各阶段耗时）才有意义；&lt;br /&gt;
+1. 怎么做到只是针对某个机型去判断？&lt;br /&gt;
+2. 是不是要去处理慢的机型呢？怎么处理是个问题&lt;br /&gt;
+● 下载比例及大小：代码包下载和更新都会显著影响小程序启动耗时，在其他流程耗时稳定的情况下，下载比例升高会影响大盘启动耗时。&lt;br /&gt;
+● 入口页面：不同页面启动时，根据所在分包的不同，需要下载的代码包数量和大小和代码注入量都存在差异。不同页面渲染耗时也存在差异。&lt;br /&gt;
+● 机型分布：启动耗时和设备性能有较强关联，不同小程序或使用场景用户群体的差异可能导致机型分布的差异，进而影响大盘启动耗时。&lt;br /&gt;
+● 网络环境：网络环境主要影响网络请求的耗时，如小程序信息获取、代码包下载等。&lt;br /&gt;
+间接因素：&lt;br /&gt;
+● 场景 / 访问来源：不同场景下，用户访问的页面不同，新用户比例也有差异，对启动耗时会有一定影响。此外，用户访问的目的性和自身的等待意愿也有差异，也会影响打开率。&lt;br /&gt;
+1. 这里可能存在有些页面分享进来的，但是这个页面其实是不允许直接进入的，可能会造成某些问题导致的耗时&lt;br /&gt;
+ 2. 进入的页面不是首页，这是一种什么场景？&lt;br /&gt;
+● 首次访问用户比例：用户首次访问小程序时，需要完整的进行小程序信息准备、代码包下载的流程，代码缓存也需要重新生成，启动耗时会比非首次访问高。&lt;br /&gt;
+● 小程序版本更新：小程序版本更新时，用户需要更新小程序信息和代码包，代码缓存也需要重新生成，启动耗时会出现上涨。&lt;br /&gt;
+1. 这个其实就是每次更新版本对启动时长的影响，特别是发布灰度的时候&lt;br /&gt;
+ 2. 一段时间不发新版本，启动时间会降低。这里其实说明我们登报的人，他存在多次进来看的情况（这个是肯定的）&lt;/li&gt;
 &lt;/ol&gt;
  ]]></description>
         </item>
