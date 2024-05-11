@@ -1,4 +1,172 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#FFF"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png"><link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" type="application/rss+xml" title="死肥宅" href="https://pink-png.github.io/rss.xml"><link rel="alternate" type="application/atom+xml" title="死肥宅" href="https://pink-png.github.io/atom.xml"><link rel="alternate" type="application/json" title="死肥宅" href="https://pink-png.github.io/feed.json"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="/css/app.css?v=0.2.5"><meta name="keywords" content="Vue"><link rel="canonical" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/"><title>Step.6 组件高级用法 - vue2.x源码 - Vue - 计算机科学 | Yume Shoka = 死肥宅 = 肥宅快乐水</title><meta name="generator" content="Hexo 6.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">Step.6 组件高级用法</h1><div class="meta"><span class="item" title="创建时间：2020-06-13 20:46:48"><span class="icon"><i class="ic i-calendar"></i> </span><span class="text">发表于</span> <time itemprop="dateCreated datePublished" datetime="2020-06-13T20:46:48+08:00">2020-06-13</time></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span> <span class="line"></span> <span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">Yume Shoka</a></li></ul><ul class="right"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div id="imgs" class="pjax"><ul><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gicit4jrvuj20zk0m8785.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclgi503lj20zk0m8hdt.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gipeuibk9fj20zk0m8ay2.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gicm0fdw5cj20zk0m8hdt.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclh3brzpj20zk0m8ann.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"/><use xlink:href="#gentle-wave" x="48" y="3"/><use xlink:href="#gentle-wave" x="48" y="5"/><use xlink:href="#gentle-wave" x="48" y="7"/></g></svg></div><main><div class="inner"><div id="main" class="pjax"><div class="article wrap"><div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i> <span><a href="/">首页</a></span><i class="ic i-angle-right"></i> <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/" itemprop="item" rel="index" title="分类于 计算机科学"><span itemprop="name">计算机科学</span></a><meta itemprop="position" content="1"></span><i class="ic i-angle-right"></i> <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/" itemprop="item" rel="index" title="分类于 Vue"><span itemprop="name">Vue</span></a><meta itemprop="position" content="2"></span><i class="ic i-angle-right"></i> <span class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/dosc/" itemprop="item" rel="index" title="分类于 vue2.x源码"><span itemprop="name">vue2.x源码</span></a><meta itemprop="position" content="3"></span></div><article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/avatar.jpg"><meta itemprop="name" content="sanxin98"><meta itemprop="description" content="肥宅快乐水, 编程 & 生活"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="死肥宅"></span><div class="body md" itemprop="articleBody"><blockquote><p>我们知道，组件是<code>Vue</code>体系的核心，熟练使用组件是掌握<code>Vue</code>进行开发的基础。上一节中，我们深入了解了<code>Vue</code>组件注册到使用渲染的完整流程。这一节我们会在上一节的基础上介绍组件的两个高级用法：异步组件和函数式组件。</p></blockquote><h2 id="6-1-异步组件"><a href="#6-1-异步组件" class="headerlink" title="6.1 异步组件"></a>6.1 异步组件</h2><h3 id="6-1-1-使用场景"><a href="#6-1-1-使用场景" class="headerlink" title="6.1.1 使用场景"></a>6.1.1 使用场景</h3><p><code>Vue</code>作为单页面应用遇到最棘手的问题是首屏加载时间的问题，单页面应用会把页面脚本打包成一个文件，这个文件包含着所有业务和非业务的代码，而脚本文件过大也是造成首页渲染速度缓慢的原因。因此作为首屏性能优化的课题，最常用的处理方法是对文件的拆分和代码的分离。按需加载的概念也是在这个前提下引入的。我们往往会把一些非首屏的组件设计成异步组件，部分不影响初次视觉体验的组件也可以设计为异步组件。这个思想就是<strong>按需加载</strong>。通俗点理解，按需加载的思想让应用在需要使用某个组件时才去请求加载组件代码。我们借助<code>webpack</code>打包后的结果会更加直观。</p><p><img data-src="/images/img/6.1.png"></p><p><img data-src="/images/img/6.2.png"><br><code>webpack</code>遇到异步组件，会将其从主脚本中分离，减少脚本体积，加快首屏加载时间。当遇到场景需要使用该组件时，才会去加载组件脚本。</p><h3 id="6-1-2-工厂函数"><a href="#6-1-2-工厂函数" class="headerlink" title="6.1.2 工厂函数"></a>6.1.2 工厂函数</h3><p><code>Vue</code>中允许用户通过工厂函数的形式定义组件，这个工厂函数会异步解析组件定义，组件需要渲染的时候才会触发该工厂函数，加载结果会进行缓存，以供下一次调用组件时使用。<br>具体使用：</p><pre><code class="js">// 全局注册：
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="死肥宅" href="https://pink-png.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="死肥宅" href="https://pink-png.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="死肥宅" href="https://pink-png.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="Vue" />
+
+
+<link rel="canonical" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/">
+
+
+
+  <title>
+Step.6 组件高级用法 - vue2.x源码 - Vue - 计算机科学 |
+Yume Shoka = 死肥宅 = 肥宅快乐水</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Step.6 组件高级用法
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2020-06-13 20:46:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2020-06-13T20:46:48+08:00">2020-06-13</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1giclxp31goj20zk0m8qv5.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gicli9lfebj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gicljitigmj20zk0m87fp.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1giclfw2t96j20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gipeu1usa7j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1giclip4jbpj20zk0m87cv.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/" itemprop="item" rel="index" title="分类于 计算机科学"><span itemprop="name">计算机科学</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/" itemprop="item" rel="index" title="分类于 Vue"><span itemprop="name">Vue</span></a>
+<meta itemprop="position" content="2" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/dosc/" itemprop="item" rel="index" title="分类于 vue2.x源码"><span itemprop="name">vue2.x源码</span></a>
+<meta itemprop="position" content="3" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="sanxin98">
+    <meta itemprop="description" content="肥宅快乐水, 编程 & 生活">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="死肥宅">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <blockquote>
+<p>我们知道，组件是<code>Vue</code>体系的核心，熟练使用组件是掌握<code>Vue</code>进行开发的基础。上一节中，我们深入了解了<code>Vue</code>组件注册到使用渲染的完整流程。这一节我们会在上一节的基础上介绍组件的两个高级用法：异步组件和函数式组件。</p>
+</blockquote>
+<h2 id="6-1-异步组件"><a href="#6-1-异步组件" class="headerlink" title="6.1 异步组件"></a>6.1 异步组件</h2><h3 id="6-1-1-使用场景"><a href="#6-1-1-使用场景" class="headerlink" title="6.1.1 使用场景"></a>6.1.1 使用场景</h3><p><code>Vue</code>作为单页面应用遇到最棘手的问题是首屏加载时间的问题，单页面应用会把页面脚本打包成一个文件，这个文件包含着所有业务和非业务的代码，而脚本文件过大也是造成首页渲染速度缓慢的原因。因此作为首屏性能优化的课题，最常用的处理方法是对文件的拆分和代码的分离。按需加载的概念也是在这个前提下引入的。我们往往会把一些非首屏的组件设计成异步组件，部分不影响初次视觉体验的组件也可以设计为异步组件。这个思想就是<strong>按需加载</strong>。通俗点理解，按需加载的思想让应用在需要使用某个组件时才去请求加载组件代码。我们借助<code>webpack</code>打包后的结果会更加直观。</p>
+<p><img data-src="/images/img/6.1.png"></p>
+<p><img data-src="/images/img/6.2.png"><br><code>webpack</code>遇到异步组件，会将其从主脚本中分离，减少脚本体积，加快首屏加载时间。当遇到场景需要使用该组件时，才会去加载组件脚本。</p>
+<h3 id="6-1-2-工厂函数"><a href="#6-1-2-工厂函数" class="headerlink" title="6.1.2 工厂函数"></a>6.1.2 工厂函数</h3><p><code>Vue</code>中允许用户通过工厂函数的形式定义组件，这个工厂函数会异步解析组件定义，组件需要渲染的时候才会触发该工厂函数，加载结果会进行缓存，以供下一次调用组件时使用。<br>具体使用：</p>
+<pre><code class="js">// 全局注册：
 Vue.component(&#39;asyncComponent&#39;, function(resolve, reject) &#123;
   require([&#39;./test.vue&#39;], resolve)
 &#125;)
@@ -12,7 +180,9 @@ var vm = new Vue(&#123;
     asyncComponent: () =&gt; import(&#39;./test.vue&#39;),
   &#125;
 &#125;)
-</code></pre><h3 id="6-1-3-流程分析"><a href="#6-1-3-流程分析" class="headerlink" title="6.1.3 流程分析"></a>6.1.3 流程分析</h3><p>有了上一节组件注册的基础，我们来分析异步组件的实现逻辑。简单回忆一下上一节的流程，实例的挂载流程分为根据渲染函数创建<code>Vnode</code>和根据<code>Vnode</code>产生真实节点的过程。期间创建<code>Vnode</code>过程，如果遇到子的占位符节点会调用<code>creatComponent</code>,这里会为子组件做选项合并和钩子挂载的操作，并创建一个以<code>vue-component-</code>为标记的子<code>Vnode</code>,而异步组件的处理逻辑也是在这个阶段处理。</p><pre><code class="js">// 创建子组件过程
+</code></pre>
+<h3 id="6-1-3-流程分析"><a href="#6-1-3-流程分析" class="headerlink" title="6.1.3 流程分析"></a>6.1.3 流程分析</h3><p>有了上一节组件注册的基础，我们来分析异步组件的实现逻辑。简单回忆一下上一节的流程，实例的挂载流程分为根据渲染函数创建<code>Vnode</code>和根据<code>Vnode</code>产生真实节点的过程。期间创建<code>Vnode</code>过程，如果遇到子的占位符节点会调用<code>creatComponent</code>,这里会为子组件做选项合并和钩子挂载的操作，并创建一个以<code>vue-component-</code>为标记的子<code>Vnode</code>,而异步组件的处理逻辑也是在这个阶段处理。</p>
+<pre><code class="js">// 创建子组件过程
   function createComponent (
     Ctor, // 子类构造器
     data,
@@ -53,7 +223,10 @@ var vm = new Vue(&#123;
 
     return vnode
   &#125;
-</code></pre><p><strong>工厂函数的用法使得<code>Vue.component(name, options)</code>的第二个参数不是一个对象，因此不论是全局注册还是局部注册，都不会执行<code>Vue.extend</code>生成一个子组件的构造器，</strong>所以<code>Ctor.cid</code>不会存在，代码会进入异步组件的分支。</p><p>异步组件分支的核心是<code>resolveAsyncComponent</code>,它的处理逻辑分支众多，我们先关心工厂函数处理部分。</p><pre><code class="js">function resolveAsyncComponent (
+</code></pre>
+<p><strong>工厂函数的用法使得<code>Vue.component(name, options)</code>的第二个参数不是一个对象，因此不论是全局注册还是局部注册，都不会执行<code>Vue.extend</code>生成一个子组件的构造器，</strong>所以<code>Ctor.cid</code>不会存在，代码会进入异步组件的分支。</p>
+<p>异步组件分支的核心是<code>resolveAsyncComponent</code>,它的处理逻辑分支众多，我们先关心工厂函数处理部分。</p>
+<pre><code class="js">function resolveAsyncComponent (
     factory,
     baseCtor
   ) &#123;
@@ -73,7 +246,15 @@ var vm = new Vue(&#123;
         : factory.resolved
     &#125;
   &#125;
-</code></pre><p>如果经常使用<code>promise</code>进行开发，我们很容易发现，这部分代码像极了<code>promsie</code>原理内部的实现，针对异步组件工厂函数的写法，大致可以总结出以下三个步骤：</p><ol><li>定义异步请求成功的函数处理，定义异步请求失败的函数处理；</li><li>执行组件定义的工厂函数；</li><li>同步返回请求成功的函数处理。</li></ol><p><code>resolve, reject</code>的实现，都是<code>once</code>方法执行的结果，所以我们先关注一下高级函数<code>once</code>的原理。<strong>为了防止当多个地方调用异步组件时，<code>resolve,reject</code>不会重复执行，<code>once</code>函数保证了函数在代码只执行一次。也就是说，<code>once</code>缓存了已经请求过的异步组件</strong></p><pre><code class="js">// once函数保证了这个调用函数只在系统中调用一次
+</code></pre>
+<p>如果经常使用<code>promise</code>进行开发，我们很容易发现，这部分代码像极了<code>promsie</code>原理内部的实现，针对异步组件工厂函数的写法，大致可以总结出以下三个步骤：</p>
+<ol>
+<li>定义异步请求成功的函数处理，定义异步请求失败的函数处理；</li>
+<li>执行组件定义的工厂函数；</li>
+<li>同步返回请求成功的函数处理。</li>
+</ol>
+<p><code>resolve, reject</code>的实现，都是<code>once</code>方法执行的结果，所以我们先关注一下高级函数<code>once</code>的原理。<strong>为了防止当多个地方调用异步组件时，<code>resolve,reject</code>不会重复执行，<code>once</code>函数保证了函数在代码只执行一次。也就是说，<code>once</code>缓存了已经请求过的异步组件</strong></p>
+<pre><code class="js">// once函数保证了这个调用函数只在系统中调用一次
 function once (fn) &#123;
   // 利用闭包特性将called作为标志位
   var called = false;
@@ -85,7 +266,9 @@ function once (fn) &#123;
     &#125;
   &#125;
 &#125;
-</code></pre><p>成功<code>resolve</code>和失败<code>reject</code>的详细处理逻辑如下：</p><pre><code class="js">// 成功处理
+</code></pre>
+<p>成功<code>resolve</code>和失败<code>reject</code>的详细处理逻辑如下： </p>
+<pre><code class="js">// 成功处理
 var resolve = once(function (res) &#123;
   // 转成组件构造器，并将其缓存到resolved属性中。
   factory.resolved = ensureCtor(res, baseCtor);
@@ -107,7 +290,9 @@ var reject = once(function (reason) &#123;
     forceRender(true);
   &#125;
 &#125;);
-</code></pre><p>异步组件加载完毕，会调用<code>resolve</code>定义的方法，方法会通过<code>ensureCtor</code>将加载完成的组件转换为组件构造器，并存储在<code>resolved</code>属性中，其中 <code>ensureCtor</code>的定义为：</p><pre><code class="js">function ensureCtor (comp, base) &#123;
+</code></pre>
+<p>异步组件加载完毕，会调用<code>resolve</code>定义的方法，方法会通过<code>ensureCtor</code>将加载完成的组件转换为组件构造器，并存储在<code>resolved</code>属性中，其中 <code>ensureCtor</code>的定义为：</p>
+<pre><code class="js">function ensureCtor (comp, base) &#123;
     if (comp.__esModule ||(hasSymbol &amp;&amp; comp[Symbol.toStringTag] === &#39;Module&#39;)) &#123;
       comp = comp.default;
     &#125;
@@ -116,7 +301,11 @@ var reject = once(function (reason) &#123;
       ? base.extend(comp)
       : comp
   &#125;
-</code></pre><p>组件构造器创建完毕，会进行一次视图的重新渲染，<strong>由于<code>Vue</code>是数据驱动视图渲染的，而组件在加载到完毕的过程中，并没有数据发生变化，因此需要手动强制更新视图。</strong><code>forceRender</code>函数的内部会拿到每个调用异步组件的实例，执行原型上的<code>$forceUpdate</code>方法，这部分的知识等到响应式系统时介绍。</p><p>异步组件加载失败后，会调用<code>reject</code>定义的方法，方法会提示并标记错误，最后同样会强制更新视图。</p><p>回到异步组件创建的流程，执行异步过程会同步为加载中的异步组件创建一个注释节点<code>Vnode</code></p><pre><code class="js">  function createComponent ()&#123;
+</code></pre>
+<p>组件构造器创建完毕，会进行一次视图的重新渲染，<strong>由于<code>Vue</code>是数据驱动视图渲染的，而组件在加载到完毕的过程中，并没有数据发生变化，因此需要手动强制更新视图。</strong><code>forceRender</code>函数的内部会拿到每个调用异步组件的实例，执行原型上的<code>$forceUpdate</code>方法，这部分的知识等到响应式系统时介绍。</p>
+<p>异步组件加载失败后，会调用<code>reject</code>定义的方法，方法会提示并标记错误，最后同样会强制更新视图。</p>
+<p>回到异步组件创建的流程，执行异步过程会同步为加载中的异步组件创建一个注释节点<code>Vnode</code></p>
+<pre><code class="js">  function createComponent ()&#123;
     ···
     // 创建异步组件函数
     Ctor = resolveAsyncComponent(asyncFactory, baseCtor);
@@ -125,15 +314,23 @@ var reject = once(function (reason) &#123;
       return createAsyncPlaceholder(asyncFactory,data,context,children,tag)
     &#125;
   &#125;
-</code></pre><p><code>createAsyncPlaceholder</code>的定义也很简单,其中<code>createEmptyVNode</code>之前有介绍过，是创建一个注释节点<code>vnode</code>，而<code>asyncFactory,asyncMeta</code>都是用来标注该节点为异步组件的临时节点和相关属性。</p><pre><code class="js">// 创建注释Vnode
+</code></pre>
+<p><code>createAsyncPlaceholder</code>的定义也很简单,其中<code>createEmptyVNode</code>之前有介绍过，是创建一个注释节点<code>vnode</code>，而<code>asyncFactory,asyncMeta</code>都是用来标注该节点为异步组件的临时节点和相关属性。</p>
+<pre><code class="js">// 创建注释Vnode
 function createAsyncPlaceholder (factory,data,context,children,tag) &#123;
   var node = createEmptyVNode();
   node.asyncFactory = factory;
   node.asyncMeta = &#123; data: data, context: context, children: children, tag: tag &#125;;
   return node
 &#125;
-</code></pre><p>执行<code>forceRender</code>触发组件的重新渲染过程时，又会再次调用<code>resolveAsyncComponent</code>,这时返回值<code>Ctor</code>不再为 <code>undefined</code>了，因此会正常走组件的<code>render,patch</code>过程。这时，旧的注释节点也会被取代。</p><h3 id="6-1-4-Promise异步组件"><a href="#6-1-4-Promise异步组件" class="headerlink" title="6.1.4 Promise异步组件"></a>6.1.4 Promise异步组件</h3><p>异步组件的第二种写法是在工厂函数中返回一个<code>promise</code>对象，我们知道<code>import</code>是<code>es6</code>引入模块加载的用法，但是<code>import</code>是一个静态加载的方法，它会优先模块内的其他语句执行。因此引入了<code>import()</code>,<code>import()</code>是一个运行时加载模块的方法，可以用来类比<code>require()</code>方法，区别在于前者是一个异步方法，后者是同步的，且<code>import()</code>会返回一个<code>promise</code>对象。</p><p>具体用法：</p><pre><code class="js">Vue.component(&#39;asyncComponent&#39;, () =&gt; import(&#39;./test.vue&#39;))
-</code></pre><p>源码依然走着异步组件处理分支，并且大部分的处理过程还是工厂函数的逻辑处理，区别在于执行异步函数后会返回一个<code>promise</code>对象，成功加载则执行<code>resolve</code>,失败加载则执行<code>reject</code>.</p><pre><code class="js">var res = factory(resolve, reject);
+</code></pre>
+<p>执行<code>forceRender</code>触发组件的重新渲染过程时，又会再次调用<code>resolveAsyncComponent</code>,这时返回值<code>Ctor</code>不再为 <code>undefined</code>了，因此会正常走组件的<code>render,patch</code>过程。这时，旧的注释节点也会被取代。</p>
+<h3 id="6-1-4-Promise异步组件"><a href="#6-1-4-Promise异步组件" class="headerlink" title="6.1.4 Promise异步组件"></a>6.1.4 Promise异步组件</h3><p>异步组件的第二种写法是在工厂函数中返回一个<code>promise</code>对象，我们知道<code>import</code>是<code>es6</code>引入模块加载的用法，但是<code>import</code>是一个静态加载的方法，它会优先模块内的其他语句执行。因此引入了<code>import()</code>,<code>import()</code>是一个运行时加载模块的方法，可以用来类比<code>require()</code>方法，区别在于前者是一个异步方法，后者是同步的，且<code>import()</code>会返回一个<code>promise</code>对象。</p>
+<p>具体用法：</p>
+<pre><code class="js">Vue.component(&#39;asyncComponent&#39;, () =&gt; import(&#39;./test.vue&#39;))
+</code></pre>
+<p>源码依然走着异步组件处理分支，并且大部分的处理过程还是工厂函数的逻辑处理，区别在于执行异步函数后会返回一个<code>promise</code>对象，成功加载则执行<code>resolve</code>,失败加载则执行<code>reject</code>.</p>
+<pre><code class="js">var res = factory(resolve, reject);
 // res是返回的promise
 if (isObject(res)) &#123;
   if (isPromise(res)) &#123;
@@ -143,11 +340,15 @@ if (isObject(res)) &#123;
     &#125;
   &#125;
 &#125;
-</code></pre><p>其中<code>promise</code>对象的判断最简单的是判断是否有<code>then</code>和<code>catch</code>方法：</p><pre><code class="js"> // 判断promise对象的方法
+</code></pre>
+<p>其中<code>promise</code>对象的判断最简单的是判断是否有<code>then</code>和<code>catch</code>方法：</p>
+<pre><code class="js"> // 判断promise对象的方法
   function isPromise (val) &#123;
     return (isDef(val) &amp;&amp; typeof val.then === &#39;function&#39; &amp;&amp; typeof val.catch === &#39;function&#39;)
   &#125;
-</code></pre><h3 id="6-1-5-高级异步组件"><a href="#6-1-5-高级异步组件" class="headerlink" title="6.1.5 高级异步组件"></a>6.1.5 高级异步组件</h3><p>为了在操作上更加灵活，比如使用<code>loading</code>组件处理组件加载时间过长的等待问题，使用<code>error</code>组件处理加载组件失败的错误提示等，<code>Vue</code>在2.3.0+版本新增了返回对象形式的异步组件格式，对象中可以定义需要加载的组件<code>component</code>,加载中显示的组件<code>loading</code>,加载失败的组件<code>error</code>,以及各种延时超时设置，源码同样进入异步组件分支。</p><pre><code class="js">Vue.component(&#39;asyncComponent&#39;, () =&gt; (&#123;
+</code></pre>
+<h3 id="6-1-5-高级异步组件"><a href="#6-1-5-高级异步组件" class="headerlink" title="6.1.5 高级异步组件"></a>6.1.5 高级异步组件</h3><p>为了在操作上更加灵活，比如使用<code>loading</code>组件处理组件加载时间过长的等待问题，使用<code>error</code>组件处理加载组件失败的错误提示等，<code>Vue</code>在2.3.0+版本新增了返回对象形式的异步组件格式，对象中可以定义需要加载的组件<code>component</code>,加载中显示的组件<code>loading</code>,加载失败的组件<code>error</code>,以及各种延时超时设置，源码同样进入异步组件分支。</p>
+<pre><code class="js">Vue.component(&#39;asyncComponent&#39;, () =&gt; (&#123;
   // 需要加载的组件 (应该是一个 `Promise` 对象)
   component: import(&#39;./MyComponent.vue&#39;),
   // 异步组件加载时使用的组件
@@ -160,7 +361,9 @@ if (isObject(res)) &#123;
   // 则使用加载失败时使用的组件。默认值是：`Infinity`
   timeout: 3000
 &#125;))
-</code></pre><p>异步组件函数执行后返回一个对象，并且对象的<code>component</code>执行会返回一个<code>promise</code>对象，因此进入高级异步组件处理分支。</p><pre><code class="js">if (isObject(res)) &#123;
+</code></pre>
+<p>异步组件函数执行后返回一个对象，并且对象的<code>component</code>执行会返回一个<code>promise</code>对象，因此进入高级异步组件处理分支。</p>
+<pre><code class="js">if (isObject(res)) &#123;
   if (isPromise(res)) &#123;&#125;
   // 返回对象，且res.component返回一个promise对象，进入分支
   // 高级异步组件处理分支
@@ -170,7 +373,9 @@ if (isObject(res)) &#123;
     ···
   &#125;
 &#125;
-</code></pre><p>异步组件会等待响应成功失败的结果，与此同时，代码继续同步执行。高级选项设置中如果设置了<code>error</code>和<code>loading</code>组件，会同时创建两个子类的构造器,</p><pre><code class="js">if (isDef(res.error)) &#123;
+</code></pre>
+<p>异步组件会等待响应成功失败的结果，与此同时，代码继续同步执行。高级选项设置中如果设置了<code>error</code>和<code>loading</code>组件，会同时创建两个子类的构造器,</p>
+<pre><code class="js">if (isDef(res.error)) &#123;
   // 异步错误时组件的处理，创建错误组件的子类构造器，并赋值给errorComp
   factory.errorComp = ensureCtor(res.error, baseCtor);
 &#125;
@@ -179,7 +384,9 @@ if (isDef(res.loading)) &#123;
   // 异步加载时组件的处理，创建错误组件的子类构造器，并赋值给errorComp
   factory.loadingComp = ensureCtor(res.loading, baseCtor);
 &#125;
-</code></pre><p>如果存在<code>delay</code>属性,则通过<code>settimeout</code>设置<code>loading</code>组件显示的延迟时间。<code>factory.loading</code>属性用来标注是否是显示<code>loading</code>组件。</p><pre><code class="js">if (res.delay === 0) &#123;
+</code></pre>
+<p>如果存在<code>delay</code>属性,则通过<code>settimeout</code>设置<code>loading</code>组件显示的延迟时间。<code>factory.loading</code>属性用来标注是否是显示<code>loading</code>组件。</p>
+<pre><code class="js">if (res.delay === 0) &#123;
   factory.loading = true;
 &#125; else &#123;
   // 超过时间会成功加载，则执行失败结果
@@ -190,13 +397,30 @@ if (isDef(res.loading)) &#123;
     &#125;
   &#125;, res.delay || 200);
 &#125;
-</code></pre><p>如果在<code>timeout</code>时间内，异步组件还未执行<code>resolve</code>的成功结果，即<code>resolve</code>没有赋值,则进行<code>reject</code>失败处理。</p><p>接下来依然是渲染注释节点或者渲染<code>loading</code>组件，等待异步处理结果，根据处理结果重新渲染视图节点，相似过程不再阐述。</p><h3 id="6-1-6-wepack异步组件用法"><a href="#6-1-6-wepack异步组件用法" class="headerlink" title="6.1.6 wepack异步组件用法"></a>6.1.6 wepack异步组件用法</h3><p><code>webpack</code>作为<code>Vue</code>应用构建工具的标配，我们需要知道<code>Vue</code>如何结合<code>webpack</code>进行异步组件的代码分离，并且需要关注分离后的文件名，这个名字在<code>webpack</code>中称为<code>chunkName</code>。<code>webpack</code>为异步组件的加载提供了两种写法。</p><ul><li><code>require.ensure</code>:它是<code>webpack</code>传统提供给异步组件的写法，在编译时，<code>webpack</code>会静态地解析代码中的 <code>require.ensure()</code>，同时将模块添加到一个分开的 <code>chunk</code> 中，其中函数的第三个参数为分离代码块的名字。修改后的代码写法如下：</li></ul><pre><code class="js">Vue.component(&#39;asyncComponent&#39;, function (resolve, reject) &#123;
+</code></pre>
+<p>如果在<code>timeout</code>时间内，异步组件还未执行<code>resolve</code>的成功结果，即<code>resolve</code>没有赋值,则进行<code>reject</code>失败处理。</p>
+<p>接下来依然是渲染注释节点或者渲染<code>loading</code>组件，等待异步处理结果，根据处理结果重新渲染视图节点，相似过程不再阐述。</p>
+<h3 id="6-1-6-wepack异步组件用法"><a href="#6-1-6-wepack异步组件用法" class="headerlink" title="6.1.6 wepack异步组件用法"></a>6.1.6 wepack异步组件用法</h3><p><code>webpack</code>作为<code>Vue</code>应用构建工具的标配，我们需要知道<code>Vue</code>如何结合<code>webpack </code>进行异步组件的代码分离，并且需要关注分离后的文件名，这个名字在<code>webpack</code>中称为<code>chunkName</code>。<code>webpack</code>为异步组件的加载提供了两种写法。</p>
+<ul>
+<li><code>require.ensure</code>:它是<code>webpack</code>传统提供给异步组件的写法，在编译时，<code>webpack</code>会静态地解析代码中的 <code>require.ensure()</code>，同时将模块添加到一个分开的 <code>chunk</code> 中，其中函数的第三个参数为分离代码块的名字。修改后的代码写法如下：</li>
+</ul>
+<pre><code class="js">Vue.component(&#39;asyncComponent&#39;, function (resolve, reject) &#123;
    require.ensure([], function () &#123;
      resolve(require(&#39;./test.vue&#39;));
    &#125;, &#39;asyncComponent&#39;); // asyncComponent为chunkname
 &#125;)
-</code></pre><ul><li><code>import(/* webpackChunkName: &quot;asyncComponent&quot; */, component)</code>: 有了<code>es6</code>,<code>import</code>的写法是现今官方最推荐的做法，其中通过注释<code>webpackChunkName</code>来指定分离后组件模块的命名。修改后的写法如下：</li></ul><pre><code class="js">Vue.component(&#39;asyncComponent&#39;, () =&gt; import(/* webpackChunkName: &quot;asyncComponent&quot; */, &#39;./test.vue&#39;))
-</code></pre><p>至此，我们已经掌握了所有异步组件的写法，并深入了解了其内部的实现细节。我相信全面的掌握异步组件对今后单页面性能优化方面会起到积极的指导作用。</p><h2 id="6-2-函数式组件"><a href="#6-2-函数式组件" class="headerlink" title="6.2 函数式组件"></a>6.2 函数式组件</h2><p><code>Vue</code>提供了一种可以让组件变为无状态、无实例的函数化组件。从原理上说，一般子组件都会经过实例化的过程，而单纯的函数组件并没有这个过程，它可以简单理解为一个中间层，只处理数据，不创建实例，也是由于这个行为，它的渲染开销会低很多。实际的应用场景是，当我们需要在多个组件中选择一个来代为渲染，或者在将<code>children,props,data</code>等数据传递给子组件前进行数据处理时，我们都可以用函数式组件来完成，它本质上也是对组件的一个外部包装。</p><h3 id="6-2-1-使用场景"><a href="#6-2-1-使用场景" class="headerlink" title="6.2.1 使用场景"></a>6.2.1 使用场景</h3><ul><li>定义两个组件对象，<code>test1，test2</code></li></ul><pre><code class="js">var test1 = &#123;
+</code></pre>
+<ul>
+<li><code>import(/* webpackChunkName: &quot;asyncComponent&quot; */, component)</code>: 有了<code>es6</code>,<code>import</code>的写法是现今官方最推荐的做法，其中通过注释<code>webpackChunkName</code>来指定分离后组件模块的命名。修改后的写法如下：</li>
+</ul>
+<pre><code class="js">Vue.component(&#39;asyncComponent&#39;, () =&gt; import(/* webpackChunkName: &quot;asyncComponent&quot; */, &#39;./test.vue&#39;))
+</code></pre>
+<p>至此，我们已经掌握了所有异步组件的写法，并深入了解了其内部的实现细节。我相信全面的掌握异步组件对今后单页面性能优化方面会起到积极的指导作用。</p>
+<h2 id="6-2-函数式组件"><a href="#6-2-函数式组件" class="headerlink" title="6.2 函数式组件"></a>6.2 函数式组件</h2><p><code>Vue</code>提供了一种可以让组件变为无状态、无实例的函数化组件。从原理上说，一般子组件都会经过实例化的过程，而单纯的函数组件并没有这个过程，它可以简单理解为一个中间层，只处理数据，不创建实例，也是由于这个行为，它的渲染开销会低很多。实际的应用场景是，当我们需要在多个组件中选择一个来代为渲染，或者在将<code>children,props,data</code>等数据传递给子组件前进行数据处理时，我们都可以用函数式组件来完成，它本质上也是对组件的一个外部包装。</p>
+<h3 id="6-2-1-使用场景"><a href="#6-2-1-使用场景" class="headerlink" title="6.2.1 使用场景"></a>6.2.1 使用场景</h3><ul>
+<li>定义两个组件对象，<code>test1，test2</code></li>
+</ul>
+<pre><code class="js">var test1 = &#123;
   props: [&#39;msg&#39;],
   render: function (createElement, context) &#123;
     return createElement(&#39;h1&#39;, this.msg)
@@ -208,7 +432,11 @@ var test2 = &#123;
     return createElement(&#39;h2&#39;, this.msg)
   &#125;
 &#125;
-</code></pre><ul><li>定义一个函数式组件，它会根据计算结果选择其中一个组件进行选项</li></ul><pre><code class="js">Vue.component(&#39;test3&#39;, &#123;
+</code></pre>
+<ul>
+<li>定义一个函数式组件，它会根据计算结果选择其中一个组件进行选项</li>
+</ul>
+<pre><code class="js">Vue.component(&#39;test3&#39;, &#123;
   // 函数式组件的标志 functional设置为true
   functional: true,
   props: [&#39;msg&#39;],
@@ -219,7 +447,11 @@ var test2 = &#123;
     return createElement(get(), context)
   &#125;
 &#125;)
-</code></pre><ul><li>函数式组件的使用</li></ul><pre><code class="js">&lt;test3 :msg=&quot;msg&quot; id=&quot;test&quot;&gt;
+</code></pre>
+<ul>
+<li>函数式组件的使用</li>
+</ul>
+<pre><code class="js">&lt;test3 :msg=&quot;msg&quot; id=&quot;test&quot;&gt;
 &lt;/test3&gt;
 new Vue(&#123;
   el: &#39;#app&#39;,
@@ -227,14 +459,22 @@ new Vue(&#123;
     msg: &#39;test&#39;
   &#125;
 &#125;)
-</code></pre><ul><li>最终渲染的结果为：</li></ul><pre><code class="js">&lt;h2&gt;test&lt;/h2&gt;
-</code></pre><h3 id="6-2-2-源码分析"><a href="#6-2-2-源码分析" class="headerlink" title="6.2.2 源码分析"></a>6.2.2 源码分析</h3><p>函数式组件会在组件的对象定义中，将<code>functional</code>属性设置为<code>true</code>，这个属性是区别普通组件和函数式组件的关键。同样的在遇到子组件占位符时，会进入<code>createComponent</code>进行子组件<code>Vnode</code>的创建。<strong>由于<code>functional</code>属性的存在，代码会进入函数式组件的分支中，并返回<code>createFunctionalComponent</code>调用的结果。</strong>注意，执行完<code>createFunctionalComponent</code>后，后续创建子<code>Vnode</code>的逻辑不会执行，这也是之后在创建真实节点过程中不会有子<code>Vnode</code>去实例化子组件的原因。(无实例)</p><pre><code class="js">function createComponent()&#123;
+</code></pre>
+<ul>
+<li>最终渲染的结果为：</li>
+</ul>
+<pre><code class="js">&lt;h2&gt;test&lt;/h2&gt;
+</code></pre>
+<h3 id="6-2-2-源码分析"><a href="#6-2-2-源码分析" class="headerlink" title="6.2.2 源码分析"></a>6.2.2 源码分析</h3><p>函数式组件会在组件的对象定义中，将<code>functional</code>属性设置为<code>true</code>，这个属性是区别普通组件和函数式组件的关键。同样的在遇到子组件占位符时，会进入<code>createComponent</code>进行子组件<code>Vnode</code>的创建。<strong>由于<code>functional</code>属性的存在，代码会进入函数式组件的分支中，并返回<code>createFunctionalComponent</code>调用的结果。</strong>注意，执行完<code>createFunctionalComponent</code>后，后续创建子<code>Vnode</code>的逻辑不会执行，这也是之后在创建真实节点过程中不会有子<code>Vnode</code>去实例化子组件的原因。(无实例)</p>
+<pre><code class="js">function createComponent()&#123;
   ···
   if (isTrue(Ctor.options.functional)) &#123;
     return createFunctionalComponent(Ctor, propsData, data, context, children)
   &#125;
 &#125;
-</code></pre><p><code>createFunctionalComponent</code>方法会对传入的数据进行检测和合并，实例化<code>FunctionalRenderContext</code>，最终调用函数式组件自定义的<code>render</code>方法执行渲染过程。</p><pre><code class="js">function createFunctionalComponent(
+</code></pre>
+<p><code>createFunctionalComponent</code>方法会对传入的数据进行检测和合并，实例化<code>FunctionalRenderContext</code>，最终调用函数式组件自定义的<code>render</code>方法执行渲染过程。</p>
+<pre><code class="js">function createFunctionalComponent(
   Ctor, // 函数式组件构造器
   propsData, // 传入组件的props
   data, // 占位符组件传入的attr属性
@@ -259,11 +499,16 @@ new Vue(&#123;
   // 调用函数式组件中自定的render函数
   var vnode = options.render.call(null, renderContext._c, renderContext)
 &#125;
-</code></pre><p>而<code>FunctionalRenderContext</code>这个类最终的目的是定义一个和真实组件渲染不同的<code>render</code>方法。</p><pre><code class="js">function FunctionalRenderContext() &#123;
+</code></pre>
+<p>而<code>FunctionalRenderContext</code>这个类最终的目的是定义一个和真实组件渲染不同的<code>render</code>方法。</p>
+<pre><code class="js">function FunctionalRenderContext() &#123;
   // 省略其他逻辑
   this._c = function (a, b, c, d) &#123; return createElement(contextVm, a, b, c, d, needNormalization); &#125;;
 &#125;
-</code></pre><p>执行<code>render</code>函数的过程，又会递归调用<code>createElement</code>的方法，这时的组件已经是真实的组件，开始执行正常的组件挂载流程。</p><p>问题：为什么函数式组件需要定义一个不同的<code>createElement</code>方法？- 函数式组件<code>createElement</code>和以往唯一的不同是，最后一个参数的不同，之前章节有说到，<code>createElement</code>会根据最后一个参数决定是否对子<code>Vnode</code>进行拍平，一般情况下，<code>children</code>编译生成结果都是<code>Vnode</code>类型，只有函数式组件比较特殊，它可以返回一个数组，这时候拍平就是有必要的。我们看下面的例子：</p><pre><code class="js">Vue.component(&#39;test&#39;, &#123;  
+</code></pre>
+<p>执行<code>render</code>函数的过程，又会递归调用<code>createElement</code>的方法，这时的组件已经是真实的组件，开始执行正常的组件挂载流程。</p>
+<p>问题：为什么函数式组件需要定义一个不同的<code>createElement</code>方法？- 函数式组件<code>createElement</code>和以往唯一的不同是，最后一个参数的不同，之前章节有说到，<code>createElement</code>会根据最后一个参数决定是否对子<code>Vnode</code>进行拍平，一般情况下，<code>children</code>编译生成结果都是<code>Vnode</code>类型，只有函数式组件比较特殊，它可以返回一个数组，这时候拍平就是有必要的。我们看下面的例子：</p>
+<pre><code class="js">Vue.component(&#39;test&#39;, &#123;  
   functional: true,  
   render: function (createElement, context) &#123;  
     return context.slots().default  
@@ -274,4 +519,387 @@ new Vue(&#123;
      &lt;p&gt;slot1&lt;/p&gt; 
      &lt;p&gt;slot&lt;/p&gt; 
 &lt;/test&gt;
-</code></pre><p>此时函数式组件<code>test</code>的<code>render</code>函数返回的是两个<code>slot</code>的<code>Vnode</code>，它是以数组的形式存在的,这就是需要拍平的场景。</p><p>简单总结一下函数式组件，从源码中可以看出，函数式组件并不会像普通组件那样有实例化组件的过程，因此包括组件的生命周期，组件的数据管理这些过程都没有，它只会原封不动的接收传递给组件的数据做处理，并渲染需要的内容。因此作为纯粹的函数可以也大大降低渲染的开销。</p><h2 id="6-3-小结"><a href="#6-3-小结" class="headerlink" title="6.3 小结"></a>6.3 小结</h2><p>这一小节在组件基础之上介绍了两个进阶的用法，异步组件和函数式组件。它们都是为了解决某些类型场景引入的高级组件用法。其中异步组件是首屏性能优化的一个解决方案，并且<code>Vue</code>提供了多达三种的使用方法，高级配置的用法更让异步组件的使用更加灵活。当然大部分情况下，我们会结合<code>webpack</code>进行使用。另外，函数式组件在多组件中选择渲染内容的场景作用非凡，由于是一个无实例的组件，它在渲染开销上比普通组件的性能更好。</p><div class="tags"><a href="/tags/Vue/" rel="tag"><i class="ic i-tag"></i> Vue</a></div></div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i> </span><span class="text">更新于</span> <time title="修改时间：2023-08-03 15:32:13" itemprop="dateModified" datetime="2023-08-03T15:32:13+08:00">2023-08-03</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i> 赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img data-src="/images/wechatpay.png" alt="sanxin98 微信支付"><p>微信支付</p></div><div><img data-src="/images/alipay.png" alt="sanxin98 支付宝"><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者： </strong>sanxin98 <i class="ic i-at"><em>@</em></i>死肥宅</li><li class="link"><strong>本文链接：</strong> <a href="https://pink-png.github.io/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" title="Step.6 组件高级用法">https://pink-png.github.io/computer-science/vueyuanma/dosc/6组件高级用法/</a></li><li class="license"><strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicliwyw55j20zk0m8hdt.jpg" title="Step.5 组件基础剖析"><span class="type">上一篇</span> <span class="category"><i class="ic i-flag"></i> vue2.x源码</span><h3>Step.5 组件基础剖析</h3></a></div><div class="item right"><a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclxp31goj20zk0m8qv5.jpg" title="Step.7 深入响应式系统构建-上"><span class="type">下一篇</span> <span class="category"><i class="ic i-flag"></i> vue2.x源码</span><h3>Step.7 深入响应式系统构建-上</h3></a></div></div><div class="wrap" id="comments"></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">6.1 异步组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-1-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">6.1.1 使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-2-%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">6.1.2 工厂函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-3-%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">6.1.3 流程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-4-Promise%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">6.1.4 Promise异步组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-5-%E9%AB%98%E7%BA%A7%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text">6.1.5 高级异步组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-6-wepack%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6%E7%94%A8%E6%B3%95"><span class="toc-number">1.6.</span> <span class="toc-text">6.1.6 wepack异步组件用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">6.2 函数式组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-1-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">2.1.</span> <span class="toc-text">6.2.1 使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-2-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">2.2.</span> <span class="toc-text">6.2.2 源码分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E5%B0%8F%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">6.3 小结</span></a></li></ol></div><div class="related panel pjax" data-title="系列文章"><ul><li><a href="/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" rel="bookmark" title="Step.1 丰富的选项合并策略">Step.1 丰富的选项合并策略</a></li><li><a href="/computer-science/vueyuanma/dosc/2%E5%9F%BA%E7%A1%80%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B/" rel="bookmark" title="Step.2 基础的数据代理检测">Step.2 基础的数据代理检测</a></li><li><a href="/computer-science/vueyuanma/dosc/3%E5%AE%9E%E4%BE%8B%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91/" rel="bookmark" title="Step.3 实例挂载流程和模板编译">Step.3 实例挂载流程和模板编译</a></li><li><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" rel="bookmark" title="Step.4 完整渲染流程">Step.4 完整渲染流程</a></li><li><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" rel="bookmark" title="Step.5 组件基础剖析">Step.5 组件基础剖析</a></li><li class="active"><a href="/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" rel="bookmark" title="Step.6 组件高级用法">Step.6 组件高级用法</a></li><li><a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" rel="bookmark" title="Step.7 深入响应式系统构建-上">Step.7 深入响应式系统构建-上</a></li><li><a href="/computer-science/vueyuanma/dosc/8%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%AD/" rel="bookmark" title="Step.8 深入响应式系统构建-中">Step.8 深入响应式系统构建-中</a></li><li><a href="/computer-science/vueyuanma/dosc/9%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8B/" rel="bookmark" title="Step.9 深入响应式系统构建-下">Step.9 深入响应式系统构建-下</a></li><li><a href="/computer-science/vueyuanma/dosc/10%E6%9D%A5%EF%BC%8C%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%AE%9E%E7%8E%B0diff%E7%AE%97%E6%B3%95/" rel="bookmark" title="Step.10 来，跟我一起实现diff算法">Step.10 来，跟我一起实现diff算法</a></li><li><a href="/computer-science/vueyuanma/dosc/11%E6%8F%AD%E7%A7%98Vue%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" rel="bookmark" title="Step.11 揭秘Vue的事件机制">Step.11 揭秘Vue的事件机制</a></li><li><a href="/computer-science/vueyuanma/dosc/12vue%E6%8F%92%E6%A7%BD%EF%BC%8C%E4%BD%A0%E6%83%B3%E4%BA%86%E8%A7%A3%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C/" rel="bookmark" title="Step.12 vue插槽，你想了解的都在这里">Step.12 vue插槽，你想了解的都在这里</a></li><li><a href="/computer-science/vueyuanma/dosc/13%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3v-model%E7%9A%84%E8%AF%AD%E6%B3%95%E7%B3%96%E4%BA%86%E5%90%97/" rel="bookmark" title="Step.13 你真的了解v-model的语法糖了吗">Step.13 你真的了解v-model的语法糖了吗</a></li><li><a href="/computer-science/vueyuanma/dosc/14%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90/" rel="bookmark" title="Step.14 动态组件的深入分析">Step.14 动态组件的深入分析</a></li><li><a href="/computer-science/vueyuanma/dosc/15%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8A/" rel="bookmark" title="Step.15 彻底搞懂Vue中keep-alive的魔法-上">Step.15 彻底搞懂Vue中keep-alive的魔法-上</a></li><li><a href="/computer-science/vueyuanma/dosc/16%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8B/" rel="bookmark" title="Step.16 彻底搞懂Vue中keep-alive的魔法-上">Step.16 彻底搞懂Vue中keep-alive的魔法-上</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="image" itemprop="image" alt="sanxin98" data-src="/images/avatar.jpg"><p class="name" itemprop="name">sanxin98</p><div class="description" itemprop="description">编程 & 生活</div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">96</span> <span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">40</span> <span class="name">分类</span></a></div><div class="item tags"><a href="/tags/"><span class="count">29</span> <span class="name">标签</span></a></div></nav><div class="social"><span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BpbmstcG5n" title="https:&#x2F;&#x2F;github.com&#x2F;pink-png"><i class="ic i-github"></i></span></div><ul class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li><li class="item dropdown"><a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a><ul class="submenu"><li class="item"><a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a></li><li class="item"><a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a></li><li class="item"><a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a></li></ul></li></ul></div></div></div><ul id="quick"><li class="prev pjax"><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/vueyuanma/" title="分类于 Vue">Vue</a></div><span><a href="/front-end/vue2.x%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80/" title="vue2.x常用基础">vue2.x常用基础</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" title="分类于 浏览器">浏览器</a></div><span><a href="/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" title="浏览器缓存机制">浏览器缓存机制</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/react0-1/" title="分类于 react">react</a></div><span><a href="/front-end/React%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80/" title="React基础">React基础</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a></div><span><a href="/performance-optimization/%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E2%BC%8F%E4%B8%87%E6%9D%A1%E6%95%B0%E6%8D%AE%E5%B9%B6%E4%B8%8D%E5%8D%A1%E4%BD%8F%E7%95%8C%E2%BE%AF/" title="如何渲染⼏万条数据并不卡住界⾯">如何渲染⼏万条数据并不卡住界⾯</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a></div><span><a href="/performance-optimization/%E6%8F%90%E9%AB%98Webpack%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6/" title="webpack性能优化">webpack性能优化</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a></div><span><a href="/computer-science/vueyuanma/dosc/9%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8B/" title="Step.9 深入响应式系统构建-下">Step.9 深入响应式系统构建-下</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/spring/" title="分类于 Spring">Spring</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/spring/Spring%E5%9F%BA%E7%A1%80/" title="分类于 Spring基础">Spring基础</a></div><span><a href="/computer-science/spring/docssp/Spring-04/" title="Step.4">Step.4</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" title="分类于 微信小程序">微信小程序</a></div><span><a href="/front-end/%E5%BE%AE%E4%BF%A1%E2%BC%A9%E7%A8%8B%E5%BA%8F/" title="微信小程序">微信小程序</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a></div><span><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" title="Step.4 完整渲染流程">Step.4 完整渲染流程</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a></div><span><a href="/js-base/js%E6%B5%85%E8%B0%88call%E5%92%8Capply%E5%92%8Cbind/" title="浅谈call和apply和bind">浅谈call和apply和bind</a></span></li></ul></div><div><h2>最新评论</h2><ul class="leancloud-recent-comment"></ul></div></div><div class="status"><div class="copyright">&copy; 2010 – <span itemprop="copyrightYear">2024</span> <span class="with-love"><i class="ic i-sakura rotate"></i> </span><span class="author" itemprop="copyrightHolder">sanxin98 @ Yume Shoka</span></div><div class="powered-by">基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL={path:"computer-science/vueyuanma/dosc/6组件高级用法/",favicon:{show:"（●´3｀●）やれやれだぜ",hide:"(´Д｀)大変だ！"},search:{placeholder:"文章搜索",empty:"关于 「 ${query} 」，什么也没搜到",stats:"${time} ms 内找到 ${hits} 条结果"},valine:{placeholder:"1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"},fancybox:!0,copyright:'复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',ignores:[function(e){return e.includes("#")},function(e){return new RegExp(LOCAL.path+"$").test(e)}]}</script><script src="https://cdn.polyfill.io/v2/polyfill.js"></script><script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script><script src="/js/app.js?v=0.2.5"></script></body></html>
+</code></pre>
+<p>此时函数式组件<code>test</code>的<code>render</code>函数返回的是两个<code>slot</code>的<code>Vnode</code>，它是以数组的形式存在的,这就是需要拍平的场景。</p>
+<p>简单总结一下函数式组件，从源码中可以看出，函数式组件并不会像普通组件那样有实例化组件的过程，因此包括组件的生命周期，组件的数据管理这些过程都没有，它只会原封不动的接收传递给组件的数据做处理，并渲染需要的内容。因此作为纯粹的函数可以也大大降低渲染的开销。</p>
+<h2 id="6-3-小结"><a href="#6-3-小结" class="headerlink" title="6.3 小结"></a>6.3 小结</h2><p>这一小节在组件基础之上介绍了两个进阶的用法，异步组件和函数式组件。它们都是为了解决某些类型场景引入的高级组件用法。其中异步组件是首屏性能优化的一个解决方案，并且<code>Vue</code>提供了多达三种的使用方法，高级配置的用法更让异步组件的使用更加灵活。当然大部分情况下，我们会结合<code>webpack</code>进行使用。另外，函数式组件在多组件中选择渲染内容的场景作用非凡，由于是一个无实例的组件，它在渲染开销上比普通组件的性能更好。</p>
+
+      <div class="tags">
+          <a href="/tags/Vue/" rel="tag"><i class="ic i-tag"></i> Vue</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-08-03 15:32:13" itemprop="dateModified" datetime="2023-08-03T15:32:13+08:00">2023-08-03</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="sanxin98 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="sanxin98 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>sanxin98 <i class="ic i-at"><em>@</em></i>死肥宅
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://pink-png.github.io/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" title="Step.6 组件高级用法">https://pink-png.github.io/computer-science/vueyuanma/dosc/6组件高级用法/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclxp31goj20zk0m8qv5.jpg" title="Step.5 组件基础剖析">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> vue2.x源码</span>
+  <h3>Step.5 组件基础剖析</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclhfehz7j20zk0m8u0x.jpg" title="Step.7 深入响应式系统构建-上">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> vue2.x源码</span>
+  <h3>Step.7 深入响应式系统构建-上</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">6.1 异步组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-1-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">6.1.1 使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-2-%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">6.1.2 工厂函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-3-%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">6.1.3 流程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-4-Promise%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">6.1.4 Promise异步组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-5-%E9%AB%98%E7%BA%A7%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text">6.1.5 高级异步组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-6-wepack%E5%BC%82%E6%AD%A5%E7%BB%84%E4%BB%B6%E7%94%A8%E6%B3%95"><span class="toc-number">1.6.</span> <span class="toc-text">6.1.6 wepack异步组件用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">6.2 函数式组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-1-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">2.1.</span> <span class="toc-text">6.2.1 使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-2-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">2.2.</span> <span class="toc-text">6.2.2 源码分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E5%B0%8F%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">6.3 小结</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" rel="bookmark" title="Step.1 丰富的选项合并策略">Step.1 丰富的选项合并策略</a></li><li><a href="/computer-science/vueyuanma/dosc/2%E5%9F%BA%E7%A1%80%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B/" rel="bookmark" title="Step.2 基础的数据代理检测">Step.2 基础的数据代理检测</a></li><li><a href="/computer-science/vueyuanma/dosc/3%E5%AE%9E%E4%BE%8B%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91/" rel="bookmark" title="Step.3 实例挂载流程和模板编译">Step.3 实例挂载流程和模板编译</a></li><li><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" rel="bookmark" title="Step.4 完整渲染流程">Step.4 完整渲染流程</a></li><li><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" rel="bookmark" title="Step.5 组件基础剖析">Step.5 组件基础剖析</a></li><li class="active"><a href="/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" rel="bookmark" title="Step.6 组件高级用法">Step.6 组件高级用法</a></li><li><a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" rel="bookmark" title="Step.7 深入响应式系统构建-上">Step.7 深入响应式系统构建-上</a></li><li><a href="/computer-science/vueyuanma/dosc/8%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%AD/" rel="bookmark" title="Step.8 深入响应式系统构建-中">Step.8 深入响应式系统构建-中</a></li><li><a href="/computer-science/vueyuanma/dosc/9%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8B/" rel="bookmark" title="Step.9 深入响应式系统构建-下">Step.9 深入响应式系统构建-下</a></li><li><a href="/computer-science/vueyuanma/dosc/10%E6%9D%A5%EF%BC%8C%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%AE%9E%E7%8E%B0diff%E7%AE%97%E6%B3%95/" rel="bookmark" title="Step.10 来，跟我一起实现diff算法">Step.10 来，跟我一起实现diff算法</a></li><li><a href="/computer-science/vueyuanma/dosc/11%E6%8F%AD%E7%A7%98Vue%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" rel="bookmark" title="Step.11 揭秘Vue的事件机制">Step.11 揭秘Vue的事件机制</a></li><li><a href="/computer-science/vueyuanma/dosc/12vue%E6%8F%92%E6%A7%BD%EF%BC%8C%E4%BD%A0%E6%83%B3%E4%BA%86%E8%A7%A3%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C/" rel="bookmark" title="Step.12 vue插槽，你想了解的都在这里">Step.12 vue插槽，你想了解的都在这里</a></li><li><a href="/computer-science/vueyuanma/dosc/13%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3v-model%E7%9A%84%E8%AF%AD%E6%B3%95%E7%B3%96%E4%BA%86%E5%90%97/" rel="bookmark" title="Step.13 你真的了解v-model的语法糖了吗">Step.13 你真的了解v-model的语法糖了吗</a></li><li><a href="/computer-science/vueyuanma/dosc/14%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90/" rel="bookmark" title="Step.14 动态组件的深入分析">Step.14 动态组件的深入分析</a></li><li><a href="/computer-science/vueyuanma/dosc/15%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8A/" rel="bookmark" title="Step.15 彻底搞懂Vue中keep-alive的魔法-上">Step.15 彻底搞懂Vue中keep-alive的魔法-上</a></li><li><a href="/computer-science/vueyuanma/dosc/16%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8B/" rel="bookmark" title="Step.16 彻底搞懂Vue中keep-alive的魔法-上">Step.16 彻底搞懂Vue中keep-alive的魔法-上</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="sanxin98"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">sanxin98</p>
+  <div class="description" itemprop="description">编程 & 生活</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">97</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">41</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">29</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BpbmstcG5n" title="https:&#x2F;&#x2F;github.com&#x2F;pink-png"><i class="ic i-github"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/%E9%A1%B9%E7%9B%AE/" title="分类于 项目">项目</a>
+</div>
+
+    <span><a href="/computer-science/fangweix/fwx/" title="仿微信聊天源码解析（uniapp + springboot）">仿微信聊天源码解析（uniapp + springboot）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a>
+</div>
+
+    <span><a href="/js-base/event%20loop/" title="event loop">event loop</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a>
+</div>
+
+    <span><a href="/js-base/js%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0%E5%92%8C%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/" title="javascript全局函数和全局变量">javascript全局函数和全局变量</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/react0-1/" title="分类于 react">react</a>
+</div>
+
+    <span><a href="/computer-science/react0-1/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="step.5 react性能优化">step.5 react性能优化</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
+</div>
+
+    <span><a href="/computer-science/vueyuanma/dosc/13%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3v-model%E7%9A%84%E8%AF%AD%E6%B3%95%E7%B3%96%E4%BA%86%E5%90%97/" title="Step.13 你真的了解v-model的语法糖了吗">Step.13 你真的了解v-model的语法糖了吗</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" title="分类于 网络请求">网络请求</a>
+</div>
+
+    <span><a href="/front-end/ajax%E3%80%81axios%E3%80%81fetch%E5%8C%BA%E5%88%AB/" title="ajax、axios、fetch区别">ajax、axios、fetch区别</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/vueyuanma/" title="分类于 Vue">Vue</a>
+</div>
+
+    <span><a href="/front-end/vue3.x%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80/" title="vue3.x常用基础">vue3.x常用基础</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" title="分类于 微信公众号">微信公众号</a>
+</div>
+
+    <span><a href="/front-end/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7html%20js%20%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95/" title="微信公众号html js 实现登录">微信公众号html js 实现登录</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a>
+</div>
+
+    <span><a href="/js-base/js%E5%85%B3%E4%BA%8EArray%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" title="关于Array处理数据的方法总结">关于Array处理数据的方法总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a>
+</div>
+
+    <span><a href="/performance-optimization/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A6%96%E5%B1%8F%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="小程序首屏性能优化">小程序首屏性能优化</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">sanxin98 @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'computer-science/vueyuanma/dosc/6组件高级用法/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: {"placeholder":"1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"},fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

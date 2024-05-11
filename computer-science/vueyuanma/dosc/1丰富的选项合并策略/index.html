@@ -1,4 +1,167 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#FFF"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png"><link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" type="application/rss+xml" title="死肥宅" href="https://pink-png.github.io/rss.xml"><link rel="alternate" type="application/atom+xml" title="死肥宅" href="https://pink-png.github.io/atom.xml"><link rel="alternate" type="application/json" title="死肥宅" href="https://pink-png.github.io/feed.json"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="/css/app.css?v=0.2.5"><meta name="keywords" content="Vue"><link rel="canonical" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/"><title>Step.1 丰富的选项合并策略 - vue2.x源码 - Vue - 计算机科学 | Yume Shoka = 死肥宅 = 肥宅快乐水</title><meta name="generator" content="Hexo 6.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">Step.1 丰富的选项合并策略</h1><div class="meta"><span class="item" title="创建时间：2020-03-13 09:30:48"><span class="icon"><i class="ic i-calendar"></i> </span><span class="text">发表于</span> <time itemprop="dateCreated datePublished" datetime="2020-03-13T09:30:48+08:00">2020-03-13</time></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span> <span class="line"></span> <span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">Yume Shoka</a></li></ul><ul class="right"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div id="imgs" class="pjax"><ul><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gipetfk5zwj20zk0m8e81.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclfb3vzhj20zk0m8wny.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gipeu7txpzj20zk0m81kx.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gipexj2jgzj20zk0m8b09.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclga70tsj20zk0m84mr.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gipeyhsblkj20zk0m81kx.jpg"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"/><use xlink:href="#gentle-wave" x="48" y="3"/><use xlink:href="#gentle-wave" x="48" y="5"/><use xlink:href="#gentle-wave" x="48" y="7"/></g></svg></div><main><div class="inner"><div id="main" class="pjax"><div class="article wrap"><div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i> <span><a href="/">首页</a></span><i class="ic i-angle-right"></i> <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/" itemprop="item" rel="index" title="分类于 计算机科学"><span itemprop="name">计算机科学</span></a><meta itemprop="position" content="1"></span><i class="ic i-angle-right"></i> <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/" itemprop="item" rel="index" title="分类于 Vue"><span itemprop="name">Vue</span></a><meta itemprop="position" content="2"></span><i class="ic i-angle-right"></i> <span class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/dosc/" itemprop="item" rel="index" title="分类于 vue2.x源码"><span itemprop="name">vue2.x源码</span></a><meta itemprop="position" content="3"></span></div><article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/avatar.jpg"><meta itemprop="name" content="sanxin98"><meta itemprop="description" content="肥宅快乐水, 编程 & 生活"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="死肥宅"></span><div class="body md" itemprop="articleBody"><h2 id="1-1-Vue的引入"><a href="#1-1-Vue的引入" class="headerlink" title="1.1 Vue的引入"></a>1.1 Vue的引入</h2><p><code>Vue</code>的使用按照官方的说法支持<code>CDN</code>和<code>NPM</code>两种方式，<code>CDN</code>的方式是以<code>script</code>的方式将打包好的<code>vue.js</code>引入页面脚本中，而<code>NPM</code>的方式是和诸如 <code>webpack</code> 或 <code>Browserify</code> 模块打包器配置使用，以<code>npm install vue</code>的方式引入，这也是我们开发应用的主要形式。而从单纯分析源码思路和实现细节的角度来讲，打包后的<code>vue.js</code>在分析和提炼源码方面会更加方便，所以这个系列的源码分析，使用的是打包后的<code>vue</code>脚本，<strong>版本号是<code>v2.6.8</code></strong></p><h3 id="1-1-1-基础使用"><a href="#1-1-1-基础使用" class="headerlink" title="1.1.1 基础使用"></a>1.1.1 基础使用</h3><p>分析的开始当然是<code>vue</code>的基础使用，我们引入了<code>vue.js</code>并且<code>new</code>了一个<code>Vue</code>实例，并将它挂载到<code>#app</code>上，这是最基础的用法。</p><pre><code class="js">&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="死肥宅" href="https://pink-png.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="死肥宅" href="https://pink-png.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="死肥宅" href="https://pink-png.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="Vue" />
+
+
+<link rel="canonical" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/">
+
+
+
+  <title>
+Step.1 丰富的选项合并策略 - vue2.x源码 - Vue - 计算机科学 |
+Yume Shoka = 死肥宅 = 肥宅快乐水</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Step.1 丰富的选项合并策略
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2020-03-13 09:30:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2020-03-13T09:30:48+08:00">2020-03-13</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gipexoj0moj20zk0m8kgu.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1giclfb3vzhj20zk0m8wny.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gipewkhf1zj20zk0m81kx.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gipexw3o58j20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1giciusoyjnj219g0u0x56.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gicliwyw55j20zk0m8hdt.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/" itemprop="item" rel="index" title="分类于 计算机科学"><span itemprop="name">计算机科学</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/" itemprop="item" rel="index" title="分类于 Vue"><span itemprop="name">Vue</span></a>
+<meta itemprop="position" content="2" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/dosc/" itemprop="item" rel="index" title="分类于 vue2.x源码"><span itemprop="name">vue2.x源码</span></a>
+<meta itemprop="position" content="3" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="sanxin98">
+    <meta itemprop="description" content="肥宅快乐水, 编程 & 生活">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="死肥宅">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="1-1-Vue的引入"><a href="#1-1-Vue的引入" class="headerlink" title="1.1 Vue的引入"></a>1.1 Vue的引入</h2><p><code>Vue</code>的使用按照官方的说法支持<code>CDN</code>和<code>NPM</code>两种方式，<code>CDN</code>的方式是以<code>script</code>的方式将打包好的<code>vue.js</code>引入页面脚本中，而<code>NPM</code>的方式是和诸如 <code>webpack</code> 或 <code>Browserify</code> 模块打包器配置使用，以<code>npm install vue</code>的方式引入，这也是我们开发应用的主要形式。而从单纯分析源码思路和实现细节的角度来讲，打包后的<code>vue.js</code>在分析和提炼源码方面会更加方便，所以这个系列的源码分析，使用的是打包后的<code>vue</code>脚本，<strong>版本号是<code>v2.6.8</code></strong></p>
+<h3 id="1-1-1-基础使用"><a href="#1-1-1-基础使用" class="headerlink" title="1.1.1 基础使用"></a>1.1.1 基础使用</h3><p>分析的开始当然是<code>vue</code>的基础使用，我们引入了<code>vue.js</code>并且<code>new</code>了一个<code>Vue</code>实例，并将它挂载到<code>#app</code>上，这是最基础的用法。</p>
+<pre><code class="js">&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
 var vm = new Vue(&#123;
@@ -8,7 +171,10 @@ var vm = new Vue(&#123;
   &#125;,
 &#125;)
 &lt;/script&gt;
-</code></pre><p>虽然这一节的重点是阐述<code>Vue</code>的选项配置，从选项配置入手也是我们从零开始品读源码最容易开始的思路，但是为了分析的完整性，避免后续出现未知的概念，有必要先大致了解一下<code>vue</code>在脚本引入之后分别做了什么。</p><h3 id="1-1-2-Vue构造器"><a href="#1-1-2-Vue构造器" class="headerlink" title="1.1.2 Vue构造器"></a>1.1.2 Vue构造器</h3><p>打包后的源码是遵从<code>UMD</code>规范的，它是<code>commonjs</code>和<code>amd</code>的整合。而<code>Vue</code>的本质是一个构造器,并且它保证了只能通过<code>new</code>实例的形式去调用，而不能直接通过函数的形式使用。</p><pre><code class="js">(function (global, factory) &#123;
+</code></pre>
+<p>虽然这一节的重点是阐述<code>Vue</code>的选项配置，从选项配置入手也是我们从零开始品读源码最容易开始的思路，但是为了分析的完整性，避免后续出现未知的概念，有必要先大致了解一下<code>vue</code>在脚本引入之后分别做了什么。</p>
+<h3 id="1-1-2-Vue构造器"><a href="#1-1-2-Vue构造器" class="headerlink" title="1.1.2 Vue构造器"></a>1.1.2 Vue构造器</h3><p>打包后的源码是遵从<code>UMD</code>规范的，它是<code>commonjs</code>和<code>amd</code>的整合。而<code>Vue</code>的本质是一个构造器,并且它保证了只能通过<code>new</code>实例的形式去调用，而不能直接通过函数的形式使用。</p>
+<pre><code class="js">(function (global, factory) &#123;
   // 遵循UMD规范
   typeof exports === &#39;object&#39; &amp;&amp; typeof module !== &#39;undefined&#39; ? module.exports = factory() :
   typeof define === &#39;function&#39; &amp;&amp; define.amd ? define(factory) :
@@ -26,7 +192,10 @@ var vm = new Vue(&#123;
   &#125;
   return Vue
 &#125;))
-</code></pre><h3 id="1-1-3-定义原型属性方法"><a href="#1-1-3-定义原型属性方法" class="headerlink" title="1.1.3 定义原型属性方法"></a>1.1.3 定义原型属性方法</h3><p>Vue之所以能适应基础的开发场景，除了经常提到的支持组件化开发，以及完善的响应式系统等外，还有重要的一点是它提供了丰富的<code>api</code>方法，不管是静态还是原型方法，它们都丰富到足以满足我们日常基础的开发需求。所以熟练阅读<span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvYXBpLw==">vue-api</span>文档并精准使用<code>api</code>方法是迈向熟练开发的前提。接下来我们看看这些方法属性是在哪里定义的，<strong>注意，该小节会忽略大部分属性方法具体的实现，这些详细的细节会贯穿在后续系列的分析中</strong>。</p><p>首先是原型上的属性方法，在构造函数的定义之后，有这样五个函数，他们分别针对不同场景定义了<code>Vue</code>原型上的属性和方法。</p><pre><code class="js">  // 定义Vue原型上的init方法(内部方法)
+</code></pre>
+<h3 id="1-1-3-定义原型属性方法"><a href="#1-1-3-定义原型属性方法" class="headerlink" title="1.1.3 定义原型属性方法"></a>1.1.3 定义原型属性方法</h3><p>Vue之所以能适应基础的开发场景，除了经常提到的支持组件化开发，以及完善的响应式系统等外，还有重要的一点是它提供了丰富的<code>api</code>方法，不管是静态还是原型方法，它们都丰富到足以满足我们日常基础的开发需求。所以熟练阅读<span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvYXBpLw==">vue-api</span>文档并精准使用<code>api</code>方法是迈向熟练开发的前提。接下来我们看看这些方法属性是在哪里定义的，<strong>注意，该小节会忽略大部分属性方法具体的实现，这些详细的细节会贯穿在后续系列的分析中</strong>。</p>
+<p>首先是原型上的属性方法，在构造函数的定义之后，有这样五个函数，他们分别针对不同场景定义了<code>Vue</code>原型上的属性和方法。</p>
+<pre><code class="js">  // 定义Vue原型上的init方法(内部方法)
   initMixin(Vue);
   // 定义原型上跟数据相关的属性方法
   stateMixin(Vue);
@@ -36,12 +205,15 @@ var vm = new Vue(&#123;
   lifecycleMixin(Vue);
   // 定义渲染相关的函数
   renderMixin(Vue); 
-</code></pre><pre><code class="text">initMixin: 将 init 方法添加到 Vue 实例的原型上。init 方法是 Vue 实例的内部方法，用于初始化实例的各种属性和调用其他初始化方法。
+</code></pre>
+<pre><code class="text">initMixin: 将 init 方法添加到 Vue 实例的原型上。init 方法是 Vue 实例的内部方法，用于初始化实例的各种属性和调用其他初始化方法。
 stateMixin: 添加与数据相关的属性和方法到 Vue 实例的原型上。可能包括$data、$props、$watch 等一些与数据操作和监听相关的方法。
 eventsMixin: 添加与事件相关的属性和方法到 Vue 实例的原型上。可能包括$on、$once、$off、$emit 等一些用于事件处理的方法。
 lifecycleMixin: 添加与生命周期相关的方法到 Vue 实例的原型上。可能包括$mount、$destroy 等一些用于生命周期管理的方法。
 renderMixin: 添加与渲染相关的函数到 Vue 实例的原型上。可能包括渲染函数的生成、虚拟 DOM 的创建等一些与渲染相关的方法。
-</code></pre><p>我们一个个看，首先<code>initMixin</code>定义了<strong>内部在实例化<code>Vue</code>时会执行的初始化代码</strong>，它是一个内部使用的方法。</p><pre><code class="js">function initMixin (Vue) &#123;
+</code></pre>
+<p>我们一个个看，首先<code>initMixin</code>定义了<strong>内部在实例化<code>Vue</code>时会执行的初始化代码</strong>，它是一个内部使用的方法。</p>
+<pre><code class="js">function initMixin (Vue) &#123;
   Vue.prototype._init = function (options) &#123;&#125;
 &#125;
 
@@ -54,7 +226,9 @@ $props 属性：这个属性是 Vue 实例的根属性对象。它实际上指�
 $set(target, key, value) 方法：这个方法用于给响应式对象添加一个属性，并使其成为响应式。它类似于 Vue.set() 全局方法，但被绑定到了实例上，方便实例内部使用。
 
 通过将这些方法和属性混入到 Vue 的原型链上，initMixin(Vue) 实现了对 Vue 实例的初始化操作。这样，在创建 Vue 实例时，就可以使用这些方法和属性来进行数据处理、事件管理和初始化操作，让 Vue 实例能够正常地运行和响应外部的变化。
-</code></pre><p><code>stateMixin</code>方法会定义跟数据相关的属性方法，例如代理数据的访问，我们可以在实例上通过<code>this.$data</code>和<code>this.$props</code>访问到<code>data,props</code>的值，并且也定义了使用频率较高的<code>this.$set,this.$delte</code>等方法。</p><pre><code class="js">function stateMixin (Vue) &#123;
+</code></pre>
+<p><code>stateMixin</code>方法会定义跟数据相关的属性方法，例如代理数据的访问，我们可以在实例上通过<code>this.$data</code>和<code>this.$props</code>访问到<code>data,props</code>的值，并且也定义了使用频率较高的<code>this.$set,this.$delte</code>等方法。</p>
+<pre><code class="js">function stateMixin (Vue) &#123;
     var dataDef = &#123;&#125;;
     dataDef.get = function () &#123; return this._data &#125;;
     var propsDef = &#123;&#125;;
@@ -81,7 +255,9 @@ $set(target, key, value) 方法：这个方法用于给响应式对象添加一�
     // $watch
     Vue.prototype.$watch = function (expOrFn,cb,options) &#123;&#125;;
   &#125;
-</code></pre><p><code>eventsMixin</code>会对原型上的事件相关方法做定义，文档中提到的<code>vm.$on,vm.$once,vm.$off,vm.$emit</code>也就是在这里定义的。</p><pre><code class="js">function eventsMixin(Vue) &#123;
+</code></pre>
+<p><code>eventsMixin</code>会对原型上的事件相关方法做定义，文档中提到的<code>vm.$on,vm.$once,vm.$off,vm.$emit</code>也就是在这里定义的。</p>
+<pre><code class="js">function eventsMixin(Vue) &#123;
   // 自定义事件监听
   Vue.prototype.$on = function (event, fn) &#123;&#125;
   // 自定义事件监听,只触发一次
@@ -91,7 +267,9 @@ $set(target, key, value) 方法：这个方法用于给响应式对象添加一�
   // 自定义事件通知
   Vue.prototype.$emit = function (event, fn) &#123;&#125;
 &#125;
-</code></pre><p><code>lifecycleMixin,renderMixin</code>两个都可以算是对生命周期渲染方法的定义，例如<code>$forceUpdate</code>触发实例的强制刷新，<code>$nextTick</code>将回调延迟到下次 <code>DOM</code> 更新循环之后执行等。</p><pre><code class="js">// 定义跟生命周期相关的方法
+</code></pre>
+<p><code>lifecycleMixin,renderMixin</code>两个都可以算是对生命周期渲染方法的定义，例如<code>$forceUpdate</code>触发实例的强制刷新，<code>$nextTick</code>将回调延迟到下次 <code>DOM</code> 更新循环之后执行等。</p>
+<pre><code class="js">// 定义跟生命周期相关的方法
   function lifecycleMixin (Vue) &#123;
     Vue.prototype._update = function (vnode, hydrating) &#123;&#125;;
 
@@ -106,7 +284,9 @@ $set(target, key, value) 方法：这个方法用于给响应式对象添加一�
     // _render函数，后面会着重讲
     Vue.prototype._render = function () &#123;&#125;;
   &#125;
-</code></pre><h3 id="1-1-4-定义静态属性方法"><a href="#1-1-4-定义静态属性方法" class="headerlink" title="1.1.4 定义静态属性方法"></a>1.1.4 定义静态属性方法</h3><p>除了原型方法外，<code>Vue</code>还提供了丰富的全局<code>api</code>方法，这些都是在<code>initGlobalAPI</code>中定义的。</p><pre><code class="js">/* 初始化构造器的api */
+</code></pre>
+<h3 id="1-1-4-定义静态属性方法"><a href="#1-1-4-定义静态属性方法" class="headerlink" title="1.1.4 定义静态属性方法"></a>1.1.4 定义静态属性方法</h3><p>除了原型方法外，<code>Vue</code>还提供了丰富的全局<code>api</code>方法，这些都是在<code>initGlobalAPI</code>中定义的。</p>
+<pre><code class="js">/* 初始化构造器的api */
 function initGlobalAPI (Vue) &#123;
     // config
     var configDef = &#123;&#125;;
@@ -161,7 +341,21 @@ function initGlobalAPI (Vue) &#123;
     // Vue.components, Vue.directive, Vue.filter
     initAssetRegisters(Vue);
   &#125;
-</code></pre><p>看着源码对静态方法的定义做一个汇总。</p><ol><li>为源码里的<code>config</code>配置做一层代理，可以通过<code>Vue.config</code>拿到默认的配置，并且可以修改它的属性值，具体哪些可以配置修改，可以先参照官方文档。</li><li>定义内部使用的工具方法，例如警告提示，对象合并等。</li><li>定义<code>set,delet,nextTick</code>方法，本质上原型上也有这些方法的定义。</li><li>对<code>Vue.components,Vue.directive,Vue.filter</code>的定义，这些是默认的资源选项，后续会重点分析。</li><li>定义<code>Vue.use()</code>方法</li><li>定义<code>Vue.mixin()</code>方法</li><li>定义<code>Vue.extend()</code>方法</li></ol><p>现在我相信你已经对引入<code>Vue</code>的阶段有了一个大致的认识，在源码分析的初期阶段，我们不需要死磕每个方法，思路的实现细节，只需要对大致的结构有基本的认识。有了这些基础，我们开始进入这个章节的主线。</p><h2 id="1-2-构造器的默认选项"><a href="#1-2-构造器的默认选项" class="headerlink" title="1.2 构造器的默认选项"></a>1.2 构造器的默认选项</h2><p>我们回到最开始的例子，在实例化<code>Vue</code>时，我们会将选项对象传递给构造器进行初始化，这个选项对象描述了你想要的行为，例如以<code>data</code>定义实例中的响应式数据，以<code>computed</code>描述实例中的计算属性，以<code>components</code>来进行组件注册，甚至是定义各个阶段执行的生命周期钩子等。然而<code>Vue</code>内部本身会自带一些默认的选项，这些选项和用户自定义的选项会在后续一起参与到<code>Vue</code>实例的初始化中。</p><p>在<code>initGlobalAPI</code>方法中有几行默认选项的定义。<code>Vue</code>内部的默认选项会保留在静态的<code>options</code>属性上，从源码看<code>Vue</code>自身有四个默认配置选项，分别是<code>component，directive， filter</code>以及返回自身构造器的<code>_base</code>。</p><pre><code class="js">var ASSET_TYPES = [
+</code></pre>
+<p>看着源码对静态方法的定义做一个汇总。</p>
+<ol>
+<li>为源码里的<code>config</code>配置做一层代理，可以通过<code>Vue.config</code>拿到默认的配置，并且可以修改它的属性值，具体哪些可以配置修改，可以先参照官方文档。</li>
+<li>定义内部使用的工具方法，例如警告提示，对象合并等。</li>
+<li>定义<code>set,delet,nextTick</code>方法，本质上原型上也有这些方法的定义。</li>
+<li>对<code>Vue.components,Vue.directive,Vue.filter</code>的定义，这些是默认的资源选项，后续会重点分析。</li>
+<li>定义<code>Vue.use()</code>方法</li>
+<li>定义<code>Vue.mixin()</code>方法</li>
+<li>定义<code>Vue.extend()</code>方法</li>
+</ol>
+<p>现在我相信你已经对引入<code>Vue</code>的阶段有了一个大致的认识，在源码分析的初期阶段，我们不需要死磕每个方法，思路的实现细节，只需要对大致的结构有基本的认识。有了这些基础，我们开始进入这个章节的主线。</p>
+<h2 id="1-2-构造器的默认选项"><a href="#1-2-构造器的默认选项" class="headerlink" title="1.2 构造器的默认选项"></a>1.2 构造器的默认选项</h2><p>我们回到最开始的例子，在实例化<code>Vue</code>时，我们会将选项对象传递给构造器进行初始化，这个选项对象描述了你想要的行为，例如以<code>data</code>定义实例中的响应式数据，以<code>computed</code>描述实例中的计算属性，以<code>components</code>来进行组件注册，甚至是定义各个阶段执行的生命周期钩子等。然而<code>Vue</code>内部本身会自带一些默认的选项，这些选项和用户自定义的选项会在后续一起参与到<code>Vue</code>实例的初始化中。</p>
+<p>在<code>initGlobalAPI</code>方法中有几行默认选项的定义。<code>Vue</code>内部的默认选项会保留在静态的<code>options</code>属性上，从源码看<code>Vue</code>自身有四个默认配置选项，分别是<code>component，directive， filter</code>以及返回自身构造器的<code>_base</code>。</p>
+<pre><code class="js">var ASSET_TYPES = [
   &#39;component&#39;,
   &#39;directive&#39;,
   &#39;filter&#39;
@@ -172,7 +366,9 @@ ASSET_TYPES.forEach(function (type) &#123;
   Vue.options[type + &#39;s&#39;] = Object.create(null);
 &#125;);
 Vue.options._base = Vue;
-</code></pre><p>很明显我们开发者对这几个选项是非常熟悉的，<code>components</code>是需要注册的组件选项，<code>directives</code>是需要注册的指令，而<code>filter</code>则代表需要注册的过滤器。从代码的实现细节看，<code>Vue</code>为<code>components</code>提供了<code>keepAlive,transition,transitionGroup</code>的内置组件，为<code>directives</code>提供了<code>v-model,v-show</code>的内置指令，而过滤器则没有默认值。</p><pre><code class="js">// Vue内置组件
+</code></pre>
+<p>很明显我们开发者对这几个选项是非常熟悉的，<code>components</code>是需要注册的组件选项，<code>directives</code>是需要注册的指令，而<code>filter</code>则代表需要注册的过滤器。从代码的实现细节看，<code>Vue</code>为<code>components</code>提供了<code>keepAlive,transition,transitionGroup</code>的内置组件，为<code>directives</code>提供了<code>v-model,v-show</code>的内置指令，而过滤器则没有默认值。</p>
+<pre><code class="js">// Vue内置组件
 var builtInComponents = &#123;
   KeepAlive: KeepAlive
 &#125;;
@@ -188,14 +384,18 @@ var platformDirectives = &#123;
 extend(Vue.options.components, builtInComponents); 
 extend(Vue.options.components, platformComponents); // 扩展内置组件
 extend(Vue.options.directives, platformDirectives);  // 扩展内置指令
-</code></pre><p>其中<code>extend</code>方法实现了对象的合并，如果属性相同，则用新的属性值覆盖旧值。</p><pre><code class="js">// 将_from对象合并到to对象，属性相同时，则覆盖to对象的属性
+</code></pre>
+<p>其中<code>extend</code>方法实现了对象的合并，如果属性相同，则用新的属性值覆盖旧值。</p>
+<pre><code class="js">// 将_from对象合并到to对象，属性相同时，则覆盖to对象的属性
 function extend (to, _from) &#123;
   for (var key in _from) &#123;
     to[key] = _from[key];
   &#125;
   return to
 &#125;
-</code></pre><p>因此做为构造器而言，<code>Vue</code>默认的资源选项配置如下：</p><pre><code class="js">Vue.options = &#123;
+</code></pre>
+<p>因此做为构造器而言，<code>Vue</code>默认的资源选项配置如下：</p>
+<pre><code class="js">Vue.options = &#123;
   components: &#123;
     KeepAlive: &#123;&#125;
     Transition: &#123;&#125;
@@ -208,7 +408,9 @@ function extend (to, _from) &#123;
   filters: &#123;&#125;
   _base
 &#125;
-</code></pre><h2 id="1-3-选项检验"><a href="#1-3-选项检验" class="headerlink" title="1.3 选项检验"></a>1.3 选项检验</h2><p>介绍完<code>Vue</code>自身拥有的选项后，我们回过头来看看，实例化<code>Vue</code>的阶段发生了什么。从构造器的定义我们很容易发现，实例化<code>Vue</code>做的核心操作便是执行<code>_init</code>方法进行初始化。初始化操作会经过选项合并配置，初始化生命周期，初始化事件中心，乃至构建数据响应式系统等。而关键的第一步就是对选项的合并。合并后的选项会挂载到实例的<code>$options</code>属性中。(你可以先在实例中通过<code>this.$options</code>访问最终的选项)</p><pre><code class="js">function initMixin (Vue) &#123;
+</code></pre>
+<h2 id="1-3-选项检验"><a href="#1-3-选项检验" class="headerlink" title="1.3 选项检验"></a>1.3 选项检验</h2><p>介绍完<code>Vue</code>自身拥有的选项后，我们回过头来看看，实例化<code>Vue</code>的阶段发生了什么。从构造器的定义我们很容易发现，实例化<code>Vue</code>做的核心操作便是执行<code>_init</code>方法进行初始化。初始化操作会经过选项合并配置，初始化生命周期，初始化事件中心，乃至构建数据响应式系统等。而关键的第一步就是对选项的合并。合并后的选项会挂载到实例的<code>$options</code>属性中。(你可以先在实例中通过<code>this.$options</code>访问最终的选项)</p>
+<pre><code class="js">function initMixin (Vue) &#123;
   Vue.prototype._init = function (options) &#123;
     var vm = this;
     // a uid
@@ -223,7 +425,9 @@ function extend (to, _from) &#123;
     );
   &#125;;
 &#125;
-</code></pre><p>从代码中可以看到，选项合并的重点是将用户自身传递的<code>options</code>选项和<code>Vue</code>构造函数自身的选项配置合并。我们看看<code>mergeOptions</code>函数的实现。</p><pre><code class="js">function mergeOptions (parent,child,vm) &#123;
+</code></pre>
+<p>从代码中可以看到，选项合并的重点是将用户自身传递的<code>options</code>选项和<code>Vue</code>构造函数自身的选项配置合并。我们看看<code>mergeOptions</code>函数的实现。</p>
+<pre><code class="js">function mergeOptions (parent,child,vm) &#123;
     &#123;
       checkComponents(child);
     &#125;
@@ -268,7 +472,10 @@ function extend (to, _from) &#123;
     // console.log(options)
     return options
   &#125;
-</code></pre><p><strong>选项合并过程中更多的不可控在于不知道用户传递了哪些配置选项，这些配置是否符合规范，是否达到合并配置的要求。因此每个选项的书写规则需要严格限定，原则上不允许用户脱离规则外来传递选项。</strong>因此在合并选项之前，很大的一部分工作是对选项的校验。其中<code>components,prop,inject,directive</code>等都是检验的重点。</p><h3 id="1-3-1-components规范检验"><a href="#1-3-1-components规范检验" class="headerlink" title="1.3.1 components规范检验"></a>1.3.1 components规范检验</h3><p>如果项目中需要使用到组件，我们会在<code>vue</code>实例化时传入组件选项以此来注册组件。因此，组件命名需要遵守很多规范，比如组件名不能用<code>html</code>保留的标签(如：<code>img,p</code>),也不能包含非法的字符等。这些都会在<code>validateComponentName</code>函数做校验。</p><pre><code class="js">// components规范检查函数
+</code></pre>
+<p><strong>选项合并过程中更多的不可控在于不知道用户传递了哪些配置选项，这些配置是否符合规范，是否达到合并配置的要求。因此每个选项的书写规则需要严格限定，原则上不允许用户脱离规则外来传递选项。</strong>因此在合并选项之前，很大的一部分工作是对选项的校验。其中<code>components,prop,inject,directive</code>等都是检验的重点。</p>
+<h3 id="1-3-1-components规范检验"><a href="#1-3-1-components规范检验" class="headerlink" title="1.3.1 components规范检验"></a>1.3.1 components规范检验</h3><p>如果项目中需要使用到组件，我们会在<code>vue</code>实例化时传入组件选项以此来注册组件。因此，组件命名需要遵守很多规范，比如组件名不能用<code>html</code>保留的标签(如：<code>img,p</code>),也不能包含非法的字符等。这些都会在<code>validateComponentName</code>函数做校验。</p>
+<pre><code class="js">// components规范检查函数
 function checkComponents (options) &#123;
   // 遍历components对象，对每个属性值校验。
   for (var key in options.components) &#123;
@@ -291,7 +498,13 @@ function validateComponentName (name) &#123;
     );
   &#125;
 &#125;
-</code></pre><h3 id="1-3-2-props规范检验"><a href="#1-3-2-props规范检验" class="headerlink" title="1.3.2 props规范检验"></a>1.3.2 props规范检验</h3><p><code>Vue</code>的官方文档规定了<code>props</code>选项的书写形式有两种，分别是</p><ol><li>数组形式 <code>&#123; props: [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;] &#125;</code>,</li><li>带校验规则的对象形式 <code>&#123; props: &#123; a: &#123; type: &#39;String&#39;, default: &#39;prop校验&#39; &#125; &#125;&#125;</code><br>从源码上看，<strong>两种形式最终都会转换成对象的形式。</strong></li></ol><pre><code class="js">// props规范校验
+</code></pre>
+<h3 id="1-3-2-props规范检验"><a href="#1-3-2-props规范检验" class="headerlink" title="1.3.2 props规范检验"></a>1.3.2 props规范检验</h3><p><code>Vue</code>的官方文档规定了<code>props</code>选项的书写形式有两种，分别是</p>
+<ol>
+<li>数组形式 <code>&#123; props: [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;] &#125;</code>,</li>
+<li>带校验规则的对象形式 <code>&#123; props: &#123; a: &#123; type: &#39;String&#39;, default: &#39;prop校验&#39; &#125; &#125;&#125;</code><br>从源码上看，<strong>两种形式最终都会转换成对象的形式。</strong></li>
+</ol>
+<pre><code class="js">// props规范校验
   function normalizeProps (options, vm) &#123;
     var props = options.props;
     if (!props) &#123; return &#125;
@@ -330,7 +543,10 @@ function validateComponentName (name) &#123;
     &#125;
     options.props = res;
   &#125;
-</code></pre><h3 id="1-3-3-inject的规范校验"><a href="#1-3-3-inject的规范校验" class="headerlink" title="1.3.3 inject的规范校验"></a>1.3.3 inject的规范校验</h3><p><code>provide/inject</code>这对组合在我们日常开发中可能使用得比较少，当我们需要在父组件中提供数据或者方法给后代组件使用时可以用到<code>provide/inject</code>,注意关键是后代，而不单纯指子代，这是有别于<code>props</code>的使用场景。官方把它被称为依赖注入，依赖注入使得组件后代都能访问到父代注入的数据&#x2F;方法，且后代不需要知道数据的来源。重要的一点，依赖提供的数据是非响应式的。</p><p>基本的使用如下：</p><pre><code class="js">// 父组件
+</code></pre>
+<h3 id="1-3-3-inject的规范校验"><a href="#1-3-3-inject的规范校验" class="headerlink" title="1.3.3 inject的规范校验"></a>1.3.3 inject的规范校验</h3><p><code>provide/inject</code>这对组合在我们日常开发中可能使用得比较少，当我们需要在父组件中提供数据或者方法给后代组件使用时可以用到<code>provide/inject</code>,注意关键是后代，而不单纯指子代，这是有别于<code>props</code>的使用场景。官方把它被称为依赖注入，依赖注入使得组件后代都能访问到父代注入的数据&#x2F;方法，且后代不需要知道数据的来源。重要的一点，依赖提供的数据是非响应式的。</p>
+<p>基本的使用如下：</p>
+<pre><code class="js">// 父组件
 var Provider = &#123;
   provide: &#123;
     foo: &#39;bar&#39;
@@ -349,7 +565,9 @@ var Child = &#123;
     &#125;
   &#125;
 &#125;
-</code></pre><p><code>inject</code>选项有两种写法，数组的方式以及对象的方式，和<code>props</code>的校验规则一致，最终<code>inject</code>都会转换为对象的形式存在。</p><pre><code class="js">// inject的规范化
+</code></pre>
+<p><code>inject</code>选项有两种写法，数组的方式以及对象的方式，和<code>props</code>的校验规则一致，最终<code>inject</code>都会转换为对象的形式存在。</p>
+<pre><code class="js">// inject的规范化
 function normalizeInject (options, vm) &#123;
     var inject = options.inject;
     if (!inject) &#123; return &#125;
@@ -377,14 +595,18 @@ function normalizeInject (options, vm) &#123;
       );
     &#125;
   &#125;
-</code></pre><h3 id="1-3-4-directive的规范校验"><a href="#1-3-4-directive的规范校验" class="headerlink" title="1.3.4 directive的规范校验"></a>1.3.4 directive的规范校验</h3><p>我们先看看指令选项的用法，<code>Vue</code>允许我们自定义指令，并且它提供了五个钩子函数<code>bind, inserted, update, componentUpdated, unbind</code>,具体的用法可以参考<span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvZ3VpZGUvY3VzdG9tLWRpcmVjdGl2ZS5odG1s">官方-自定义指令</span>文档,而除了可以以对象的形式去定义钩子函数外，官方还提供了一种函数的简写，例如：</p><pre><code class="js">&#123;
+</code></pre>
+<h3 id="1-3-4-directive的规范校验"><a href="#1-3-4-directive的规范校验" class="headerlink" title="1.3.4 directive的规范校验"></a>1.3.4 directive的规范校验</h3><p>我们先看看指令选项的用法，<code>Vue</code>允许我们自定义指令，并且它提供了五个钩子函数<code>bind, inserted, update, componentUpdated, unbind</code>,具体的用法可以参考<span class="exturl" data-url="aHR0cHM6Ly9jbi52dWVqcy5vcmcvdjIvZ3VpZGUvY3VzdG9tLWRpcmVjdGl2ZS5odG1s">官方-自定义指令</span>文档,而除了可以以对象的形式去定义钩子函数外，官方还提供了一种函数的简写，例如：</p>
+<pre><code class="js">&#123;
   directives: &#123;
     &#39;color-swatch&#39;: function(el, binding) &#123;
         el.style.backgroundColor = binding.value
     &#125;
   &#125;
 &#125;
-</code></pre><p>函数的写法会在<code>bind,update</code>钩子中触发相同的行为，并且不关心其他钩子。这个行为就是定义的函数。因此在对<code>directives</code>进行规范化时，针对函数的写法会将行为赋予<code>bind,update</code>钩子。</p><pre><code class="js">function normalizeDirectives (options) &#123;
+</code></pre>
+<p>函数的写法会在<code>bind,update</code>钩子中触发相同的行为，并且不关心其他钩子。这个行为就是定义的函数。因此在对<code>directives</code>进行规范化时，针对函数的写法会将行为赋予<code>bind,update</code>钩子。</p>
+<pre><code class="js">function normalizeDirectives (options) &#123;
     var dirs = options.directives;
     if (dirs) &#123;
       for (var key in dirs) &#123;
@@ -396,7 +618,9 @@ function normalizeInject (options, vm) &#123;
       &#125;
     &#125;
   &#125;
-</code></pre><h3 id="1-3-5-函数缓存"><a href="#1-3-5-函数缓存" class="headerlink" title="1.3.5 函数缓存"></a>1.3.5 函数缓存</h3><p>这个内容跟选项的规范化无关，当读到上面规范检测的代码时，笔者发现有一段函数优化的代码值得我们学习。它将每次执行函数后的值进行缓存，当再次执行的时候直接调用缓存的数据而不是重复执行函数，以此提高前端性能，这是典型的用空间换时间的优化，也是经典的偏函数应用。</p><pre><code class="js">function cached (fn) &#123;
+</code></pre>
+<h3 id="1-3-5-函数缓存"><a href="#1-3-5-函数缓存" class="headerlink" title="1.3.5 函数缓存"></a>1.3.5 函数缓存</h3><p>这个内容跟选项的规范化无关，当读到上面规范检测的代码时，笔者发现有一段函数优化的代码值得我们学习。它将每次执行函数后的值进行缓存，当再次执行的时候直接调用缓存的数据而不是重复执行函数，以此提高前端性能，这是典型的用空间换时间的优化，也是经典的偏函数应用。</p>
+<pre><code class="js">function cached (fn) &#123;
   var cache = Object.create(null); // 创建空对象作为缓存对象
   return (function cachedFn (str) &#123;
     var hit = cache[str];
@@ -411,7 +635,12 @@ var camelize = cached(function (str) &#123;
   // 将诸如 &#39;a-b&#39;的写法统一处理成驼峰写法&#39;aB&#39;
   return str.replace(camelizeRE, function (_, c) &#123; return c ? c.toUpperCase() : &#39;&#39;; &#125;)
 &#125;);
-</code></pre><h2 id="1-4-子类构造器"><a href="#1-4-子类构造器" class="headerlink" title="1.4 子类构造器"></a>1.4 子类构造器</h2><p>选项校验介绍完后，在正式进入合并策略之前，还需要先了解一个东西：子类构造器。为什么需要先提到子类构造器呢？</p><p>按照前面的知识，<code>Vue</code>内部提供了四个默认选项，关键的三个是<code>components,directives,filter</code>。那么当我们传递一个选项配置到<code>Vue</code>进行初始化，所需要合并的选项好像也仅仅是那关键的三个默认选项而已，那么源码中大篇幅做的选项合并策略又是针对什么场景呢？答案就是这个子类构造器。</p><p><strong><code>Vue</code>提供了一个<code>Vue.extend</code>的静态方法，它是基于基础的<code>Vue</code>构造器创建一个“子类”，而这个子类所传递的选项配置会和父类的选项配置进行合并。这是选项合并场景的由来。</strong></p><p>因此有不要先了解子类构造器的实现。下面例子中，我们创建了一个<code>Child</code>的子类，它继承于父类<code>Parent</code>,最终将子类挂载到<code>#app</code>元素上。最终获取的<code>data</code>便是选项合并后的结果。</p><pre><code class="js">var Parent = Vue.extend(&#123;
+</code></pre>
+<h2 id="1-4-子类构造器"><a href="#1-4-子类构造器" class="headerlink" title="1.4 子类构造器"></a>1.4 子类构造器</h2><p>选项校验介绍完后，在正式进入合并策略之前，还需要先了解一个东西：子类构造器。为什么需要先提到子类构造器呢？</p>
+<p>按照前面的知识，<code>Vue</code>内部提供了四个默认选项，关键的三个是<code>components,directives,filter</code>。那么当我们传递一个选项配置到<code>Vue</code>进行初始化，所需要合并的选项好像也仅仅是那关键的三个默认选项而已，那么源码中大篇幅做的选项合并策略又是针对什么场景呢？答案就是这个子类构造器。</p>
+<p><strong><code>Vue</code>提供了一个<code>Vue.extend</code>的静态方法，它是基于基础的<code>Vue</code>构造器创建一个“子类”，而这个子类所传递的选项配置会和父类的选项配置进行合并。这是选项合并场景的由来。</strong></p>
+<p>因此有不要先了解子类构造器的实现。下面例子中，我们创建了一个<code>Child</code>的子类，它继承于父类<code>Parent</code>,最终将子类挂载到<code>#app</code>元素上。最终获取的<code>data</code>便是选项合并后的结果。</p>
+<pre><code class="js">var Parent = Vue.extend(&#123;
   data() &#123;
     test: &#39;父类&#39;，
     test1: &#39;父类1&#39;
@@ -431,7 +660,9 @@ console.log(vm.$data);
   test1: &#39;父类1&#39;,
   test2: &#39;子类1&#39;
 &#125;
-</code></pre><p><code>Vue.extend</code>的实现思路很清晰，创建了一个<code>Sub</code>的类，这个类的原型指向了父类，并且子类的<code>options</code>会和父类的<code>options</code>进行合并，<code>mergeOptions</code>的其他细节接下来会重点分析。</p><pre><code class="js">Vue.extend = function (extendOptions) &#123;
+</code></pre>
+<p><code>Vue.extend</code>的实现思路很清晰，创建了一个<code>Sub</code>的类，这个类的原型指向了父类，并且子类的<code>options</code>会和父类的<code>options</code>进行合并，<code>mergeOptions</code>的其他细节接下来会重点分析。</p>
+<pre><code class="js">Vue.extend = function (extendOptions) &#123;
   extendOptions = extendOptions || &#123;&#125;;
   var Super = this;
 
@@ -455,7 +686,14 @@ console.log(vm.$data);
 
   return Sub // 返回子类构造函数
 &#125;;
-</code></pre><h2 id="1-5-合并策略"><a href="#1-5-合并策略" class="headerlink" title="1.5 合并策略"></a>1.5 合并策略</h2><p>合并策略之所以是难点，其中一个是合并选项类型繁多，合并规则随着选项的不同也呈现差异。概括起来思路主要是以下两点：</p><ol><li><code>Vue</code>针对每个规定的选项都有定义好的合并策略，例如<code>data,component,mounted</code>等。如果合并的子父配置都具有相同的选项，则只需要按照规定好的策略进行选项合并即可。</li><li>由于<code>Vue</code>传递的选项是开放式的，所有也存在传递的选项没有自定义选项的情况，这时候由于选项不存在默认的合并策略，所以处理的原则是有子类配置选项则默认使用子类配置选项，没有则选择父类配置选项。</li></ol><p>我们通过这两个思想去分析源码的实现，先看看<code>mergeOptions</code>除了规范检测后的逻辑。</p><pre><code class="js">function mergeOptions ( parent, child, vm ) &#123;
+</code></pre>
+<h2 id="1-5-合并策略"><a href="#1-5-合并策略" class="headerlink" title="1.5 合并策略"></a>1.5 合并策略</h2><p>合并策略之所以是难点，其中一个是合并选项类型繁多，合并规则随着选项的不同也呈现差异。概括起来思路主要是以下两点：</p>
+<ol>
+<li><code>Vue</code>针对每个规定的选项都有定义好的合并策略，例如<code>data,component,mounted</code>等。如果合并的子父配置都具有相同的选项，则只需要按照规定好的策略进行选项合并即可。</li>
+<li>由于<code>Vue</code>传递的选项是开放式的，所有也存在传递的选项没有自定义选项的情况，这时候由于选项不存在默认的合并策略，所以处理的原则是有子类配置选项则默认使用子类配置选项，没有则选择父类配置选项。</li>
+</ol>
+<p>我们通过这两个思想去分析源码的实现，先看看<code>mergeOptions</code>除了规范检测后的逻辑。</p>
+<pre><code class="js">function mergeOptions ( parent, child, vm ) &#123;
   ···
   var options = &#123;&#125;;
   var key;
@@ -475,18 +713,38 @@ console.log(vm.$data);
 
   return options
 &#125;
-</code></pre><p><strong>两个<code>for</code>循环规定了合并的顺序，以自定义选项策略优先，如果没有才会使用默认策略。而<code>strats</code>下每个<code>key</code>对应的便是每个特殊选项的合并策略</strong></p><h3 id="1-5-1-默认策略"><a href="#1-5-1-默认策略" class="headerlink" title="1.5.1 默认策略"></a>1.5.1 默认策略</h3><p>我们可以用丰富的选项去定义实例的行为，大致可以分为以下几类：</p><ol><li>用<code>data,props,computed</code>等选项定义实例数据</li><li>用<code>mounted, created, destoryed</code>等定义生命周期函数</li><li>用<code>components</code>注册组件</li><li>用<code>methods</code>选项定义实例方法</li></ol><p>当然还有诸如<code>watch,inject,directives,filter</code>等选项，总而言之，<code>Vue</code>提供的配置项是丰富的。除此之外，我们也可以使用没有默认配置策略的选项，典型的例子是状态管理<code>Vuex</code>和配套路由<code>vue-router</code>的引入：</p><pre><code class="js">new Vue(&#123;
+</code></pre>
+<p><strong>两个<code>for</code>循环规定了合并的顺序，以自定义选项策略优先，如果没有才会使用默认策略。而<code>strats</code>下每个<code>key</code>对应的便是每个特殊选项的合并策略</strong></p>
+<h3 id="1-5-1-默认策略"><a href="#1-5-1-默认策略" class="headerlink" title="1.5.1 默认策略"></a>1.5.1 默认策略</h3><p>我们可以用丰富的选项去定义实例的行为，大致可以分为以下几类：</p>
+<ol>
+<li>用<code>data,props,computed</code>等选项定义实例数据</li>
+<li>用<code>mounted, created, destoryed</code>等定义生命周期函数</li>
+<li>用<code>components</code>注册组件</li>
+<li>用<code>methods</code>选项定义实例方法</li>
+</ol>
+<p>当然还有诸如<code>watch,inject,directives,filter</code>等选项，总而言之，<code>Vue</code>提供的配置项是丰富的。除此之外，我们也可以使用没有默认配置策略的选项，典型的例子是状态管理<code>Vuex</code>和配套路由<code>vue-router</code>的引入：</p>
+<pre><code class="js">new Vue(&#123;
   store, // vuex
   router// vue-router
 &#125;)
-</code></pre><p>不管是插件也好，还是用户自定义的选项，他们的合并策略会遵循思路的第二点：<strong>子配置存在则取子配置，不存在则取父配置，即用子去覆盖父。。</strong>它的描述在<code>defaultStrat</code>中。</p><pre><code class="js">// 用户自定义选项策略
+</code></pre>
+<p>不管是插件也好，还是用户自定义的选项，他们的合并策略会遵循思路的第二点：<strong>子配置存在则取子配置，不存在则取父配置，即用子去覆盖父。。</strong>它的描述在<code>defaultStrat</code>中。</p>
+<pre><code class="js">// 用户自定义选项策略
 var defaultStrat = function (parentVal, childVal) &#123;
   // 子不存在则用父，子存在则用子配置
   return childVal === undefined
     ? parentVal
     : childVal
 &#125;;
-</code></pre><p>接下来会进入某些具体的合并策略的分析，大致分为五类：</p><p><strong>1. 常规选项合并</strong></p><p><strong>2. 自带资源选项合并</strong></p><p><strong>3. 生命周期钩子合并</strong></p><p><strong>4. <code>watch</code>选项合并</strong></p><p><strong>5. <code>props,methods, inject, computed</code>类似选项合并</strong></p><h2 id="1-6-常规选项的合并"><a href="#1-6-常规选项的合并" class="headerlink" title="1.6 常规选项的合并"></a>1.6 常规选项的合并</h2><h3 id="1-6-1-el的合并"><a href="#1-6-1-el的合并" class="headerlink" title="1.6.1 el的合并"></a>1.6.1 el的合并</h3><p><code>el</code>提供一个在页面上已存在的 <code>DOM</code> 元素作为 <code>Vue</code> 实例的挂载目标,因此它只在创建<code>Vue</code>实例才存在，在子类或者子组件中无法定义<code>el</code>选项，因此<code>el</code>的合并策略是在保证选项只存在于根的<code>Vue</code>实例的情形下使用默认策略进行合并。</p><pre><code class="js">strats.el = function (parent, child, vm, key) &#123;
+</code></pre>
+<p>接下来会进入某些具体的合并策略的分析，大致分为五类：</p>
+<p><strong>1. 常规选项合并</strong></p>
+<p><strong>2. 自带资源选项合并</strong></p>
+<p><strong>3. 生命周期钩子合并</strong></p>
+<p><strong>4. <code>watch</code>选项合并</strong></p>
+<p><strong>5. <code>props,methods, inject, computed</code>类似选项合并</strong></p>
+<h2 id="1-6-常规选项的合并"><a href="#1-6-常规选项的合并" class="headerlink" title="1.6 常规选项的合并"></a>1.6 常规选项的合并</h2><h3 id="1-6-1-el的合并"><a href="#1-6-1-el的合并" class="headerlink" title="1.6.1 el的合并"></a>1.6.1 el的合并</h3><p><code>el</code>提供一个在页面上已存在的 <code>DOM</code> 元素作为 <code>Vue</code> 实例的挂载目标,因此它只在创建<code>Vue</code>实例才存在，在子类或者子组件中无法定义<code>el</code>选项，因此<code>el</code>的合并策略是在保证选项只存在于根的<code>Vue</code>实例的情形下使用默认策略进行合并。</p>
+<pre><code class="js">strats.el = function (parent, child, vm, key) &#123;
   if (!vm) &#123;  // 只允许vue实例才拥有el属性，其他子类构造器不允许有el属性
     warn(
       &quot;option \&quot;&quot; + key + &quot;\&quot; can only be used during instance &quot; +
@@ -496,7 +754,9 @@ var defaultStrat = function (parentVal, childVal) &#123;
   // 默认策略
   return defaultStrat(parent, child)
 &#125;;
-</code></pre><h3 id="1-6-2-data合并"><a href="#1-6-2-data合并" class="headerlink" title="1.6.2 data合并"></a>1.6.2 data合并</h3><p>常规选项的重点部分是在于<code>data</code>的合并，读完这部分源码，可能可以解开你心中的一个疑惑，为什么<code>data</code>在<code>vue</code>创建实例时传递的是一个对象，而在组件内部定义时只能传递一个函数。</p><pre><code class="js">// data的合并
+</code></pre>
+<h3 id="1-6-2-data合并"><a href="#1-6-2-data合并" class="headerlink" title="1.6.2 data合并"></a>1.6.2 data合并</h3><p>常规选项的重点部分是在于<code>data</code>的合并，读完这部分源码，可能可以解开你心中的一个疑惑，为什么<code>data</code>在<code>vue</code>创建实例时传递的是一个对象，而在组件内部定义时只能传递一个函数。</p>
+<pre><code class="js">// data的合并
 strats.data = function (parentVal, childVal, vm) &#123;
   // vm代表是否为Vue创建的实例，否则是子父类的关系
   if (!vm) &#123;
@@ -508,7 +768,9 @@ strats.data = function (parentVal, childVal, vm) &#123;
   &#125;
   return mergeDataOrFn(parentVal, childVal, vm); // vue实例时需要传递vm作为函数的第三个参数
 &#125;;
-</code></pre><p><code>data</code>策略最终调用的<code>mergeDataOrFn</code>方法，区别在于当前<code>vm</code>是否是实例，或者是单纯的子父类的关系。如果是子父类的关系，需要对<code>data</code>选项进行规范校验，保证它的类型是一个函数而不是对象。</p><pre><code class="js">function mergeDataOrFn ( parentVal, childVal, vm ) &#123;
+</code></pre>
+<p><code>data</code>策略最终调用的<code>mergeDataOrFn</code>方法，区别在于当前<code>vm</code>是否是实例，或者是单纯的子父类的关系。如果是子父类的关系，需要对<code>data</code>选项进行规范校验，保证它的类型是一个函数而不是对象。</p>
+<pre><code class="js">function mergeDataOrFn ( parentVal, childVal, vm ) &#123;
   // 子父类
   if (!vm) &#123;
     if (!childVal) &#123; // 子类不存在data选项，则合并结果为父类data选项
@@ -544,7 +806,9 @@ strats.data = function (parentVal, childVal, vm) &#123;
     &#125;
   &#125;
 &#125;
-</code></pre><p>从源码的实现看，<code>data</code>的合并不是简单的将两个数据对象进行合并，而是直接返回一个<code>mergedDataFn</code>或者<code>mergedInstanceDataFn</code>函数，而真正合并的时机是在后续初始化数据响应式系统的环节进行的，初始化数据响应式系统的第一步就是拿到合并后的数据，也就是执行<code>mergeData</code>逻辑。<br>(关于响应式系统的构建请移步后面的章节)</p><pre><code class="js">function mergeData (to, from) &#123;
+</code></pre>
+<p>从源码的实现看，<code>data</code>的合并不是简单的将两个数据对象进行合并，而是直接返回一个<code>mergedDataFn</code>或者<code>mergedInstanceDataFn</code>函数，而真正合并的时机是在后续初始化数据响应式系统的环节进行的，初始化数据响应式系统的第一步就是拿到合并后的数据，也就是执行<code>mergeData</code>逻辑。<br>(关于响应式系统的构建请移步后面的章节)</p>
+<pre><code class="js">function mergeData (to, from) &#123;
   if (!from) &#123; return to &#125;
   var key, toVal, fromVal;
   // Reflect.ownKeys可以拿到Symbol属性
@@ -570,7 +834,11 @@ strats.data = function (parentVal, childVal, vm) &#123;
   &#125;
   return to
 &#125;
-</code></pre><p><code>mergeData</code>方法的两个参数是父<code>data</code>选项和子<code>data</code>选项的结果，也就是两个<code>data</code>对象，从源码上看数据合并的原则是，将父类的数据整合到子类的数据选项中， 如若父类数据和子类数据冲突时，保留子类数据。如果对象有深层嵌套，则需要递归调用<code>mergeData</code>进行数据合并。</p><p>最后回过头来思考一个问题，为什么<code>Vue</code>组件的<code>data</code>是一个函数，而不是一个对象呢？<br>我觉得可以这样解释：<strong>组件设计的目的是为了复用，每次通过函数创建相当于在一个独立的内存空间中生成一个<code>data</code>的副本，这样每个组件之间的数据不会互相影响。</strong></p><h2 id="1-7-自带资源选项合并"><a href="#1-7-自带资源选项合并" class="headerlink" title="1.7 自带资源选项合并"></a>1.7 自带资源选项合并</h2><p>在1.2中我们看到了<code>Vue</code>默认会带几个选项，分别是<code>components</code>组件, <code>directive</code>指令, <code>filter</code>过滤器,所有无论是根实例，还是父子实例，都需要和系统自带的资源选项进行合并。它的定义如下：</p><pre><code class="js">// 资源选项
+</code></pre>
+<p><code>mergeData</code>方法的两个参数是父<code>data</code>选项和子<code>data</code>选项的结果，也就是两个<code>data</code>对象，从源码上看数据合并的原则是，将父类的数据整合到子类的数据选项中， 如若父类数据和子类数据冲突时，保留子类数据。如果对象有深层嵌套，则需要递归调用<code>mergeData</code>进行数据合并。</p>
+<p>最后回过头来思考一个问题，为什么<code>Vue</code>组件的<code>data</code>是一个函数，而不是一个对象呢？<br>我觉得可以这样解释：<strong>组件设计的目的是为了复用，每次通过函数创建相当于在一个独立的内存空间中生成一个<code>data</code>的副本，这样每个组件之间的数据不会互相影响。</strong></p>
+<h2 id="1-7-自带资源选项合并"><a href="#1-7-自带资源选项合并" class="headerlink" title="1.7 自带资源选项合并"></a>1.7 自带资源选项合并</h2><p>在1.2中我们看到了<code>Vue</code>默认会带几个选项，分别是<code>components</code>组件, <code>directive</code>指令, <code>filter</code>过滤器,所有无论是根实例，还是父子实例，都需要和系统自带的资源选项进行合并。它的定义如下：</p>
+<pre><code class="js">// 资源选项
 var ASSET_TYPES = [
   &#39;component&#39;,
   &#39;directive&#39;,
@@ -581,7 +849,9 @@ var ASSET_TYPES = [
 ASSET_TYPES.forEach(function (type) &#123;
   strats[type + &#39;s&#39;] = mergeAssets; // 定义默认策略
 &#125;);
-</code></pre><p>这些资源选项的合并逻辑很简单，首先会创建一个原型指向父类资源选项的空对象，再将子类选项赋值给空对象。</p><pre><code class="js">// 资源选项自定义合并策略
+</code></pre>
+<p>这些资源选项的合并逻辑很简单，首先会创建一个原型指向父类资源选项的空对象，再将子类选项赋值给空对象。</p>
+<pre><code class="js">// 资源选项自定义合并策略
 function mergeAssets (parentVal,childVal,vm,key) &#123;
   var res = Object.create(parentVal || null); // 创建一个空对象，其原型指向父类的资源选项。
   if (childVal) &#123;
@@ -591,7 +861,9 @@ function mergeAssets (parentVal,childVal,vm,key) &#123;
     return res
   &#125;
 &#125;
-</code></pre><p>结合下面的例子，我们看具体合并后的结果：</p><pre><code class="js">var vm = new Vue(&#123;
+</code></pre>
+<p>结合下面的例子，我们看具体合并后的结果：</p>
+<pre><code class="js">var vm = new Vue(&#123;
   components: &#123;
     componentA: &#123;&#125;
   &#125;,
@@ -619,7 +891,12 @@ console.log(vm.$options.components)
     &#125;
   &#125;
 &#125;
-</code></pre><p>简单总结一下，对于 <code>directives、filters</code> 以及 <code>components</code> 等资源选项，父类选项将以原型链的形式被处理。子类必须通过原型链才能查找并使用内置组件和内置指令。</p><h2 id="1-8-生命周期钩子函数的合并"><a href="#1-8-生命周期钩子函数的合并" class="headerlink" title="1.8 生命周期钩子函数的合并"></a>1.8 生命周期钩子函数的合并</h2><p>在学习<code>Vue</code>时，有一个重要的思想，生命周期。它是我们使用<code>Vue</code>高效开发组件的基础，我们可以在组件实例的不同阶段去定义需要执行的函数，让组件的功能更加丰富。在介绍生命周期钩子函数的选项合并前，我们有必要复习以下官方的生命周期图。</p><p><img data-src="/images/img/1.1.png"></p><p>然而从源码中我们可以看到<code>Vue</code>的生命周期钩子不止这些，它有多达12个之多，每个钩子的执行时机我们暂且不深究，它们会在以后的章节中逐一出现。我们关心的是：子父组件的生命周期钩子函数是遵循什么样的规则合并。</p><pre><code class="js">var LIFECYCLE_HOOKS = [
+</code></pre>
+<p>简单总结一下，对于 <code>directives、filters</code> 以及 <code>components</code> 等资源选项，父类选项将以原型链的形式被处理。子类必须通过原型链才能查找并使用内置组件和内置指令。</p>
+<h2 id="1-8-生命周期钩子函数的合并"><a href="#1-8-生命周期钩子函数的合并" class="headerlink" title="1.8 生命周期钩子函数的合并"></a>1.8 生命周期钩子函数的合并</h2><p>在学习<code>Vue</code>时，有一个重要的思想，生命周期。它是我们使用<code>Vue</code>高效开发组件的基础，我们可以在组件实例的不同阶段去定义需要执行的函数，让组件的功能更加丰富。在介绍生命周期钩子函数的选项合并前，我们有必要复习以下官方的生命周期图。</p>
+<p><img data-src="/images/img/1.1.png"></p>
+<p>然而从源码中我们可以看到<code>Vue</code>的生命周期钩子不止这些，它有多达12个之多，每个钩子的执行时机我们暂且不深究，它们会在以后的章节中逐一出现。我们关心的是：子父组件的生命周期钩子函数是遵循什么样的规则合并。</p>
+<pre><code class="js">var LIFECYCLE_HOOKS = [
   &#39;beforeCreate&#39;,
   &#39;created&#39;,
   &#39;beforeMount&#39;,
@@ -636,7 +913,15 @@ console.log(vm.$options.components)
 LIFECYCLE_HOOKS.forEach(function (hook) &#123;
   strats[hook] = mergeHook; // 对生命周期钩子选项的合并都执行mergeHook策略
 &#125;);
-</code></pre><p><code>mergeHook</code>是生命周期钩子合并的策略，简单的对代码进行总结，钩子函数的合并原则是：</p><ol><li>如果子类和父类都拥有相同钩子选项，则将子类选项和父类选项合并。</li><li>如果父类不存在钩子选项，子类存在时，则以数组形式返回子类钩子选项。</li><li>当子类不存在钩子选项时，则以父类选项返回。</li><li>子父合并时，是将子类选项放在数组的末尾，这样在执行钩子时，永远是父类选项优先于子类选项执行。</li></ol><pre><code class="js">// 生命周期钩子选项合并策略
+</code></pre>
+<p><code>mergeHook</code>是生命周期钩子合并的策略，简单的对代码进行总结，钩子函数的合并原则是：</p>
+<ol>
+<li>如果子类和父类都拥有相同钩子选项，则将子类选项和父类选项合并。</li>
+<li>如果父类不存在钩子选项，子类存在时，则以数组形式返回子类钩子选项。</li>
+<li>当子类不存在钩子选项时，则以父类选项返回。</li>
+<li>子父合并时，是将子类选项放在数组的末尾，这样在执行钩子时，永远是父类选项优先于子类选项执行。</li>
+</ol>
+<pre><code class="js">// 生命周期钩子选项合并策略
 function mergeHook (
     parentVal,
     childVal
@@ -659,7 +944,9 @@ function mergeHook (
     &#125;
     return res
   &#125;
-</code></pre><p>下面结合具体的例子看合并结果。</p><pre><code class="js">var Parent = Vue.extend(&#123;
+</code></pre>
+<p>下面结合具体的例子看合并结果。</p>
+<pre><code class="js">var Parent = Vue.extend(&#123;
   mounted() &#123;
     console.log(&#39;parent&#39;)
   &#125;
@@ -674,7 +961,10 @@ var vm = new Child().$mount(&#39;#app&#39;);
 // 输出结果：
 parent
 child
-</code></pre><p>简单总结一下：<strong>对于生命周期钩子选项，子类和父类相同的选项将合并成数组，这样在执行子类钩子函数时，父类钩子选项也会执行，并且父会优先于子执行。</strong></p><h2 id="1-9-watch选项合并"><a href="#1-9-watch选项合并" class="headerlink" title="1.9 watch选项合并"></a>1.9 watch选项合并</h2><p>在使用<code>Vue</code>进行开发时，我们有时需要自定义侦听器来响应数据的变化，当需要在数据变化时执行异步或者开销较大的操作时，<code>watch</code>往往是高效的。对于 <code>watch</code> 选项的合并处理，它类似于生命周期钩子，只要父选项有相同的观测字段，则和子的选项合并为数组，在监测字段改变时同时执行父类选项的监听代码。处理方式和生命钩子选项的区别在于，生命周期钩子选项必须是函数，而<code>watch</code>选项最终在合并的数组中可以是包含选项的对象，也可以是对应的回调函数，或者方法名。</p><pre><code class="js">strats.watch = function (parentVal,childVal,vm,key) &#123;
+</code></pre>
+<p>简单总结一下：<strong>对于生命周期钩子选项，子类和父类相同的选项将合并成数组，这样在执行子类钩子函数时，父类钩子选项也会执行，并且父会优先于子执行。</strong></p>
+<h2 id="1-9-watch选项合并"><a href="#1-9-watch选项合并" class="headerlink" title="1.9 watch选项合并"></a>1.9 watch选项合并</h2><p>在使用<code>Vue</code>进行开发时，我们有时需要自定义侦听器来响应数据的变化，当需要在数据变化时执行异步或者开销较大的操作时，<code>watch</code>往往是高效的。对于 <code>watch</code> 选项的合并处理，它类似于生命周期钩子，只要父选项有相同的观测字段，则和子的选项合并为数组，在监测字段改变时同时执行父类选项的监听代码。处理方式和生命钩子选项的区别在于，生命周期钩子选项必须是函数，而<code>watch</code>选项最终在合并的数组中可以是包含选项的对象，也可以是对应的回调函数，或者方法名。</p>
+<pre><code class="js">strats.watch = function (parentVal,childVal,vm,key) &#123;
     //火狐浏览器在Object的原型上拥有watch方法，这里对这一现象做了兼容
     // var nativeWatch = (&#123;&#125;).watch;
     if (parentVal === nativeWatch) &#123; parentVal = undefined; &#125;
@@ -702,7 +992,9 @@ child
     &#125;
     return ret
   &#125;;
-</code></pre><p>下面结合具体的例子看合并结果：</p><pre><code class="js">var Parent = Vue.extend(&#123;
+</code></pre>
+<p>下面结合具体的例子看合并结果：</p>
+<pre><code class="js">var Parent = Vue.extend(&#123;
   watch: &#123;
     &#39;test&#39;: function() &#123;
       console.log(&#39;parent change&#39;)
@@ -728,7 +1020,10 @@ vm.test = 2;
 // 输出结果
 parent change
 child change
-</code></pre><p>简单总结一下：<strong>对于watch选项的合并，最终和父类选项合并成数组，并且数组的选项成员，可以是回调函数，选项对象，或者函数名。</strong></p><h2 id="1-10-props-methods-inject-computed合并"><a href="#1-10-props-methods-inject-computed合并" class="headerlink" title="1.10 props methods inject computed合并"></a>1.10 props methods inject computed合并</h2><p>源码的设计将<code>props.methods,inject,computed</code>归结为一类，他们的配置策略一致，简单概括就是，如果父类不存在选项，则返回子类选项，子类父类都存在时，用子类选项去覆盖父类选项。</p><pre><code class="js">// 其他选项合并策略
+</code></pre>
+<p>简单总结一下：<strong>对于watch选项的合并，最终和父类选项合并成数组，并且数组的选项成员，可以是回调函数，选项对象，或者函数名。</strong></p>
+<h2 id="1-10-props-methods-inject-computed合并"><a href="#1-10-props-methods-inject-computed合并" class="headerlink" title="1.10 props methods inject computed合并"></a>1.10 props methods inject computed合并</h2><p>源码的设计将<code>props.methods,inject,computed</code>归结为一类，他们的配置策略一致，简单概括就是，如果父类不存在选项，则返回子类选项，子类父类都存在时，用子类选项去覆盖父类选项。</p>
+<pre><code class="js">// 其他选项合并策略
 strats.props =
 strats.methods =
 strats.inject =
@@ -744,4 +1039,387 @@ strats.computed = function (parentVal,childVal,vm,key) &#123;
     extend(ret, childVal); &#125; 
   return ret
 &#125;;
-</code></pre><h2 id="1-11-小结"><a href="#1-11-小结" class="headerlink" title="1.11 小结"></a>1.11 小结</h2><p>至此，五类选项合并的策略分析到此结束，回顾一下这一章节的内容，这一节是<code>Vue</code>源码分析的起手式，所以我们从<code>Vue</code>的引入出发，先大致了解了<code>Vue</code>在代码引入阶段做的操作，主要是对静态属性方法和原型上属性方法的定义和声明，这里并不需要精确了解到每个方法的功能和实现细节，当然我也相信你已经在实战中或多或少接触过这些方法的使用。接下来到文章的重点，<code>new Vue</code>是我们正确使用<code>Vue</code>进行开发的关键，而实例化阶段会对调用<code>_init</code>方法进行初始化，选项合并是初始化的第一步。选项合并会对系统内部定义的选项和子父类的选项进行合并。而<code>Vue</code>有相当丰富的选项合并策略，不管是内部的选项还是用户自定义的选项，他们都遵循内部约定好的合并策略。有了丰富的选项和严格的合并策略，<code>Vue</code>在指导开发上才显得更加完备。下一节会分析一个重要的概念，数据代理，它也是响应式系统的基础。</p><div class="tags"><a href="/tags/Vue/" rel="tag"><i class="ic i-tag"></i> Vue</a></div></div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i> </span><span class="text">更新于</span> <time title="修改时间：2023-08-03 15:31:23" itemprop="dateModified" datetime="2023-08-03T15:31:23+08:00">2023-08-03</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i> 赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img data-src="/images/wechatpay.png" alt="sanxin98 微信支付"><p>微信支付</p></div><div><img data-src="/images/alipay.png" alt="sanxin98 支付宝"><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者： </strong>sanxin98 <i class="ic i-at"><em>@</em></i>死肥宅</li><li class="link"><strong>本文链接：</strong> <a href="https://pink-png.github.io/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" title="Step.1 丰富的选项合并策略">https://pink-png.github.io/computer-science/vueyuanma/dosc/1丰富的选项合并策略/</a></li><li class="license"><strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/front-end/vue3.x%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclxp31goj20zk0m8qv5.jpg" title="vue3.x常用基础"><span class="type">上一篇</span> <span class="category"><i class="ic i-flag"></i> Vue</span><h3>vue3.x常用基础</h3></a></div><div class="item right"><a href="/computer-science/spring/docssp/Spring-04/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicm0n457cj20zk0m8e81.jpg" title="Step.4"><span class="type">下一篇</span> <span class="category"><i class="ic i-flag"></i> Spring基础</span><h3>Step.4</h3></a></div></div><div class="wrap" id="comments"></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Vue%E7%9A%84%E5%BC%95%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">1.1 Vue的引入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1 基础使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-Vue%E6%9E%84%E9%80%A0%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2 Vue构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-%E5%AE%9A%E4%B9%89%E5%8E%9F%E5%9E%8B%E5%B1%9E%E6%80%A7%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3 定义原型属性方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-4-%E5%AE%9A%E4%B9%89%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">1.1.4 定义静态属性方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%9E%84%E9%80%A0%E5%99%A8%E7%9A%84%E9%BB%98%E8%AE%A4%E9%80%89%E9%A1%B9"><span class="toc-number">2.</span> <span class="toc-text">1.2 构造器的默认选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E9%80%89%E9%A1%B9%E6%A3%80%E9%AA%8C"><span class="toc-number">3.</span> <span class="toc-text">1.3 选项检验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-components%E8%A7%84%E8%8C%83%E6%A3%80%E9%AA%8C"><span class="toc-number">3.1.</span> <span class="toc-text">1.3.1 components规范检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-props%E8%A7%84%E8%8C%83%E6%A3%80%E9%AA%8C"><span class="toc-number">3.2.</span> <span class="toc-text">1.3.2 props规范检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-inject%E7%9A%84%E8%A7%84%E8%8C%83%E6%A0%A1%E9%AA%8C"><span class="toc-number">3.3.</span> <span class="toc-text">1.3.3 inject的规范校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-4-directive%E7%9A%84%E8%A7%84%E8%8C%83%E6%A0%A1%E9%AA%8C"><span class="toc-number">3.4.</span> <span class="toc-text">1.3.4 directive的规范校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-5-%E5%87%BD%E6%95%B0%E7%BC%93%E5%AD%98"><span class="toc-number">3.5.</span> <span class="toc-text">1.3.5 函数缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E5%AD%90%E7%B1%BB%E6%9E%84%E9%80%A0%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">1.4 子类构造器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5"><span class="toc-number">5.</span> <span class="toc-text">1.5 合并策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-1-%E9%BB%98%E8%AE%A4%E7%AD%96%E7%95%A5"><span class="toc-number">5.1.</span> <span class="toc-text">1.5.1 默认策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-%E5%B8%B8%E8%A7%84%E9%80%89%E9%A1%B9%E7%9A%84%E5%90%88%E5%B9%B6"><span class="toc-number">6.</span> <span class="toc-text">1.6 常规选项的合并</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-1-el%E7%9A%84%E5%90%88%E5%B9%B6"><span class="toc-number">6.1.</span> <span class="toc-text">1.6.1 el的合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-2-data%E5%90%88%E5%B9%B6"><span class="toc-number">6.2.</span> <span class="toc-text">1.6.2 data合并</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7-%E8%87%AA%E5%B8%A6%E8%B5%84%E6%BA%90%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6"><span class="toc-number">7.</span> <span class="toc-text">1.7 自带资源选项合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-8-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E7%9A%84%E5%90%88%E5%B9%B6"><span class="toc-number">8.</span> <span class="toc-text">1.8 生命周期钩子函数的合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-9-watch%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6"><span class="toc-number">9.</span> <span class="toc-text">1.9 watch选项合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-10-props-methods-inject-computed%E5%90%88%E5%B9%B6"><span class="toc-number">10.</span> <span class="toc-text">1.10 props methods inject computed合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-11-%E5%B0%8F%E7%BB%93"><span class="toc-number">11.</span> <span class="toc-text">1.11 小结</span></a></li></ol></div><div class="related panel pjax" data-title="系列文章"><ul><li class="active"><a href="/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" rel="bookmark" title="Step.1 丰富的选项合并策略">Step.1 丰富的选项合并策略</a></li><li><a href="/computer-science/vueyuanma/dosc/2%E5%9F%BA%E7%A1%80%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B/" rel="bookmark" title="Step.2 基础的数据代理检测">Step.2 基础的数据代理检测</a></li><li><a href="/computer-science/vueyuanma/dosc/3%E5%AE%9E%E4%BE%8B%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91/" rel="bookmark" title="Step.3 实例挂载流程和模板编译">Step.3 实例挂载流程和模板编译</a></li><li><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" rel="bookmark" title="Step.4 完整渲染流程">Step.4 完整渲染流程</a></li><li><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" rel="bookmark" title="Step.5 组件基础剖析">Step.5 组件基础剖析</a></li><li><a href="/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" rel="bookmark" title="Step.6 组件高级用法">Step.6 组件高级用法</a></li><li><a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" rel="bookmark" title="Step.7 深入响应式系统构建-上">Step.7 深入响应式系统构建-上</a></li><li><a href="/computer-science/vueyuanma/dosc/8%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%AD/" rel="bookmark" title="Step.8 深入响应式系统构建-中">Step.8 深入响应式系统构建-中</a></li><li><a href="/computer-science/vueyuanma/dosc/9%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8B/" rel="bookmark" title="Step.9 深入响应式系统构建-下">Step.9 深入响应式系统构建-下</a></li><li><a href="/computer-science/vueyuanma/dosc/10%E6%9D%A5%EF%BC%8C%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%AE%9E%E7%8E%B0diff%E7%AE%97%E6%B3%95/" rel="bookmark" title="Step.10 来，跟我一起实现diff算法">Step.10 来，跟我一起实现diff算法</a></li><li><a href="/computer-science/vueyuanma/dosc/11%E6%8F%AD%E7%A7%98Vue%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" rel="bookmark" title="Step.11 揭秘Vue的事件机制">Step.11 揭秘Vue的事件机制</a></li><li><a href="/computer-science/vueyuanma/dosc/12vue%E6%8F%92%E6%A7%BD%EF%BC%8C%E4%BD%A0%E6%83%B3%E4%BA%86%E8%A7%A3%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C/" rel="bookmark" title="Step.12 vue插槽，你想了解的都在这里">Step.12 vue插槽，你想了解的都在这里</a></li><li><a href="/computer-science/vueyuanma/dosc/13%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3v-model%E7%9A%84%E8%AF%AD%E6%B3%95%E7%B3%96%E4%BA%86%E5%90%97/" rel="bookmark" title="Step.13 你真的了解v-model的语法糖了吗">Step.13 你真的了解v-model的语法糖了吗</a></li><li><a href="/computer-science/vueyuanma/dosc/14%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90/" rel="bookmark" title="Step.14 动态组件的深入分析">Step.14 动态组件的深入分析</a></li><li><a href="/computer-science/vueyuanma/dosc/15%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8A/" rel="bookmark" title="Step.15 彻底搞懂Vue中keep-alive的魔法-上">Step.15 彻底搞懂Vue中keep-alive的魔法-上</a></li><li><a href="/computer-science/vueyuanma/dosc/16%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8B/" rel="bookmark" title="Step.16 彻底搞懂Vue中keep-alive的魔法-上">Step.16 彻底搞懂Vue中keep-alive的魔法-上</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="image" itemprop="image" alt="sanxin98" data-src="/images/avatar.jpg"><p class="name" itemprop="name">sanxin98</p><div class="description" itemprop="description">编程 & 生活</div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">96</span> <span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">40</span> <span class="name">分类</span></a></div><div class="item tags"><a href="/tags/"><span class="count">29</span> <span class="name">标签</span></a></div></nav><div class="social"><span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BpbmstcG5n" title="https:&#x2F;&#x2F;github.com&#x2F;pink-png"><i class="ic i-github"></i></span></div><ul class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li><li class="item dropdown"><a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a><ul class="submenu"><li class="item"><a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a></li><li class="item"><a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a></li><li class="item"><a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a></li></ul></li></ul></div></div></div><ul id="quick"><li class="prev pjax"><a href="/front-end/vue3.x%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/computer-science/spring/docssp/Spring-04/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/PM2/" title="分类于 PM2">PM2</a></div><span><a href="/front-end/PM2%20+%20linux/" title="PM2">PM2</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a></div><span><a href="/js-base/js%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8F/" title="js创建对象的多种方式">js创建对象的多种方式</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" title="分类于 浏览器">浏览器</a></div><span><a href="/Web-Integration/%E8%AF%A6%E8%A7%A3%E4%BB%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E2%BC%8Aurl%E5%88%B0%E6%98%BE%E7%A4%BA%E2%BB%9A%E2%BE%AF/" title="从浏览器地址栏输⼊url到显示⻚⾯的步骤">从浏览器地址栏输⼊url到显示⻚⾯的步骤</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a></div><span><a href="/js-base/js%E5%8E%9F%E5%9E%8B%EF%BC%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" title="js原型，原型链">js原型，原型链</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/spring/" title="分类于 Spring">Spring</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/spring/Spring%E5%9F%BA%E7%A1%80/" title="分类于 Spring基础">Spring基础</a></div><span><a href="/computer-science/spring/docssp/Spring-04/" title="Step.4">Step.4</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" title="分类于 浏览器">浏览器</a></div><span><a href="/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%9D%A2%E8%AF%95/" title="web综合问题">web综合问题</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" title="分类于 浏览器">浏览器</a></div><span><a href="/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/" title="浏览器渲染原理以及优化思路">浏览器渲染原理以及优化思路</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" title="分类于 前端工程化">前端工程化</a></div><span><a href="/front-end/webpack/" title="webpack">webpack</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a></div><span><a href="/performance-optimization/%E6%8F%90%E9%AB%98Webpack%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6/" title="webpack性能优化">webpack性能优化</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" title="分类于 微信公众号">微信公众号</a></div><span><a href="/front-end/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7html%20js%20%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95/" title="微信公众号html js 实现登录">微信公众号html js 实现登录</a></span></li></ul></div><div><h2>最新评论</h2><ul class="leancloud-recent-comment"></ul></div></div><div class="status"><div class="copyright">&copy; 2010 – <span itemprop="copyrightYear">2024</span> <span class="with-love"><i class="ic i-sakura rotate"></i> </span><span class="author" itemprop="copyrightHolder">sanxin98 @ Yume Shoka</span></div><div class="powered-by">基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL={path:"computer-science/vueyuanma/dosc/1丰富的选项合并策略/",favicon:{show:"（●´3｀●）やれやれだぜ",hide:"(´Д｀)大変だ！"},search:{placeholder:"文章搜索",empty:"关于 「 ${query} 」，什么也没搜到",stats:"${time} ms 内找到 ${hits} 条结果"},valine:{placeholder:"1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"},fancybox:!0,copyright:'复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',ignores:[function(e){return e.includes("#")},function(e){return new RegExp(LOCAL.path+"$").test(e)}]}</script><script src="https://cdn.polyfill.io/v2/polyfill.js"></script><script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script><script src="/js/app.js?v=0.2.5"></script></body></html>
+</code></pre>
+<h2 id="1-11-小结"><a href="#1-11-小结" class="headerlink" title="1.11 小结"></a>1.11 小结</h2><p>至此，五类选项合并的策略分析到此结束，回顾一下这一章节的内容，这一节是<code>Vue</code>源码分析的起手式，所以我们从<code>Vue</code>的引入出发，先大致了解了<code>Vue</code>在代码引入阶段做的操作，主要是对静态属性方法和原型上属性方法的定义和声明，这里并不需要精确了解到每个方法的功能和实现细节，当然我也相信你已经在实战中或多或少接触过这些方法的使用。接下来到文章的重点，<code>new Vue</code>是我们正确使用<code>Vue</code>进行开发的关键，而实例化阶段会对调用<code>_init</code>方法进行初始化，选项合并是初始化的第一步。选项合并会对系统内部定义的选项和子父类的选项进行合并。而<code>Vue</code>有相当丰富的选项合并策略，不管是内部的选项还是用户自定义的选项，他们都遵循内部约定好的合并策略。有了丰富的选项和严格的合并策略，<code>Vue</code>在指导开发上才显得更加完备。下一节会分析一个重要的概念，数据代理，它也是响应式系统的基础。</p>
+
+      <div class="tags">
+          <a href="/tags/Vue/" rel="tag"><i class="ic i-tag"></i> Vue</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-08-03 15:31:23" itemprop="dateModified" datetime="2023-08-03T15:31:23+08:00">2023-08-03</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="sanxin98 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="sanxin98 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>sanxin98 <i class="ic i-at"><em>@</em></i>死肥宅
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://pink-png.github.io/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" title="Step.1 丰富的选项合并策略">https://pink-png.github.io/computer-science/vueyuanma/dosc/1丰富的选项合并策略/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/front-end/vue3.x%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicli3sbvtj20zk0m8x6p.jpg" title="vue3.x常用基础">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Vue</span>
+  <h3>vue3.x常用基础</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/computer-science/spring/docssp/Spring-03/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciuv0socj20zk0m8qes.jpg" title="Step.3">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Spring基础</span>
+  <h3>Step.3</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Vue%E7%9A%84%E5%BC%95%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">1.1 Vue的引入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1 基础使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-Vue%E6%9E%84%E9%80%A0%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2 Vue构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-%E5%AE%9A%E4%B9%89%E5%8E%9F%E5%9E%8B%E5%B1%9E%E6%80%A7%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">1.1.3 定义原型属性方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-4-%E5%AE%9A%E4%B9%89%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">1.1.4 定义静态属性方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%9E%84%E9%80%A0%E5%99%A8%E7%9A%84%E9%BB%98%E8%AE%A4%E9%80%89%E9%A1%B9"><span class="toc-number">2.</span> <span class="toc-text">1.2 构造器的默认选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E9%80%89%E9%A1%B9%E6%A3%80%E9%AA%8C"><span class="toc-number">3.</span> <span class="toc-text">1.3 选项检验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-components%E8%A7%84%E8%8C%83%E6%A3%80%E9%AA%8C"><span class="toc-number">3.1.</span> <span class="toc-text">1.3.1 components规范检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-props%E8%A7%84%E8%8C%83%E6%A3%80%E9%AA%8C"><span class="toc-number">3.2.</span> <span class="toc-text">1.3.2 props规范检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-inject%E7%9A%84%E8%A7%84%E8%8C%83%E6%A0%A1%E9%AA%8C"><span class="toc-number">3.3.</span> <span class="toc-text">1.3.3 inject的规范校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-4-directive%E7%9A%84%E8%A7%84%E8%8C%83%E6%A0%A1%E9%AA%8C"><span class="toc-number">3.4.</span> <span class="toc-text">1.3.4 directive的规范校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-5-%E5%87%BD%E6%95%B0%E7%BC%93%E5%AD%98"><span class="toc-number">3.5.</span> <span class="toc-text">1.3.5 函数缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E5%AD%90%E7%B1%BB%E6%9E%84%E9%80%A0%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">1.4 子类构造器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5"><span class="toc-number">5.</span> <span class="toc-text">1.5 合并策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-1-%E9%BB%98%E8%AE%A4%E7%AD%96%E7%95%A5"><span class="toc-number">5.1.</span> <span class="toc-text">1.5.1 默认策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-%E5%B8%B8%E8%A7%84%E9%80%89%E9%A1%B9%E7%9A%84%E5%90%88%E5%B9%B6"><span class="toc-number">6.</span> <span class="toc-text">1.6 常规选项的合并</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-1-el%E7%9A%84%E5%90%88%E5%B9%B6"><span class="toc-number">6.1.</span> <span class="toc-text">1.6.1 el的合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-2-data%E5%90%88%E5%B9%B6"><span class="toc-number">6.2.</span> <span class="toc-text">1.6.2 data合并</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7-%E8%87%AA%E5%B8%A6%E8%B5%84%E6%BA%90%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6"><span class="toc-number">7.</span> <span class="toc-text">1.7 自带资源选项合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-8-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E7%9A%84%E5%90%88%E5%B9%B6"><span class="toc-number">8.</span> <span class="toc-text">1.8 生命周期钩子函数的合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-9-watch%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6"><span class="toc-number">9.</span> <span class="toc-text">1.9 watch选项合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-10-props-methods-inject-computed%E5%90%88%E5%B9%B6"><span class="toc-number">10.</span> <span class="toc-text">1.10 props methods inject computed合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-11-%E5%B0%8F%E7%BB%93"><span class="toc-number">11.</span> <span class="toc-text">1.11 小结</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" rel="bookmark" title="Step.1 丰富的选项合并策略">Step.1 丰富的选项合并策略</a></li><li><a href="/computer-science/vueyuanma/dosc/2%E5%9F%BA%E7%A1%80%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B/" rel="bookmark" title="Step.2 基础的数据代理检测">Step.2 基础的数据代理检测</a></li><li><a href="/computer-science/vueyuanma/dosc/3%E5%AE%9E%E4%BE%8B%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91/" rel="bookmark" title="Step.3 实例挂载流程和模板编译">Step.3 实例挂载流程和模板编译</a></li><li><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" rel="bookmark" title="Step.4 完整渲染流程">Step.4 完整渲染流程</a></li><li><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" rel="bookmark" title="Step.5 组件基础剖析">Step.5 组件基础剖析</a></li><li><a href="/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" rel="bookmark" title="Step.6 组件高级用法">Step.6 组件高级用法</a></li><li><a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" rel="bookmark" title="Step.7 深入响应式系统构建-上">Step.7 深入响应式系统构建-上</a></li><li><a href="/computer-science/vueyuanma/dosc/8%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%AD/" rel="bookmark" title="Step.8 深入响应式系统构建-中">Step.8 深入响应式系统构建-中</a></li><li><a href="/computer-science/vueyuanma/dosc/9%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8B/" rel="bookmark" title="Step.9 深入响应式系统构建-下">Step.9 深入响应式系统构建-下</a></li><li><a href="/computer-science/vueyuanma/dosc/10%E6%9D%A5%EF%BC%8C%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%AE%9E%E7%8E%B0diff%E7%AE%97%E6%B3%95/" rel="bookmark" title="Step.10 来，跟我一起实现diff算法">Step.10 来，跟我一起实现diff算法</a></li><li><a href="/computer-science/vueyuanma/dosc/11%E6%8F%AD%E7%A7%98Vue%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" rel="bookmark" title="Step.11 揭秘Vue的事件机制">Step.11 揭秘Vue的事件机制</a></li><li><a href="/computer-science/vueyuanma/dosc/12vue%E6%8F%92%E6%A7%BD%EF%BC%8C%E4%BD%A0%E6%83%B3%E4%BA%86%E8%A7%A3%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C/" rel="bookmark" title="Step.12 vue插槽，你想了解的都在这里">Step.12 vue插槽，你想了解的都在这里</a></li><li><a href="/computer-science/vueyuanma/dosc/13%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3v-model%E7%9A%84%E8%AF%AD%E6%B3%95%E7%B3%96%E4%BA%86%E5%90%97/" rel="bookmark" title="Step.13 你真的了解v-model的语法糖了吗">Step.13 你真的了解v-model的语法糖了吗</a></li><li><a href="/computer-science/vueyuanma/dosc/14%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90/" rel="bookmark" title="Step.14 动态组件的深入分析">Step.14 动态组件的深入分析</a></li><li><a href="/computer-science/vueyuanma/dosc/15%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8A/" rel="bookmark" title="Step.15 彻底搞懂Vue中keep-alive的魔法-上">Step.15 彻底搞懂Vue中keep-alive的魔法-上</a></li><li><a href="/computer-science/vueyuanma/dosc/16%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8B/" rel="bookmark" title="Step.16 彻底搞懂Vue中keep-alive的魔法-上">Step.16 彻底搞懂Vue中keep-alive的魔法-上</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="sanxin98"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">sanxin98</p>
+  <div class="description" itemprop="description">编程 & 生活</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">97</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">41</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">29</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BpbmstcG5n" title="https:&#x2F;&#x2F;github.com&#x2F;pink-png"><i class="ic i-github"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/front-end/vue3.x%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/computer-science/spring/docssp/Spring-03/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a>
+</div>
+
+    <span><a href="/js-base/js%E6%B5%85%E8%B0%88call%E5%92%8Capply%E5%92%8Cbind/" title="浅谈call和apply和bind">浅谈call和apply和bind</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
+</div>
+
+    <span><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" title="Step.5 组件基础剖析">Step.5 组件基础剖析</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a>
+</div>
+
+    <span><a href="/js-base/event%20loop/" title="event loop">event loop</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" title="分类于 浏览器">浏览器</a>
+</div>
+
+    <span><a href="/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" title="浏览器缓存机制">浏览器缓存机制</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
+</div>
+
+    <span><a href="/computer-science/vueyuanma/dosc/11%E6%8F%AD%E7%A7%98Vue%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" title="Step.11 揭秘Vue的事件机制">Step.11 揭秘Vue的事件机制</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" title="分类于 浏览器">浏览器</a>
+</div>
+
+    <span><a href="/Web-Integration/%E8%AF%A6%E8%A7%A3%E4%BB%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E2%BC%8Aurl%E5%88%B0%E6%98%BE%E7%A4%BA%E2%BB%9A%E2%BE%AF/" title="从浏览器地址栏输⼊url到显示⻚⾯的步骤">从浏览器地址栏输⼊url到显示⻚⾯的步骤</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Uniapp/" title="分类于 Uniapp">Uniapp</a>
+</div>
+
+    <span><a href="/front-end/%E8%AE%B0%E4%B8%80%E6%AC%A1vue%E8%BD%ACuniapp/" title="记一次vue转uniapp">记一次vue转uniapp</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a>
+</div>
+
+    <span><a href="/js-base/js%E5%AE%9E%E7%8E%B0%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" title="js 实现异步编程">js 实现异步编程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" title="分类于 前端工程化">前端工程化</a>
+</div>
+
+    <span><a href="/front-end/webpack/" title="webpack">webpack</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/" title="分类于 微信公众号">微信公众号</a>
+</div>
+
+    <span><a href="/front-end/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7html%20js%20%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95/" title="微信公众号html js 实现登录">微信公众号html js 实现登录</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">sanxin98 @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'computer-science/vueyuanma/dosc/1丰富的选项合并策略/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: {"placeholder":"1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"},fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

@@ -1,4 +1,169 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#FFF"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png"><link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" type="application/rss+xml" title="死肥宅" href="https://pink-png.github.io/rss.xml"><link rel="alternate" type="application/atom+xml" title="死肥宅" href="https://pink-png.github.io/atom.xml"><link rel="alternate" type="application/json" title="死肥宅" href="https://pink-png.github.io/feed.json"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="/css/app.css?v=0.2.5"><meta name="keywords" content="Vue"><link rel="canonical" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/"><title>Step.5 组件基础剖析 - vue2.x源码 - Vue - 计算机科学 | Yume Shoka = 死肥宅 = 肥宅快乐水</title><meta name="generator" content="Hexo 6.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">Step.5 组件基础剖析</h1><div class="meta"><span class="item" title="创建时间：2020-04-29 20:46:48"><span class="icon"><i class="ic i-calendar"></i> </span><span class="text">发表于</span> <time itemprop="dateCreated datePublished" datetime="2020-04-29T20:46:48+08:00">2020-04-29</time></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span> <span class="line"></span> <span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">Yume Shoka</a></li></ul><ul class="right"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div id="imgs" class="pjax"><ul><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclimtf7dj20zk0m8qav.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giciryrr3rj20zk0m8nhk.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giph4wqtg4j20zk0m8x6p.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giph47e9vtj20zk0m8x6l.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gicm0fdw5cj20zk0m8hdt.jpg"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"/><use xlink:href="#gentle-wave" x="48" y="3"/><use xlink:href="#gentle-wave" x="48" y="5"/><use xlink:href="#gentle-wave" x="48" y="7"/></g></svg></div><main><div class="inner"><div id="main" class="pjax"><div class="article wrap"><div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i> <span><a href="/">首页</a></span><i class="ic i-angle-right"></i> <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/" itemprop="item" rel="index" title="分类于 计算机科学"><span itemprop="name">计算机科学</span></a><meta itemprop="position" content="1"></span><i class="ic i-angle-right"></i> <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/" itemprop="item" rel="index" title="分类于 Vue"><span itemprop="name">Vue</span></a><meta itemprop="position" content="2"></span><i class="ic i-angle-right"></i> <span class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/dosc/" itemprop="item" rel="index" title="分类于 vue2.x源码"><span itemprop="name">vue2.x源码</span></a><meta itemprop="position" content="3"></span></div><article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/avatar.jpg"><meta itemprop="name" content="sanxin98"><meta itemprop="description" content="肥宅快乐水, 编程 & 生活"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="死肥宅"></span><div class="body md" itemprop="articleBody"><blockquote><p>组件是<code>Vue</code>的一个重要核心，我们在进行项目工程化时，会将页面的结构组件化。组件化意味着独立和共享,而两个结论并不矛盾，独立的组件开发可以让开发者专注于某个功能项的开发和扩展，而组件的设计理念又使得功能项更加具有复用性，不同的页面可以进行组件功能的共享。对于开发者而言，编写<code>Vue</code>组件是掌握<code>Vue</code>开发的核心基础，<code>Vue</code>官网也花了大量的篇幅介绍了组件的体系和各种使用方法。这一节内容，我们会深入<code>Vue</code>组件内部的源码，了解<strong>组件注册的实现思路，并结合上一节介绍的实例挂载分析组件渲染挂载的基本流程，最后我们将分析组件和组件之间是如何建立联系的</strong>。我相信，掌握这些底层的实现思路对于我们今后在解决<code>vue</code>组件相关问题上会有明显的帮助。</p></blockquote><h2 id="5-1-组件两种注册方式"><a href="#5-1-组件两种注册方式" class="headerlink" title="5.1 组件两种注册方式"></a>5.1 组件两种注册方式</h2><p>熟悉<code>Vue</code>开发流程的都知道，<code>Vue</code>组件在使用之前需要进行注册，而注册的方式有两种，全局注册和局部注册。在进入源码分析之前，我们先回忆一下两者的用法，以便后续掌握两者的差异。</p><h3 id="5-1-1-全局注册"><a href="#5-1-1-全局注册" class="headerlink" title="5.1.1 全局注册"></a>5.1.1 全局注册</h3><pre><code class="js">Vue.component(&#39;my-test&#39;, &#123;
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="死肥宅" href="https://pink-png.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="死肥宅" href="https://pink-png.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="死肥宅" href="https://pink-png.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="Vue" />
+
+
+<link rel="canonical" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/">
+
+
+
+  <title>
+Step.5 组件基础剖析 - vue2.x源码 - Vue - 计算机科学 |
+Yume Shoka = 死肥宅 = 肥宅快乐水</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Step.5 组件基础剖析
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2020-04-29 20:46:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2020-04-29T20:46:48+08:00">2020-04-29</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1giclfw2t96j20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1giph47e9vtj20zk0m8x6l.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gicm0fdw5cj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gicliierfjj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gipeudstjqj20zk0m8k3r.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/" itemprop="item" rel="index" title="分类于 计算机科学"><span itemprop="name">计算机科学</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/" itemprop="item" rel="index" title="分类于 Vue"><span itemprop="name">Vue</span></a>
+<meta itemprop="position" content="2" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/dosc/" itemprop="item" rel="index" title="分类于 vue2.x源码"><span itemprop="name">vue2.x源码</span></a>
+<meta itemprop="position" content="3" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="sanxin98">
+    <meta itemprop="description" content="肥宅快乐水, 编程 & 生活">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="死肥宅">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <blockquote>
+<p>组件是<code>Vue</code>的一个重要核心，我们在进行项目工程化时，会将页面的结构组件化。组件化意味着独立和共享,而两个结论并不矛盾，独立的组件开发可以让开发者专注于某个功能项的开发和扩展，而组件的设计理念又使得功能项更加具有复用性，不同的页面可以进行组件功能的共享。对于开发者而言，编写<code>Vue</code>组件是掌握<code>Vue</code>开发的核心基础，<code>Vue</code>官网也花了大量的篇幅介绍了组件的体系和各种使用方法。这一节内容，我们会深入<code>Vue</code>组件内部的源码，了解<strong>组件注册的实现思路，并结合上一节介绍的实例挂载分析组件渲染挂载的基本流程，最后我们将分析组件和组件之间是如何建立联系的</strong>。我相信，掌握这些底层的实现思路对于我们今后在解决<code>vue</code>组件相关问题上会有明显的帮助。</p>
+</blockquote>
+<h2 id="5-1-组件两种注册方式"><a href="#5-1-组件两种注册方式" class="headerlink" title="5.1 组件两种注册方式"></a>5.1 组件两种注册方式</h2><p>熟悉<code>Vue</code>开发流程的都知道，<code>Vue</code>组件在使用之前需要进行注册，而注册的方式有两种，全局注册和局部注册。在进入源码分析之前，我们先回忆一下两者的用法，以便后续掌握两者的差异。</p>
+<h3 id="5-1-1-全局注册"><a href="#5-1-1-全局注册" class="headerlink" title="5.1.1 全局注册"></a>5.1.1 全局注册</h3><pre><code class="js">Vue.component(&#39;my-test&#39;, &#123;
     template: &#39;&lt;div&gt;&#123;&#123;test&#125;&#125;&lt;/div&gt;&#39;,
     data () &#123;
         return &#123;
@@ -10,7 +175,9 @@ var vm = new Vue(&#123;
     el: &#39;#app&#39;,
     template: &#39;&lt;div id=&quot;app&quot;&gt;&lt;my-test&gt;&lt;my-test/&gt;&lt;/div&gt;&#39;
 &#125;)
-</code></pre><p><strong>其中组件的全局注册需要在全局实例化Vue前调用</strong>,注册之后可以用在任何新创建的<code>Vue</code>实例中调用。</p><h3 id="5-1-2-局部注册"><a href="#5-1-2-局部注册" class="headerlink" title="5.1.2 局部注册"></a>5.1.2 局部注册</h3><pre><code class="js">var myTest = &#123;
+</code></pre>
+<p><strong>其中组件的全局注册需要在全局实例化Vue前调用</strong>,注册之后可以用在任何新创建的<code>Vue</code>实例中调用。</p>
+<h3 id="5-1-2-局部注册"><a href="#5-1-2-局部注册" class="headerlink" title="5.1.2 局部注册"></a>5.1.2 局部注册</h3><pre><code class="js">var myTest = &#123;
     template: &#39;&lt;div&gt;&#123;&#123;test&#125;&#125;&lt;/div&gt;&#39;,
     data () &#123;
         return &#123;
@@ -24,7 +191,10 @@ var vm = new Vue(&#123;
         myTest
     &#125;
 &#125;)
-</code></pre><p>当只需要在某个局部用到某个组件时，可以使用局部注册的方式进行组件注册，此时局部注册的组件只能在注册该组件内部使用。</p><h3 id="5-1-3-注册过程"><a href="#5-1-3-注册过程" class="headerlink" title="5.1.3 注册过程"></a>5.1.3 注册过程</h3><p>在简单回顾组件的两种注册方式后，我们来看注册过程到底发生了什么，我们以全局组件注册为例。它通过<code>Vue.component(name, &#123;...&#125;)</code>进行组件注册，<code>Vue.component</code>是在<code>Vue</code>源码引入阶段定义的静态方法。</p><pre><code class="js">// 初始化全局api
+</code></pre>
+<p>当只需要在某个局部用到某个组件时，可以使用局部注册的方式进行组件注册，此时局部注册的组件只能在注册该组件内部使用。</p>
+<h3 id="5-1-3-注册过程"><a href="#5-1-3-注册过程" class="headerlink" title="5.1.3 注册过程"></a>5.1.3 注册过程</h3><p>在简单回顾组件的两种注册方式后，我们来看注册过程到底发生了什么，我们以全局组件注册为例。它通过<code>Vue.component(name, &#123;...&#125;)</code>进行组件注册，<code>Vue.component</code>是在<code>Vue</code>源码引入阶段定义的静态方法。</p>
+<pre><code class="js">// 初始化全局api
 initAssetRegisters(Vue);
 var ASSET_TYPES = [
     &#39;component&#39;,
@@ -57,7 +227,9 @@ function initAssetRegisters(Vue)&#123;
         &#125;
     &#125;);
 &#125;
-</code></pre><p><code>Vue.components</code>有两个参数，一个是需要注册组件的组件名，另一个是组件选项，如果第二个参数没有传递，则会直接返回注册过的组件选项。否则意味着需要对该组件进行注册，注册过程先会对组件名的合法性进行检测，要求组件名不允许出现非法的标签，包括<code>Vue</code>内置的组件名，如<code>slot, component</code>等。</p><pre><code class="js">function validateComponentName(name) &#123;
+</code></pre>
+<p><code>Vue.components</code>有两个参数，一个是需要注册组件的组件名，另一个是组件选项，如果第二个参数没有传递，则会直接返回注册过的组件选项。否则意味着需要对该组件进行注册，注册过程先会对组件名的合法性进行检测，要求组件名不允许出现非法的标签，包括<code>Vue</code>内置的组件名，如<code>slot, component</code>等。</p>
+<pre><code class="js">function validateComponentName(name) &#123;
     if (!new RegExp((&quot;^[a-zA-Z][\\-\\.0-9_&quot; + (unicodeRegExp.source) + &quot;]*$&quot;)).test(name)) &#123;
       // 正则判断检测是否为非法的标签
       warn(
@@ -73,17 +245,41 @@ function initAssetRegisters(Vue)&#123;
       );
     &#125;
   &#125;
-</code></pre><p>在经过组件名的合法性检测后，会调用<code>extend</code>方法为组件创建一个子类构造器，此时的<code>this.options._base</code>代表的就是<code>Vue</code>构造器。<code>extend</code>方法的定义在介绍选项合并章节有重点介绍过，它会<strong>基于父类去创建一个子类</strong>，此时的父类是<code>Vue</code>，并且创建过程子类会继承父类的方法，并会和父类的选项进行合并，最终返回一个子类构造器。</p><p>代码处还有一个逻辑，<code>Vue.component()</code>默认会把第一个参数作为组件名称，但是如果组件选项有<code>name</code>属性时，<code>name</code>属性值会将组件名覆盖。</p><p><strong>总结起来，全局注册组件就是<code>Vue</code>实例化前创建一个基于<code>Vue</code>的子类构造器，并将组件的信息加载到实例<code>options.components</code>对象中。</strong></p><p><strong>接下来自然而然会想到一个问题，局部注册和全局注册在实现上的区别体现在哪里？</strong>我们不急着分析局部组件的注册流程，先以全局注册的组件为基础，看看作为组件，它的挂载流程有什么不同。</p><h2 id="5-2-组件Vnode创建"><a href="#5-2-组件Vnode创建" class="headerlink" title="5.2 组件Vnode创建"></a>5.2 组件Vnode创建</h2><p>上一节内容我们介绍了<code>Vue</code>如何将一个模板，通过<code>render</code>函数的转换，最终生成一个<code>Vnode tree</code>的，在不包含组件的情况下，<code>_render</code>函数的最后一步是直接调用<code>new Vnode</code>去创建一个完整的<code>Vnode tree</code>。然而有一大部分的分支我们并没有分析，那就是遇到组件占位符的场景。执行阶段如果遇到组件，处理过程要比想像中复杂得多，我们通过一张流程图展开分析。</p><h3 id="5-2-1-Vnode创建流程图"><a href="#5-2-1-Vnode创建流程图" class="headerlink" title="5.2.1 Vnode创建流程图"></a>5.2.1 Vnode创建流程图</h3><p><img data-src="/images/img/5.1.png"></p><h3 id="5-2-2-具体流程分析"><a href="#5-2-2-具体流程分析" class="headerlink" title="5.2.2 具体流程分析"></a>5.2.2 具体流程分析</h3><p>我们结合实际的例子对照着流程图分析一下这个过程：</p><ul><li>场景</li></ul><pre><code class="js">Vue.component(&#39;test&#39;, &#123;
+</code></pre>
+<p>在经过组件名的合法性检测后，会调用<code>extend</code>方法为组件创建一个子类构造器，此时的<code>this.options._base</code>代表的就是<code>Vue</code>构造器。<code>extend</code>方法的定义在介绍选项合并章节有重点介绍过，它会<strong>基于父类去创建一个子类</strong>，此时的父类是<code>Vue</code>，并且创建过程子类会继承父类的方法，并会和父类的选项进行合并，最终返回一个子类构造器。</p>
+<p>代码处还有一个逻辑，<code>Vue.component()</code>默认会把第一个参数作为组件名称，但是如果组件选项有<code>name</code>属性时，<code>name</code>属性值会将组件名覆盖。</p>
+<p><strong>总结起来，全局注册组件就是<code>Vue</code>实例化前创建一个基于<code>Vue</code>的子类构造器，并将组件的信息加载到实例<code>options.components</code>对象中。</strong></p>
+<p><strong>接下来自然而然会想到一个问题，局部注册和全局注册在实现上的区别体现在哪里？</strong>我们不急着分析局部组件的注册流程，先以全局注册的组件为基础，看看作为组件，它的挂载流程有什么不同。</p>
+<h2 id="5-2-组件Vnode创建"><a href="#5-2-组件Vnode创建" class="headerlink" title="5.2 组件Vnode创建"></a>5.2 组件Vnode创建</h2><p>上一节内容我们介绍了<code>Vue</code>如何将一个模板，通过<code>render</code>函数的转换，最终生成一个<code>Vnode tree</code>的，在不包含组件的情况下，<code>_render</code>函数的最后一步是直接调用<code>new Vnode</code>去创建一个完整的<code>Vnode tree</code>。然而有一大部分的分支我们并没有分析，那就是遇到组件占位符的场景。执行阶段如果遇到组件，处理过程要比想像中复杂得多，我们通过一张流程图展开分析。</p>
+<h3 id="5-2-1-Vnode创建流程图"><a href="#5-2-1-Vnode创建流程图" class="headerlink" title="5.2.1 Vnode创建流程图"></a>5.2.1 Vnode创建流程图</h3><p><img data-src="/images/img/5.1.png"></p>
+<h3 id="5-2-2-具体流程分析"><a href="#5-2-2-具体流程分析" class="headerlink" title="5.2.2 具体流程分析"></a>5.2.2 具体流程分析</h3><p>我们结合实际的例子对照着流程图分析一下这个过程：</p>
+<ul>
+<li>场景</li>
+</ul>
+<pre><code class="js">Vue.component(&#39;test&#39;, &#123;
   template: &#39;&lt;span&gt;&lt;/span&gt;&#39;
 &#125;)
 var vm = new Vue(&#123;
   el: &#39;#app&#39;,
   template: &#39;&lt;div&gt;&lt;test&gt;&lt;/test&gt;&lt;/div&gt;&#39;
 &#125;)
-</code></pre><ul><li>父<code>render</code>函数</li></ul><pre><code class="js">function() &#123;
+</code></pre>
+<ul>
+<li>父<code>render</code>函数</li>
+</ul>
+<pre><code class="js">function() &#123;
   with(this)&#123;return _c(&#39;div&#39;,[_c(&#39;test&#39;)],1)&#125;
 &#125;
-</code></pre><ul><li><code>Vue</code>根实例初始化会执行 <code>vm.$mount(vm.$options.el)</code>实例挂载的过程，按照之前的逻辑，完整流程会经历<code>render</code>函数生成<code>Vnode</code>,以及<code>Vnode</code>生成真实<code>DOM</code>的过程。</li><li><code>render</code>函数生成<code>Vnode</code>过程中，子会优先父执行生成<code>Vnode</code>过程,也就是<code>_c(&#39;test&#39;)</code>函数会先被执行。<code>&#39;test&#39;</code>会先判断是普通的<code>html</code>标签还是组件的占位符。</li><li>如果为一般标签，会执行<code>new Vnode</code>过程，这也是上一章节我们分析的过程；如果是组件的占位符，则会在判断组件已经被注册过的前提下进入<code>createComponent</code>创建子组件<code>Vnode</code>的过程。</li><li><code>createComponent</code>是创建组件<code>Vnode</code>的过程，创建过程会再次合并选项配置，并安装组件相关的内部钩子(后面文章会再次提到内部钩子的作用)，最后通过<code>new Vnode()</code>生成以<code>vue-component</code>开头的<code>Virtual DOM</code></li><li><code>render</code>函数执行过程也是一个循环递归调用创建<code>Vnode</code>的过程，执行3，4步之后，完整的生成了一个包含各个子组件的<code>Vnode tree</code></li></ul><p><code>_createElement</code>函数的实现之前章节分析过一部分，我们重点看看组件相关的操作。</p><pre><code class="js">// 内部执行将render函数转化为Vnode的函数
+</code></pre>
+<ul>
+<li><code>Vue</code>根实例初始化会执行 <code>vm.$mount(vm.$options.el)</code>实例挂载的过程，按照之前的逻辑，完整流程会经历<code>render</code>函数生成<code>Vnode</code>,以及<code>Vnode</code>生成真实<code>DOM</code>的过程。</li>
+<li><code>render</code>函数生成<code>Vnode</code>过程中，子会优先父执行生成<code>Vnode</code>过程,也就是<code>_c(&#39;test&#39;)</code>函数会先被执行。<code>&#39;test&#39;</code>会先判断是普通的<code>html</code>标签还是组件的占位符。</li>
+<li>如果为一般标签，会执行<code>new Vnode</code>过程，这也是上一章节我们分析的过程；如果是组件的占位符，则会在判断组件已经被注册过的前提下进入<code>createComponent</code>创建子组件<code>Vnode</code>的过程。</li>
+<li><code>createComponent</code>是创建组件<code>Vnode</code>的过程，创建过程会再次合并选项配置，并安装组件相关的内部钩子(后面文章会再次提到内部钩子的作用)，最后通过<code>new Vnode()</code>生成以<code>vue-component</code>开头的<code>Virtual DOM</code></li>
+<li><code>render</code>函数执行过程也是一个循环递归调用创建<code>Vnode</code>的过程，执行3，4步之后，完整的生成了一个包含各个子组件的<code>Vnode tree</code></li>
+</ul>
+<p><code>_createElement</code>函数的实现之前章节分析过一部分，我们重点看看组件相关的操作。</p>
+<pre><code class="js">// 内部执行将render函数转化为Vnode的函数
 function _createElement(context,tag,data,children,normalizationType) &#123;
   ···
   if (typeof tag === &#39;string&#39;) &#123;
@@ -100,7 +296,9 @@ function _createElement(context,tag,data,children,normalizationType) &#123;
     &#125;
   &#125;
 &#125;
-</code></pre><p><code>config.isReservedTag(tag)</code>用来判断标签是否为普通的<code>html</code>标签，如果是普通节点会直接创建<code>Vnode</code>节点，如果不是，则需要判断这个占位符组件是否已经注册到，我们可以通过<code>context.$options.components[组件名]</code>拿到注册后的组件选项。如何判断组件是否已经全局注册，看看<code>resolveAsset</code>的实现。</p><pre><code class="js">// 需要明确组件是否已经被注册
+</code></pre>
+<p><code>config.isReservedTag(tag)</code>用来判断标签是否为普通的<code>html</code>标签，如果是普通节点会直接创建<code>Vnode</code>节点，如果不是，则需要判断这个占位符组件是否已经注册到，我们可以通过<code>context.$options.components[组件名]</code>拿到注册后的组件选项。如何判断组件是否已经全局注册，看看<code>resolveAsset</code>的实现。</p>
+<pre><code class="js">// 需要明确组件是否已经被注册
   function resolveAsset (options,type,id,warnMissing) &#123;
     // 标签为字符串
     if (typeof id !== &#39;string&#39;) &#123;
@@ -125,7 +323,9 @@ function _createElement(context,tag,data,children,normalizationType) &#123;
     // 最终返回子类的构造器
     return res
   &#125;
-</code></pre><p>拿到注册过的子类构造器后，调用<code>createComponent</code>方法创建子组件<code>Vnode</code></p><pre><code class="js"> // 创建子组件过程
+</code></pre>
+<p>拿到注册过的子类构造器后，调用<code>createComponent</code>方法创建子组件<code>Vnode</code></p>
+<pre><code class="js"> // 创建子组件过程
   function createComponent (
     Ctor, // 子类构造器
     data,
@@ -154,7 +354,9 @@ function _createElement(context,tag,data,children,normalizationType) &#123;
 
     return vnode
   &#125;
-</code></pre><p>这里将大部分的代码都拿掉了，只留下创建<code>Vnode</code>相关的代码，最终会通过<code>new Vue</code>实例化一个名称以<code>vue-component-</code>开头的<code>Vnode</code>节点。其中两个关键的步骤是配置合并和安装组件钩子函数，选项合并的内容可以查看这个系列的前两节，这里看看<code>installComponentHooks</code>安装组件钩子函数时做了哪些操作。</p><pre><code class="js">  // 组件内部自带钩子
+</code></pre>
+<p>这里将大部分的代码都拿掉了，只留下创建<code>Vnode</code>相关的代码，最终会通过<code>new Vue</code>实例化一个名称以<code>vue-component-</code>开头的<code>Vnode</code>节点。其中两个关键的步骤是配置合并和安装组件钩子函数，选项合并的内容可以查看这个系列的前两节，这里看看<code>installComponentHooks</code>安装组件钩子函数时做了哪些操作。</p>
+<pre><code class="js">  // 组件内部自带钩子
  var componentVNodeHooks = &#123;
     init: function init (vnode, hydrating) &#123;
     &#125;,
@@ -188,7 +390,13 @@ function mergeHook$1 (f1, f2) &#123;
     merged._merged = true;
     return merged
   &#125;
-</code></pre><p>组件默认自带的这几个钩子函数会在后续<code>patch</code>过程的不同阶段执行，这部分内容不在本节的讨论范围。</p><h3 id="5-2-3-局部注册和全局注册的区别"><a href="#5-2-3-局部注册和全局注册的区别" class="headerlink" title="5.2.3 局部注册和全局注册的区别"></a>5.2.3 局部注册和全局注册的区别</h3><p>在说到全局注册和局部注册的用法时留下了一个问题，局部注册和全局注册两者的区别在哪里。其实局部注册的原理同样简单，我们使用局部注册组件时会通过在父组件选项配置中的<code>components</code>添加子组件的对象配置，这和全局注册后在<code>Vue</code>的<code>options.component</code>添加子组件构造器的结果很相似。区别在于：</p><p><strong>1.局部注册添加的对象配置是在某个组件下，而全局注册添加的子组件是在根实例下。</strong></p><p><strong>2.局部注册添加的是一个子组件的配置对象，而全局注册添加的是一个子类构造器。</strong></p><p>因此局部注册中缺少了一步构建子类构造器的过程，这个过程放在哪里进行呢？ 回到<code>createComponent</code>的源码,源码中根据选项是对象还是函数来区分局部和全局注册组件，<strong>如果选项的值是对象，则该组件是局部注册的组件，此时在创建子<code>Vnode</code>时会调用 父类的<code>extend</code>方法去创建一个子类构造器。</strong></p><pre><code class="js">function createComponent (...) &#123;
+</code></pre>
+<p>组件默认自带的这几个钩子函数会在后续<code>patch</code>过程的不同阶段执行，这部分内容不在本节的讨论范围。</p>
+<h3 id="5-2-3-局部注册和全局注册的区别"><a href="#5-2-3-局部注册和全局注册的区别" class="headerlink" title="5.2.3 局部注册和全局注册的区别"></a>5.2.3 局部注册和全局注册的区别</h3><p>在说到全局注册和局部注册的用法时留下了一个问题，局部注册和全局注册两者的区别在哪里。其实局部注册的原理同样简单，我们使用局部注册组件时会通过在父组件选项配置中的<code>components</code>添加子组件的对象配置，这和全局注册后在<code>Vue</code>的<code>options.component</code>添加子组件构造器的结果很相似。区别在于：</p>
+<p><strong>1.局部注册添加的对象配置是在某个组件下，而全局注册添加的子组件是在根实例下。</strong></p>
+<p><strong>2.局部注册添加的是一个子组件的配置对象，而全局注册添加的是一个子类构造器。</strong></p>
+<p>因此局部注册中缺少了一步构建子类构造器的过程，这个过程放在哪里进行呢？ 回到<code>createComponent</code>的源码,源码中根据选项是对象还是函数来区分局部和全局注册组件，<strong>如果选项的值是对象，则该组件是局部注册的组件，此时在创建子<code>Vnode</code>时会调用 父类的<code>extend</code>方法去创建一个子类构造器。</strong></p>
+<pre><code class="js">function createComponent (...) &#123;
   ...
   var baseCtor = context.$options._base;
 
@@ -197,7 +405,18 @@ function mergeHook$1 (f1, f2) &#123;
       Ctor = baseCtor.extend(Ctor);
   &#125;
 &#125;
-</code></pre><h2 id="5-3-组件Vnode渲染真实DOM"><a href="#5-3-组件Vnode渲染真实DOM" class="headerlink" title="5.3 组件Vnode渲染真实DOM"></a>5.3 组件Vnode渲染真实DOM</h2><p>根据前面的分析，不管是全局注册的组件还是局部注册的组件，组件并没有进行实例化，那么组件实例化的过程发生在哪个阶段呢？我们接着看<code>Vnode tree</code>渲染真实<code>DOM</code>的过程。</p><h3 id="5-3-1-真实节点渲染流程图"><a href="#5-3-1-真实节点渲染流程图" class="headerlink" title="5.3.1 真实节点渲染流程图"></a>5.3.1 真实节点渲染流程图</h3><p><img data-src="/images/img/5.2.png"></p><h3 id="5-3-2-具体流程分析"><a href="#5-3-2-具体流程分析" class="headerlink" title="5.3.2 具体流程分析"></a>5.3.2 具体流程分析</h3><ol><li>经过<code>vm._render()</code>生成完整的<code>Virtual Dom</code>树后，紧接着执行<code>Vnode</code>渲染真实<code>DOM</code>的过程,这个过程是<code>vm.update()</code>方法的执行，而其核心是<code>vm.__patch__</code>。</li><li><code>vm.__patch__</code>内部会通过 <code>createElm</code>去创建真实的<code>DOM</code>元素，期间遇到子<code>Vnode</code>会递归调用<code>createElm</code>方法。</li><li>递归调用过程中，判断该节点类型是否为组件类型是通过<code>createComponent</code>方法判断的，该方法和渲染<code>Vnode</code>阶段的方法<code>createComponent</code>不同，他会调用子组件的<code>init</code>初始化钩子函数，并完成组件的<code>DOM</code>插入。</li><li><code>init</code>初始化钩子函数的核心是<code>new</code>实例化这个子组件并将子组件进行挂载，实例化子组件的过程又回到合并配置，初始化生命周期，初始化事件中心，初始化渲染的过程。实例挂载又会执行<code>$mount</code>过程。</li><li>完成所有子组件的实例化和节点挂载后，最后才回到根节点的挂载。</li></ol><p><code>__patch__</code>核心代码是通过<code>createElm</code>创建真实节点，当创建过程中遇到子<code>vnode</code>时，会调用<code>createChildren</code>,<code>createChildren</code>的目的是对子<code>vnode</code>递归调用<code>createElm</code>创建子组件节点。</p><pre><code class="js">// 创建真实dom
+</code></pre>
+<h2 id="5-3-组件Vnode渲染真实DOM"><a href="#5-3-组件Vnode渲染真实DOM" class="headerlink" title="5.3 组件Vnode渲染真实DOM"></a>5.3 组件Vnode渲染真实DOM</h2><p>根据前面的分析，不管是全局注册的组件还是局部注册的组件，组件并没有进行实例化，那么组件实例化的过程发生在哪个阶段呢？我们接着看<code>Vnode tree</code>渲染真实<code>DOM</code>的过程。</p>
+<h3 id="5-3-1-真实节点渲染流程图"><a href="#5-3-1-真实节点渲染流程图" class="headerlink" title="5.3.1 真实节点渲染流程图"></a>5.3.1 真实节点渲染流程图</h3><p><img data-src="/images/img/5.2.png"></p>
+<h3 id="5-3-2-具体流程分析"><a href="#5-3-2-具体流程分析" class="headerlink" title="5.3.2 具体流程分析"></a>5.3.2 具体流程分析</h3><ol>
+<li>经过<code>vm._render()</code>生成完整的<code>Virtual Dom</code>树后，紧接着执行<code>Vnode</code>渲染真实<code>DOM</code>的过程,这个过程是<code>vm.update()</code>方法的执行，而其核心是<code>vm.__patch__</code>。</li>
+<li><code>vm.__patch__</code>内部会通过 <code>createElm</code>去创建真实的<code>DOM</code>元素，期间遇到子<code>Vnode</code>会递归调用<code>createElm</code>方法。</li>
+<li>递归调用过程中，判断该节点类型是否为组件类型是通过<code>createComponent</code>方法判断的，该方法和渲染<code>Vnode</code>阶段的方法<code>createComponent</code>不同，他会调用子组件的<code>init</code>初始化钩子函数，并完成组件的<code>DOM</code>插入。</li>
+<li><code>init</code>初始化钩子函数的核心是<code>new</code>实例化这个子组件并将子组件进行挂载，实例化子组件的过程又回到合并配置，初始化生命周期，初始化事件中心，初始化渲染的过程。实例挂载又会执行<code>$mount</code>过程。</li>
+<li>完成所有子组件的实例化和节点挂载后，最后才回到根节点的挂载。</li>
+</ol>
+<p><code>__patch__</code>核心代码是通过<code>createElm</code>创建真实节点，当创建过程中遇到子<code>vnode</code>时，会调用<code>createChildren</code>,<code>createChildren</code>的目的是对子<code>vnode</code>递归调用<code>createElm</code>创建子组件节点。</p>
+<pre><code class="js">// 创建真实dom
 function createElm (vnode,insertedVnodeQueue,parentElm,refElm,nested,ownerArray,index) &#123;
   ···
   // 递归创建子组件真实节点,直到完成所有子组件的渲染才进行根节点的真实节点插入
@@ -217,7 +436,10 @@ function createChildren(vnode, children, insertedVnodeQueue) &#123;
     createElm(children[i], insertedVnodeQueue, vnode.elm, null, true, children, i);
   &#125;
 &#125;
-</code></pre><p><code>createComponent</code>方法会对子组件<code>Vnode</code>进行处理中，还记得在<code>Vnode</code>生成阶段为子<code>Vnode</code>安装了一系列的钩子函数吗，在这个步骤我们可以通过是否拥有这些定义好的钩子来判断是否是已经注册过的子组件，如果条件满足，则执行组件的<code>init</code>钩子。</p><p><code>init</code>钩子做的事情只有两个，<strong>实例化组件构造器，执行子组件的挂载流程。</strong>(<code>keep-alive</code>分支看具体的文章分析)</p><pre><code class="js">function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) &#123;
+</code></pre>
+<p><code>createComponent</code>方法会对子组件<code>Vnode</code>进行处理中，还记得在<code>Vnode</code>生成阶段为子<code>Vnode</code>安装了一系列的钩子函数吗，在这个步骤我们可以通过是否拥有这些定义好的钩子来判断是否是已经注册过的子组件，如果条件满足，则执行组件的<code>init</code>钩子。</p>
+<p><code>init</code>钩子做的事情只有两个，<strong>实例化组件构造器，执行子组件的挂载流程。</strong>(<code>keep-alive</code>分支看具体的文章分析)</p>
+<pre><code class="js">function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) &#123;
   var i = vnode.data;
   // 是否有钩子函数可以作为判断是否为组件的唯一条件
   if (isDef(i = i.hook) &amp;&amp; isDef(i = i.init)) &#123;
@@ -238,7 +460,11 @@ function createComponentInstanceForVnode(vnode, parent) &#123;
   // 实例化Vue子组件实例
   return new vnode.componentOptions.Ctor(options)
 &#125;
-</code></pre><p>显然<code>Vnode</code>生成真实<code>DOM</code>的过程也是一个不断递归创建子节点的过程，<code>patch</code>过程如果遇到子<code>Vnode</code>,会优先实例化子组件，并且执行子组件的挂载流程，而挂载流程又会回到<code>_render,_update</code>的过程。在所有的子<code>Vnode</code>递归挂载后，最终才会真正挂载根节点。</p><h2 id="5-4-建立组件联系"><a href="#5-4-建立组件联系" class="headerlink" title="5.4 建立组件联系"></a>5.4 建立组件联系</h2><p>日常开发中，我们可以通过<code>vm.$parent</code>拿到父实例，也可以在父实例中通过<code>vm.$children</code>拿到实例中的子组件。显然，<code>Vue</code>在组件和组件之间建立了一层关联。接下来的内容，我们将探索如何建立组件之间的联系。</p><p>不管是父实例还是子实例，在初始化实例阶段有一个<code>initLifecycle</code>的过程。这个过程会<strong>把当前实例添加到父实例的<code>$children</code>属性中，并设置自身的<code>$parent</code>属性指向父实例。</strong>举一个具体的应用场景：</p><pre><code class="js">&lt;div id=&quot;app&quot;&gt;
+</code></pre>
+<p>显然<code>Vnode</code>生成真实<code>DOM</code>的过程也是一个不断递归创建子节点的过程，<code>patch</code>过程如果遇到子<code>Vnode</code>,会优先实例化子组件，并且执行子组件的挂载流程，而挂载流程又会回到<code>_render,_update</code>的过程。在所有的子<code>Vnode</code>递归挂载后，最终才会真正挂载根节点。</p>
+<h2 id="5-4-建立组件联系"><a href="#5-4-建立组件联系" class="headerlink" title="5.4 建立组件联系"></a>5.4 建立组件联系</h2><p>日常开发中，我们可以通过<code>vm.$parent</code>拿到父实例，也可以在父实例中通过<code>vm.$children</code>拿到实例中的子组件。显然，<code>Vue</code>在组件和组件之间建立了一层关联。接下来的内容，我们将探索如何建立组件之间的联系。</p>
+<p>不管是父实例还是子实例，在初始化实例阶段有一个<code>initLifecycle</code>的过程。这个过程会<strong>把当前实例添加到父实例的<code>$children</code>属性中，并设置自身的<code>$parent</code>属性指向父实例。</strong>举一个具体的应用场景：</p>
+<pre><code class="js">&lt;div id=&quot;app&quot;&gt;
     &lt;component-a&gt;&lt;/component-a&gt;
 &lt;/div&gt;
 Vue.component(&#39;component-a&#39;, &#123;
@@ -246,7 +472,13 @@ Vue.component(&#39;component-a&#39;, &#123;
 &#125;)
 var vm = new Vue(&#123; el: &#39;#app&#39;&#125;)
 console.log(vm) // 将实例对象输出
-</code></pre><p>由于<code>vue</code>实例向上没有父实例，所以<code>vm.$parent</code>为<code>undefined</code>，<code>vm</code>的<code>$children</code>属性指向子组件<code>componentA</code> 的实例。</p><p><img data-src="/images/img/5.3.png"></p><p>子组件<code>componentA</code>的 <code>$parent</code>属性指向它的父级<code>vm</code>实例，它的<code>$children</code>属性指向为空</p><p><img data-src="/images/img/5.4.png"></p><p>源码解析如下:</p><pre><code class="js">function initLifecycle (vm) &#123;
+</code></pre>
+<p>由于<code>vue</code>实例向上没有父实例，所以<code>vm.$parent</code>为<code>undefined</code>，<code>vm</code>的<code>$children</code>属性指向子组件<code>componentA</code> 的实例。</p>
+<p><img data-src="/images/img/5.3.png"></p>
+<p>子组件<code>componentA</code>的 <code>$parent</code>属性指向它的父级<code>vm</code>实例，它的<code>$children</code>属性指向为空</p>
+<p><img data-src="/images/img/5.4.png"></p>
+<p>源码解析如下: </p>
+<pre><code class="js">function initLifecycle (vm) &#123;
     var options = vm.$options;
     // 子组件注册时，会把父组件的实例挂载到自身选项的parent上
     var parent = options.parent;
@@ -274,4 +506,390 @@ console.log(vm) // 将实例对象输出
     // 该实例是否正在被销毁
     vm._isBeingDestroyed = false;
 &#125;
-</code></pre><p>最后简单讲讲抽象组件，在<code>vue</code>中有很多内置的抽象组件，例如<code>&lt;keep-alive&gt;&lt;/keep-alive&gt;,&lt;slot&gt;&lt;slot&gt;</code>等，这些抽象组件并不会出现在子父级的路径上，并且它们也不会参与<code>DOM</code>的渲染。</p><h2 id="5-5-小结"><a href="#5-5-小结" class="headerlink" title="5.5 小结"></a>5.5 小结</h2><p>这一小节，结合了实际的例子分析了组件注册流程到组件挂载渲染流程，<code>Vue</code>中我们可以定义全局的组件，也可以定义局部的组件，全局组件需要进行全局注册，核心方法是<code>Vue.component</code>,他需要在根组件实例化前进行声明注册，原因是我们需要在实例化前拿到组件的配置信息并合并到<code>options.components</code>选项中。注册的本质是调用<code>extend</code>创建一个子类构造器，全局和局部的不同是局部创建子类构造器是发生在创建子组件<code>Vnode</code>阶段。而创建子<code>Vnode</code>阶段最关键的一步是定义了很多内部使用的钩子。有了一个完整的<code>Vnode tree</code>接下来会进入真正<code>DOM</code>的生成，在这个阶段如果遇到子组件<code>Vnode</code>会进行子构造器的实例化，并完成子组件的挂载。递归完成子组件的挂载后，最终才又回到根组件的挂载。<br>有了组件的基本知识，下一节我们重点分析一下组件的进阶用法。</p><div class="tags"><a href="/tags/Vue/" rel="tag"><i class="ic i-tag"></i> Vue</a></div></div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i> </span><span class="text">更新于</span> <time title="修改时间：2023-08-03 15:32:09" itemprop="dateModified" datetime="2023-08-03T15:32:09+08:00">2023-08-03</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i> 赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img data-src="/images/wechatpay.png" alt="sanxin98 微信支付"><p>微信支付</p></div><div><img data-src="/images/alipay.png" alt="sanxin98 支付宝"><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者： </strong>sanxin98 <i class="ic i-at"><em>@</em></i>死肥宅</li><li class="link"><strong>本文链接：</strong> <a href="https://pink-png.github.io/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" title="Step.5 组件基础剖析">https://pink-png.github.io/computer-science/vueyuanma/dosc/5组件基础剖析/</a></li><li class="license"><strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicitht3xtj20zk0m8k5v.jpg" title="Step.4 完整渲染流程"><span class="type">上一篇</span> <span class="category"><i class="ic i-flag"></i> vue2.x源码</span><h3>Step.4 完整渲染流程</h3></a></div><div class="item right"><a href="/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeu7txpzj20zk0m81kx.jpg" title="Step.6 组件高级用法"><span class="type">下一篇</span> <span class="category"><i class="ic i-flag"></i> vue2.x源码</span><h3>Step.6 组件高级用法</h3></a></div></div><div class="wrap" id="comments"></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E7%BB%84%E4%BB%B6%E4%B8%A4%E7%A7%8D%E6%B3%A8%E5%86%8C%E6%96%B9%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">5.1 组件两种注册方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-1-%E5%85%A8%E5%B1%80%E6%B3%A8%E5%86%8C"><span class="toc-number">1.1.</span> <span class="toc-text">5.1.1 全局注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-2-%E5%B1%80%E9%83%A8%E6%B3%A8%E5%86%8C"><span class="toc-number">1.2.</span> <span class="toc-text">5.1.2 局部注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-3-%E6%B3%A8%E5%86%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">5.1.3 注册过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%BB%84%E4%BB%B6Vnode%E5%88%9B%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">5.2 组件Vnode创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-1-Vnode%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">2.1.</span> <span class="toc-text">5.2.1 Vnode创建流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-2-%E5%85%B7%E4%BD%93%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-number">2.2.</span> <span class="toc-text">5.2.2 具体流程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-3-%E5%B1%80%E9%83%A8%E6%B3%A8%E5%86%8C%E5%92%8C%E5%85%A8%E5%B1%80%E6%B3%A8%E5%86%8C%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.3.</span> <span class="toc-text">5.2.3 局部注册和全局注册的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E7%BB%84%E4%BB%B6Vnode%E6%B8%B2%E6%9F%93%E7%9C%9F%E5%AE%9EDOM"><span class="toc-number">3.</span> <span class="toc-text">5.3 组件Vnode渲染真实DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-1-%E7%9C%9F%E5%AE%9E%E8%8A%82%E7%82%B9%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">3.1.</span> <span class="toc-text">5.3.1 真实节点渲染流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-2-%E5%85%B7%E4%BD%93%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-number">3.2.</span> <span class="toc-text">5.3.2 具体流程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E5%BB%BA%E7%AB%8B%E7%BB%84%E4%BB%B6%E8%81%94%E7%B3%BB"><span class="toc-number">4.</span> <span class="toc-text">5.4 建立组件联系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-%E5%B0%8F%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">5.5 小结</span></a></li></ol></div><div class="related panel pjax" data-title="系列文章"><ul><li><a href="/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" rel="bookmark" title="Step.1 丰富的选项合并策略">Step.1 丰富的选项合并策略</a></li><li><a href="/computer-science/vueyuanma/dosc/2%E5%9F%BA%E7%A1%80%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B/" rel="bookmark" title="Step.2 基础的数据代理检测">Step.2 基础的数据代理检测</a></li><li><a href="/computer-science/vueyuanma/dosc/3%E5%AE%9E%E4%BE%8B%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91/" rel="bookmark" title="Step.3 实例挂载流程和模板编译">Step.3 实例挂载流程和模板编译</a></li><li><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" rel="bookmark" title="Step.4 完整渲染流程">Step.4 完整渲染流程</a></li><li class="active"><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" rel="bookmark" title="Step.5 组件基础剖析">Step.5 组件基础剖析</a></li><li><a href="/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" rel="bookmark" title="Step.6 组件高级用法">Step.6 组件高级用法</a></li><li><a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" rel="bookmark" title="Step.7 深入响应式系统构建-上">Step.7 深入响应式系统构建-上</a></li><li><a href="/computer-science/vueyuanma/dosc/8%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%AD/" rel="bookmark" title="Step.8 深入响应式系统构建-中">Step.8 深入响应式系统构建-中</a></li><li><a href="/computer-science/vueyuanma/dosc/9%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8B/" rel="bookmark" title="Step.9 深入响应式系统构建-下">Step.9 深入响应式系统构建-下</a></li><li><a href="/computer-science/vueyuanma/dosc/10%E6%9D%A5%EF%BC%8C%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%AE%9E%E7%8E%B0diff%E7%AE%97%E6%B3%95/" rel="bookmark" title="Step.10 来，跟我一起实现diff算法">Step.10 来，跟我一起实现diff算法</a></li><li><a href="/computer-science/vueyuanma/dosc/11%E6%8F%AD%E7%A7%98Vue%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" rel="bookmark" title="Step.11 揭秘Vue的事件机制">Step.11 揭秘Vue的事件机制</a></li><li><a href="/computer-science/vueyuanma/dosc/12vue%E6%8F%92%E6%A7%BD%EF%BC%8C%E4%BD%A0%E6%83%B3%E4%BA%86%E8%A7%A3%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C/" rel="bookmark" title="Step.12 vue插槽，你想了解的都在这里">Step.12 vue插槽，你想了解的都在这里</a></li><li><a href="/computer-science/vueyuanma/dosc/13%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3v-model%E7%9A%84%E8%AF%AD%E6%B3%95%E7%B3%96%E4%BA%86%E5%90%97/" rel="bookmark" title="Step.13 你真的了解v-model的语法糖了吗">Step.13 你真的了解v-model的语法糖了吗</a></li><li><a href="/computer-science/vueyuanma/dosc/14%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90/" rel="bookmark" title="Step.14 动态组件的深入分析">Step.14 动态组件的深入分析</a></li><li><a href="/computer-science/vueyuanma/dosc/15%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8A/" rel="bookmark" title="Step.15 彻底搞懂Vue中keep-alive的魔法-上">Step.15 彻底搞懂Vue中keep-alive的魔法-上</a></li><li><a href="/computer-science/vueyuanma/dosc/16%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8B/" rel="bookmark" title="Step.16 彻底搞懂Vue中keep-alive的魔法-上">Step.16 彻底搞懂Vue中keep-alive的魔法-上</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="image" itemprop="image" alt="sanxin98" data-src="/images/avatar.jpg"><p class="name" itemprop="name">sanxin98</p><div class="description" itemprop="description">编程 & 生活</div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">96</span> <span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">40</span> <span class="name">分类</span></a></div><div class="item tags"><a href="/tags/"><span class="count">29</span> <span class="name">标签</span></a></div></nav><div class="social"><span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BpbmstcG5n" title="https:&#x2F;&#x2F;github.com&#x2F;pink-png"><i class="ic i-github"></i></span></div><ul class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li><li class="item dropdown"><a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a><ul class="submenu"><li class="item"><a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a></li><li class="item"><a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a></li><li class="item"><a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a></li></ul></li></ul></div></div></div><ul id="quick"><li class="prev pjax"><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a></div><span><a href="/js-base/js%E6%B5%85%E8%B0%88new%20this/" title="浅谈js中new this 关键字">浅谈js中new this 关键字</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a></div><span><a href="/performance-optimization/%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E2%BC%8F%E4%B8%87%E6%9D%A1%E6%95%B0%E6%8D%AE%E5%B9%B6%E4%B8%8D%E5%8D%A1%E4%BD%8F%E7%95%8C%E2%BE%AF/" title="如何渲染⼏万条数据并不卡住界⾯">如何渲染⼏万条数据并不卡住界⾯</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a></div><span><a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" title="Step.7 深入响应式系统构建-上">Step.7 深入响应式系统构建-上</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/vueyuanma/" title="分类于 Vue">Vue</a></div><span><a href="/front-end/vue2.x%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80/" title="vue2.x常用基础">vue2.x常用基础</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" title="分类于 移动端适配">移动端适配</a></div><span><a href="/front-end/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" title="移动端相关适配方案">移动端相关适配方案</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Bootstrap/" title="分类于 Bootstrap">Bootstrap</a></div><span><a href="/front-end/Bootstrap/" title="Bootstrap">Bootstrap</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a></div><span><a href="/performance-optimization/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%A4%A7%E7%BA%B2/" title="前端性能优化大纲">前端性能优化大纲</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a></div><span><a href="/js-base/jsES6-ES13%E6%96%B0%E5%A2%9E%E7%9A%84%E5%8A%9F%E8%83%BD/" title="ES6-ES13新增的特性">ES6-ES13新增的特性</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/Mybatis/" title="分类于 Mybatis">Mybatis</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/Mybatis/Mybatis%E5%9F%BA%E7%A1%80/" title="分类于 Mybatis基础">Mybatis基础</a></div><span><a href="/computer-science/Mybatis/doscmp/Mybatis-03/" title="Step.3">Step.3</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/spring/" title="分类于 Spring">Spring</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/spring/Spring%E5%9F%BA%E7%A1%80/" title="分类于 Spring基础">Spring基础</a></div><span><a href="/computer-science/spring/docssp/Spring-04/" title="Step.4">Step.4</a></span></li></ul></div><div><h2>最新评论</h2><ul class="leancloud-recent-comment"></ul></div></div><div class="status"><div class="copyright">&copy; 2010 – <span itemprop="copyrightYear">2024</span> <span class="with-love"><i class="ic i-sakura rotate"></i> </span><span class="author" itemprop="copyrightHolder">sanxin98 @ Yume Shoka</span></div><div class="powered-by">基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL={path:"computer-science/vueyuanma/dosc/5组件基础剖析/",favicon:{show:"（●´3｀●）やれやれだぜ",hide:"(´Д｀)大変だ！"},search:{placeholder:"文章搜索",empty:"关于 「 ${query} 」，什么也没搜到",stats:"${time} ms 内找到 ${hits} 条结果"},valine:{placeholder:"1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"},fancybox:!0,copyright:'复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',ignores:[function(e){return e.includes("#")},function(e){return new RegExp(LOCAL.path+"$").test(e)}]}</script><script src="https://cdn.polyfill.io/v2/polyfill.js"></script><script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script><script src="/js/app.js?v=0.2.5"></script></body></html>
+</code></pre>
+<p>最后简单讲讲抽象组件，在<code>vue</code>中有很多内置的抽象组件，例如<code>&lt;keep-alive&gt;&lt;/keep-alive&gt;,&lt;slot&gt;&lt;slot&gt;</code>等，这些抽象组件并不会出现在子父级的路径上，并且它们也不会参与<code>DOM</code>的渲染。</p>
+<h2 id="5-5-小结"><a href="#5-5-小结" class="headerlink" title="5.5 小结"></a>5.5 小结</h2><p>这一小节，结合了实际的例子分析了组件注册流程到组件挂载渲染流程，<code>Vue</code>中我们可以定义全局的组件，也可以定义局部的组件，全局组件需要进行全局注册，核心方法是<code>Vue.component</code>,他需要在根组件实例化前进行声明注册，原因是我们需要在实例化前拿到组件的配置信息并合并到<code>options.components</code>选项中。注册的本质是调用<code>extend</code>创建一个子类构造器，全局和局部的不同是局部创建子类构造器是发生在创建子组件<code>Vnode</code>阶段。而创建子<code>Vnode</code>阶段最关键的一步是定义了很多内部使用的钩子。有了一个完整的<code>Vnode tree</code>接下来会进入真正<code>DOM</code>的生成，在这个阶段如果遇到子组件<code>Vnode</code>会进行子构造器的实例化，并完成子组件的挂载。递归完成子组件的挂载后，最终才又回到根组件的挂载。<br>  有了组件的基本知识，下一节我们重点分析一下组件的进阶用法。</p>
+
+      <div class="tags">
+          <a href="/tags/Vue/" rel="tag"><i class="ic i-tag"></i> Vue</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-08-03 15:32:09" itemprop="dateModified" datetime="2023-08-03T15:32:09+08:00">2023-08-03</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="sanxin98 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="sanxin98 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>sanxin98 <i class="ic i-at"><em>@</em></i>死肥宅
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://pink-png.github.io/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" title="Step.5 组件基础剖析">https://pink-png.github.io/computer-science/vueyuanma/dosc/5组件基础剖析/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicitzannuj20zk0m8b29.jpg" title="Step.4 完整渲染流程">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> vue2.x源码</span>
+  <h3>Step.4 完整渲染流程</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipevgoki5j20zk0m84qp.jpg" title="Step.6 组件高级用法">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> vue2.x源码</span>
+  <h3>Step.6 组件高级用法</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E7%BB%84%E4%BB%B6%E4%B8%A4%E7%A7%8D%E6%B3%A8%E5%86%8C%E6%96%B9%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">5.1 组件两种注册方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-1-%E5%85%A8%E5%B1%80%E6%B3%A8%E5%86%8C"><span class="toc-number">1.1.</span> <span class="toc-text">5.1.1 全局注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-2-%E5%B1%80%E9%83%A8%E6%B3%A8%E5%86%8C"><span class="toc-number">1.2.</span> <span class="toc-text">5.1.2 局部注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-3-%E6%B3%A8%E5%86%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">5.1.3 注册过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%BB%84%E4%BB%B6Vnode%E5%88%9B%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">5.2 组件Vnode创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-1-Vnode%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">2.1.</span> <span class="toc-text">5.2.1 Vnode创建流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-2-%E5%85%B7%E4%BD%93%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-number">2.2.</span> <span class="toc-text">5.2.2 具体流程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-3-%E5%B1%80%E9%83%A8%E6%B3%A8%E5%86%8C%E5%92%8C%E5%85%A8%E5%B1%80%E6%B3%A8%E5%86%8C%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.3.</span> <span class="toc-text">5.2.3 局部注册和全局注册的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E7%BB%84%E4%BB%B6Vnode%E6%B8%B2%E6%9F%93%E7%9C%9F%E5%AE%9EDOM"><span class="toc-number">3.</span> <span class="toc-text">5.3 组件Vnode渲染真实DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-1-%E7%9C%9F%E5%AE%9E%E8%8A%82%E7%82%B9%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">3.1.</span> <span class="toc-text">5.3.1 真实节点渲染流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-2-%E5%85%B7%E4%BD%93%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-number">3.2.</span> <span class="toc-text">5.3.2 具体流程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E5%BB%BA%E7%AB%8B%E7%BB%84%E4%BB%B6%E8%81%94%E7%B3%BB"><span class="toc-number">4.</span> <span class="toc-text">5.4 建立组件联系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-%E5%B0%8F%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">5.5 小结</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" rel="bookmark" title="Step.1 丰富的选项合并策略">Step.1 丰富的选项合并策略</a></li><li><a href="/computer-science/vueyuanma/dosc/2%E5%9F%BA%E7%A1%80%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B/" rel="bookmark" title="Step.2 基础的数据代理检测">Step.2 基础的数据代理检测</a></li><li><a href="/computer-science/vueyuanma/dosc/3%E5%AE%9E%E4%BE%8B%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91/" rel="bookmark" title="Step.3 实例挂载流程和模板编译">Step.3 实例挂载流程和模板编译</a></li><li><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" rel="bookmark" title="Step.4 完整渲染流程">Step.4 完整渲染流程</a></li><li class="active"><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" rel="bookmark" title="Step.5 组件基础剖析">Step.5 组件基础剖析</a></li><li><a href="/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" rel="bookmark" title="Step.6 组件高级用法">Step.6 组件高级用法</a></li><li><a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" rel="bookmark" title="Step.7 深入响应式系统构建-上">Step.7 深入响应式系统构建-上</a></li><li><a href="/computer-science/vueyuanma/dosc/8%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%AD/" rel="bookmark" title="Step.8 深入响应式系统构建-中">Step.8 深入响应式系统构建-中</a></li><li><a href="/computer-science/vueyuanma/dosc/9%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8B/" rel="bookmark" title="Step.9 深入响应式系统构建-下">Step.9 深入响应式系统构建-下</a></li><li><a href="/computer-science/vueyuanma/dosc/10%E6%9D%A5%EF%BC%8C%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%AE%9E%E7%8E%B0diff%E7%AE%97%E6%B3%95/" rel="bookmark" title="Step.10 来，跟我一起实现diff算法">Step.10 来，跟我一起实现diff算法</a></li><li><a href="/computer-science/vueyuanma/dosc/11%E6%8F%AD%E7%A7%98Vue%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" rel="bookmark" title="Step.11 揭秘Vue的事件机制">Step.11 揭秘Vue的事件机制</a></li><li><a href="/computer-science/vueyuanma/dosc/12vue%E6%8F%92%E6%A7%BD%EF%BC%8C%E4%BD%A0%E6%83%B3%E4%BA%86%E8%A7%A3%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C/" rel="bookmark" title="Step.12 vue插槽，你想了解的都在这里">Step.12 vue插槽，你想了解的都在这里</a></li><li><a href="/computer-science/vueyuanma/dosc/13%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3v-model%E7%9A%84%E8%AF%AD%E6%B3%95%E7%B3%96%E4%BA%86%E5%90%97/" rel="bookmark" title="Step.13 你真的了解v-model的语法糖了吗">Step.13 你真的了解v-model的语法糖了吗</a></li><li><a href="/computer-science/vueyuanma/dosc/14%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90/" rel="bookmark" title="Step.14 动态组件的深入分析">Step.14 动态组件的深入分析</a></li><li><a href="/computer-science/vueyuanma/dosc/15%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8A/" rel="bookmark" title="Step.15 彻底搞懂Vue中keep-alive的魔法-上">Step.15 彻底搞懂Vue中keep-alive的魔法-上</a></li><li><a href="/computer-science/vueyuanma/dosc/16%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8B/" rel="bookmark" title="Step.16 彻底搞懂Vue中keep-alive的魔法-上">Step.16 彻底搞懂Vue中keep-alive的魔法-上</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="sanxin98"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">sanxin98</p>
+  <div class="description" itemprop="description">编程 & 生活</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">97</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">41</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">29</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BpbmstcG5n" title="https:&#x2F;&#x2F;github.com&#x2F;pink-png"><i class="ic i-github"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" title="分类于 微信小程序">微信小程序</a>
+</div>
+
+    <span><a href="/front-end/%E5%BE%AE%E4%BF%A1%E2%BC%A9%E7%A8%8B%E5%BA%8F/" title="微信小程序">微信小程序</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a>
+</div>
+
+    <span><a href="/performance-optimization/css%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AF%87/" title="css性能优化篇">css性能优化篇</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a>
+</div>
+
+    <span><a href="/js-base/promise/" title="Promise">Promise</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a>
+</div>
+
+    <span><a href="/performance-optimization/Web%20Worker/" title="Web Worker">Web Worker</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" title="分类于 移动端适配">移动端适配</a>
+</div>
+
+    <span><a href="/front-end/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/" title="移动端相关适配方案">移动端相关适配方案</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
+</div>
+
+    <span><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" title="Step.4 完整渲染流程">Step.4 完整渲染流程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
+</div>
+
+    <span><a href="/computer-science/vueyuanma/dosc/9%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8B/" title="Step.9 深入响应式系统构建-下">Step.9 深入响应式系统构建-下</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
+</div>
+
+    <span><a href="/computer-science/vueyuanma/dosc/15%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8A/" title="Step.15 彻底搞懂Vue中keep-alive的魔法-上">Step.15 彻底搞懂Vue中keep-alive的魔法-上</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a>
+</div>
+
+    <span><a href="/js-base/js%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8F/" title="js创建对象的多种方式">js创建对象的多种方式</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Jquery/" title="分类于 Jquery">Jquery</a>
+</div>
+
+    <span><a href="/front-end/Jquery/" title="Jquery原理">Jquery原理</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">sanxin98 @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'computer-science/vueyuanma/dosc/5组件基础剖析/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: {"placeholder":"1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"},fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

@@ -1,4 +1,165 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#FFF"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png"><link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" type="application/rss+xml" title="死肥宅" href="https://pink-png.github.io/rss.xml"><link rel="alternate" type="application/atom+xml" title="死肥宅" href="https://pink-png.github.io/atom.xml"><link rel="alternate" type="application/json" title="死肥宅" href="https://pink-png.github.io/feed.json"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="/css/app.css?v=0.2.5"><meta name="keywords" content="Spring"><link rel="canonical" href="https://pink-png.github.io/computer-science/spring/docssp/Spring-04/"><title>Step.4 - Spring基础 - Spring - 计算机科学 | Yume Shoka = 死肥宅 = 肥宅快乐水</title><meta name="generator" content="Hexo 6.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">Step.4</h1><div class="meta"><span class="item" title="创建时间：2020-03-13 09:30:48"><span class="icon"><i class="ic i-calendar"></i> </span><span class="text">发表于</span> <time itemprop="dateCreated datePublished" datetime="2020-03-13T09:30:48+08:00">2020-03-13</time></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span> <span class="line"></span> <span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">Yume Shoka</a></li></ul><ul class="right"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div id="imgs" class="pjax"><ul><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gicm0fdw5cj20zk0m8hdt.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gipey0a334j20zk0m8qpt.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclgrvbd6j20zk0m8qv5.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclxp31goj20zk0m8qv5.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giph4wqtg4j20zk0m8x6p.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1giclize41wj20zk0m87gk.jpg"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"/><use xlink:href="#gentle-wave" x="48" y="3"/><use xlink:href="#gentle-wave" x="48" y="5"/><use xlink:href="#gentle-wave" x="48" y="7"/></g></svg></div><main><div class="inner"><div id="main" class="pjax"><div class="article wrap"><div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i> <span><a href="/">首页</a></span><i class="ic i-angle-right"></i> <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/" itemprop="item" rel="index" title="分类于 计算机科学"><span itemprop="name">计算机科学</span></a><meta itemprop="position" content="1"></span><i class="ic i-angle-right"></i> <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/spring/" itemprop="item" rel="index" title="分类于 Spring"><span itemprop="name">Spring</span></a><meta itemprop="position" content="2"></span><i class="ic i-angle-right"></i> <span class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/spring/Spring%E5%9F%BA%E7%A1%80/" itemprop="item" rel="index" title="分类于 Spring基础"><span itemprop="name">Spring基础</span></a><meta itemprop="position" content="3"></span></div><article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://pink-png.github.io/computer-science/spring/docssp/Spring-04/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/avatar.jpg"><meta itemprop="name" content="sanxin98"><meta itemprop="description" content="肥宅快乐水, 编程 & 生活"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="死肥宅"></span><div class="body md" itemprop="articleBody"><h1 id="Spring-04"><a href="#Spring-04" class="headerlink" title="Spring-04"></a>Spring-04</h1><h2 id="1-Spring整合Junit"><a href="#1-Spring整合Junit" class="headerlink" title="1.Spring整合Junit"></a>1.Spring整合Junit</h2><h3 id="①导入依赖"><a href="#①导入依赖" class="headerlink" title="①导入依赖"></a>①导入依赖</h3><pre><code class="xml">&lt;!-- junit --&gt;
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="死肥宅" href="https://pink-png.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="死肥宅" href="https://pink-png.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="死肥宅" href="https://pink-png.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="Spring" />
+
+
+<link rel="canonical" href="https://pink-png.github.io/computer-science/spring/docssp/Spring-04/">
+
+
+
+  <title>
+Step.4 - Spring基础 - Spring - 计算机科学 |
+Yume Shoka = 死肥宅 = 肥宅快乐水</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Step.4
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2020-03-13 09:30:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2020-03-13T09:30:48+08:00">2020-03-13</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gipetlbztpj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1giciundwu5j20zk0m8n9e.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gipey84bjtj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gipevgoki5j20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gicli3sbvtj20zk0m8x6p.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/" itemprop="item" rel="index" title="分类于 计算机科学"><span itemprop="name">计算机科学</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/spring/" itemprop="item" rel="index" title="分类于 Spring"><span itemprop="name">Spring</span></a>
+<meta itemprop="position" content="2" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/spring/Spring%E5%9F%BA%E7%A1%80/" itemprop="item" rel="index" title="分类于 Spring基础"><span itemprop="name">Spring基础</span></a>
+<meta itemprop="position" content="3" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://pink-png.github.io/computer-science/spring/docssp/Spring-04/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="sanxin98">
+    <meta itemprop="description" content="肥宅快乐水, 编程 & 生活">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="死肥宅">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="Spring-04"><a href="#Spring-04" class="headerlink" title="Spring-04"></a>Spring-04</h1><h2 id="1-Spring整合Junit"><a href="#1-Spring整合Junit" class="headerlink" title="1.Spring整合Junit"></a>1.Spring整合Junit</h2><h3 id="①导入依赖"><a href="#①导入依赖" class="headerlink" title="①导入依赖"></a>①导入依赖</h3><pre><code class="xml">&lt;!-- junit --&gt;
 &lt;dependency&gt;
     &lt;groupId&gt;junit&lt;/groupId&gt;
     &lt;artifactId&gt;junit&lt;/artifactId&gt;
@@ -10,11 +171,17 @@
     &lt;artifactId&gt;spring-test&lt;/artifactId&gt;
     &lt;version&gt;5.1.9.RELEASE&lt;/version&gt;
 &lt;/dependency&gt;
-</code></pre><h3 id="②-编写测试类"><a href="#②-编写测试类" class="headerlink" title="② 编写测试类"></a>② 编写测试类</h3><p>在测试类上加上</p><p>**@RunWith(SpringJUnit4ClassRunner.class)**注解，指定让测试运行于Spring环境</p><p><strong>@ContextConfiguration注解</strong>，指定Spring容器创建需要的配置文件或者配置类</p><pre><code class="java">@RunWith(SpringJUnit4ClassRunner.class)//让测试运行与Spring测试环境
+</code></pre>
+<h3 id="②-编写测试类"><a href="#②-编写测试类" class="headerlink" title="② 编写测试类"></a>② 编写测试类</h3><p>在测试类上加上</p>
+<p>**@RunWith(SpringJUnit4ClassRunner.class)**注解，指定让测试运行于Spring环境</p>
+<p><strong>@ContextConfiguration注解</strong>，指定Spring容器创建需要的配置文件或者配置类</p>
+<pre><code class="java">@RunWith(SpringJUnit4ClassRunner.class)//让测试运行与Spring测试环境
 @ContextConfiguration(locations = &quot;classpath:配置文件1.xml&quot;)//设置Spring配置文件或者配置类
 //@ContextConfiguration(classes = SpringConfig.class)
 public class SpringTest &#123;&#125;
-</code></pre><h3 id="③注入对象进行测试"><a href="#③注入对象进行测试" class="headerlink" title="③注入对象进行测试"></a>③注入对象进行测试</h3><p>在测试类中注入要测试的对象，定义测试方法，在其中使用要测试的对象。</p><pre><code class="java">@RunWith(SpringJUnit4ClassRunner.class)//让测试运行与Spring测试环境
+</code></pre>
+<h3 id="③注入对象进行测试"><a href="#③注入对象进行测试" class="headerlink" title="③注入对象进行测试"></a>③注入对象进行测试</h3><p>在测试类中注入要测试的对象，定义测试方法，在其中使用要测试的对象。</p>
+<pre><code class="java">@RunWith(SpringJUnit4ClassRunner.class)//让测试运行与Spring测试环境
 @ContextConfiguration(locations = &quot;classpath:配置文件1.xml&quot;)//设置Spring配置文件或者配置类
 //@ContextConfiguration(classes = SpringConfig.class)
 public class SpringTest &#123;
@@ -30,7 +197,10 @@ public class SpringTest &#123;
     &#125;
     
 &#125;
-</code></pre><h2 id="2-Spring整合Mybatis"><a href="#2-Spring整合Mybatis" class="headerlink" title="2.Spring整合Mybatis"></a>2.Spring整合Mybatis</h2><p>​	我们如果想把Mybatis整合到Spring中需要使用一个整合包<strong>mybatis-spring</strong></p><p>​	官方文档：<span class="exturl" data-url="aHR0cDovL215YmF0aXMub3JnL3NwcmluZy96aC9pbmRleC5odG1s">http://mybatis.org/spring/zh/index.html</span></p><h3 id="①导入依赖-1"><a href="#①导入依赖-1" class="headerlink" title="①导入依赖"></a>①导入依赖</h3><pre><code class="xml">    &lt;!-- spring-jdbc --&gt;
+</code></pre>
+<h2 id="2-Spring整合Mybatis"><a href="#2-Spring整合Mybatis" class="headerlink" title="2.Spring整合Mybatis"></a>2.Spring整合Mybatis</h2><p>​	我们如果想把Mybatis整合到Spring中需要使用一个整合包<strong>mybatis-spring</strong></p>
+<p>​	官方文档：<span class="exturl" data-url="aHR0cDovL215YmF0aXMub3JnL3NwcmluZy96aC9pbmRleC5odG1s">http://mybatis.org/spring/zh/index.html</span></p>
+<h3 id="①导入依赖-1"><a href="#①导入依赖-1" class="headerlink" title="①导入依赖"></a>①导入依赖</h3><pre><code class="xml">    &lt;!-- spring-jdbc --&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.springframework&lt;/groupId&gt;
         &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
@@ -63,7 +233,8 @@ public class SpringTest &#123;
         &lt;artifactId&gt;druid&lt;/artifactId&gt;
         &lt;version&gt;1.1.16&lt;/version&gt;
     &lt;/dependency&gt;
-</code></pre><h3 id="②往容器中注入整合相关对象"><a href="#②往容器中注入整合相关对象" class="headerlink" title="②往容器中注入整合相关对象"></a>②往容器中注入整合相关对象</h3><pre><code class="xml">    &lt;!--读取properties文件--&gt;
+</code></pre>
+<h3 id="②往容器中注入整合相关对象"><a href="#②往容器中注入整合相关对象" class="headerlink" title="②往容器中注入整合相关对象"></a>②往容器中注入整合相关对象</h3><pre><code class="xml">    &lt;!--读取properties文件--&gt;
     &lt;context:property-placeholder location=&quot;classpath:jdbc.properties&quot;&gt;&lt;/context:property-placeholder&gt;
     &lt;!--创建连接池注入容器--&gt;
     &lt;bean class=&quot;com.alibaba.druid.pool.DruidDataSource&quot; id=&quot;dataSource&quot;&gt;
@@ -84,7 +255,9 @@ public class SpringTest &#123;
     &lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot; id=&quot;mapperScannerConfigurer&quot;&gt;
         &lt;property name=&quot;basePackage&quot; value=&quot;com.sangeng.dao&quot;&gt;&lt;/property&gt;
     &lt;/bean&gt;
-</code></pre><p>mybatis配置文件<strong>mybatis-config.xml</strong>如下:</p><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+</code></pre>
+<p>mybatis配置文件<strong>mybatis-config.xml</strong>如下:</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
 &lt;!DOCTYPE configuration
         PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
         &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
@@ -93,9 +266,29 @@ public class SpringTest &#123;
         &lt;package name=&quot;com.sangeng.domain&quot;&gt;&lt;/package&gt;
     &lt;/typeAliases&gt;
 &lt;/configuration&gt;
-</code></pre><h3 id="③从容器中获取Mapper对象进行使用"><a href="#③从容器中获取Mapper对象进行使用" class="headerlink" title="③从容器中获取Mapper对象进行使用"></a>③从容器中获取Mapper对象进行使用</h3><pre><code class="java">    @Autowired
+</code></pre>
+<h3 id="③从容器中获取Mapper对象进行使用"><a href="#③从容器中获取Mapper对象进行使用" class="headerlink" title="③从容器中获取Mapper对象进行使用"></a>③从容器中获取Mapper对象进行使用</h3><pre><code class="java">    @Autowired
     private UserDao userDao;
-</code></pre><h2 id="3-Spring声明式事务"><a href="#3-Spring声明式事务" class="headerlink" title="3.Spring声明式事务"></a>3.Spring声明式事务</h2><h3 id="3-1-事务回顾"><a href="#3-1-事务回顾" class="headerlink" title="3.1 事务回顾"></a>3.1 事务回顾</h3><h3><a href="#" class="headerlink"></a></h3><h4 id="3-1-1-事务的概念"><a href="#3-1-1-事务的概念" class="headerlink" title="3.1.1 事务的概念"></a><strong>3.1.1 事务的概念</strong></h4><p>​ 保证一组数据库的操作，要么同时成功，要么同时失败</p><h4 id="3-1-2-四大特性"><a href="#3-1-2-四大特性" class="headerlink" title="3.1.2 四大特性"></a>3.1.2 四大特性</h4><ul><li><p>隔离性</p><p>多个事务之间要相互隔离，不能互相干扰</p></li><li><p>原子性</p><p>指事务是一个不可分割的整体，类似一个不可分割的原子</p></li><li><p>一致性</p><p>保障事务前后这组数据的状态是一致的。要么都是成功的，要么都是失败的。</p></li><li><p>持久性</p><p>指事务一旦被提交，这组操作修改的数据就真的的发生变化了。即使接下来数据库故障也不应该对其有影响。</p></li></ul><h3 id="3-2-实现声明式事务"><a href="#3-2-实现声明式事务" class="headerlink" title="3.2 实现声明式事务"></a>3.2 实现声明式事务</h3><p>​	如果我们自己去对事务进行控制的话我们就需要值原来核心代码的基础上加上事务控制相关的代码。而在我们的实际开发中这种事务控制的操作也是非常常见的。所以Spring提供了声明式事务的方式让我们去控制事务。</p><p>​	只要简单的加个注解(或者是xml配置)就可以实现事务控制，不需要事务控制的时候只需要去掉相应的注解即可。</p><h4 id="3-2-0-案例环境准备"><a href="#3-2-0-案例环境准备" class="headerlink" title="3.2.0 案例环境准备"></a>3.2.0 案例环境准备</h4><p>①数据初始化</p><pre><code class="mysql">CREATE DATABASE /*!32312 IF NOT EXISTS*/`spring_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
+</code></pre>
+<h2 id="3-Spring声明式事务"><a href="#3-Spring声明式事务" class="headerlink" title="3.Spring声明式事务"></a>3.Spring声明式事务</h2><h3 id="3-1-事务回顾"><a href="#3-1-事务回顾" class="headerlink" title="3.1 事务回顾"></a>3.1 事务回顾</h3><h3 id=""><a href="#" class="headerlink" title=""></a></h3><h4 id="3-1-1-事务的概念"><a href="#3-1-1-事务的概念" class="headerlink" title="3.1.1 事务的概念"></a><strong>3.1.1 事务的概念</strong></h4><p>​		保证一组数据库的操作，要么同时成功，要么同时失败</p>
+<h4 id="3-1-2-四大特性"><a href="#3-1-2-四大特性" class="headerlink" title="3.1.2 四大特性"></a>3.1.2 四大特性</h4><ul>
+<li><p>隔离性</p>
+<p>多个事务之间要相互隔离，不能互相干扰</p>
+</li>
+<li><p>原子性</p>
+<p>指事务是一个不可分割的整体，类似一个不可分割的原子</p>
+</li>
+<li><p>一致性</p>
+<p>保障事务前后这组数据的状态是一致的。要么都是成功的，要么都是失败的。</p>
+</li>
+<li><p>持久性</p>
+<p>指事务一旦被提交，这组操作修改的数据就真的的发生变化了。即使接下来数据库故障也不应该对其有影响。</p>
+</li>
+</ul>
+<h3 id="3-2-实现声明式事务"><a href="#3-2-实现声明式事务" class="headerlink" title="3.2 实现声明式事务"></a>3.2 实现声明式事务</h3><p>​	如果我们自己去对事务进行控制的话我们就需要值原来核心代码的基础上加上事务控制相关的代码。而在我们的实际开发中这种事务控制的操作也是非常常见的。所以Spring提供了声明式事务的方式让我们去控制事务。</p>
+<p>​	只要简单的加个注解(或者是xml配置)就可以实现事务控制，不需要事务控制的时候只需要去掉相应的注解即可。</p>
+<h4 id="3-2-0-案例环境准备"><a href="#3-2-0-案例环境准备" class="headerlink" title="3.2.0 案例环境准备"></a>3.2.0 案例环境准备</h4><p>①数据初始化</p>
+<pre><code class="mysql">CREATE DATABASE /*!32312 IF NOT EXISTS*/`spring_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `spring_db`;
 DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account` (
@@ -105,7 +298,10 @@ CREATE TABLE `account` (
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 INSERT  INTO `account`(`id`,`name`,`money`) VALUES (1,&#39;三更&#39;,100),(2,&#39;草堂&#39;,100);
-</code></pre><p>②Spring整合Mybatis</p><p>③创建Service和Dao</p><pre><code class="java">public interface AccountService &#123;
+</code></pre>
+<p>②Spring整合Mybatis</p>
+<p>③创建Service和Dao</p>
+<pre><code class="java">public interface AccountService &#123;
     /**
      * 转账
      * @param outId 转出账户的id
@@ -114,7 +310,8 @@ INSERT  INTO `account`(`id`,`name`,`money`) VALUES (1,&#39;三更&#39;,100),(2,&
      */
     public void transfer(Integer outId,Integer inId,Double money);
 &#125;
-</code></pre><pre><code class="java">@Service
+</code></pre>
+<pre><code class="java">@Service
 public class AccountServiceImpl implements AccountService &#123;
 
     @Autowired
@@ -127,11 +324,14 @@ public class AccountServiceImpl implements AccountService &#123;
         accoutDao.updateMoney(outId,-money);
     &#125;
 &#125;
-</code></pre><pre><code class="java">public interface AccoutDao &#123;
+</code></pre>
+<pre><code class="java">public interface AccoutDao &#123;
 
     void updateMoney(@Param(&quot;id&quot;) Integer id,@Param(&quot;updateMoney&quot;) Double updateMoney);
 &#125;
-</code></pre><p>AccoutDao.xml如下：</p><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+</code></pre>
+<p>AccoutDao.xml如下：</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
 &lt;!DOCTYPE mapper PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot; &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot; &gt;
 &lt;mapper namespace=&quot;com.sangeng.dao.AccoutDao&quot;&gt;
 
@@ -140,13 +340,17 @@ public class AccountServiceImpl implements AccountService &#123;
         update  account set money = money + #&#123;updateMoney&#125; where id = #&#123;id&#125;
     &lt;/update&gt;
 &lt;/mapper&gt;
-</code></pre><h4 id="3-2-1-注解实现"><a href="#3-2-1-注解实现" class="headerlink" title="3.2.1 注解实现"></a>3.2.1 注解实现</h4><h5 id="①配置事务管理器和事务注解驱动"><a href="#①配置事务管理器和事务注解驱动" class="headerlink" title="①配置事务管理器和事务注解驱动"></a>①配置事务管理器和事务注解驱动</h5><p>在spring的配置文件中添加如下配置：</p><pre><code class="xml">    &lt;!--把事务管理器注入Spring容器，需要配置一个连接池--&gt;
+</code></pre>
+<h4 id="3-2-1-注解实现"><a href="#3-2-1-注解实现" class="headerlink" title="3.2.1 注解实现"></a>3.2.1 注解实现</h4><h5 id="①配置事务管理器和事务注解驱动"><a href="#①配置事务管理器和事务注解驱动" class="headerlink" title="①配置事务管理器和事务注解驱动"></a>①配置事务管理器和事务注解驱动</h5><p>在spring的配置文件中添加如下配置：</p>
+<pre><code class="xml">    &lt;!--把事务管理器注入Spring容器，需要配置一个连接池--&gt;
     &lt;bean id=&quot;txManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
         &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;
     &lt;/bean&gt;
     &lt;!--开启事务注解驱动，配置使用的事务管理器--&gt;
     &lt;tx:annotation-driven transaction-manager=&quot;txManager&quot;/&gt;
-</code></pre><h5 id="②添加注解"><a href="#②添加注解" class="headerlink" title="②添加注解"></a>②添加注解</h5><p>在需要进行事务控制的方法或者类上添加@Transactional注解就可以实现事务控制。</p><pre><code class="java">    @Transactional
+</code></pre>
+<h5 id="②添加注解"><a href="#②添加注解" class="headerlink" title="②添加注解"></a>②添加注解</h5><p>在需要进行事务控制的方法或者类上添加@Transactional注解就可以实现事务控制。</p>
+<pre><code class="java">    @Transactional
     public void transfer(Integer outId, Integer inId, Double money) &#123;
         //增加
         accoutDao.updateMoney(inId,money);
@@ -154,15 +358,20 @@ public class AccountServiceImpl implements AccountService &#123;
         //减少
         accoutDao.updateMoney(outId,-money);
     &#125;
-</code></pre><p><strong>注意：如果加在类上，这个类的所有方法都会受事务控制，如果加在方法上，就是那一个方法受事务控制。</strong></p><p>注意，因为声明式事务底层是通过AOP实现的，所以最好把AOP相关依赖都加上。</p><pre><code class="xml">       &lt;dependency&gt;
+</code></pre>
+<p><strong>注意：如果加在类上，这个类的所有方法都会受事务控制，如果加在方法上，就是那一个方法受事务控制。</strong></p>
+<p>注意，因为声明式事务底层是通过AOP实现的，所以最好把AOP相关依赖都加上。</p>
+<pre><code class="xml">       &lt;dependency&gt;
             &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
             &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
             &lt;version&gt;1.9.6&lt;/version&gt;
         &lt;/dependency&gt;
-</code></pre><h4 id="3-2-2-xml方式实现"><a href="#3-2-2-xml方式实现" class="headerlink" title="3.2.2 xml方式实现"></a>3.2.2 xml方式实现</h4><h5 id="①配置事务管理器"><a href="#①配置事务管理器" class="headerlink" title="①配置事务管理器"></a>①配置事务管理器</h5><pre><code class="xml">    &lt;bean id=&quot;txManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
+</code></pre>
+<h4 id="3-2-2-xml方式实现"><a href="#3-2-2-xml方式实现" class="headerlink" title="3.2.2 xml方式实现"></a>3.2.2 xml方式实现</h4><h5 id="①配置事务管理器"><a href="#①配置事务管理器" class="headerlink" title="①配置事务管理器"></a>①配置事务管理器</h5><pre><code class="xml">    &lt;bean id=&quot;txManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
         &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;
     &lt;/bean&gt;
-</code></pre><h5 id="②配置事务切面"><a href="#②配置事务切面" class="headerlink" title="②配置事务切面"></a>②配置事务切面</h5><pre><code class="xml">     &lt;!--定义事务管理的通知类--&gt;
+</code></pre>
+<h5 id="②配置事务切面"><a href="#②配置事务切面" class="headerlink" title="②配置事务切面"></a>②配置事务切面</h5><pre><code class="xml">     &lt;!--定义事务管理的通知类--&gt;
     &lt;tx:advice transaction-manager=&quot;txManager&quot; id=&quot;txAdvice&quot;&gt;
         &lt;tx:attributes&gt;
             &lt;tx:method name=&quot;trans*&quot;/&gt;
@@ -173,12 +382,17 @@ public class AccountServiceImpl implements AccountService &#123;
         &lt;aop:pointcut id=&quot;pt&quot; expression=&quot;execution(* com.sangeng.service..*.*(..))&quot;&gt;&lt;/aop:pointcut&gt;
         &lt;aop:advisor advice-ref=&quot;txAdvice&quot; pointcut-ref=&quot;pt&quot;&gt;&lt;/aop:advisor&gt;
     &lt;/aop:config&gt;
-</code></pre><p>注意，因为声明式事务底层是通过AOP实现的，所以最好把AOP相关依赖都加上。</p><pre><code class="xml">       &lt;dependency&gt;
+</code></pre>
+<p>注意，因为声明式事务底层是通过AOP实现的，所以最好把AOP相关依赖都加上。</p>
+<pre><code class="xml">       &lt;dependency&gt;
             &lt;groupId&gt;org.aspectj&lt;/groupId&gt;
             &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;
             &lt;version&gt;1.9.6&lt;/version&gt;
         &lt;/dependency&gt;
-</code></pre><h3 id="3-3-属性配置"><a href="#3-3-属性配置" class="headerlink" title="3.3 属性配置"></a>3.3 属性配置</h3><h4 id="3-3-1-事务传播行为propagation"><a href="#3-3-1-事务传播行为propagation" class="headerlink" title="3.3.1 事务传播行为propagation"></a>3.3.1 事务传播行为propagation</h4><p>​	当事务方法嵌套调用时，需要控制是否开启新事务，可以使用事务传播行为来控制。</p><p>测试案例:</p><pre><code class="java">@Service
+</code></pre>
+<h3 id="3-3-属性配置"><a href="#3-3-属性配置" class="headerlink" title="3.3 属性配置"></a>3.3 属性配置</h3><h4 id="3-3-1-事务传播行为propagation"><a href="#3-3-1-事务传播行为propagation" class="headerlink" title="3.3.1 事务传播行为propagation"></a>3.3.1 事务传播行为propagation</h4><p>​	当事务方法嵌套调用时，需要控制是否开启新事务，可以使用事务传播行为来控制。</p>
+<p>测试案例:</p>
+<pre><code class="java">@Service
 public class TestServiceImpl &#123;
     @Autowired
     AccountService accountService;
@@ -189,7 +403,8 @@ public class TestServiceImpl &#123;
         accountService.log();
     &#125;
 &#125;
-</code></pre><pre><code class="java">public class AccountServiceImpl implements AccountService &#123;
+</code></pre>
+<pre><code class="java">public class AccountServiceImpl implements AccountService &#123;
     //...省略其他不相关代码
     @Transactional
     public void log() &#123;
@@ -198,23 +413,449 @@ public class TestServiceImpl &#123;
     &#125;
 
 &#125;
-</code></pre><table><thead><tr><th>属性值</th><th>行为</th></tr></thead><tbody><tr><td>REQUIRED（必须要有）</td><td>外层方法有事务，内层方法就加入。外层没有，内层就新建</td></tr><tr><td>REQUIRES_NEW（必须要有新事务）</td><td>外层方法有事务，内层方法新建。外层没有，内层也新建</td></tr><tr><td>SUPPORTS（支持有）</td><td>外层方法有事务，内层方法就加入。外层没有，内层就也没有</td></tr><tr><td>NOT_SUPPORTED（支持没有）</td><td>外层方法有事务，内层方法没有。外层没有，内层也没有</td></tr><tr><td>MANDATORY（强制要求外层有）</td><td>外层方法有事务，内层方法加入。外层没有。内层就报错</td></tr><tr><td>NEVER(绝不允许有)</td><td>外层方法有事务，内层方法就报错。外层没有。内层就也没有</td></tr></tbody></table><p>例如：</p><pre><code class="java">    @Transactional(propagation = Propagation.REQUIRES_NEW)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>属性值</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>REQUIRED（必须要有）</td>
+<td>外层方法有事务，内层方法就加入。外层没有，内层就新建</td>
+</tr>
+<tr>
+<td>REQUIRES_NEW（必须要有新事务）</td>
+<td>外层方法有事务，内层方法新建。外层没有，内层也新建</td>
+</tr>
+<tr>
+<td>SUPPORTS（支持有）</td>
+<td>外层方法有事务，内层方法就加入。外层没有，内层就也没有</td>
+</tr>
+<tr>
+<td>NOT_SUPPORTED（支持没有）</td>
+<td>外层方法有事务，内层方法没有。外层没有，内层也没有</td>
+</tr>
+<tr>
+<td>MANDATORY（强制要求外层有）</td>
+<td>外层方法有事务，内层方法加入。外层没有。内层就报错</td>
+</tr>
+<tr>
+<td>NEVER(绝不允许有)</td>
+<td>外层方法有事务，内层方法就报错。外层没有。内层就也没有</td>
+</tr>
+</tbody></table>
+<p>例如：</p>
+<pre><code class="java">    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void transfer(Integer outId, Integer inId, Double money) &#123;
         //增加
         accoutDao.updateMoney(inId,money);
         //减少
         accoutDao.updateMoney(outId,-money);
     &#125;
-</code></pre><h4 id="3-3-2-隔离级别isolation"><a href="#3-3-2-隔离级别isolation" class="headerlink" title="3.3.2 隔离级别isolation"></a>3.3.2 隔离级别isolation</h4><p>Isolation.DEFAULT 使用数据库默认隔离级别</p><p>Isolation.READ_UNCOMMITTED</p><p>Isolation.READ_COMMITTED</p><p>Isolation.REPEATABLE_READ</p><p>Isolation.SERIALIZABLE</p><pre><code class="java">   @Transactional(propagation = Propagation.REQUIRES_NEW,isolation = Isolation.READ_COMMITTED)
+</code></pre>
+<h4 id="3-3-2-隔离级别isolation"><a href="#3-3-2-隔离级别isolation" class="headerlink" title="3.3.2 隔离级别isolation"></a>3.3.2 隔离级别isolation</h4><p>Isolation.DEFAULT 使用数据库默认隔离级别</p>
+<p>Isolation.READ_UNCOMMITTED </p>
+<p>Isolation.READ_COMMITTED</p>
+<p>Isolation.REPEATABLE_READ</p>
+<p>Isolation.SERIALIZABLE</p>
+<pre><code class="java">   @Transactional(propagation = Propagation.REQUIRES_NEW,isolation = Isolation.READ_COMMITTED)
     public void transfer(Integer outId, Integer inId, Double money) &#123;
         //增加
         accoutDao.updateMoney(inId,money);
         //减少
         accoutDao.updateMoney(outId,-money);
     &#125;
-</code></pre><h4 id="3-3-3-只读readOnly"><a href="#3-3-3-只读readOnly" class="headerlink" title="3.3.3 只读readOnly"></a>3.3.3 只读readOnly</h4><p>​	如果事务中的操作都是读操作，没涉及到对数据的写操作可以设置readOnly为true。这样可以提高效率。</p><pre><code class="java">    @Transactional(readOnly = true)
+</code></pre>
+<h4 id="3-3-3-只读readOnly"><a href="#3-3-3-只读readOnly" class="headerlink" title="3.3.3 只读readOnly"></a>3.3.3 只读readOnly</h4><p>​	如果事务中的操作都是读操作，没涉及到对数据的写操作可以设置readOnly为true。这样可以提高效率。</p>
+<pre><code class="java">    @Transactional(readOnly = true)
     public void log() &#123;
         System.out.println(&quot;打印日志&quot;);
         int i = 1/0;
     &#125;
-</code></pre><div class="tags"><a href="/tags/Spring/" rel="tag"><i class="ic i-tag"></i> Spring</a></div></div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i> </span><span class="text">更新于</span> <time title="修改时间：2023-07-07 15:28:28" itemprop="dateModified" datetime="2023-07-07T15:28:28+08:00">2023-07-07</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i> 赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img data-src="/images/wechatpay.png" alt="sanxin98 微信支付"><p>微信支付</p></div><div><img data-src="/images/alipay.png" alt="sanxin98 支付宝"><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者： </strong>sanxin98 <i class="ic i-at"><em>@</em></i>死肥宅</li><li class="link"><strong>本文链接：</strong> <a href="https://pink-png.github.io/computer-science/spring/docssp/Spring-04/" title="Step.4">https://pink-png.github.io/computer-science/spring/docssp/Spring-04/</a></li><li class="license"><strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicli3sbvtj20zk0m8x6p.jpg" title="Step.1 丰富的选项合并策略"><span class="type">上一篇</span> <span class="category"><i class="ic i-flag"></i> vue2.x源码</span><h3>Step.1 丰富的选项合并策略</h3></a></div><div class="item right"><a href="/computer-science/spring/docssp/Spring-03/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeyonbf9j20zk0m8e81.jpg" title="Step.3"><span class="type">下一篇</span> <span class="category"><i class="ic i-flag"></i> Spring基础</span><h3>Step.3</h3></a></div></div><div class="wrap" id="comments"></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-04"><span class="toc-number">1.</span> <span class="toc-text">Spring-04</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Spring%E6%95%B4%E5%90%88Junit"><span class="toc-number">1.1.</span> <span class="toc-text">1.Spring整合Junit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="toc-number">1.1.1.</span> <span class="toc-text">①导入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1-%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E7%B1%BB"><span class="toc-number">1.1.2.</span> <span class="toc-text">② 编写测试类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A2%E6%B3%A8%E5%85%A5%E5%AF%B9%E8%B1%A1%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95"><span class="toc-number">1.1.3.</span> <span class="toc-text">③注入对象进行测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Spring%E6%95%B4%E5%90%88Mybatis"><span class="toc-number">1.2.</span> <span class="toc-text">2.Spring整合Mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">①导入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1%E5%BE%80%E5%AE%B9%E5%99%A8%E4%B8%AD%E6%B3%A8%E5%85%A5%E6%95%B4%E5%90%88%E7%9B%B8%E5%85%B3%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.2.</span> <span class="toc-text">②往容器中注入整合相关对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A2%E4%BB%8E%E5%AE%B9%E5%99%A8%E4%B8%AD%E8%8E%B7%E5%8F%96Mapper%E5%AF%B9%E8%B1%A1%E8%BF%9B%E8%A1%8C%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">③从容器中获取Mapper对象进行使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Spring%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.3.</span> <span class="toc-text">3.Spring声明式事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 事务回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.3.2.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">3.1.1 事务的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">3.1.2 四大特性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%AE%9E%E7%8E%B0%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.2 实现声明式事务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-0-%E6%A1%88%E4%BE%8B%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">3.2.0 案例环境准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">3.2.1 注解实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A0%E9%85%8D%E7%BD%AE%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%E5%99%A8%E5%92%8C%E4%BA%8B%E5%8A%A1%E6%B3%A8%E8%A7%A3%E9%A9%B1%E5%8A%A8"><span class="toc-number">1.3.3.2.1.</span> <span class="toc-text">①配置事务管理器和事务注解驱动</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A1%E6%B7%BB%E5%8A%A0%E6%B3%A8%E8%A7%A3"><span class="toc-number">1.3.3.2.2.</span> <span class="toc-text">②添加注解</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-xml%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.3.3.3.</span> <span class="toc-text">3.2.2 xml方式实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A0%E9%85%8D%E7%BD%AE%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-number">1.3.3.3.1.</span> <span class="toc-text">①配置事务管理器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A1%E9%85%8D%E7%BD%AE%E4%BA%8B%E5%8A%A1%E5%88%87%E9%9D%A2"><span class="toc-number">1.3.3.3.2.</span> <span class="toc-text">②配置事务切面</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%B1%9E%E6%80%A7%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.3 属性配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-1-%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BApropagation"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">3.3.1 事务传播行为propagation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-2-%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%ABisolation"><span class="toc-number">1.3.4.2.</span> <span class="toc-text">3.3.2 隔离级别isolation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-3-%E5%8F%AA%E8%AF%BBreadOnly"><span class="toc-number">1.3.4.3.</span> <span class="toc-text">3.3.3 只读readOnly</span></a></li></ol></li></ol></li></ol></li></ol></div><div class="related panel pjax" data-title="系列文章"><ul><li><a href="/computer-science/spring/docssp/Spring-01/" rel="bookmark" title="Step.1">Step.1</a></li><li><a href="/computer-science/spring/docssp/Spring-02/" rel="bookmark" title="Step.2">Step.2</a></li><li><a href="/computer-science/spring/docssp/Spring-03/" rel="bookmark" title="Step.3">Step.3</a></li><li class="active"><a href="/computer-science/spring/docssp/Spring-04/" rel="bookmark" title="Step.4">Step.4</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="image" itemprop="image" alt="sanxin98" data-src="/images/avatar.jpg"><p class="name" itemprop="name">sanxin98</p><div class="description" itemprop="description">编程 & 生活</div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">96</span> <span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">40</span> <span class="name">分类</span></a></div><div class="item tags"><a href="/tags/"><span class="count">29</span> <span class="name">标签</span></a></div></nav><div class="social"><span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BpbmstcG5n" title="https:&#x2F;&#x2F;github.com&#x2F;pink-png"><i class="ic i-github"></i></span></div><ul class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li><li class="item dropdown"><a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a><ul class="submenu"><li class="item"><a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a></li><li class="item"><a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a></li><li class="item"><a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a></li></ul></li></ul></div></div></div><ul id="quick"><li class="prev pjax"><a href="/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/computer-science/spring/docssp/Spring-03/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" title="分类于 浏览器">浏览器</a></div><span><a href="/Web-Integration/%E8%AF%A6%E8%A7%A3%E4%BB%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E2%BC%8Aurl%E5%88%B0%E6%98%BE%E7%A4%BA%E2%BB%9A%E2%BE%AF/" title="从浏览器地址栏输⼊url到显示⻚⾯的步骤">从浏览器地址栏输⼊url到显示⻚⾯的步骤</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95/" title="分类于 前端调试">前端调试</a></div><span><a href="/performance-optimization/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/" title="前端调试技巧">前端调试技巧</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a></div><span><a href="/js-base/promise/" title="Promise">Promise</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/react0-1/" title="分类于 react">react</a></div><span><a href="/computer-science/react0-1/%E6%BA%90%E7%A0%81%E6%A0%B8%E5%BF%83/" title="step.7 react源码核心">step.7 react源码核心</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/vueyuanma/" title="分类于 Vue">Vue</a></div><span><a href="/front-end/vue2.x%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80/" title="vue2.x常用基础">vue2.x常用基础</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a></div><span><a href="/computer-science/vueyuanma/dosc/12vue%E6%8F%92%E6%A7%BD%EF%BC%8C%E4%BD%A0%E6%83%B3%E4%BA%86%E8%A7%A3%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C/" title="Step.12 vue插槽，你想了解的都在这里">Step.12 vue插槽，你想了解的都在这里</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a></div><span><a href="/js-base/js%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8F/" title="js创建对象的多种方式">js创建对象的多种方式</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/Mybatis/" title="分类于 Mybatis">Mybatis</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/Mybatis/Mybatis%E5%9F%BA%E7%A1%80/" title="分类于 Mybatis基础">Mybatis基础</a></div><span><a href="/computer-science/Mybatis/doscmp/Mybatis-01/" title="Step.1">Step.1</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a></div><span><a href="/js-base/js%E5%85%B3%E4%BA%8EString%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E6%80%BB%E7%BB%93/" title="关于String包装类型处理数据的总结">关于String包装类型处理数据的总结</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a></div><span><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" title="Step.4 完整渲染流程">Step.4 完整渲染流程</a></span></li></ul></div><div><h2>最新评论</h2><ul class="leancloud-recent-comment"></ul></div></div><div class="status"><div class="copyright">&copy; 2010 – <span itemprop="copyrightYear">2024</span> <span class="with-love"><i class="ic i-sakura rotate"></i> </span><span class="author" itemprop="copyrightHolder">sanxin98 @ Yume Shoka</span></div><div class="powered-by">基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL={path:"computer-science/spring/docssp/Spring-04/",favicon:{show:"（●´3｀●）やれやれだぜ",hide:"(´Д｀)大変だ！"},search:{placeholder:"文章搜索",empty:"关于 「 ${query} 」，什么也没搜到",stats:"${time} ms 内找到 ${hits} 条结果"},valine:{placeholder:"1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"},fancybox:!0,copyright:'复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',ignores:[function(e){return e.includes("#")},function(e){return new RegExp(LOCAL.path+"$").test(e)}]}</script><script src="https://cdn.polyfill.io/v2/polyfill.js"></script><script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script><script src="/js/app.js?v=0.2.5"></script></body></html>
+</code></pre>
+
+      <div class="tags">
+          <a href="/tags/Spring/" rel="tag"><i class="ic i-tag"></i> Spring</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-07-07 15:28:28" itemprop="dateModified" datetime="2023-07-07T15:28:28+08:00">2023-07-07</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="sanxin98 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="sanxin98 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>sanxin98 <i class="ic i-at"><em>@</em></i>死肥宅
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://pink-png.github.io/computer-science/spring/docssp/Spring-04/" title="Step.4">https://pink-png.github.io/computer-science/spring/docssp/Spring-04/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/computer-science/spring/docssp/Spring-03/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipevuctzzj20zk0m84qp.jpg" title="Step.3">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Spring基础</span>
+  <h3>Step.3</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/computer-science/spring/docssp/Spring-02/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipewkhf1zj20zk0m81kx.jpg" title="Step.2">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Spring基础</span>
+  <h3>Step.2</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-04"><span class="toc-number">1.</span> <span class="toc-text">Spring-04</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Spring%E6%95%B4%E5%90%88Junit"><span class="toc-number">1.1.</span> <span class="toc-text">1.Spring整合Junit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="toc-number">1.1.1.</span> <span class="toc-text">①导入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1-%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E7%B1%BB"><span class="toc-number">1.1.2.</span> <span class="toc-text">② 编写测试类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A2%E6%B3%A8%E5%85%A5%E5%AF%B9%E8%B1%A1%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95"><span class="toc-number">1.1.3.</span> <span class="toc-text">③注入对象进行测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Spring%E6%95%B4%E5%90%88Mybatis"><span class="toc-number">1.2.</span> <span class="toc-text">2.Spring整合Mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">①导入依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1%E5%BE%80%E5%AE%B9%E5%99%A8%E4%B8%AD%E6%B3%A8%E5%85%A5%E6%95%B4%E5%90%88%E7%9B%B8%E5%85%B3%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.2.</span> <span class="toc-text">②往容器中注入整合相关对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A2%E4%BB%8E%E5%AE%B9%E5%99%A8%E4%B8%AD%E8%8E%B7%E5%8F%96Mapper%E5%AF%B9%E8%B1%A1%E8%BF%9B%E8%A1%8C%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">③从容器中获取Mapper对象进行使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Spring%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.3.</span> <span class="toc-text">3.Spring声明式事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E4%BA%8B%E5%8A%A1%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 事务回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.3.2.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-1-%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">3.1.1 事务的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-2-%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">3.1.2 四大特性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%AE%9E%E7%8E%B0%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.2 实现声明式事务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-0-%E6%A1%88%E4%BE%8B%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">3.2.0 案例环境准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-%E6%B3%A8%E8%A7%A3%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">3.2.1 注解实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A0%E9%85%8D%E7%BD%AE%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%E5%99%A8%E5%92%8C%E4%BA%8B%E5%8A%A1%E6%B3%A8%E8%A7%A3%E9%A9%B1%E5%8A%A8"><span class="toc-number">1.3.3.2.1.</span> <span class="toc-text">①配置事务管理器和事务注解驱动</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A1%E6%B7%BB%E5%8A%A0%E6%B3%A8%E8%A7%A3"><span class="toc-number">1.3.3.2.2.</span> <span class="toc-text">②添加注解</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-xml%E6%96%B9%E5%BC%8F%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.3.3.3.</span> <span class="toc-text">3.2.2 xml方式实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A0%E9%85%8D%E7%BD%AE%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-number">1.3.3.3.1.</span> <span class="toc-text">①配置事务管理器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A1%E9%85%8D%E7%BD%AE%E4%BA%8B%E5%8A%A1%E5%88%87%E9%9D%A2"><span class="toc-number">1.3.3.3.2.</span> <span class="toc-text">②配置事务切面</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%B1%9E%E6%80%A7%E9%85%8D%E7%BD%AE"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.3 属性配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-1-%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BApropagation"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">3.3.1 事务传播行为propagation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-2-%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%ABisolation"><span class="toc-number">1.3.4.2.</span> <span class="toc-text">3.3.2 隔离级别isolation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-3-%E5%8F%AA%E8%AF%BBreadOnly"><span class="toc-number">1.3.4.3.</span> <span class="toc-text">3.3.3 只读readOnly</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/computer-science/spring/docssp/Spring-01/" rel="bookmark" title="Step.1">Step.1</a></li><li><a href="/computer-science/spring/docssp/Spring-02/" rel="bookmark" title="Step.2">Step.2</a></li><li class="active"><a href="/computer-science/spring/docssp/Spring-04/" rel="bookmark" title="Step.4">Step.4</a></li><li><a href="/computer-science/spring/docssp/Spring-03/" rel="bookmark" title="Step.3">Step.3</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="sanxin98"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">sanxin98</p>
+  <div class="description" itemprop="description">编程 & 生活</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">97</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">41</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">29</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BpbmstcG5n" title="https:&#x2F;&#x2F;github.com&#x2F;pink-png"><i class="ic i-github"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/computer-science/spring/docssp/Spring-03/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/computer-science/spring/docssp/Spring-02/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/spring/" title="分类于 Spring">Spring</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/spring/Spring%E5%9F%BA%E7%A1%80/" title="分类于 Spring基础">Spring基础</a>
+</div>
+
+    <span><a href="/computer-science/spring/docssp/Spring-01/" title="Step.1">Step.1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/vueyuanma/" title="分类于 Vue">Vue</a>
+</div>
+
+    <span><a href="/front-end/vue3.x%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80/" title="vue3.x常用基础">vue3.x常用基础</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
+</div>
+
+    <span><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" title="Step.4 完整渲染流程">Step.4 完整渲染流程</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" title="分类于 前端工程化">前端工程化</a>
+</div>
+
+    <span><a href="/front-end/webpack/" title="webpack">webpack</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/react0-1/" title="分类于 react">react</a>
+</div>
+
+    <span><a href="/computer-science/react0-1/%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96/" title="step.8 react首屏优化">step.8 react首屏优化</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
+</div>
+
+    <span><a href="/computer-science/vueyuanma/dosc/11%E6%8F%AD%E7%A7%98Vue%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" title="Step.11 揭秘Vue的事件机制">Step.11 揭秘Vue的事件机制</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Nodejs/" title="分类于 Nodejs">Nodejs</a>
+</div>
+
+    <span><a href="/front-end/nodejs/" title="Nodejs基础">Nodejs基础</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a>
+</div>
+
+    <span><a href="/js-base/js%E5%AE%9E%E7%8E%B0%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%9A%84%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" title="数组去重方法总结">数组去重方法总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a>
+</div>
+
+    <span><a href="/performance-optimization/Vue%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96/" title="vue首屏优化">vue首屏优化</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" title="分类于 微信小程序">微信小程序</a>
+</div>
+
+    <span><a href="/front-end/%E5%BE%AE%E4%BF%A1%E2%BC%A9%E7%A8%8B%E5%BA%8F/" title="微信小程序">微信小程序</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">sanxin98 @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'computer-science/spring/docssp/Spring-04/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: {"placeholder":"1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"},fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

@@ -1,4 +1,178 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#FFF"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png"><link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" type="application/rss+xml" title="死肥宅" href="https://pink-png.github.io/rss.xml"><link rel="alternate" type="application/atom+xml" title="死肥宅" href="https://pink-png.github.io/atom.xml"><link rel="alternate" type="application/json" title="死肥宅" href="https://pink-png.github.io/feed.json"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext"><link rel="stylesheet" href="/css/app.css?v=0.2.5"><meta name="keywords" content="Vue"><link rel="canonical" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/"><title>Step.4 完整渲染流程 - vue2.x源码 - Vue - 计算机科学 | Yume Shoka = 死肥宅 = 肥宅快乐水</title><meta name="generator" content="Hexo 6.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">Step.4 完整渲染流程</h1><div class="meta"><span class="item" title="创建时间：2020-04-16 07:24:41"><span class="icon"><i class="ic i-calendar"></i> </span><span class="text">发表于</span> <time itemprop="dateCreated datePublished" datetime="2020-04-16T07:24:41+08:00">2020-04-16</time></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span> <span class="line"></span> <span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">Yume Shoka</a></li></ul><ul class="right"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div id="imgs" class="pjax"><ul><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gipeu1usa7j20zk0m8b29.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gipeu7txpzj20zk0m81kx.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gicliierfjj20zk0m8npd.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gicliwyw55j20zk0m8hdt.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gicitht3xtj20zk0m8k5v.jpg"></li><li class="item" data-background-image="https://cdn.cdnjson.com/tva3.sinaimg.cn/large/6833939bly1gipeuv80yoj20zk0m8kjl.jpg"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"/><use xlink:href="#gentle-wave" x="48" y="3"/><use xlink:href="#gentle-wave" x="48" y="5"/><use xlink:href="#gentle-wave" x="48" y="7"/></g></svg></div><main><div class="inner"><div id="main" class="pjax"><div class="article wrap"><div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i> <span><a href="/">首页</a></span><i class="ic i-angle-right"></i> <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/" itemprop="item" rel="index" title="分类于 计算机科学"><span itemprop="name">计算机科学</span></a><meta itemprop="position" content="1"></span><i class="ic i-angle-right"></i> <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/" itemprop="item" rel="index" title="分类于 Vue"><span itemprop="name">Vue</span></a><meta itemprop="position" content="2"></span><i class="ic i-angle-right"></i> <span class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/dosc/" itemprop="item" rel="index" title="分类于 vue2.x源码"><span itemprop="name">vue2.x源码</span></a><meta itemprop="position" content="3"></span></div><article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/avatar.jpg"><meta itemprop="name" content="sanxin98"><meta itemprop="description" content="肥宅快乐水, 编程 & 生活"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="死肥宅"></span><div class="body md" itemprop="articleBody"><blockquote><p>继上一节内容，我们将<code>Vue</code>复杂的挂载流程通过图解流程，代码分析的方式简单梳理了一遍，最后也讲到了模板编译的大致流程。然而在挂载的核心处，我们并没有分析模板编译后渲染函数是如何转换为可视化<code>DOM</code>节点的。因此这一章节，我们将重新回到<code>Vue</code>实例挂载的最后一个环节：渲染<code>DOM</code>节点。在渲染真实<code>DOM</code>的过程中，<code>Vue</code>引进了虚拟<code>DOM</code>的概念，这是<code>Vue</code>架构设计中另一个重要的理念。虚拟<code>DOM</code>作为<code>JS</code>对象和真实<code>DOM</code>中间的一个缓冲层，对<code>JS</code>频繁操作<code>DOM</code>的引起的性能问题有很好的缓解作用。</p></blockquote><h2 id="4-1-Virtual-DOM"><a href="#4-1-Virtual-DOM" class="headerlink" title="4.1 Virtual DOM"></a>4.1 Virtual DOM</h2><h3 id="4-1-1-浏览器的渲染流程"><a href="#4-1-1-浏览器的渲染流程" class="headerlink" title="4.1.1 浏览器的渲染流程"></a>4.1.1 浏览器的渲染流程</h3><p>当浏览器接收到一个<code>Html</code>文件时，<code>JS</code>引擎和浏览器的渲染引擎便开始工作了。从渲染引擎的角度，它首先会将<code>html</code>文件解析成一个<code>DOM</code>树，与此同时，浏览器将识别并加载<code>CSS</code>样式，并和<code>DOM</code>树一起合并为一个渲染树。有了渲染树后，渲染引擎将计算所有元素的位置信息，最后通过绘制，在屏幕上打印最终的内容。<code>JS</code>引擎和渲染引擎虽然是两个独立的线程，但是JS引擎却可以触发渲染引擎工作，当我们通过脚本去修改元素位置或外观时，<code>JS</code>引擎会利用<code>DOM</code>相关的<code>API</code>方法去操作<code>DOM</code>对象,此时渲染引擎变开始工作，渲染引擎会触发回流或者重绘。下面是回流重绘的两个概念：</p><ul><li>回流： 当我们对<code>DOM</code>的修改引发了元素尺寸的变化时，浏览器需要重新计算元素的大小和位置，最后将重新计算的结果绘制出来，这个过程称为回流。</li><li>重绘： 当我们对<code>DOM</code>的修改只单纯改变元素的颜色时，浏览器此时并不需要重新计算元素的大小和位置，而只要重新绘制新样式。这个过程称为重绘。</li></ul><p><strong>很显然回流比重绘更加耗费性能</strong>。</p><p>通过了解浏览器基本的渲染机制，我们很容易联想到当不断的通过<code>JS</code>修改<code>DOM</code>时，不经意间会触发到渲染引擎的回流或者重绘，这个性能开销是非常巨大的。因此为了降低开销，我们需要做的是尽可能减少<code>DOM</code>操作。有什么方法可以做到呢？</p><h3 id="4-1-2-缓冲层-虚拟DOM"><a href="#4-1-2-缓冲层-虚拟DOM" class="headerlink" title="4.1.2 缓冲层-虚拟DOM"></a>4.1.2 缓冲层-虚拟DOM</h3><p>虚拟<code>DOM</code>是为了解决频繁操作<code>DOM</code>引发性能问题的产物。虚拟<code>DOM</code>(下面称为<code>Virtual DOM</code>)是将页面的状态抽象为<code>JS</code>对象的形式，本质上是<code>JS</code>和真实<code>DOM</code>的中间层，当我们想用<code>JS</code>脚本大批量进行<code>DOM</code>操作时，会优先作用于<code>Virtual DOM</code>这个<code>JS</code>对象，最后通过对比将要改动的部分通知并更新到真实的<code>DOM</code>。尽管最终还是操作真实的<code>DOM</code>，但<code>Virtual DOM</code>可以将多个改动合并成一个批量的操作，从而减少 <code>DOM</code> 重排的次数，进而缩短了生成渲染树和绘制所花的时间。</p><p>我们看一个真实的<code>DOM</code>包含了什么：</p><p><img data-src="/images/img/4.1.png"><br>浏览器将一个真实<code>DOM</code>设计得很复杂，不仅包含了自身的属性描述，大小位置等定义，也囊括了<code>DOM</code>拥有的浏览器事件等。正因为如此复杂的结构，我们频繁去操作<code>DOM</code>或多或少会带来浏览器的性能问题。而作为数据和真实<code>DOM</code>之间的一层缓冲，<code>Virtual DOM</code> 只是用来映射到真实<code>DOM</code>的渲染，因此不需要包含操作 <code>DOM</code> 的方法，它只要在对象中重点关注几个属性即可。</p><pre><code class="js">// 真实DOM
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="死肥宅" href="https://pink-png.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="死肥宅" href="https://pink-png.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="死肥宅" href="https://pink-png.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="Vue" />
+
+
+<link rel="canonical" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/">
+
+
+
+  <title>
+Step.4 完整渲染流程 - vue2.x源码 - Vue - 计算机科学 |
+Yume Shoka = 死肥宅 = 肥宅快乐水</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Step.4 完整渲染流程
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2020-04-16 07:24:41">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2020-04-16T07:24:41+08:00">2020-04-16</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gipexj2jgzj20zk0m8b09.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gipey0a334j20zk0m8qpt.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1giclize41wj20zk0m87gk.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gipevo9j1jj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg"></li>
+          <li class="item" data-background-image="https://cdn.cdnjson.com/tva2.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/" itemprop="item" rel="index" title="分类于 计算机科学"><span itemprop="name">计算机科学</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/" itemprop="item" rel="index" title="分类于 Vue"><span itemprop="name">Vue</span></a>
+<meta itemprop="position" content="2" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/computer-science/vueyuanma/dosc/" itemprop="item" rel="index" title="分类于 vue2.x源码"><span itemprop="name">vue2.x源码</span></a>
+<meta itemprop="position" content="3" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://pink-png.github.io/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="sanxin98">
+    <meta itemprop="description" content="肥宅快乐水, 编程 & 生活">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="死肥宅">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <blockquote>
+<p>继上一节内容，我们将<code>Vue</code>复杂的挂载流程通过图解流程，代码分析的方式简单梳理了一遍，最后也讲到了模板编译的大致流程。然而在挂载的核心处，我们并没有分析模板编译后渲染函数是如何转换为可视化<code>DOM</code>节点的。因此这一章节，我们将重新回到<code>Vue</code>实例挂载的最后一个环节：渲染<code>DOM</code>节点。在渲染真实<code>DOM</code>的过程中，<code>Vue</code>引进了虚拟<code>DOM</code>的概念，这是<code>Vue</code>架构设计中另一个重要的理念。虚拟<code>DOM</code>作为<code>JS</code>对象和真实<code>DOM</code>中间的一个缓冲层，对<code>JS</code>频繁操作<code>DOM</code>的引起的性能问题有很好的缓解作用。</p>
+</blockquote>
+<h2 id="4-1-Virtual-DOM"><a href="#4-1-Virtual-DOM" class="headerlink" title="4.1 Virtual DOM"></a>4.1 Virtual DOM</h2><h3 id="4-1-1-浏览器的渲染流程"><a href="#4-1-1-浏览器的渲染流程" class="headerlink" title="4.1.1 浏览器的渲染流程"></a>4.1.1 浏览器的渲染流程</h3><p>当浏览器接收到一个<code>Html</code>文件时，<code>JS</code>引擎和浏览器的渲染引擎便开始工作了。从渲染引擎的角度，它首先会将<code>html</code>文件解析成一个<code>DOM</code>树，与此同时，浏览器将识别并加载<code>CSS</code>样式，并和<code>DOM</code>树一起合并为一个渲染树。有了渲染树后，渲染引擎将计算所有元素的位置信息，最后通过绘制，在屏幕上打印最终的内容。<code>JS</code>引擎和渲染引擎虽然是两个独立的线程，但是JS引擎却可以触发渲染引擎工作，当我们通过脚本去修改元素位置或外观时，<code>JS</code>引擎会利用<code>DOM</code>相关的<code>API</code>方法去操作<code>DOM</code>对象,此时渲染引擎变开始工作，渲染引擎会触发回流或者重绘。下面是回流重绘的两个概念：</p>
+<ul>
+<li>回流： 当我们对<code>DOM</code>的修改引发了元素尺寸的变化时，浏览器需要重新计算元素的大小和位置，最后将重新计算的结果绘制出来，这个过程称为回流。</li>
+<li>重绘： 当我们对<code>DOM</code>的修改只单纯改变元素的颜色时，浏览器此时并不需要重新计算元素的大小和位置，而只要重新绘制新样式。这个过程称为重绘。</li>
+</ul>
+<p><strong>很显然回流比重绘更加耗费性能</strong>。</p>
+<p>通过了解浏览器基本的渲染机制，我们很容易联想到当不断的通过<code>JS</code>修改<code>DOM</code>时，不经意间会触发到渲染引擎的回流或者重绘，这个性能开销是非常巨大的。因此为了降低开销，我们需要做的是尽可能减少<code>DOM</code>操作。有什么方法可以做到呢？</p>
+<h3 id="4-1-2-缓冲层-虚拟DOM"><a href="#4-1-2-缓冲层-虚拟DOM" class="headerlink" title="4.1.2 缓冲层-虚拟DOM"></a>4.1.2 缓冲层-虚拟DOM</h3><p>虚拟<code>DOM</code>是为了解决频繁操作<code>DOM</code>引发性能问题的产物。虚拟<code>DOM</code>(下面称为<code>Virtual DOM</code>)是将页面的状态抽象为<code>JS</code>对象的形式，本质上是<code>JS</code>和真实<code>DOM</code>的中间层，当我们想用<code>JS</code>脚本大批量进行<code>DOM</code>操作时，会优先作用于<code>Virtual DOM</code>这个<code>JS</code>对象，最后通过对比将要改动的部分通知并更新到真实的<code>DOM</code>。尽管最终还是操作真实的<code>DOM</code>，但<code>Virtual DOM</code>可以将多个改动合并成一个批量的操作，从而减少 <code>DOM</code> 重排的次数，进而缩短了生成渲染树和绘制所花的时间。</p>
+<p>我们看一个真实的<code>DOM</code>包含了什么：</p>
+<p><img data-src="/images/img/4.1.png"><br>浏览器将一个真实<code>DOM</code>设计得很复杂，不仅包含了自身的属性描述，大小位置等定义，也囊括了<code>DOM</code>拥有的浏览器事件等。正因为如此复杂的结构，我们频繁去操作<code>DOM</code>或多或少会带来浏览器的性能问题。而作为数据和真实<code>DOM</code>之间的一层缓冲，<code>Virtual DOM</code> 只是用来映射到真实<code>DOM</code>的渲染，因此不需要包含操作 <code>DOM</code> 的方法，它只要在对象中重点关注几个属性即可。</p>
+<pre><code class="js">// 真实DOM
 &lt;div id=&quot;real&quot;&gt;&lt;span&gt;dom&lt;/span&gt;&lt;/div&gt;
 
 // 真实DOM对应的JS对象
@@ -12,7 +186,9 @@
         children: &#39;dom&#39;
     &#125;]
 &#125;
-</code></pre><h2 id="4-2-Vnode"><a href="#4-2-Vnode" class="headerlink" title="4.2 Vnode"></a>4.2 Vnode</h2><p><code>Vue</code>在渲染机制的优化上，同样引进了<code>virtual dom</code>的概念，它是用<code>Vnode</code>这个构造函数去描述一个<code>DOM</code>节点。</p><h3 id="4-2-1-Vnode构造函数"><a href="#4-2-1-Vnode构造函数" class="headerlink" title="4.2.1 Vnode构造函数"></a>4.2.1 Vnode构造函数</h3><pre><code class="js">var VNode = function VNode (tag,data,children,text,elm,context,componentOptions,asyncFactory) &#123;
+</code></pre>
+<h2 id="4-2-Vnode"><a href="#4-2-Vnode" class="headerlink" title="4.2 Vnode"></a>4.2 Vnode</h2><p><code>Vue</code>在渲染机制的优化上，同样引进了<code>virtual dom</code>的概念，它是用<code>Vnode</code>这个构造函数去描述一个<code>DOM</code>节点。</p>
+<h3 id="4-2-1-Vnode构造函数"><a href="#4-2-1-Vnode构造函数" class="headerlink" title="4.2.1 Vnode构造函数"></a>4.2.1 Vnode构造函数</h3><pre><code class="js">var VNode = function VNode (tag,data,children,text,elm,context,componentOptions,asyncFactory) &#123;
     this.tag = tag; // 标签
     this.data = data;  // 数据
     this.children = children; // 子节点
@@ -20,7 +196,10 @@
     ···
     ···
   &#125;;
-</code></pre><p><code>Vnode</code>定义的属性差不多有20几个，显然用<code>Vnode</code>对象要比真实<code>DOM</code>对象描述的内容要简单得多，它只用来单纯描述节点的关键属性，例如标签名，数据，子节点等。并没有保留跟浏览器相关的<code>DOM</code>方法。除此之外，<code>Vnode</code>也会有其他的属性用来扩展<code>Vue</code>的灵活性。</p><p>源码中也定义了创建<code>Vnode</code>的相关方法。</p><h3 id="4-2-2-创建Vnode注释节点"><a href="#4-2-2-创建Vnode注释节点" class="headerlink" title="4.2.2 创建Vnode注释节点"></a>4.2.2 创建Vnode注释节点</h3><pre><code class="js">// 创建注释vnode节点
+</code></pre>
+<p><code>Vnode</code>定义的属性差不多有20几个，显然用<code>Vnode</code>对象要比真实<code>DOM</code>对象描述的内容要简单得多，它只用来单纯描述节点的关键属性，例如标签名，数据，子节点等。并没有保留跟浏览器相关的<code>DOM</code>方法。除此之外，<code>Vnode</code>也会有其他的属性用来扩展<code>Vue</code>的灵活性。</p>
+<p>源码中也定义了创建<code>Vnode</code>的相关方法。</p>
+<h3 id="4-2-2-创建Vnode注释节点"><a href="#4-2-2-创建Vnode注释节点" class="headerlink" title="4.2.2 创建Vnode注释节点"></a>4.2.2 创建Vnode注释节点</h3><pre><code class="js">// 创建注释vnode节点
 var createEmptyVNode = function (text) &#123;
     if ( text === void 0 ) text = &#39;&#39;;
 
@@ -29,11 +208,13 @@ var createEmptyVNode = function (text) &#123;
     node.isComment = true; // 标记注释节点
     return node
 &#125;;
-</code></pre><h3 id="4-2-3-创建Vnode文本节点"><a href="#4-2-3-创建Vnode文本节点" class="headerlink" title="4.2.3 创建Vnode文本节点"></a>4.2.3 创建Vnode文本节点</h3><pre><code class="js">// 创建文本vnode节点
+</code></pre>
+<h3 id="4-2-3-创建Vnode文本节点"><a href="#4-2-3-创建Vnode文本节点" class="headerlink" title="4.2.3 创建Vnode文本节点"></a>4.2.3 创建Vnode文本节点</h3><pre><code class="js">// 创建文本vnode节点
 function createTextVNode (val) &#123;
     return new VNode(undefined, undefined, undefined, String(val))
 &#125;
-</code></pre><h3 id="4-2-4-克隆vnode"><a href="#4-2-4-克隆vnode" class="headerlink" title="4.2.4 克隆vnode"></a>4.2.4 克隆vnode</h3><pre><code class="js">function cloneVNode (vnode) &#123;
+</code></pre>
+<h3 id="4-2-4-克隆vnode"><a href="#4-2-4-克隆vnode" class="headerlink" title="4.2.4 克隆vnode"></a>4.2.4 克隆vnode</h3><pre><code class="js">function cloneVNode (vnode) &#123;
     var cloned = new VNode(
       vnode.tag,
       vnode.data,
@@ -55,7 +236,10 @@ function createTextVNode (val) &#123;
     cloned.isCloned = true;
     return cloned
   &#125;
-</code></pre><p><strong>注意：<code>cloneVnode</code>对<code>Vnode</code>的克隆只是一层浅拷贝，它不会对子节点进行深度克隆。</strong></p><h2 id="4-3-Virtual-DOM的创建"><a href="#4-3-Virtual-DOM的创建" class="headerlink" title="4.3 Virtual DOM的创建"></a>4.3 Virtual DOM的创建</h2><p>先简单回顾一下挂载的流程，挂载的过程是调用<code>Vue</code>实例上<code>$mount</code>方法，而<code>$mount</code>的核心是<code>mountComponent</code>函数。如果我们传递的是<code>template</code>模板，模板会先经过编译器的解析，并最终根据不同平台生成对应代码，此时对应的就是将<code>with</code>语句封装好的<code>render</code>函数;如果传递的是<code>render</code>函数，则跳过模板编译过程，直接进入下一个阶段。下一阶段是拿到<code>render</code>函数，调用<code>vm._render()</code>方法将<code>render</code>函数转化为<code>Virtual DOM</code>，并最终通过<code>vm._update()</code>方法将<code>Virtual DOM</code>渲染为真实的<code>DOM</code>节点。</p><pre><code class="js">Vue.prototype.$mount = function(el, hydrating) &#123;
+</code></pre>
+<p><strong>注意：<code>cloneVnode</code>对<code>Vnode</code>的克隆只是一层浅拷贝，它不会对子节点进行深度克隆。</strong></p>
+<h2 id="4-3-Virtual-DOM的创建"><a href="#4-3-Virtual-DOM的创建" class="headerlink" title="4.3 Virtual DOM的创建"></a>4.3 Virtual DOM的创建</h2><p>先简单回顾一下挂载的流程，挂载的过程是调用<code>Vue</code>实例上<code>$mount</code>方法，而<code>$mount</code>的核心是<code>mountComponent</code>函数。如果我们传递的是<code>template</code>模板，模板会先经过编译器的解析，并最终根据不同平台生成对应代码，此时对应的就是将<code>with</code>语句封装好的<code>render</code>函数;如果传递的是<code>render</code>函数，则跳过模板编译过程，直接进入下一个阶段。下一阶段是拿到<code>render</code>函数，调用<code>vm._render()</code>方法将<code>render</code>函数转化为<code>Virtual DOM</code>，并最终通过<code>vm._update()</code>方法将<code>Virtual DOM</code>渲染为真实的<code>DOM</code>节点。</p>
+<pre><code class="js">Vue.prototype.$mount = function(el, hydrating) &#123;
     ···
     return mountComponent(this, el)
 &#125;
@@ -65,7 +249,10 @@ function mountComponent() &#123;
         vm._update(vm._render(), hydrating);
     &#125;;
 &#125;
-</code></pre><p>我们先看看<code>vm._render()</code>方法是如何<strong>将render函数转化为Virtual DOM</strong>的。</p><p>回顾一下第一章节内容，文章介绍了<code>Vue</code>在代码引入时会定义很多属性和方法，其中有一个<code>renderMixin</code>过程，我们之前只提到了它会定义跟渲染有关的函数，实际上它只定义了两个重要的方法，<code>_render</code>函数就是其中一个。</p><pre><code class="js">// 引入Vue时，执行renderMixin方法，该方法定义了Vue原型上的几个方法，其中一个便是 _render函数
+</code></pre>
+<p>我们先看看<code>vm._render()</code>方法是如何<strong>将render函数转化为Virtual DOM</strong>的。</p>
+<p>回顾一下第一章节内容，文章介绍了<code>Vue</code>在代码引入时会定义很多属性和方法，其中有一个<code>renderMixin</code>过程，我们之前只提到了它会定义跟渲染有关的函数，实际上它只定义了两个重要的方法，<code>_render</code>函数就是其中一个。</p>
+<pre><code class="js">// 引入Vue时，执行renderMixin方法，该方法定义了Vue原型上的几个方法，其中一个便是 _render函数
 renderMixin();//
 function renderMixin() &#123;
     Vue.prototype._render = function() &#123;
@@ -81,7 +268,9 @@ function renderMixin() &#123;
         return vnode
     &#125;
 &#125;
-</code></pre><p>抛开其他代码，_render函数的核心是<code>render.call(vm._renderProxy, vm.$createElement)</code>部分，<code>vm._renderProxy</code>在数据代理分析过，本质上是为了做数据过滤检测，它也绑定了<code>render</code>函数执行时的<code>this</code>指向。<code>vm.$createElement</code>方法会作为<code>render</code>函数的参数传入。<strong>回忆一下，在手写<code>render</code>函数时，我们会利用<code>render</code>函数的第一个参数<code>createElement</code>进行渲染函数的编写，这里的<code>createElement</code>参数就是定义好的<code>$createElement</code>方法。</strong></p><pre><code class="js">new Vue(&#123;
+</code></pre>
+<p>抛开其他代码，_render函数的核心是<code>render.call(vm._renderProxy, vm.$createElement)</code>部分，<code>vm._renderProxy</code>在数据代理分析过，本质上是为了做数据过滤检测，它也绑定了<code>render</code>函数执行时的<code>this</code>指向。<code>vm.$createElement</code>方法会作为<code>render</code>函数的参数传入。<strong>回忆一下，在手写<code>render</code>函数时，我们会利用<code>render</code>函数的第一个参数<code>createElement</code>进行渲染函数的编写，这里的<code>createElement</code>参数就是定义好的<code>$createElement</code>方法。</strong></p>
+<pre><code class="js">new Vue(&#123;
     el: &#39;#app&#39;,
     render: function(createElement) &#123;
         return createElement(&#39;div&#39;, &#123;&#125;, this.message)
@@ -92,11 +281,15 @@ function renderMixin() &#123;
         &#125;
     &#125;
 &#125;)
-</code></pre><p>初始化<code>_init</code>时，有一个<code>initRender</code>函数，它就是用来定义渲染函数方法的，其中就有<code>vm.$createElement</code>方法的定义，除了<code>$createElement</code>，<code>_c</code>方法的定义也类似。其中 <code>vm._c</code> 是<code>template</code>内部编译成<code>render</code>函数时调用的方法，<code>vm.$createElement</code>是手写<code>render</code>函数时调用的方法。<strong>两者的唯一区别仅仅是最后一个参数的不同。通过模板生成的<code>render</code>方法可以保证子节点都是<code>Vnode</code>，而手写的<code>render</code>需要一些检验和转换。</strong></p><pre><code class="js">function initRender(vm) &#123;
+</code></pre>
+<p>初始化<code>_init</code>时，有一个<code>initRender</code>函数，它就是用来定义渲染函数方法的，其中就有<code>vm.$createElement</code>方法的定义，除了<code>$createElement</code>，<code>_c</code>方法的定义也类似。其中 <code>vm._c</code> 是<code>template</code>内部编译成<code>render</code>函数时调用的方法，<code>vm.$createElement</code>是手写<code>render</code>函数时调用的方法。<strong>两者的唯一区别仅仅是最后一个参数的不同。通过模板生成的<code>render</code>方法可以保证子节点都是<code>Vnode</code>，而手写的<code>render</code>需要一些检验和转换。</strong></p>
+<pre><code class="js">function initRender(vm) &#123;
     vm._c = function(a, b, c, d) &#123; return createElement(vm, a, b, c, d, false); &#125;
     vm.$createElement = function (a, b, c, d) &#123; return createElement(vm, a, b, c, d, true); &#125;;
 &#125;
-</code></pre><p><code>createElement</code> 方法实际上是对 <code>_createElement</code> 方法的封装，在调用<code>_createElement</code>前，它会先对传入的参数进行处理，毕竟手写的<code>render</code>函数参数规格不统一。举一个简单的例子。</p><pre><code class="js">// 没有data
+</code></pre>
+<p><code>createElement</code> 方法实际上是对 <code>_createElement</code> 方法的封装，在调用<code>_createElement</code>前，它会先对传入的参数进行处理，毕竟手写的<code>render</code>函数参数规格不统一。举一个简单的例子。</p>
+<pre><code class="js">// 没有data
 new Vue(&#123;
     el: &#39;#app&#39;,
     render: function(createElement) &#123;
@@ -120,7 +313,9 @@ new Vue(&#123;
         &#125;
     &#125;
 &#125;)
-</code></pre><p>这里如果第二个参数是变量或者数组，则默认是没有传递<code>data</code>,因为<code>data</code>一般是对象形式存在。</p><pre><code class="js">function createElement (
+</code></pre>
+<p>这里如果第二个参数是变量或者数组，则默认是没有传递<code>data</code>,因为<code>data</code>一般是对象形式存在。</p>
+<pre><code class="js">function createElement (
     context, // vm 实例
     tag, // 标签
     data, // 节点相关数据，属性
@@ -140,7 +335,12 @@ new Vue(&#123;
     &#125;
     return _createElement(context, tag, data, children, normalizationType) // 真正生成Vnode的方法
   &#125;
-</code></pre><h3 id="4-3-1-数据规范检测"><a href="#4-3-1-数据规范检测" class="headerlink" title="4.3.1 数据规范检测"></a>4.3.1 数据规范检测</h3><p><code>Vue</code>既然暴露给用户用<code>render</code>函数去手写渲染模板，就需要考虑用户操作带来的不确定性，因此<code>_createElement</code>在创建<code>Vnode</code>前会先数据的规范性进行检测，将不合法的数据类型错误提前暴露给用户。接下来将列举几个在实际场景中容易犯的错误，也方便我们理解源码中对这类错误的处理。</p><ol><li>用响应式对象做<code>data</code>属性</li></ol><pre><code class="js">new Vue(&#123;
+</code></pre>
+<h3 id="4-3-1-数据规范检测"><a href="#4-3-1-数据规范检测" class="headerlink" title="4.3.1 数据规范检测"></a>4.3.1 数据规范检测</h3><p><code>Vue</code>既然暴露给用户用<code>render</code>函数去手写渲染模板，就需要考虑用户操作带来的不确定性，因此<code>_createElement</code>在创建<code>Vnode</code>前会先数据的规范性进行检测，将不合法的数据类型错误提前暴露给用户。接下来将列举几个在实际场景中容易犯的错误，也方便我们理解源码中对这类错误的处理。</p>
+<ol>
+<li>用响应式对象做<code>data</code>属性</li>
+</ol>
+<pre><code class="js">new Vue(&#123;
     el: &#39;#app&#39;,
     render: function (createElement, context) &#123;
        return createElement(&#39;div&#39;, this.observeData, this.show)
@@ -156,7 +356,11 @@ new Vue(&#123;
         &#125;
     &#125;
 &#125;)
-</code></pre><ol start="2"><li>当特殊属性key的值为非字符串，非数字类型时</li></ol><pre><code class="js">new Vue(&#123;
+</code></pre>
+<ol start="2">
+<li>当特殊属性key的值为非字符串，非数字类型时</li>
+</ol>
+<pre><code class="js">new Vue(&#123;
     el: &#39;#app&#39;,
     render: function(createElement) &#123;
         return createElement(&#39;div&#39;, &#123; key: this.lists &#125;, this.lists.map(l =&gt; &#123;
@@ -175,7 +379,9 @@ new Vue(&#123;
         &#125;
     &#125;
 &#125;)
-</code></pre><p>这些规范都会在创建<code>Vnode</code>节点之前发现并报错，源代码如下：</p><pre><code class="js">function _createElement (context,tag,data,children,normalizationType) &#123;
+</code></pre>
+<p>这些规范都会在创建<code>Vnode</code>节点之前发现并报错，源代码如下：</p>
+<pre><code class="js">function _createElement (context,tag,data,children,normalizationType) &#123;
     // 1. 数据对象不能是定义在Vue data属性中的响应式数据。
     if (isDef(data) &amp;&amp; isDef((data).__ob__)) &#123;
       warn(
@@ -205,7 +411,14 @@ new Vue(&#123;
     &#125;
     ···
   &#125;
-</code></pre><p>这些规范性检测保证了后续<code>Virtual DOM tree</code>的完整生成。</p><h3 id="4-3-2-子节点children规范化"><a href="#4-3-2-子节点children规范化" class="headerlink" title="4.3.2 子节点children规范化"></a>4.3.2 子节点children规范化</h3><p><code>Virtual DOM tree</code>是由每个<code>Vnode</code>以树状形式拼成的虚拟<code>DOM</code>树，我们在转换真实节点时需要的就是这样一个完整的<code>Virtual DOM tree</code>，因此我们需要保证每一个子节点都是<code>Vnode</code>类型,这里分两种场景分析。</p><ul><li>模板编译<code>render</code>函数，理论上<code>template</code>模板通过编译生成的<code>render</code>函数都是<code>Vnode</code>类型，但是有一个例外，函数式组件返回的是一个数组(这个特殊例子，可以看函数式组件的文章分析),这个时候<code>Vue</code>的处理是将整个<code>children</code>拍平成一维数组。</li><li>用户定义<code>render</code>函数，这个时候又分为两种情况，一个是当<code>chidren</code>为文本节点时，这时候通过前面介绍的<code>createTextVNode</code> 创建一个文本节点的 <code>VNode</code>; 另一种相对复杂，当<code>children</code>中有<code>v-for</code>的时候会出现嵌套数组，这时候的处理逻辑是，遍历<code>children</code>，对每个节点进行判断，如果依旧是数组，则继续递归调用，直到类型为基础类型时，调用<code>createTextVnode</code>方法转化为<code>Vnode</code>。这样经过递归，<code>children</code>也变成了一个类型为<code>Vnode</code>的数组。</li></ul><pre><code class="js">function _createElement() &#123;
+</code></pre>
+<p>这些规范性检测保证了后续<code>Virtual DOM tree</code>的完整生成。</p>
+<h3 id="4-3-2-子节点children规范化"><a href="#4-3-2-子节点children规范化" class="headerlink" title="4.3.2 子节点children规范化"></a>4.3.2 子节点children规范化</h3><p><code>Virtual DOM tree</code>是由每个<code>Vnode</code>以树状形式拼成的虚拟<code>DOM</code>树，我们在转换真实节点时需要的就是这样一个完整的<code>Virtual DOM tree</code>，因此我们需要保证每一个子节点都是<code>Vnode</code>类型,这里分两种场景分析。</p>
+<ul>
+<li>模板编译<code>render</code>函数，理论上<code>template</code>模板通过编译生成的<code>render</code>函数都是<code>Vnode</code>类型，但是有一个例外，函数式组件返回的是一个数组(这个特殊例子，可以看函数式组件的文章分析),这个时候<code>Vue</code>的处理是将整个<code>children</code>拍平成一维数组。</li>
+<li>用户定义<code>render</code>函数，这个时候又分为两种情况，一个是当<code>chidren</code>为文本节点时，这时候通过前面介绍的<code>createTextVNode</code> 创建一个文本节点的 <code>VNode</code>; 另一种相对复杂，当<code>children</code>中有<code>v-for</code>的时候会出现嵌套数组，这时候的处理逻辑是，遍历<code>children</code>，对每个节点进行判断，如果依旧是数组，则继续递归调用，直到类型为基础类型时，调用<code>createTextVnode</code>方法转化为<code>Vnode</code>。这样经过递归，<code>children</code>也变成了一个类型为<code>Vnode</code>的数组。</li>
+</ul>
+<pre><code class="js">function _createElement() &#123;
     ···
     if (normalizationType === ALWAYS_NORMALIZE) &#123;
       // 用户定义render函数
@@ -246,16 +459,29 @@ function isPrimitive (value) &#123;
       typeof value === &#39;boolean&#39;
     )
   &#125;
-</code></pre><h3 id="4-3-4-实际场景"><a href="#4-3-4-实际场景" class="headerlink" title="4.3.4 实际场景"></a>4.3.4 实际场景</h3><p>在数据检测和组件规范化后，接下来通过<code>new VNode()</code>便可以生成一棵完整的<code>VNode</code>树，注意在<code>_render</code>过程中会遇到子组件，这个时候会优先去做子组件的初始化，这部分放到组件环节专门分析。我们用一个实际的例子，结束<code>render</code>函数到<code>Virtual DOM</code>的分析。</p><ul><li><code>template</code>模板形式</li></ul><pre><code class="js">var vm = new Vue(&#123;
+</code></pre>
+<h3 id="4-3-4-实际场景"><a href="#4-3-4-实际场景" class="headerlink" title="4.3.4 实际场景"></a>4.3.4 实际场景</h3><p>在数据检测和组件规范化后，接下来通过<code>new VNode()</code>便可以生成一棵完整的<code>VNode</code>树，注意在<code>_render</code>过程中会遇到子组件，这个时候会优先去做子组件的初始化，这部分放到组件环节专门分析。我们用一个实际的例子，结束<code>render</code>函数到<code>Virtual DOM</code>的分析。</p>
+<ul>
+<li><code>template</code>模板形式</li>
+</ul>
+<pre><code class="js">var vm = new Vue(&#123;
   el: &#39;#app&#39;,
   template: &#39;&lt;div&gt;&lt;span&gt;virtual dom&lt;/span&gt;&lt;/div&gt;&#39;
 &#125;)
-</code></pre><ul><li>模板编译生成<code>render</code>函数</li></ul><pre><code class="js">(function() &#123;
+</code></pre>
+<ul>
+<li>模板编译生成<code>render</code>函数</li>
+</ul>
+<pre><code class="js">(function() &#123;
   with(this)&#123;
     return _c(&#39;div&#39;,[_c(&#39;span&#39;,[_v(&quot;virual dom&quot;)])])
   &#125;
 &#125;)
-</code></pre><ul><li><code>Virtual DOM tree</code>的结果(省略版)</li></ul><pre><code class="js">&#123;
+</code></pre>
+<ul>
+<li><code>Virtual DOM tree</code>的结果(省略版)</li>
+</ul>
+<pre><code class="js">&#123;
   tag: &#39;div&#39;,
   children: [&#123;
     tag: &#39;span&#39;,
@@ -265,11 +491,15 @@ function isPrimitive (value) &#123;
     &#125;]
   &#125;]
 &#125;
-</code></pre><h2 id="4-4-虚拟Vnode映射成真实DOM"><a href="#4-4-虚拟Vnode映射成真实DOM" class="headerlink" title="4.4 虚拟Vnode映射成真实DOM"></a>4.4 虚拟Vnode映射成真实DOM</h2><p>回到 <code>updateComponent</code>的最后一个过程,虚拟的<code>DOM</code>树在生成<code>virtual dom</code>后，会调用<code>Vue</code>原型上<code>_update</code>方法，将虚拟<code>DOM</code>映射成为真实的<code>DOM</code>。从源码上可以知道，<code>_update</code>的调用时机有两个，一个是发生在初次渲染阶段，另一个发生数据更新阶段。</p><pre><code class="js">updateComponent = function () &#123;
+</code></pre>
+<h2 id="4-4-虚拟Vnode映射成真实DOM"><a href="#4-4-虚拟Vnode映射成真实DOM" class="headerlink" title="4.4 虚拟Vnode映射成真实DOM"></a>4.4 虚拟Vnode映射成真实DOM</h2><p>回到 <code>updateComponent</code>的最后一个过程,虚拟的<code>DOM</code>树在生成<code>virtual dom</code>后，会调用<code>Vue</code>原型上<code>_update</code>方法，将虚拟<code>DOM</code>映射成为真实的<code>DOM</code>。从源码上可以知道，<code>_update</code>的调用时机有两个，一个是发生在初次渲染阶段，另一个发生数据更新阶段。</p>
+<pre><code class="js">updateComponent = function () &#123;
     // render生成虚拟DOM，update渲染真实DOM
     vm._update(vm._render(), hydrating);
 &#125;;
-</code></pre><p><code>vm._update</code>方法的定义在<code>lifecycleMixin</code>中。</p><pre><code class="js">lifecycleMixin()
+</code></pre>
+<p><code>vm._update</code>方法的定义在<code>lifecycleMixin</code>中。</p>
+<pre><code class="js">lifecycleMixin()
 function lifecycleMixin() &#123;
     Vue.prototype._update = function (vnode, hydrating) &#123;
         var vm = this;
@@ -284,9 +514,13 @@ function lifecycleMixin() &#123;
             vm.$el = vm.__patch__(prevVnode, vnode);
         &#125;
 &#125;
-</code></pre><p><code>_update</code>的核心是<code>__patch__</code>方法，如果是服务端渲染，由于没有<code>DOM</code>，<code>_patch</code>方法是一个空函数，在有<code>DOM</code>对象的浏览器环境下，<code>__patch__</code>是<code>patch</code>函数的引用。</p><pre><code>// 浏览器端才有DOM，服务端没有dom，所以patch为一个空函数
+</code></pre>
+<p><code>_update</code>的核心是<code>__patch__</code>方法，如果是服务端渲染，由于没有<code>DOM</code>，<code>_patch</code>方法是一个空函数，在有<code>DOM</code>对象的浏览器环境下，<code>__patch__</code>是<code>patch</code>函数的引用。</p>
+<pre><code>// 浏览器端才有DOM，服务端没有dom，所以patch为一个空函数
   Vue.prototype.__patch__ = inBrowser ? patch : noop;
-</code></pre><p>而<code>patch</code>方法又是<code>createPatchFunction</code>方法的返回值，<code>createPatchFunction</code>方法传递一个对象作为参数，对象拥有两个属性，<code>nodeOps</code>和<code>modules</code>，<code>nodeOps</code>封装了一系列操作原生<code>DOM</code>对象的方法。而<code>modules</code>定义了模块的钩子函数。</p><pre><code class="js"> var patch = createPatchFunction(&#123; nodeOps: nodeOps, modules: modules &#125;);
+</code></pre>
+<p>而<code>patch</code>方法又是<code>createPatchFunction</code>方法的返回值，<code>createPatchFunction</code>方法传递一个对象作为参数，对象拥有两个属性，<code>nodeOps</code>和<code>modules</code>，<code>nodeOps</code>封装了一系列操作原生<code>DOM</code>对象的方法。而<code>modules</code>定义了模块的钩子函数。</p>
+<pre><code class="js"> var patch = createPatchFunction(&#123; nodeOps: nodeOps, modules: modules &#125;);
 
 // 将操作dom对象的方法合集做冻结操作
  var nodeOps = /*#__PURE__*/Object.freeze(&#123;
@@ -315,4 +549,388 @@ function lifecycleMixin() &#123;
   ];
 
 var modules = platformModules.concat(baseModules);
-</code></pre><p>真正的<code>createPatchFunction</code>函数有一千多行代码，这里就不方便列举出来了，它的内部首先定义了一系列辅助的方法，而核心是通过调用<code>createElm</code>方法进行<code>dom</code>操作，创建节点，插入子节点，递归创建一个完整的<code>DOM</code>树并插入到<code>Body</code>中。并且在产生真实阶段阶段，会有<code>diff</code>算法来判断前后<code>Vnode</code>的差异，以求最小化改变真实阶段。后面会有一个章节的内容去讲解<code>diff</code>算法。<code>createPatchFunction</code>的过程只需要先记住一些结论，函数内部会调用封装好的<code>DOM api</code>，根据<code>Virtual DOM</code>的结果去生成真实的节点。其中如果遇到组件<code>Vnode</code>时，会递归调用子组件的挂载过程，这个过程我们也会放到后面章节去分析。</p><h2 id="4-5-小结"><a href="#4-5-小结" class="headerlink" title="4.5 小结"></a>4.5 小结</h2><p>这一节分析了<code>mountComponent</code>的两个核心方法，<code>render</code>和<code>update</code>,在分析前重点介绍了存在于<code>JS</code>操作和<code>DOM</code>渲染的桥梁：<code>Virtual DOM</code>。<code>JS</code>对<code>DOM</code>节点的批量操作会先直接反应到<code>Virtual DOM</code>这个描述对象上,最终的结果才会直接作用到真实节点上。可以说，<code>Virtual DOM</code>很大程度提高了渲染的性能。文章重点介绍了<code>render</code>函数转换成<code>Virtual DOM</code>的过程，并大致描述了<code>_update</code>函数的实现思路。其实这两个过程都牵扯到组件，所以这一节对很多环节都无法深入分析，下一节开始会进入组件的专题。我相信分析完组件后，读者会对整个渲染过程会有更深刻的理解和思考。</p><div class="tags"><a href="/tags/Vue/" rel="tag"><i class="ic i-tag"></i> Vue</a></div></div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i> </span><span class="text">更新于</span> <time title="修改时间：2023-08-03 15:32:03" itemprop="dateModified" datetime="2023-08-03T15:32:03+08:00">2023-08-03</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i> 赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img data-src="/images/wechatpay.png" alt="sanxin98 微信支付"><p>微信支付</p></div><div><img data-src="/images/alipay.png" alt="sanxin98 支付宝"><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者： </strong>sanxin98 <i class="ic i-at"><em>@</em></i>死肥宅</li><li class="link"><strong>本文链接：</strong> <a href="https://pink-png.github.io/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" title="Step.4 完整渲染流程">https://pink-png.github.io/computer-science/vueyuanma/dosc/4完整渲染流程/</a></li><li class="license"><strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/computer-science/vueyuanma/dosc/3%E5%AE%9E%E4%BE%8B%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclj61ylzj20zk0m8b29.jpg" title="Step.3 实例挂载流程和模板编译"><span class="type">上一篇</span> <span class="category"><i class="ic i-flag"></i> vue2.x源码</span><h3>Step.3 实例挂载流程和模板编译</h3></a></div><div class="item right"><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclfdu6exj20zk0m87hw.jpg" title="Step.5 组件基础剖析"><span class="type">下一篇</span> <span class="category"><i class="ic i-flag"></i> vue2.x源码</span><h3>Step.5 组件基础剖析</h3></a></div></div><div class="wrap" id="comments"></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Virtual-DOM"><span class="toc-number">1.</span> <span class="toc-text">4.1 Virtual DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">4.1.1 浏览器的渲染流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-%E7%BC%93%E5%86%B2%E5%B1%82-%E8%99%9A%E6%8B%9FDOM"><span class="toc-number">1.2.</span> <span class="toc-text">4.1.2 缓冲层-虚拟DOM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-Vnode"><span class="toc-number">2.</span> <span class="toc-text">4.2 Vnode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-Vnode%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">4.2.1 Vnode构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-%E5%88%9B%E5%BB%BAVnode%E6%B3%A8%E9%87%8A%E8%8A%82%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text">4.2.2 创建Vnode注释节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-%E5%88%9B%E5%BB%BAVnode%E6%96%87%E6%9C%AC%E8%8A%82%E7%82%B9"><span class="toc-number">2.3.</span> <span class="toc-text">4.2.3 创建Vnode文本节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-%E5%85%8B%E9%9A%86vnode"><span class="toc-number">2.4.</span> <span class="toc-text">4.2.4 克隆vnode</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-Virtual-DOM%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">3.</span> <span class="toc-text">4.3 Virtual DOM的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-%E6%95%B0%E6%8D%AE%E8%A7%84%E8%8C%83%E6%A3%80%E6%B5%8B"><span class="toc-number">3.1.</span> <span class="toc-text">4.3.1 数据规范检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-%E5%AD%90%E8%8A%82%E7%82%B9children%E8%A7%84%E8%8C%83%E5%8C%96"><span class="toc-number">3.2.</span> <span class="toc-text">4.3.2 子节点children规范化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-4-%E5%AE%9E%E9%99%85%E5%9C%BA%E6%99%AF"><span class="toc-number">3.3.</span> <span class="toc-text">4.3.4 实际场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E8%99%9A%E6%8B%9FVnode%E6%98%A0%E5%B0%84%E6%88%90%E7%9C%9F%E5%AE%9EDOM"><span class="toc-number">4.</span> <span class="toc-text">4.4 虚拟Vnode映射成真实DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E5%B0%8F%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">4.5 小结</span></a></li></ol></div><div class="related panel pjax" data-title="系列文章"><ul><li><a href="/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" rel="bookmark" title="Step.1 丰富的选项合并策略">Step.1 丰富的选项合并策略</a></li><li><a href="/computer-science/vueyuanma/dosc/2%E5%9F%BA%E7%A1%80%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B/" rel="bookmark" title="Step.2 基础的数据代理检测">Step.2 基础的数据代理检测</a></li><li><a href="/computer-science/vueyuanma/dosc/3%E5%AE%9E%E4%BE%8B%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91/" rel="bookmark" title="Step.3 实例挂载流程和模板编译">Step.3 实例挂载流程和模板编译</a></li><li class="active"><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" rel="bookmark" title="Step.4 完整渲染流程">Step.4 完整渲染流程</a></li><li><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" rel="bookmark" title="Step.5 组件基础剖析">Step.5 组件基础剖析</a></li><li><a href="/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" rel="bookmark" title="Step.6 组件高级用法">Step.6 组件高级用法</a></li><li><a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" rel="bookmark" title="Step.7 深入响应式系统构建-上">Step.7 深入响应式系统构建-上</a></li><li><a href="/computer-science/vueyuanma/dosc/8%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%AD/" rel="bookmark" title="Step.8 深入响应式系统构建-中">Step.8 深入响应式系统构建-中</a></li><li><a href="/computer-science/vueyuanma/dosc/9%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8B/" rel="bookmark" title="Step.9 深入响应式系统构建-下">Step.9 深入响应式系统构建-下</a></li><li><a href="/computer-science/vueyuanma/dosc/10%E6%9D%A5%EF%BC%8C%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%AE%9E%E7%8E%B0diff%E7%AE%97%E6%B3%95/" rel="bookmark" title="Step.10 来，跟我一起实现diff算法">Step.10 来，跟我一起实现diff算法</a></li><li><a href="/computer-science/vueyuanma/dosc/11%E6%8F%AD%E7%A7%98Vue%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" rel="bookmark" title="Step.11 揭秘Vue的事件机制">Step.11 揭秘Vue的事件机制</a></li><li><a href="/computer-science/vueyuanma/dosc/12vue%E6%8F%92%E6%A7%BD%EF%BC%8C%E4%BD%A0%E6%83%B3%E4%BA%86%E8%A7%A3%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C/" rel="bookmark" title="Step.12 vue插槽，你想了解的都在这里">Step.12 vue插槽，你想了解的都在这里</a></li><li><a href="/computer-science/vueyuanma/dosc/13%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3v-model%E7%9A%84%E8%AF%AD%E6%B3%95%E7%B3%96%E4%BA%86%E5%90%97/" rel="bookmark" title="Step.13 你真的了解v-model的语法糖了吗">Step.13 你真的了解v-model的语法糖了吗</a></li><li><a href="/computer-science/vueyuanma/dosc/14%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90/" rel="bookmark" title="Step.14 动态组件的深入分析">Step.14 动态组件的深入分析</a></li><li><a href="/computer-science/vueyuanma/dosc/15%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8A/" rel="bookmark" title="Step.15 彻底搞懂Vue中keep-alive的魔法-上">Step.15 彻底搞懂Vue中keep-alive的魔法-上</a></li><li><a href="/computer-science/vueyuanma/dosc/16%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8B/" rel="bookmark" title="Step.16 彻底搞懂Vue中keep-alive的魔法-上">Step.16 彻底搞懂Vue中keep-alive的魔法-上</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="image" itemprop="image" alt="sanxin98" data-src="/images/avatar.jpg"><p class="name" itemprop="name">sanxin98</p><div class="description" itemprop="description">编程 & 生活</div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">96</span> <span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">40</span> <span class="name">分类</span></a></div><div class="item tags"><a href="/tags/"><span class="count">29</span> <span class="name">标签</span></a></div></nav><div class="social"><span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BpbmstcG5n" title="https:&#x2F;&#x2F;github.com&#x2F;pink-png"><i class="ic i-github"></i></span></div><ul class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li><li class="item dropdown"><a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a><ul class="submenu"><li class="item"><a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a></li><li class="item"><a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a></li><li class="item"><a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a></li></ul></li></ul></div></div></div><ul id="quick"><li class="prev pjax"><a href="/computer-science/vueyuanma/dosc/3%E5%AE%9E%E4%BE%8B%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a></div><span><a href="/computer-science/vueyuanma/dosc/11%E6%8F%AD%E7%A7%98Vue%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" title="Step.11 揭秘Vue的事件机制">Step.11 揭秘Vue的事件机制</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/Javascript/" title="分类于 Javascript">Javascript</a></div><span><a href="/js-base/js%E5%85%B3%E4%BA%8EString%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E6%80%BB%E7%BB%93/" title="关于String包装类型处理数据的总结">关于String包装类型处理数据的总结</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/PM2/" title="分类于 PM2">PM2</a></div><span><a href="/front-end/PM2%20+%20linux/" title="PM2">PM2</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="分类于 前端设计模式">前端设计模式</a></div><span><a href="/front-end/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="前端设计模式">前端设计模式</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/web%E5%AE%89%E5%85%A8/" title="分类于 web安全">web安全</a></div><span><a href="/Web-Integration/web%E5%AE%89%E5%85%A8/" title="web安全">web安全</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a></div><span><a href="/computer-science/vueyuanma/dosc/8%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%AD/" title="Step.8 深入响应式系统构建-中">Step.8 深入响应式系统构建-中</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" title="分类于 浏览器">浏览器</a></div><span><a href="/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" title="浏览器缓存机制">浏览器缓存机制</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a> <i class="ic i-angle-right"></i> <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%B5%8F%E8%A7%88%E5%99%A8/" title="分类于 浏览器">浏览器</a></div><span><a href="/Web-Integration/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%8E%9F%E7%90%86/" title="浏览器渲染原理以及优化思路">浏览器渲染原理以及优化思路</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a></div><span><a href="/computer-science/vueyuanma/dosc/12vue%E6%8F%92%E6%A7%BD%EF%BC%8C%E4%BD%A0%E6%83%B3%E4%BA%86%E8%A7%A3%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C/" title="Step.12 vue插槽，你想了解的都在这里">Step.12 vue插槽，你想了解的都在这里</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a> <i class="ic i-angle-right"></i> <a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a></div><span><a href="/computer-science/vueyuanma/dosc/15%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8A/" title="Step.15 彻底搞懂Vue中keep-alive的魔法-上">Step.15 彻底搞懂Vue中keep-alive的魔法-上</a></span></li></ul></div><div><h2>最新评论</h2><ul class="leancloud-recent-comment"></ul></div></div><div class="status"><div class="copyright">&copy; 2010 – <span itemprop="copyrightYear">2024</span> <span class="with-love"><i class="ic i-sakura rotate"></i> </span><span class="author" itemprop="copyrightHolder">sanxin98 @ Yume Shoka</span></div><div class="powered-by">基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL={path:"computer-science/vueyuanma/dosc/4完整渲染流程/",favicon:{show:"（●´3｀●）やれやれだぜ",hide:"(´Д｀)大変だ！"},search:{placeholder:"文章搜索",empty:"关于 「 ${query} 」，什么也没搜到",stats:"${time} ms 内找到 ${hits} 条结果"},valine:{placeholder:"1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"},fancybox:!0,copyright:'复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',ignores:[function(e){return e.includes("#")},function(e){return new RegExp(LOCAL.path+"$").test(e)}]}</script><script src="https://cdn.polyfill.io/v2/polyfill.js"></script><script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script><script src="/js/app.js?v=0.2.5"></script></body></html>
+</code></pre>
+<p>真正的<code>createPatchFunction</code>函数有一千多行代码，这里就不方便列举出来了，它的内部首先定义了一系列辅助的方法，而核心是通过调用<code>createElm</code>方法进行<code>dom</code>操作，创建节点，插入子节点，递归创建一个完整的<code>DOM</code>树并插入到<code>Body</code>中。并且在产生真实阶段阶段，会有<code>diff</code>算法来判断前后<code>Vnode</code>的差异，以求最小化改变真实阶段。后面会有一个章节的内容去讲解<code>diff</code>算法。<code>createPatchFunction</code>的过程只需要先记住一些结论，函数内部会调用封装好的<code>DOM api</code>，根据<code>Virtual DOM</code>的结果去生成真实的节点。其中如果遇到组件<code>Vnode</code>时，会递归调用子组件的挂载过程，这个过程我们也会放到后面章节去分析。</p>
+<h2 id="4-5-小结"><a href="#4-5-小结" class="headerlink" title="4.5 小结"></a>4.5 小结</h2><p>这一节分析了<code>mountComponent</code>的两个核心方法，<code>render</code>和<code>update</code>,在分析前重点介绍了存在于<code>JS</code>操作和<code>DOM</code>渲染的桥梁：<code>Virtual DOM</code>。<code>JS</code>对<code>DOM</code>节点的批量操作会先直接反应到<code>Virtual DOM</code>这个描述对象上,最终的结果才会直接作用到真实节点上。可以说，<code>Virtual DOM</code>很大程度提高了渲染的性能。文章重点介绍了<code>render</code>函数转换成<code>Virtual DOM</code>的过程，并大致描述了<code>_update</code>函数的实现思路。其实这两个过程都牵扯到组件，所以这一节对很多环节都无法深入分析，下一节开始会进入组件的专题。我相信分析完组件后，读者会对整个渲染过程会有更深刻的理解和思考。</p>
+
+      <div class="tags">
+          <a href="/tags/Vue/" rel="tag"><i class="ic i-tag"></i> Vue</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-08-03 15:32:03" itemprop="dateModified" datetime="2023-08-03T15:32:03+08:00">2023-08-03</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="sanxin98 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="sanxin98 支付宝">
+        <p>支付宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>sanxin98 <i class="ic i-at"><em>@</em></i>死肥宅
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://pink-png.github.io/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" title="Step.4 完整渲染流程">https://pink-png.github.io/computer-science/vueyuanma/dosc/4完整渲染流程/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/computer-science/vueyuanma/dosc/3%E5%AE%9E%E4%BE%8B%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicljitigmj20zk0m87fp.jpg" title="Step.3 实例挂载流程和模板编译">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> vue2.x源码</span>
+  <h3>Step.3 实例挂载流程和模板编译</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.cdnjson.com&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicliierfjj20zk0m8npd.jpg" title="Step.5 组件基础剖析">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> vue2.x源码</span>
+  <h3>Step.5 组件基础剖析</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Virtual-DOM"><span class="toc-number">1.</span> <span class="toc-text">4.1 Virtual DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">4.1.1 浏览器的渲染流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-%E7%BC%93%E5%86%B2%E5%B1%82-%E8%99%9A%E6%8B%9FDOM"><span class="toc-number">1.2.</span> <span class="toc-text">4.1.2 缓冲层-虚拟DOM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-Vnode"><span class="toc-number">2.</span> <span class="toc-text">4.2 Vnode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-Vnode%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">4.2.1 Vnode构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-%E5%88%9B%E5%BB%BAVnode%E6%B3%A8%E9%87%8A%E8%8A%82%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text">4.2.2 创建Vnode注释节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-%E5%88%9B%E5%BB%BAVnode%E6%96%87%E6%9C%AC%E8%8A%82%E7%82%B9"><span class="toc-number">2.3.</span> <span class="toc-text">4.2.3 创建Vnode文本节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-%E5%85%8B%E9%9A%86vnode"><span class="toc-number">2.4.</span> <span class="toc-text">4.2.4 克隆vnode</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-Virtual-DOM%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">3.</span> <span class="toc-text">4.3 Virtual DOM的创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-%E6%95%B0%E6%8D%AE%E8%A7%84%E8%8C%83%E6%A3%80%E6%B5%8B"><span class="toc-number">3.1.</span> <span class="toc-text">4.3.1 数据规范检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-%E5%AD%90%E8%8A%82%E7%82%B9children%E8%A7%84%E8%8C%83%E5%8C%96"><span class="toc-number">3.2.</span> <span class="toc-text">4.3.2 子节点children规范化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-4-%E5%AE%9E%E9%99%85%E5%9C%BA%E6%99%AF"><span class="toc-number">3.3.</span> <span class="toc-text">4.3.4 实际场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E8%99%9A%E6%8B%9FVnode%E6%98%A0%E5%B0%84%E6%88%90%E7%9C%9F%E5%AE%9EDOM"><span class="toc-number">4.</span> <span class="toc-text">4.4 虚拟Vnode映射成真实DOM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E5%B0%8F%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">4.5 小结</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/computer-science/vueyuanma/dosc/1%E4%B8%B0%E5%AF%8C%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E7%AD%96%E7%95%A5/" rel="bookmark" title="Step.1 丰富的选项合并策略">Step.1 丰富的选项合并策略</a></li><li><a href="/computer-science/vueyuanma/dosc/2%E5%9F%BA%E7%A1%80%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B/" rel="bookmark" title="Step.2 基础的数据代理检测">Step.2 基础的数据代理检测</a></li><li><a href="/computer-science/vueyuanma/dosc/3%E5%AE%9E%E4%BE%8B%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91/" rel="bookmark" title="Step.3 实例挂载流程和模板编译">Step.3 实例挂载流程和模板编译</a></li><li class="active"><a href="/computer-science/vueyuanma/dosc/4%E5%AE%8C%E6%95%B4%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B/" rel="bookmark" title="Step.4 完整渲染流程">Step.4 完整渲染流程</a></li><li><a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" rel="bookmark" title="Step.5 组件基础剖析">Step.5 组件基础剖析</a></li><li><a href="/computer-science/vueyuanma/dosc/6%E7%BB%84%E4%BB%B6%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" rel="bookmark" title="Step.6 组件高级用法">Step.6 组件高级用法</a></li><li><a href="/computer-science/vueyuanma/dosc/7%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8A/" rel="bookmark" title="Step.7 深入响应式系统构建-上">Step.7 深入响应式系统构建-上</a></li><li><a href="/computer-science/vueyuanma/dosc/8%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%AD/" rel="bookmark" title="Step.8 深入响应式系统构建-中">Step.8 深入响应式系统构建-中</a></li><li><a href="/computer-science/vueyuanma/dosc/9%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8B/" rel="bookmark" title="Step.9 深入响应式系统构建-下">Step.9 深入响应式系统构建-下</a></li><li><a href="/computer-science/vueyuanma/dosc/10%E6%9D%A5%EF%BC%8C%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%AE%9E%E7%8E%B0diff%E7%AE%97%E6%B3%95/" rel="bookmark" title="Step.10 来，跟我一起实现diff算法">Step.10 来，跟我一起实现diff算法</a></li><li><a href="/computer-science/vueyuanma/dosc/11%E6%8F%AD%E7%A7%98Vue%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/" rel="bookmark" title="Step.11 揭秘Vue的事件机制">Step.11 揭秘Vue的事件机制</a></li><li><a href="/computer-science/vueyuanma/dosc/12vue%E6%8F%92%E6%A7%BD%EF%BC%8C%E4%BD%A0%E6%83%B3%E4%BA%86%E8%A7%A3%E7%9A%84%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C/" rel="bookmark" title="Step.12 vue插槽，你想了解的都在这里">Step.12 vue插槽，你想了解的都在这里</a></li><li><a href="/computer-science/vueyuanma/dosc/13%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3v-model%E7%9A%84%E8%AF%AD%E6%B3%95%E7%B3%96%E4%BA%86%E5%90%97/" rel="bookmark" title="Step.13 你真的了解v-model的语法糖了吗">Step.13 你真的了解v-model的语法糖了吗</a></li><li><a href="/computer-science/vueyuanma/dosc/14%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90/" rel="bookmark" title="Step.14 动态组件的深入分析">Step.14 动态组件的深入分析</a></li><li><a href="/computer-science/vueyuanma/dosc/15%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8A/" rel="bookmark" title="Step.15 彻底搞懂Vue中keep-alive的魔法-上">Step.15 彻底搞懂Vue中keep-alive的魔法-上</a></li><li><a href="/computer-science/vueyuanma/dosc/16%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Vue%E4%B8%ADkeep-alive%E7%9A%84%E9%AD%94%E6%B3%95-%E4%B8%8B/" rel="bookmark" title="Step.16 彻底搞懂Vue中keep-alive的魔法-上">Step.16 彻底搞懂Vue中keep-alive的魔法-上</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="sanxin98"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">sanxin98</p>
+  <div class="description" itemprop="description">编程 & 生活</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">97</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">41</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">29</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL3BpbmstcG5n" title="https:&#x2F;&#x2F;github.com&#x2F;pink-png"><i class="ic i-github"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/computer-science/vueyuanma/dosc/3%E5%AE%9E%E4%BE%8B%E6%8C%82%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%92%8C%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/computer-science/vueyuanma/dosc/5%E7%BB%84%E4%BB%B6%E5%9F%BA%E7%A1%80%E5%89%96%E6%9E%90/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/react0-1/" title="分类于 react">react</a>
+</div>
+
+    <span><a href="/computer-science/react0-1/%E9%A6%96%E5%B1%8F%E4%BC%98%E5%8C%96/" title="step.8 react首屏优化">step.8 react首屏优化</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a>
+</div>
+
+    <span><a href="/performance-optimization/%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E2%BC%8F%E4%B8%87%E6%9D%A1%E6%95%B0%E6%8D%AE%E5%B9%B6%E4%B8%8D%E5%8D%A1%E4%BD%8F%E7%95%8C%E2%BE%AF/" title="如何渲染⼏万条数据并不卡住界⾯">如何渲染⼏万条数据并不卡住界⾯</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/vueyuanma/" title="分类于 Vue">Vue</a>
+</div>
+
+    <span><a href="/front-end/vue2.x%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80/" title="vue2.x常用基础">vue2.x常用基础</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a>
+</div>
+
+    <span><a href="/performance-optimization/%E6%94%AF%E4%BB%98%E5%AE%9D%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" title="支付宝小程序性能优化方案">支付宝小程序性能优化方案</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" title="分类于 版本管理">版本管理</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E6%B1%87%E6%80%BB/" title="分类于 版本管理工具汇总">版本管理工具汇总</a>
+</div>
+
+    <span><a href="/Version-management-tools/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E6%B1%87%E6%80%BB/" title="版本管理工具汇总">版本管理工具汇总</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" title="分类于 微信小程序">微信小程序</a>
+</div>
+
+    <span><a href="/front-end/%E5%BE%AE%E4%BF%A1%E2%BC%A9%E7%A8%8B%E5%BA%8F/" title="微信小程序">微信小程序</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="分类于 前端性能优化">前端性能优化</a>
+</div>
+
+    <span><a href="/performance-optimization/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A6%96%E5%B1%8F%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="小程序首屏性能优化">小程序首屏性能优化</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
+</div>
+
+    <span><a href="/computer-science/vueyuanma/dosc/2%E5%9F%BA%E7%A1%80%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86%E6%A3%80%E6%B5%8B/" title="Step.2 基础的数据代理检测">Step.2 基础的数据代理检测</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/computer-science/" title="分类于 计算机科学">计算机科学</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/" title="分类于 Vue">Vue</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/computer-science/vueyuanma/dosc/" title="分类于 vue2.x源码">vue2.x源码</a>
+</div>
+
+    <span><a href="/computer-science/vueyuanma/dosc/9%E6%B7%B1%E5%85%A5%E5%93%8D%E5%BA%94%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA-%E4%B8%8B/" title="Step.9 深入响应式系统构建-下">Step.9 深入响应式系统构建-下</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" title="分类于 前端开发">前端开发</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/css/" title="分类于 css">css</a>
+</div>
+
+    <span><a href="/front-end/html+css%E9%9D%A2%E8%AF%95/" title="css面试">css面试</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">sanxin98 @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: 'computer-science/vueyuanma/dosc/4完整渲染流程/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: {"placeholder":"1. 提问前请先仔细阅读本文档⚡\n2. 页面显示问题💥，请提供控制台截图📸或者您的测试网址\n3. 其他任何报错💣，请提供详细描述和截图📸，祝食用愉快💪"},fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
